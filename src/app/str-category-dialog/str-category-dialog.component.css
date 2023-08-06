@@ -1,0 +1,36 @@
+
+mat-form-field{
+    width: 45%;
+    height: 90%;
+    margin-left: 2%; 
+    display: inline-block;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: row;
+   margin-left: 15px;
+   margin-top: 0px;
+    align-items: flex-start;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  
+  }
+  /* *{
+    direction: rtl;
+  } */
+
+  .container1{
+margin-right: 27px;
+  }
+  .container2{
+    display: flex;
+    flex-direction: row;
+   
+  }
+  label h1{
+    margin: 9px 21px 16px;
+  }
+ 

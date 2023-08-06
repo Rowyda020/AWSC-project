@@ -1,0 +1,25 @@
+<h1>users-info works!</h1>
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr >
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">email</th>
+            <th scope="col">status</th>
+            <th scope="col">process</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+    
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.Status}}</td>
+            <td> <button type="submit" class="btn btn-primary mb-3">edit</button> <button type="submit" class="btn btn-danger mb-3 mx-2">delete</button></td>
+          </tr>
+         
+        </tbody>
+      </table>
+</div>

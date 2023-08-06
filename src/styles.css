@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Droid Arabic Kufi', serif;}
+
+   
+
+:root {
+    --primary-color: rgb(255, 255, 255);
+    --secondary-color: rgb(60, 202, 252);
+    --white-Color: (255, 255, 255);
+}

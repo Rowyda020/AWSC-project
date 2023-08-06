@@ -1,0 +1,32 @@
+<form [formGroup]="platoonForm" dir="rtl">
+  <h1 mat-dialog-title>إضافة فصيلة</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="platoonForm">
+      <mat-form-field appearance="outline">
+        <mat-label>كود المستخدم</mat-label>
+        <input formControlName="transactionUserId" matInput placeholder="كود المستخدم">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>كود الفصيلة</mat-label>
+        <input formControlName="code" matInput placeholder="كود الفصيلة">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>اسم الفصيلة</mat-label>
+        <input formControlName="name" matInput placeholder="اسم الفصيلة">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="ادخل النوعية" aria-label="grade" [matAutocomplete]="auto" [formControl]="gradeCtrl" required />
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+          <mat-option *ngFor="let grade of filteredgrades | async" [value]="grade.name">
+            {{ grade.name }} | {{ grade.code }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" mat-dialog-close>اغلاق</button>
+  <button mat-raised-button color="primary" (click)="addPlatoon()" style="margin-left: 8px;">{{actionBtn}}</button> 
+  </div>
+  </form>

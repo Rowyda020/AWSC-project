@@ -1,0 +1,37 @@
+.example-card {
+  /* max-width: 400px; */
+  width: 20%;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+.example-card mat-card-title-group{
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+}
+.example-card mat-card-title{
+    margin-left: 40%;
+    color: var(--secondary-color);
+}
+.example-card mat-card-subtitle{
+  display: flex;
+  justify-content: center;
+  /* background: #ec2727; */
+  width: 120px;
+  padding: 10px;
+  text-align: center;
+}
+.example-card:hover{
+    background-color: var(--secondary-color);
+}
+
+.groupCardsMainContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.routeContainer{
+  margin-top: -5%;
+}

@@ -1,0 +1,98 @@
+
+
+h2 {
+  font-family: 'Cairo', sans-serif;
+  font-weight: bold;
+}
+
+.banner{
+   background-image:url("../../../assets/images/login.png");
+  background-size: 1000px 600px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    bottom: 50px;
+    
+    
+
+}
+
+.form{
+  font-family: 'Cairo', sans-serif;
+  width:33%;
+  height:800px;
+  background-color: FFFFFF;
+  padding: 10px;
+  /* border: 1px solid; */
+  margin: auto;
+  box-shadow: 0px 1px 1px 4px #f8f3f3;
+  /* padding-top: 20px; */
+  height: 500px;
+  border-radius: 15px;
+  
+  position: relative;
+  top: -10px;
+  z-index: 5;
+  
+  
+}
+.form h2{
+  text-align: center;
+}
+
+.form input:focus{
+  background-color: #ffff !important; 
+  box-shadow: none !important;
+}
+
+.form input{
+  margin: auto;
+  margin-top: 20px;
+  border: none;
+  border-bottom: 1px solid;
+  padding: 20px;
+  width: 80%;
+  border-radius: 0;
+  text-align: right;
+  background-color: #ffff !important;
+  
+}
+
+
+input:-internal-autofill-selected{
+  background-color: white !important;
+}
+   
+
+.form .b button{
+  text-align: center;
+  margin: auto;
+  margin-top: 60px;
+  display: block;
+  border-radius: 20px;
+  padding:12px 50px;
+  background-color: #2DC4F3;
+  color:white;
+  border: #2DC4F3;
+  font-size: 20px;
+}
+.logo{
+ 
+  margin: auto;
+  text-align: center;
+
+
+}
+#user {
+  position: relative;
+  top:70px;
+  left: 300px;
+
+}
+#lock{
+  position: relative;
+  top:70px;
+  left: 300px;
+  
+}
+    

@@ -1,0 +1,55 @@
+<p>add-user works!</p>
+<form action="" #register="ngForm" (ngSubmit)="handelRegister(register)">
+    <!-- values {{register.value|json}}
+    valid {{register.valid}} -->
+    <div class="row">
+        <div class="m-3">
+            <input type="text" name="name" placeholder="الاسم " required [(ngModel)]="model.name"
+                #name="ngModel" />
+            <!-- error {{name.errors|json}}
+            invalid {{name.invalid}}
+            touch {{name.touched}}
+            dirty {{name.dirty}} -->
+        </div>
+        <!-- <div class="m-3">
+            <input type="email" name="email" placeholder="ايميل" required email [(ngModel)]="model.email"
+                #email="ngModel" />
+            <div class="alert alert-danger" *ngIf="email.invalid ">
+                <div *ngIf="email.errors?.['required']">
+                    هذا الحقل مطلوب
+                </div>
+                <div *ngIf="email.errors?.['email']">
+                    ايميل غير صحيح
+                </div>
+            </div>
+        </div> -->
+        <div class="m-3">
+            <input type="password" name="password" placeholder="الرقم السري" required [(ngModel)]="model.password"
+                #password="ngModel" />
+        </div>
+
+        
+        <!-- <div class="m-3">
+            <input type="password" name="password_confirmation" placeholder=" تأكيدالرقم السري" required
+                [(ngModel)]="model.password_confirmation" #password_confirmation="ngModel" />
+        </div> -->
+
+        <div class="m-3">
+            <label class="">حالة المستخدم</label>
+            <select name="isActive" id="select-beast" class=""
+                [(ngModel)]="model.isActive" #isActive="ngModel">
+                <option value=true>مفعل</option>
+                <option value=false>غير مفعل</option>
+            </select>
+        </div>
+        <div class="m-3">
+            <button class="btn btn-primary">
+                تسجيل
+            </button>
+        </div>
+    </div>
+
+
+
+</form>
+

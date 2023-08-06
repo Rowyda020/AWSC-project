@@ -1,0 +1,36 @@
+<!-- <form [formGroup]="productForm" dir="rtl">
+  <h1 mat-dialog-title>إضافة فصيلة</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="productForm">
+      <mat-form-field appearance="outline">
+        <mat-label>كود الفصيلة</mat-label>
+        <input formControlName="platoonId" matInput placeholder="كود الفصيلة">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>اسم الفصيلة</mat-label>
+        <input formControlName="platoonName" matInput placeholder="اسم الفصيلة">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="ادخل النوعية" aria-label="Country" [matAutocomplete]="auto" [formControl]="countryCtrl" required />
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+          <mat-option *ngFor="let country of filteredCountry | async" [value]="country.id +'/'+ country.name">
+            {{ country.name }} | {{ country.id }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="ادخل النوعية الفرعية" aria-label="SubGrad" [matAutocomplete]="subAuto" [formControl]="subGradCtrl" required />
+        <mat-autocomplete #subAuto="matAutocomplete" (optionSelected)="subOptionSelected($event)">
+          <mat-option *ngFor="let subGrad of filteredSubGrad | async" [value]="subGrad.gid +'/'+ subGrad.name">
+            {{ subGrad.name }} | {{ subGrad.gid }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" mat-dialog-close>اغلاق</button>
+  <button mat-raised-button color="primary" (click)="addProduct()" style="margin-left: 8px;">{{actionBtn}}</button> 
+  </div>
+  </form> -->

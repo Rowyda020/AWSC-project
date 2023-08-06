@@ -1,0 +1,29 @@
+<form [formGroup]="gradeForm" dir="rtl">
+  <h1 mat-dialog-title>إضافة نوعية</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="gradeForm">
+      <mat-form-field appearance="outline">
+        <mat-label>كود النوعية</mat-label>
+        <input formControlName="code" matInput placeholder="ادخل كود النوعية">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>النوعية </mat-label>
+        <input formControlName="name" matInput placeholder="ادخل النوعية">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="ادخل السلعة" aria-label="option" [matAutocomplete]="auto" [formControl]="commodityCtrl"
+          required />
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+          <mat-option *ngFor="let option of filteredcommodities | async" [value]="option.name">
+            {{ option.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" mat-dialog-close>اغلاق</button>
+    <button mat-raised-button color="primary" (click)="addGrade()" style="margin-left: 8px;">{{actionBtn}}</button>
+  </div>
+</form>

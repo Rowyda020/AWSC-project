@@ -1,0 +1,442 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "GroupList": [
+    {
+      "groupCode": "tt",
+      "groupName": "bbb",
+      "groupCommdityCode": "tn",
+      "groupCommdity": "الاولى",
+      "id": 14
+    },
+    {
+      "groupCode": "t",
+      "groupName": "n",
+      "groupCommdityCode": "tn",
+      "groupCommdity": "الثالثة",
+      "id": 15
+    },
+    {
+      "groupCode": "yu",
+      "groupName": "jjj",
+      "groupCommdityCode": "m1",
+      "groupCommdity": "الثانية",
+      "id": 16
+    },
+    {
+      "groupCode": "pppppppp",
+      "groupName": "kl",
+      "groupCommdityCode": "lo",
+      "groupCommdity": "الثانية",
+      "id": 17
+    },
+    {
+      "groupCode": "Explicabo Sint numq",
+      "groupName": "Nihil aut consectetu",
+      "groupCommdityCode": "Eligendi quibusdam d",
+      "groupCommdity": "الثانية",
+      "id": 18
+    },
+    {
+      "groupCode": "Harum quis consequun",
+      "groupName": "Quaerat quibusdam an",
+      "groupCommdityCode": "Ipsum ea aliquam in",
+      "groupCommdity": "الاولى",
+      "id": 19
+    }
+  ],
+  "rolelist": [
+    {
+      "name": "manager",
+      "description": "none",
+      "transactionUserId": 3,
+      "id": 2
+    },
+    {
+      "name": "employee",
+      "description": "none",
+      "transactionUserId": 5,
+      "id": 1
+    },
+    {
+      "name": "Aperiam earum corpor",
+      "description": "Doloremque cillum bl",
+      "id": 10
+    },
+    {
+      "name": "smsm",
+      "description": "smsm",
+      "id": 11
+    }
+  ],
+  "unitlist": [
+    {
+      "unitId": "tuuuto",
+      "unitName": "56",
+      "id": 7
+    },
+    {
+      "unitId": "ttto",
+      "unitName": "56",
+      "id": 1
+    },
+    {
+      "unitId": "fepy",
+      "unitName": "56",
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "productList": [
+    {
+      "productCode": "d",
+      "productName": "dd",
+      "category": 1,
+      "id": 3
+    },
+    {
+      "productCode": "11",
+      "productName": "11",
+      "category": "1Electronics",
+      "id": 5
+    }
+  ],
+  "commidity": [
+    {
+      "id": 1,
+      "title": "Electronics"
+    },
+    {
+      "id": 2,
+      "title": "fruit"
+    }
+  ],
+  "storeList": [
+    {
+      "orderNum": "22",
+      "store": 0,
+      "date": "2023-07-04T21:00:00.000Z",
+      "id": 2
+    },
+    {
+      "orderNum": "13",
+      "store": "مخزن2",
+      "date": "2023-07-10T21:00:00.000Z",
+      "id": 3
+    },
+    {
+      "orderNum": "1",
+      "store": "مخزن1",
+      "date": "2023-07-01T21:00:00.000Z",
+      "id": 4
+    },
+    {
+      "orderNum": "2",
+      "store": "مخزن1",
+      "date": "2023-07-25T21:00:00.000Z",
+      "id": 5
+    },
+    {
+      "orderNum": "33",
+      "store": 0,
+      "date": "2023-07-12T21:00:00.000Z",
+      "id": 6
+    },
+    {
+      "orderNum": "55",
+      "store": "مخزن3",
+      "date": "2023-07-05T21:00:00.000Z",
+      "id": 7
+    },
+    {
+      "orderNum": "77",
+      "store": "مخزن1",
+      "date": "2023-07-02T21:00:00.000Z",
+      "id": 8
+    },
+    {
+      "orderNum": "33",
+      "store": "مخزن1",
+      "date": "2023-07-05T21:00:00.000Z",
+      "id": 9
+    },
+    {
+      "orderNum": "22",
+      "store": "مخزن1",
+      "date": "2023-07-02T21:00:00.000Z",
+      "id": 10
+    },
+    {
+      "orderNum": "s",
+      "store": "مخزن1",
+      "date": "2023-07-03T21:00:00.000Z",
+      "id": 11
+    },
+    {
+      "orderNum": "11",
+      "store": "مخزن2",
+      "date": "2023-07-10T21:00:00.000Z",
+      "id": 12
+    }
+  ],
+  "store": [
+    {
+      "id": 1,
+      "title": "مخزن1"
+    },
+    {
+      "id": 2,
+      "title": "مخزن2"
+    },
+    {
+      "id": 3,
+      "title": "مخزن3"
+    }
+  ],
+  "StoreList": [
+    {
+      "id": "1",
+      "name": "اسوان"
+    },
+    {
+      "id": "2",
+      "name": "كوم امبو"
+    },
+    {
+      "id": "3",
+      "name": "ادفو"
+    },
+    {
+      "id": "4",
+      "name": "دراو"
+    }
+  ],
+  "StrOpen": [
+    {
+      "No": 82,
+      "StoreId": "4",
+      "Store": "دراو",
+      "Date": "2023-08-14T21:00:00.000Z",
+      "id": 2
+    },
+    {
+      "No": 42,
+      "StoreId": "3",
+      "Store": "ادفو",
+      "Date": "2023-08-09T21:00:00.000Z",
+      "id": 3
+    },
+    {
+      "No": 3,
+      "StoreId": "1",
+      "Store": "اسوان",
+      "Date": "2023-08-15T21:00:00.000Z",
+      "id": 4
+    },
+    {
+      "No": 3,
+      "StoreId": "1",
+      "Store": "اسوان",
+      "Date": "2023-08-15T21:00:00.000Z",
+      "id": 5
+    },
+    {
+      "No": 2,
+      "StoreId": "2",
+      "Store": "كوم امبو",
+      "Date": "2023-08-17T21:00:00.000Z",
+      "id": 6
+    },
+    {
+      "No": 4,
+      "StoreId": "3",
+      "Store": "ادفو",
+      "Date": "2023-08-24T21:00:00.000Z",
+      "id": 7
+    }
+  ],
+  "StrOpenDetails": [
+    {
+      "HeaderId": 2,
+      "Qty": "2",
+      "Price": "11",
+      "Total": 22,
+      "ItemId": "الاولى",
+      "id": 5
+    },
+    {
+      "HeaderId": 4,
+      "Qty": "2",
+      "Price": "50",
+      "Total": 100,
+      "ItemId": "الثالثة",
+      "id": 6
+    },
+    {
+      "HeaderId": 6,
+      "Qty": "20",
+      "Price": "60",
+      "Total": 1200,
+      "ItemId": "الثالثة",
+      "id": 7
+    },
+    {
+      "HeaderId": 7,
+      "Qty": "50",
+      "Price": "60",
+      "Total": 3000,
+      "ItemId": "الثانية",
+      "id": 8
+    }
+  ],
+  "costcenter": [],
+  "category": [
+    {
+      "productName": "ننن",
+      "Num": 888,
+      "commodity": 1,
+      "grade": 1,
+      "platon": 1,
+      "group": 2,
+      "unit": 1,
+      "type": "نشط",
+      "relation": "جديد",
+      "id": 1
+    },
+    {
+      "productName": "hh",
+      "Num": 88,
+      "commodity": 1,
+      "grade": 2,
+      "platon": 2,
+      "group": 1,
+      "unit": 1,
+      "type": "نشط",
+      "relation": "جديد",
+      "id": 2
+    },
+    {
+      "productName": "mmm",
+      "Num": 555,
+      "commodity": 1,
+      "grade": 2,
+      "platon": 2,
+      "group": 2,
+      "unit": 1,
+      "type": "نشط",
+      "relation": "مستعمل",
+      "id": 3
+    },
+    {
+      "productName": "jj",
+      "Num": 55,
+      "commodity": 2,
+      "grade": 2,
+      "platon": 1,
+      "group": 2,
+      "unit": 1,
+      "type": "نشط",
+      "relation": "مستعمل",
+      "id": 4
+    },
+    {
+      "productName": "kkk",
+      "Num": 88,
+      "commodity": "سلعة 1",
+      "grade": "الفصيلة 2",
+      "platon": "النوعية 2",
+      "group": "مجموعة 2",
+      "unit": "وحدة 1",
+      "type": "نشط",
+      "relation": "جديد",
+      "id": 5
+    },
+    {
+      "productName": "jjj",
+      "Num": 5,
+      "commodity": 1,
+      "grade": "الفصيلة 2",
+      "platon": "النوعية 1",
+      "group": "مجموعة 1",
+      "unit": "وحدة 2",
+      "type": "نشط",
+      "relation": "جديد",
+      "id": 6
+    }
+  ],
+  "commodity": [
+    {
+      "id": 1,
+      "name": "سلعة 1"
+    },
+    {
+      "id": 2,
+      "name": "سلعة 2"
+    },
+    {
+      "STRcode": 555,
+      "STRcommodity": "HHH",
+      "id": 3
+    }
+  ],
+  "gradelist": [
+    {
+      "id": 1,
+      "name": "الفصيلة 1",
+      "commodityId": 1
+    },
+    {
+      "id": 2,
+      "name": "الفصيلة 2",
+      "commodityId": 2
+    }
+  ],
+  "platon": [
+    {
+      "id": 1,
+      "name": "النوعية 1",
+      "gradeId": 1
+    },
+    {
+      "id": 2,
+      "name": "النوعية 2",
+      "gradeId": 2
+    }
+  ],
+  "group": [
+    {
+      "id": 1,
+      "name": "مجموعة 1",
+      "platonId": 1
+    },
+    {
+      "id": 2,
+      "name": "مجموعة 2",
+      "platonId": 2
+    }
+  ],
+  "unit": [
+    {
+      "id": 1,
+      "name": "وحدة 1"
+    },
+    {
+      "id": 2,
+      "name": "وحدة 2"
+    }
+  ]
+}

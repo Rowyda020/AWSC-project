@@ -1,0 +1,154 @@
+@import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
+
+app-str-group-home{
+  font-family: 'Droid Arabic Kufi', serif;
+}
+body {  font-family: 'Droid Arabic Kufi', serif;}
+
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.screenBackground {
+  padding: 20px;
+  background: linear-gradient(rgb(60, 202, 252), rgb(3, 21, 89));
+  height: 100vh;
+}
+
+.baseContainer {
+  background: var(--primary-color);
+  height: 100vh;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.example-container {
+  width: auto;
+  height: 95vh;
+  top: 280px;
+  border-left: 1px solid rgba(235, 232, 232, 0.5);
+  overflow: hidden;
+  /* margin-right: -15px; */
+  background-color: transparent;
+}
+
+.example-sidenav-content {
+  display: none;
+  height: 100%;
+  align-items: left;
+  justify-content: left;
+  /* width: 150px; */
+  background: white;
+  scrollbar-width: none;
+  /* overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;  */
+}
+
+mat-drawer-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.example-sidenav {
+  padding: 10px;
+  overflow: hidden;
+}
+
+.routingContainerToggleClosed {
+  width: 80%;
+  /* background-color: blueviolet; */
+  margin: 5% 0 0 5%;
+}
+
+.routingContainerToggleOpened{
+  width: 73%;
+  /* background-color: red; */
+  margin: 5% 0 0 3%;
+}
+.toolbarContainer{
+  display: flex;
+  flex-direction: row;
+  width: 160%;
+  /* background: #000; */
+  justify-content: space-between;
+  padding: 10px;
+}
+.toolBarUserInfo{
+  display: flex;
+  flex-direction: row;
+}
+.toolbarUserContent p{
+  font-size: 15px;
+  margin-top: 5px;
+}
+.companyInfo{
+  display: flex;
+  flex-direction: row;
+  border: 1px black solid;
+  border-radius: 10px;
+  box-shadow: 0.5px 2px 5px 0.5px rgb(230, 173, 200);
+  padding: 5px;
+  margin-right: -25%;
+}
+.companyInfoInToggle{
+  display: flex;
+  flex-direction: row;
+  border: 1px black solid;
+  border-radius: 10px;
+  box-shadow: 0.5px 2px 5px 0.5px lightblue;
+  padding: 5px;
+  width: auto;
+}
+.companyInfoToggleOpened{
+  display: none;
+}
+
+.companyInfo img{
+  width: 35px;
+  height: 35px;
+}
+.companyInfo mat-icon{
+  margin: 5px;
+}
+.companyInfo .toolbarUserContent{
+  line-height: 0.5;
+  margin-right: 10px;
+}
+.companyInfo p{
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.companyInfoInToggle img{
+  width: 35px;
+  height: 35px;
+}
+.companyInfoInToggle mat-icon{
+  margin: 5px;
+}
+.companyInfoInToggle .toolbarUserContent{
+  line-height: 0.5;
+  margin-right: 10px;
+}
+.companyInfoInToggle p{
+  font-size: 15px;
+  margin-top: 5px;
+}
+.toolBarUserInfo mat-icon{
+  margin: 5px;
+}
+
+.toolBarUserInfo img{
+  width: 35px;
+  height: 35px;
+}
+
+.toolBarUserInfo .toolbarUserContent{
+  line-height: 0.5;
+  margin-right: 10px;
+}
+
+
