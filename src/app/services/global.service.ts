@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class GlobalService {
   isLogIn = false
-  
-
+  bgColor :any
   isStatus= "مفعل"
+  
 
   public navFlag:boolean=true
 

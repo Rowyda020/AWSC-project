@@ -34,6 +34,7 @@ export class STRGradeDialogComponent {
   formcontrol = new FormControl('');  
   gradeForm !:FormGroup;
   actionBtn : string = "حفظ"
+  selectedOption:any;
   Id:string  | undefined | null;
    commidityDt:any={
   id:0,
@@ -63,10 +64,11 @@ commodityName: any;
     ngOnInit(): void {
       this.gradeForm = this.formBuilder.group({
         //define the components of the form
-        code: ['', Validators.required],
-        name: ['', Validators.required],
-        commodityName: ['', Validators.required],
-        commodityId: ['', Validators.required],
+        transactionUserId : ['',Validators.required],
+      code : ['',Validators.required],
+      name : ['',Validators.required],
+      commodityId : ['',Validators.required],
+      id : ['',Validators.required],
       });
   
       this.api.getAllCommodity().subscribe((data)=>{
@@ -76,93 +78,121 @@ commodityName: any;
   
       if(this.editData){
         this.actionBtn = "تعديل";
+      this.gradeForm.controls['transactionUserId'].setValue(this.editData.transactionUserId);
         this.gradeForm.controls['code'].setValue(this.editData.code);
       this.gradeForm.controls['name'].setValue(this.editData.name);
-      this.gradeForm.controls['commodityName'].setValue(this.editData.commodityName);
+      // this.gradeForm.controls['commodityName'].setValue(this.editData.commodityName);
       this.gradeForm.controls['commodityId'].setValue(this.editData.commodityId);
+      this.gradeForm.addControl('id', new FormControl('', Validators.required));
+      this.gradeForm.controls['id'].setValue(this.editData.id);
       }
     }
 
-    async getSearchGrades(commidityID:any,name:any) {
-      // console.log(commidityID + name)
-        this.commodityName =  await this.getcommodityByID(commidityID)
-        alert(this.commodityName)
-          this.api.getGrade()
-            .subscribe({
-              next: (res) => {
-                // 1-
-                if (commidityID != '' && name == '' ){
-                  this.dataSource = res.filter((res: any)=> res.commodity==commidityID!) 
-                  this.dataSource.paginator = this.paginator;
-                  this.dataSource.sort = this.sort;
-                }
-                else if (commidityID != '' && name != ''){
-                  // this.dataSource = res.filter((res: any)=> res.name==name!)
-                  this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name.toLowerCase().includes(name.toLowerCase()))
-                  this.dataSource.paginator = this.paginator;
-                  this.dataSource.sort = this.sort;
-                }
-                else{
-                  // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
-                  this.dataSource = res.filter((res: any)=> res.name.toLowerCase().includes(name.toLowerCase()))
-                  this.dataSource.paginator = this.paginator;
-                  this.dataSource.sort = this.sort;
-                }
+    // async getSearchGrades(commidityID:any,name:any) {
+    //   // console.log(commidityID + name)
+    //     this.commodityName =  await this.getcommodityByID(commidityID)
+    //     alert(this.commodityName)
+    //       this.api.getGrade()
+    //         .subscribe({
+    //           next: (res) => {
+    //             // 1-
+    //             if (commidityID != '' && name == '' ){
+    //               this.dataSource = res.filter((res: any)=> res.commodity==commidityID!) 
+    //               this.dataSource.paginator = this.paginator;
+    //               this.dataSource.sort = this.sort;
+    //             }
+    //             else if (commidityID != '' && name != ''){
+    //               // this.dataSource = res.filter((res: any)=> res.name==name!)
+    //               this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name.toLowerCase().includes(name.toLowerCase()))
+    //               this.dataSource.paginator = this.paginator;
+    //               this.dataSource.sort = this.sort;
+    //             }
+    //             else{
+    //               // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
+    //               this.dataSource = res.filter((res: any)=> res.name.toLowerCase().includes(name.toLowerCase()))
+    //               this.dataSource.paginator = this.paginator;
+    //               this.dataSource.sort = this.sort;
+    //             }
               
                 
-              },
-              error: (err) => {
-                alert("Error")
-              }
-            })
-            // this.getAllProducts()
-          }
+    //           },
+    //           error: (err) => {
+    //             alert("Error")
+    //           }
+    //         })
+    //         // this.getAllProducts()
+    //       }
   
           
-  getcommodityByID(id: any) {
-    console.log("row store id: ", id);
-    return fetch(`http://ims.aswan.gov.eg/api/STR_Commodity/get-commodity-by-id/{id}`)
-      .then(response => response.json())
-      .then(json => {
-        console.log("fetch name by id res: ", json[0].name);
-        // this.storeName = res.name;
-        // this.groupMasterForm.controls['Store'] = json[0].name;
-        return json[0].name;
-      })
-      .catch((err) => {
-        console.log("error in fetch name by id: ", err);
-        alert("خطا اثناء جلب رقم المخزن !");
-      });
-  }
-   async addGrade() {
-      if (!this.editData) {
-        this.commodityName =  await this.getcommodityByID(this.gradeForm.getRawValue().commodityId)
-        console.log("form add: ", this.gradeForm.value, "comm name: ", this.commodityName)
-        this.gradeForm.controls['commodityName'].setValue(this.commodityName);
-        console.log("form add after select: ", this.gradeForm.value)
-        if (this.gradeForm.valid) {
-          this.api.postGrade(this.gradeForm.value)
-            .subscribe({
-              next: (res) => {
+  // getcommodityByID(id: any) {
+  //   console.log("row store id: ", id);
+  //   return fetch(`http://ims.aswan.gov.eg/api/STR_Commodity/get-commodity-by-id/{id}`)
+  //     .then(response => response.json())
+  //     .then(json => {
+  //       console.log("fetch name by id res: ", json[0].name);
+  //       // this.storeName = res.name;
+  //       // this.groupMasterForm.controls['Store'] = json[0].name;
+  //       return json[0].name;
+  //     })
+  //     .catch((err) => {
+  //       console.log("error in fetch name by id: ", err);
+  //       alert("خطا اثناء جلب رقم المخزن !");
+  //     });
+  // }
+  //  async addGrade() {
+  //     if (!this.editData) {
+  //       this.commodityName =  await this.getcommodityByID(this.gradeForm.getRawValue().commodityId)
+  //       console.log("form add: ", this.gradeForm.value, "comm name: ", this.commodityName)
+  //       this.gradeForm.controls['commodityName'].setValue(this.commodityName);
+  //       console.log("form add after select: ", this.gradeForm.value)
+  //       if (this.gradeForm.valid) {
+  //         this.api.postGrade(this.gradeForm.value)
+  //           .subscribe({
+  //             next: (res) => {
   
-                alert("تمت الاضافة بنجاح");
-                this.gradeForm.reset();
-                this.dialogRef.close('save');
-              },
-              error: (err) => {
-                alert("Error")
-                // console.log("add product err:", err);
-              }
-            })
-        }
-      }else{
-        this.updateGrade()
+  //               alert("تمت الاضافة بنجاح");
+  //               this.gradeForm.reset();
+  //               this.dialogRef.close('save');
+  //             },
+  //             error: (err) => {
+  //               alert("Error")
+  //               // console.log("add product err:", err);
+  //             }
+  //           })
+  //       }
+  //     }else{
+  //       this.updateGrade()
+  //     }
+  //   }
+
+  addGrade(){
+    if(!this.editData){
+      
+      this.gradeForm.removeControl('id')
+      this.gradeForm.controls['commodityId'].setValue(this.selectedOption);
+      console.log("add: ", this.gradeForm.value);
+
+      if(this.gradeForm.valid){
+        this.api.postPlatoon(this.gradeForm.value)
+        .subscribe({
+          next:(res)=>{
+            alert("تمت الاضافة بنجاح");
+            this.gradeForm.reset();
+            this.dialogRef.close('save');
+          },
+          error:(err)=>{ 
+            alert("خطأ عند تحديث البيانات") 
+          }
+        })
       }
+    }else{
+      this.updateGrade()
     }
+  }
   
     optionSelected(event: MatAutocompleteSelectedEvent) {
-      const selectedOption = event.option.value;
-      this.gradeForm.patchValue({ grad: selectedOption });
+      this.selectedOption = event.option.value;
+      this.gradeForm.patchValue({ commodityId: this.selectedOption });
     }
   
     filtergradd(value: string) {

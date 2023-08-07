@@ -15,7 +15,10 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class STRUnitsDialogComponent {
   formcontrol = new FormControl('');  
   unitsForm !:FormGroup;
-  actionBtn : string = "حفظ"
+  actionBtn : string = "حفظ";
+
+  // groupEditId: any;
+
   constructor(private formBuilder : FormBuilder,
      private api : ApiService,
      private readonly route:ActivatedRoute,
@@ -26,17 +29,23 @@ export class STRUnitsDialogComponent {
     this.unitsForm = this.formBuilder.group({
       transactionUserId : ['',Validators.required],
       name : ['',Validators.required],
+      id : ['',Validators.required],
     });
 
     if(this.editData){
+      console.log("edit data: ", this.editData)
       this.actionBtn = "تعديل";
       this.unitsForm.controls['transactionUserId'].setValue(this.editData.transactionUserId);
       this.unitsForm.controls['name'].setValue(this.editData.name);
+      // this.unitsForm.controls['id'].setValue(this.editData.id);
+      this.unitsForm.addControl('id', new FormControl('', Validators.required));
+      this.unitsForm.controls['id'].setValue(this.editData.id);
     }
   }
 
   addProduct(){
     if(!this.editData){
+      this.unitsForm.removeControl('id')
       if(this.unitsForm.valid){
         this.api.postunit(this.unitsForm.value)
         .subscribe({

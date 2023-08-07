@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StrGroupHomeComponent } from './str-groupBannel-home/str-group-home.component';
+import { StrGroupHomeComponent } from './str-group-home/str-group-home.component';
 import { StrGroupContainerComponent } from './str-groupBannel-container/str-group-container.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ErrorComponent } from './pages/error/error.component';
@@ -16,6 +16,7 @@ import { StrCategoryComponent } from './str-category/str-category.component';
 import { StrGroupComponent } from './str-group/str-group.component';
 import { StrStoreComponent } from './str-store/str-store.component';
 import { STRPlatoonComponent } from './str-platoon/str-platoon.component';
+import { STRHomeComponent } from './str-home/str-home.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: "store", component:StrStoreComponent},
   {path: 'str-grade', component: STRGradeComponent},
   {path: 'str-platoon', component: STRPlatoonComponent},
-
+  {path: 'str-home', component:STRHomeComponent},
+  
 
 
 

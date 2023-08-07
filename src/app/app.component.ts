@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { GlobalService } from './services/global.service';
 
 @Component({
@@ -9,9 +9,16 @@ import { GlobalService } from './services/global.service';
 export class AppComponent {
 
   constructor(public global:GlobalService){
+    
     if(localStorage.getItem('token')) this.global.isLogIn = true
     console.log(this.global.isLogIn)
     
+  }
+
+  ngOnInit():void
+  {
+    this.global.bgColor= document.querySelector('section')?.classList.add('screenBackground');
+
   }
   title = 'str-group';
 
@@ -22,9 +29,10 @@ export class AppComponent {
     this.toggleButtonCounter++;
   } 
 
-
+ sssd(){
   
-
+  // document.querySelector('section')?.classList.add('.screenBackground');
+ }
 
   handleLogOut(){
     localStorage.removeItem('token')

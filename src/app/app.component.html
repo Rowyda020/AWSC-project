@@ -1,8 +1,8 @@
-<div class="screenBackground">
+<section >
   <div class="baseContainer">
     <mat-toolbar color="primary" style="background-color: white; color: black;">
       <mat-toolbar-row>
-        <div class="toolbarContainer" *ngIf="global.isLogIn">
+        <div class="toolbarContainer" *ngIf="global.isLogIn||global.navFlag">
           <div class="toolBarUserInfo" dir="rtl">
             <mat-icon>notifications_active</mat-icon>
             <mat-icon>search</mat-icon>
@@ -27,20 +27,15 @@
                 <mat-icon>voicemail</mat-icon>
                 <span>Check voice mail</span>
               </button>
-              <button mat-menu-item *ngIf="global.isLogIn" routerLink="login" (click)="handleLogOut()">
+              <button mat-menu-item  routerLink="login" (click)="handleLogOut()">
                 <mat-icon>notifications_off</mat-icon>
                 <span>تسجيل الخروج</span>
               </button>
             </mat-menu>
-
-
-
-
-
-
           </div>
 
           <p>الرئيسية</p>
+          
 
           <!-- <button type="button" mat-button (click)="drawer.toggle()" (click)="plus()">
             <mat-icon>menu</mat-icon>
@@ -141,9 +136,9 @@
     <div
       [ngClass]="(toggleButtonCounter % 2 == 0) ? 'container routingContainerToggleClosed' : 'container routingContainerToggleOpened'">
 
-      <router-outlet></router-outlet>
+      <router-outlet ></router-outlet>
     </div>
 
 
   </div>
-</div>
+</section>

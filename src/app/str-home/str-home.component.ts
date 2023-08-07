@@ -1,0 +1,18 @@
+import { Component ,OnInit} from '@angular/core';
+import { GlobalService } from '../services/global.service';
+
+@Component({
+  selector: 'app-str-home',
+  templateUrl: './str-home.component.html',
+  styleUrls: ['./str-home.component.css']
+})
+export class STRHomeComponent {
+
+  constructor(public global:GlobalService){
+
+  }
+  OnInit():void{
+    this.global.bgColor= document.querySelector('section')?.classList.add('screenBackground');
+
+ }
+}

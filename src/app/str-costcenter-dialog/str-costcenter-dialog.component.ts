@@ -12,8 +12,6 @@ import { publishFacade } from '@angular/compiler';
   styleUrls: ['./str-costcenter-dialog.component.css']
 })
 export class StrCostcenterDialogComponent  implements OnInit {
-  transactionUserId=localStorage.getItem('transactionUserId')
-  createUserName="Admin"
 
   productForm !: FormGroup;
   actionBtn: string = "حفظ"
@@ -27,8 +25,6 @@ export class StrCostcenterDialogComponent  implements OnInit {
     this.productForm = this.formBuilder.group({
       code: ['', Validators.required],
       name: ['', Validators.required],
-      transactionUserId:['', Validators.required],
-      createUserName:['', Validators.required]
       
     });
 
@@ -40,16 +36,11 @@ export class StrCostcenterDialogComponent  implements OnInit {
     }
   }
 
-  addCostCenter() {
+  addProduct() {
     if (!this.editData) {
-      this.productForm.controls['transactionUserId'].setValue(this.transactionUserId);
-      this.productForm.controls['createUserName'].setValue(this.createUserName);
       if (this.productForm.valid) {
-        console.log(this.productForm.value);
-        this.api.postCostCenter(this.productForm.value)
-       
+        this.api.postProduct(this.productForm.value)
           .subscribe({
-            
             next: (res) => {
               alert("تم اضافة المركز");
               this.productForm.reset();
@@ -62,12 +53,12 @@ export class StrCostcenterDialogComponent  implements OnInit {
           })
       }
     }else{
-      this.updateCostCenter()
+      this.updateProduct()
     }
   }
 
-  updateCostCenter(){
-    this.api.putCostCenter(this.productForm.value,this.editData.id)
+  updateProduct(){
+    this.api.putProduct(this.productForm.value,this.editData.id)
     .subscribe({
       next:(res)=>{
         alert("تم التحديث بنجاح");

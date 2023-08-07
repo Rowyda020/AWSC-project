@@ -7,7 +7,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { LoginComponent } from './pages/login/login.component';
-import { StrGroupHomeComponent } from './str-groupBannel-home/str-group-home.component';
+import { StrGroupHomeComponent } from './str-group-home/str-group-home.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
@@ -52,7 +52,7 @@ import { STRUnitsDialogComponent} from './str-units-dialog/str-units-dialog.comp
 import { STRPlatoonComponent } from './str-platoon/str-platoon.component';
 import { STRPlatoonDialogComponent } from './str-platoon-dialog/str-platoon-dialog.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import { STRHomeComponent } from './str-home/str-home.component';
 
 
 
@@ -89,7 +89,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     STRUnitsComponent,
     STRUnitsDialogComponent,
     STRPlatoonComponent ,
-    STRPlatoonDialogComponent
+    STRPlatoonDialogComponent,
+    STRHomeComponent
   
 
 

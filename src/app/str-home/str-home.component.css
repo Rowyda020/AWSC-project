@@ -1,0 +1,33 @@
+@import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
+
+.card-class{
+  margin: 2%;
+  width: 19%;
+  border-radius: 3px;
+  
+  text-align: center;
+  float: right;
+  cursor: pointer;
+  color: rgb(60, 202, 252);
+  /* box-shadow: 2px 2px 8px rgb(60, 202, 252); */
+  border: 1px solid rgb(60, 202, 252);
+  padding-left: 5px ;
+  padding-right: 5px;
+  overflow: hidden;
+}
+
+.card-class:hover,
+.card-class:active{
+  background-color:rgb(60, 202, 252);
+  color: #fff;
+}
+
+.mat-mdc-card-title{
+  font-family: 'Droid Arabic Kufi', serif;
+}
+
+.screenBackground {
+  padding: 20px;
+  background: linear-gradient(rgb(252, 60, 73), rgb(89, 3, 46));
+  height: 100vh;
+}

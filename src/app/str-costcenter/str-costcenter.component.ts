@@ -27,6 +27,12 @@ export class StrCostcenterComponent  implements OnInit {
   //define table fields which has to be same to api fields
   displayedColumns: string[] = ['code', 'name','action'];
   dataSource!: MatTableDataSource<any>;
+  costcenterlist:any;
+  costcenter: any = {
+    id: 0,
+    name: ''
+
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -36,6 +42,10 @@ export class StrCostcenterComponent  implements OnInit {
   }
   ngOnInit(): void {
     this.getAllCostCenter();
+    this.api.getCostCenter().subscribe((data: any) => {
+      this.costcenterlist = data;
+      console.log(this.costcenterlist)
+    })
   }
   openDialog() {
     this.dialog.open(StrCostcenterDialogComponent, {
@@ -60,6 +70,23 @@ export class StrCostcenterComponent  implements OnInit {
         }
       })
   }
+  getSearchProducts(costcenter:any) {
+
+    this.api.getCostCenter()
+      .subscribe({
+        next: (res) => {
+          // 1-
+      
+            this.dataSource = res.filter((res: any)=> res.name==costcenter!) 
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          },
+        error: (err) => {
+          alert("Error")
+        }
+      })
+    
+    }
 
   editCostCenter(row: any) {
     this.dialog.open(StrCostcenterDialogComponent, {
@@ -72,7 +99,7 @@ export class StrCostcenterComponent  implements OnInit {
     })
   }
 
-deleteCostCenter(id:number){
+  deleteCostCenter(id:number){
 this.api.deleteCostCenter(id)
 .subscribe({
 next:(res)=>{

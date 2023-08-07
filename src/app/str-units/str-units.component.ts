@@ -14,7 +14,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 })
 export class STRUnitsComponent {
   title = 'angular13crud';
-  displayedColumns: string[] = ['transactionUserId', 'name', 'action'];
+  displayedColumns: string[] = [ 'name', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

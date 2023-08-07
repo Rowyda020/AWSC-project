@@ -35,3 +35,8 @@
 .routeContainer{
   margin-top: -5%;
 }
+.screenBackground {
+  padding: 20px;
+  background: linear-gradient(rgb(60, 252, 118), rgb(3, 89, 27))!important;
+  height: 100vh;
+}

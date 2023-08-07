@@ -17,7 +17,7 @@ export class LoginComponent {
   })
 
   isSubmit = false
-  isStatus=true
+  isActive=false
   constructor(public global : GlobalService , private router : Router){
     this.global.navFlag=false
   }
@@ -35,18 +35,18 @@ export class LoginComponent {
     if(this.loginForm.valid){
       this.global.login(this.loginForm.value).subscribe(res=>{
         console.log(res)
-        // if(res.access_token && res.user.isActive==true) {
+         if( res.isActive==true) {
           
           // localStorage.setItem('token' ,res.access_token,);
           localStorage.setItem('transactionUserId',res.id);
-          // this.global.isLogIn=true;
+           this.global.isLogIn=true;
 
           // // this.router.navigateByUrl('/showUsers')
           this.router.navigate(['/home'])
       
         }
 
-      )
+    })
     }
   }
 

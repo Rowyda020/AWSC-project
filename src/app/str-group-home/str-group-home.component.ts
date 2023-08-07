@@ -15,6 +15,12 @@ export class StrGroupHomeComponent {
     console.log(this.global.isLogIn)
   }
 
+  
+
+  // setBgColor(color:any){
+  //    this.global.bgColor = color;
+  // }
+
 
   handleLogOut(){
     localStorage.removeItem('token')

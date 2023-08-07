@@ -14,11 +14,19 @@
         <mat-label>اسم الفصيلة</mat-label>
         <input formControlName="name" matInput placeholder="اسم الفصيلة">
       </mat-form-field>
-
       <mat-form-field appearance="outline">
-        <input matInput placeholder="ادخل النوعية" aria-label="grade" [matAutocomplete]="auto" [formControl]="gradeCtrl" required />
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
-          <mat-option *ngFor="let grade of filteredgrades | async" [value]="grade.name">
+        <input matInput placeholder="ادخل السلعة" aria-label="grade" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" required />
+        <mat-autocomplete #autoCommodity="matAutocomplete" (optionSelected)="commoditySelected($event)">
+          <mat-option *ngFor="let commodity of filteredcommodities | async" [value]="commodity.id">
+            {{ commodity.name }} | {{ commodity.code }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="ادخل النوعية" aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required />
+        <mat-autocomplete #autoGrade="matAutocomplete" (optionSelected)="gradeSelected($event)">
+          <mat-option *ngFor="let grade of filteredgrades | async" [value]="grade.id">
             {{ grade.name }} | {{ grade.code }}
           </mat-option>
         </mat-autocomplete>
