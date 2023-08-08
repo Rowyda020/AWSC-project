@@ -27,6 +27,7 @@ export class Grades {
   styleUrls: ['./str-platoon-dialog.component.css']
 })
 export class STRPlatoonDialogComponent implements OnInit{
+  transactionUserId=localStorage.getItem('transactionUserId')
   commodityCtrl: FormControl;
   filteredcommodities: Observable<any[]>;
   commodity_list: Commodities[] = [];
@@ -186,7 +187,7 @@ gradeSelected(event: MatAutocompleteSelectedEvent) {
       this.platoonForm.removeControl('id')
       this.platoonForm.controls['gradeId'].setValue(this.selectedOption);
       console.log("add: ", this.platoonForm.value);
-
+      this.platoonForm.controls['transactionUserId'].setValue(this.transactionUserId);
       if(this.platoonForm.valid){
         this.api.postPlatoon(this.platoonForm.value)
         .subscribe({

@@ -27,7 +27,7 @@ export class STRPlatoonComponent implements OnInit{
   formcontrol = new FormControl('');  
   platoonForm !:FormGroup;
   title = 'angular13crud';
-  displayedColumns: string[] = ['transactionUserId', 'code', 'name', 'gradeName', 'action'];
+  displayedColumns: string[] = ['code', 'name', 'gradeName', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
