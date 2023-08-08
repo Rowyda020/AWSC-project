@@ -6,6 +6,7 @@ import { GlobalService } from '../services/global.service';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { ApiService } from '../services/api.service';
 
 
 @Component({
@@ -17,74 +18,82 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 })
 
 export class StrGroupComponent {
-  displayedColumns: string[] = ['name', 'description','action'];
+  displayedColumns: string[] = ['code', 'name', 'platoonId', 'platoonName', 'action'];
+
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private dialog: MatDialog,private api :GlobalService){
 
-  }
+  constructor(private dialog: MatDialog, private api: ApiService) { }
+
   ngOnInit(): void {
-    this.getAllGroup();
+    this.getAllGroups();
+
   }
 
- openDialog() {
-  this.dialog.open(StrGroupDialogComponent, {
-    width:'30%'
-}).afterClosed().subscribe(val=>{
-  if(val==='save'){
-    this.getAllGroup();
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
-})
-}
-getAllGroup(){
+
+  getAllGroups() {
     this.api.getGroup()
-    .subscribe({
-      
-      next:(res)=>{
-        console.log(res)
-       this.dataSource = new MatTableDataSource(res);
-       this.dataSource.paginator = this.paginator;
-       this.dataSource.sort = this.sort
-      },
-      error:(err)=>{
-        alert("Error")
+      .subscribe({
+        next: (res) => {
+          console.log("response of get all getGroup from api bannel: ", res);
+          this.dataSource = new MatTableDataSource(res);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error: () => {
+          alert("خطأ أثناء جلب سجلات المجموعة !!");
+        }
+      })
+  }
+
+  editGroup(row: any) {
+    console.log("edit row: ", row)
+    this.dialog.open(StrGroupDialogComponent, {
+      width: '30%',
+      data: row
+    }).afterClosed().subscribe(val => {
+      if (val === 'update') {
+        this.getAllGroups();
       }
     })
- 
-}
-editRole(row: any){
-  this.dialog.open(StrGroupDialogComponent,{
-    width:'30%',
-    data:row
-  }).afterClosed().subscribe(val=>{
-    if(val==='updata'){
-      this.getAllGroup();
-    }
-  })
-    
-}
-deleteRole(id:number){
-  this.api.deleteGroup(id)
-  .subscribe({
-    next:(res)=>{
-      alert("Role Delete");
-      this.getAllGroup();
-    },
-    error:()=>{
-      alert("Error ")
-    }
-  })
-
-}
-applyFilter(event: Event) {
-  const filterValue = (event.target as HTMLInputElement).value;
-  this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  if (this.dataSource.paginator) {
-    this.dataSource.paginator.firstPage();
   }
-}
+
+  deleteGroup(id: number) {
+    var result = confirm("هل ترغب بتاكيد مسح المجموعة ؟ ");
+    if (result) {
+      this.api.deleteGroup(id)
+        .subscribe({
+          next: (res) => {
+            // alert("تم حذف المجموعة بنجاح");
+            this.getAllGroups()
+          },
+          // error: () => {
+          //   alert("خطأ أثناء حذف المجموعة !!");
+          // }
+        })
+    }
+
+  }
+
+  openGroupDialog() {
+    this.dialog.open(StrGroupDialogComponent, {
+      width: '30%'
+    }).afterClosed().subscribe(val => {
+      if (val === 'save') {
+        this.getAllGroups();
+      }
+    })
+  }
+
 
 }

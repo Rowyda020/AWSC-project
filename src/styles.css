@@ -3,6 +3,8 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
+@import '~ngx-toastr/toastr';
+
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Droid Arabic Kufi', serif;}
 
@@ -12,4 +14,18 @@ body { margin: 0; font-family: 'Droid Arabic Kufi', serif;}
     --primary-color: rgb(255, 255, 255);
     --secondary-color: rgb(60, 202, 252);
     --white-Color: (255, 255, 255);
+}
+
+
+.mat-calendar {
+    background-color: var(--primary-color);
+}
+
+.mat-calendar-body-cell-content,
+.mat-date-range-input-separator {
+    color: var(--secondary-color);
+}
+
+mat-datepicker-toggle {
+    color: var(--secondary-color) !important;
 }
