@@ -5,7 +5,7 @@
 
 
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { publishFacade } from '@angular/compiler';
@@ -27,23 +27,30 @@ export class StrStoreDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
-      STRcode: ['', Validators.required],
-      STRstore: ['', Validators.required],
+      // STRcode: ['', Validators.required],
+      name: ['', Validators.required],
+      transactionUserId:[1]
       
     });
 
     if (this.editData) {
       this.actionBtn = "تحديث";
-      this.productForm.controls['STRcode'].setValue(this.editData.STRcode);
-      this.productForm.controls['STRstore'].setValue(this.editData.STRstore);
-     
+      // alert( this.productForm.controls['name'].setValue(this.editData.name))
+      // this.productForm.controls['STRcode'].setValue(this.editData.STRcode);
+      this.productForm.controls['name'].setValue(this.editData.name);
+          //  console.log(this.editData.STRcode)
+          this.productForm.controls['transactionUserId'].setValue(this.editData.transactionUserId);
+      this.productForm.addControl('id', new FormControl('', Validators.required));
+      this.productForm.controls['id'].setValue(this.editData.id);
+
     }
   }
 
-  addProduct() {
+  addStores() {
     if (!this.editData) {
+      this.productForm.removeControl('id')
       if (this.productForm.valid) {
-        this.api.postProduct(this.productForm.value)
+        this.api.postStore(this.productForm.value)
           .subscribe({
             next: (res) => {
               alert("تم اضافة المخزن");
@@ -62,7 +69,7 @@ export class StrStoreDialogComponent implements OnInit {
   }
 
   updateProduct(){
-    this.api.putProduct(this.productForm.value,this.editData.id)
+    this.api.putStore(this.productForm.value)
     .subscribe({
       next:(res)=>{
         alert("تم التحديث بنجاح");
