@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from '../services/api.service';
 import { StrGroupFormComponent } from '../str-groupBannel-form/str-group-form.component';
 import { HttpClient } from '@angular/common/http';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-str-group-table-header',
@@ -13,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./str-group-table-header.component.css']
 })
 export class StrGroupTableHeaderComponent implements OnInit {
-  displayedColumns: string[] = ['No', 'StoreId', 'Date', 'Action'];
+  displayedColumns: string[] = ['no', 'storeName', 'date', 'Action'];
   matchedIds: any;
   storeList: any;
   storeName: any;
@@ -23,21 +24,20 @@ export class StrGroupTableHeaderComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private api: ApiService, private dialog: MatDialog, private http: HttpClient) {
+  constructor(private api: ApiService, private dialog: MatDialog, private http: HttpClient, @Inject(LOCALE_ID) private locale: string) {
 
   }
 
   ngOnInit(): void {
-    this.getAllStrOpen();
-    this.getStore();
+    this.getAllMasterForms();
+    this.getStores();
   }
 
-  getAllStrOpen() {
+  getAllMasterForms() {
     this.api.getStrOpen()
       .subscribe({
         next: (res) => {
           console.log("response of get all getGroup from api: ", res);
-          // this.getStoreByID();
           this.dataSource2 = new MatTableDataSource(res);
           this.dataSource2.paginator = this.paginator;
           this.dataSource2.sort = this.sort;
@@ -50,55 +50,58 @@ export class StrGroupTableHeaderComponent implements OnInit {
 
   }
 
-  editGroup(row: any) {
+  editMasterForm(row: any) {
     this.dialog.open(StrGroupFormComponent, {
       width: '70%',
       data: row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {
-        this.getAllStrOpen();
+        this.getAllMasterForms();
       }
     })
   }
 
-  deleteGroup(id: number) {
-    this.api.deleteStrOpen(id)
-      .subscribe({
-        next: (res) => {
-          alert("تم حذف المجموعة بنجاح");
+  deleteBothForms(id: number) {
+    var result = confirm("تاكيد الحذف ؟ ");
 
-          this.http.get<any>("http://localhost:3000/StrOpenDetails/")
-            .subscribe(res => {
-              // console.log("res: ", res);
+    if (result) {
+      this.api.deleteStrOpen(id)
+        .subscribe({
+          next: (res) => {
+            // alert("تم حذف المجموعة بنجاح");
 
-              this.matchedIds = res.filter((a: any) => {
-                // console.log("matched Id & HeaderId : ", a.HeaderId === id)
-                return a.HeaderId === id
+            this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/get-all-Opening_Stock_Details")
+              .subscribe(res => {
+                this.matchedIds = res.filter((a: any) => {
+                  // console.log("matched Id & HeaderId : ", a.HeaderId === id)
+                  return a.HeaderId === id
+                })
+
+                for (let i = 0; i < this.matchedIds.length; i++) {
+
+                  this.deleteFormDetails(this.matchedIds[i].id)
+                }
+
+              }, err => {
+                alert("خطا اثناء تحديد المجموعة !!")
               })
-              // console.log("response of get all getGroup from api: ", this.matchedIds);
-              for (let i = 0; i < this.matchedIds.length; i++) {
 
-                this.deleteGroupDetails(this.matchedIds[i].id)
-              }
+            this.getAllMasterForms()
+          },
+          error: () => {
+            alert("خطأ أثناء حذف المجموعة !!");
+          }
+        })
+    }
 
-            }, err => {
-              alert("خطا اثناء تحديد المجموعة !!")
-            })
-
-          this.getAllStrOpen()
-        },
-        error: () => {
-          alert("خطأ أثناء حذف المجموعة !!");
-        }
-      })
   }
 
-  deleteGroupDetails(id: number) {
+  deleteFormDetails(id: number) {
     this.api.deleteStrOpenDetails(id)
       .subscribe({
         next: (res) => {
           alert("تم حذف الصنف بنجاح");
-          this.getAllStrOpen()
+          this.getAllMasterForms()
         },
         error: (err) => {
           // console.log("delete details err: ", err)
@@ -107,39 +110,103 @@ export class StrGroupTableHeaderComponent implements OnInit {
       })
   }
 
-  getStore() {
+  getStores() {
     this.api.getStore()
       .subscribe({
         next: (res) => {
           this.storeList = res;
-          console.log("store res: ", this.storeList);
-          // this.getStoreByID(this.storeList)
+          // console.log("store res: ", this.storeList);
         },
         error: (err) => {
-          console.log("fetch store data err: ", err);
+          // console.log("fetch store data err: ", err);
           alert("خطا اثناء جلب المخازن !");
         }
       })
   }
 
-  getStoreByID(store: any) {
-    console.log("row store id: ", store);
+  getSearchStrOpen(no: any, store: any, date: any) {
 
-    // this.storeName = store.map((s: any) => (
-    //   // console.log("get store id: ", s.id);
+    // console.log("no. : ", no, "store : ", store, "date: ", date);
+    this.api.getStrOpen()
+      .subscribe({
+        next: (res) => {
 
-    //   this.api.getStoreByID(s.id)
-    //   .subscribe({
-    //     next: (res) => {
-    //       this.storeList = res.name;
-    //       console.log("store by id: ", this.storeList);
-    //     },
-    //     error: (err) => {
-    //       console.log("fetch store by id err: ", err);
-    //       alert("خطا اثناء جلب رقم المخزن !");
-    //     }
-    //   })
-    // ));
-   
+          //enter no.
+          if (no != '' && !store && !date) {
+            // console.log("enter no. ")
+            // console.log("no. : ", no, "store: ", store, "date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.no == no!)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter store
+          else if (!no && store && !date) {
+            // console.log("enter store. ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.storeId == store)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter date
+          else if (!no && !store && date) {
+            // console.log("enter date. ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter no. & store
+          else if (no && store && !date) {
+            // console.log("enter no & store ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && res.storeId == store)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter no. & date
+          else if (no && !store && date) {
+            // console.log("enter no & date ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter store & date
+          else if (!no && store && date) {
+            // console.log("enter store & date ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.storeId == store && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter all data
+          else if (no != '' && store != '' && date != '') {
+            // console.log("enter all data. ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && res.storeId == store && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //didn't enter any data
+          else {
+            // console.log("enter no data ")
+            this.dataSource2 = res;
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+
+        },
+        error: (err) => {
+          alert("Error")
+        }
+      })
   }
 }
