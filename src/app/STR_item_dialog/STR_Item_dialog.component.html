@@ -1,0 +1,81 @@
+<div class="container1" >
+    <h1 mat-dialog-title dir="rtl" style="font-size: 35px;margin-top: 20px;">اضافة صنف جديد</h1>
+<div mat-dilog-content  dir="rtl">
+<form [formGroup]="productForm" >
+    <mat-form-field appearance="outline">
+        <mat-label>اسم الصنف</mat-label>
+        <input formControlName="name" matInput placeholder="اكتب اسم الصنف" type="text">
+    </mat-form-field>
+    <!-- <mat-form-field appearance="outline">
+        <mat-label>رقم الصنف</mat-label>
+        <input formControlName="no" matInput placeholder="اكتب رقم الصنف" type="text">
+        </mat-form-field> -->
+        <mat-form-field appearance="outline">
+            <mat-label  for="commodityName">السلعة</mat-label>
+            <mat-select formControlName="commodityId"  [(ngModel)]="commodity.id" plceholder="السلعة"(valueChange)="onCommodityChange($event)"
+            >
+                <mat-option  *ngFor="let commodity of commoditylist" [value]="commodity.id"
+                >{{commodity.name}}</mat-option>
+            </mat-select>   
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label  for="gradeName">النوعية</mat-label>
+            <mat-select formControlName="gradeId" [(ngModel)]="grade.id" plceholder="النوعية"(valueChange)="onGradeChange($event)">
+                <mat-option *ngFor="let grade of gradelist" [value]="grade.id">{{grade.name}}</mat-option>
+    
+            </mat-select>   
+          </mat-form-field>
+   <mat-form-field appearance="outline">
+        <mat-label for="platoonName">الفصيلة</mat-label>
+        <mat-select formControlName="platoonId" [(ngModel)]="platoon.id" plceholder="الفصيلة" (valueChange)="onplatoonChange($event)">
+            <mat-option *ngFor="let platoon of platoonlist" [value]="platoon.id">{{platoon.name}}</mat-option>
+
+        </mat-select>   
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label  for="groupName">المجموعة</mat-label>
+        <mat-select formControlName="groupId" [(ngModel)]="group.id" plceholder="المجموعة">
+            <mat-option *ngFor="let group of grouplist" [value]="group.id " >{{group.name}}</mat-option>
+
+        </mat-select>   
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>الوحدة</mat-label>
+        <mat-select formControlName="unitName" [(ngModel)]="unit.id" plceholder="الوحدة">
+            <mat-option *ngFor="let unit of unitlist" [value]="unit.name">{{unit.name}}</mat-option>
+
+        </mat-select>   
+      </mat-form-field>
+<div class="container2">
+    <label for="" ><h1 ></h1></label>
+    <mat-radio-group formControlName="type" class="example-radio-group" >
+        <mat-radio-button class="example-radio-button" value="نشط" >
+          نشط
+        </mat-radio-button>
+        <mat-radio-button class="example-radio-button" value="غير نشط">
+            غير نشط
+          </mat-radio-button>
+    </mat-radio-group>
+    <label for="" style="margin-right: 15px;" ><h1></h1></label>
+    <!-- <mat-radio-group formControlName="isActive" class="example-radio-group" type="boolean">
+        <mat-radio-button class="example-radio-button" value=true >
+        جديد
+        </mat-radio-button>
+        <mat-radio-button class="example-radio-button" value=false >
+            مستعمل
+            </mat-radio-button>
+    </mat-radio-group>  -->
+</div>
+  
+ 
+   
+  
+</form>
+</div>
+<div mat-dialog-action [align]="'end'" dir="rtl" style="text-align: center;margin-top: 28px;margin-bottom: 20px;">
+    <button style="margin-left:12px;font-size: 23px;" mat-icon-button color="primary" (click)="testInputsValidating()" >{{actionBtn}}</button>
+
+    <button mat-raised-button color="warn" style="font-size: 23px;" mat-dialog-close (click)="getAllItems()">الغاء</button>
+</div>
+</div>

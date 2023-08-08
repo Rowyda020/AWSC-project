@@ -137,8 +137,8 @@ export class ApiService {
     }
 /**crud group */
 
-  postStores(data: any){
-    return this.http.post<any>("http://localhost:3000/storeList/",data);
+  postStores(data: any,id:number){
+    return this.http.post<any>("http://localhost:3000/storeList/"+id,data);
   }
 
   
@@ -217,55 +217,61 @@ export class ApiService {
   }
 
 
-  putCostCenter(data:any,id:number){
-    return this.http.put<any>(`${this.url}/FI_CostCenter/update-CostCenter`+id,data);
+  putCostCenter(data:any){
+    return this.http.put<any>(`${this.url}/FI_CostCenter/update-CostCenter`,data);
   }
 
   deleteCostCenter(id:number){
-    return this.http.delete<any>(`${this.url}FI_CostCenter/delete-CostCenter-by-id/${id}`+id);
+    return this.http.delete<any>(`${this.url}/FI_CostCenter/delete-CostCenter-by-id/`+id);
   }
 
-// crud category
+// crud items
   
-  postCategory(data: any){
-    return this.http.post<any>(`${this.url}`,data);
-  }
+postItem(data: any){
+  console.log('post data:',data)
+  return this.http.post<any>("http://ims.aswan.gov.eg/api/STR_Item/Add-item",data);
+}
 
-  getCategory(){
-    return this.http.get<any>(`${this.url}`);
-  }
+getItems(){
+  return this.http.get<any>("http://ims.aswan.gov.eg/api/STR_Item/get-all-Items");
+}
+getcommodity(){
+  return this.http.get<any>("http://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity");
+}
+postStrOpenItems(data: any) {
+  return this.http.post<any>("http://ims.aswan.gov.eg/api/STR_Item/Add-item", data);
+}
 
+putItems(data:any){
+  console.log('put data:',data)
+  return this.http.put<any>("http://ims.aswan.gov.eg/api/STR_Item/update-Item",data);
+}
 
-  putCategory(data:any,id:number){
-    return this.http.put<any>(`${this.url}`+id,data);
-  }
+deleteItem(id:number){
+  return this.http.delete<any>("http://ims.aswan.gov.eg/api/STR_Item/delete-Item-by-id/"+id);
+}
 
-  deleteCategory(id:number){
-    return this.http.delete<any>(`${this.url}`+id);
-  }
-  
-  getAllcommodity():any{
-    return this.http.get<any>("http://localhost:3000/commodity/")
-  } 
-  getAllgrade(): any{
-    return this.http.get<any>("http://localhost:3000/gradelist/")
-  }
-  getAllgroup(): any{
-    return this.http.get<any>("http://localhost:3000/group/")
-  }
+getAllcommodity():any{
+  return this.http.get<any>("http://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity")
+} 
+getAllplatoon(): any{
+  return this.http.get<any>("http://ims.aswan.gov.eg/api/STR_Platoon/get-all-Platoons")
+}
+getAllgroup(): any{
+  return this.http.get<any>("http://ims.aswan.gov.eg/api/STR_Group/get-all-Groups")
+}
 
-getAllplaton(): any{
-  return this.http.get<any>("http://localhost:3000/platon/")
+getAllgrade(): any{
+return this.http.get<any>("http://ims.aswan.gov.eg/api/STR_Grade/get-all-grades")
 }
 getAllunit(): Observable<any>{
-  return this.http.get<any>("http://localhost:3000/unit/")
+return this.http.get<any>("http://ims.aswan.gov.eg/api/STR_Unit/get-all-Unit")
 }
-
 
 // CRUD STORE
 
 postStore(data: any){
-  return this.http.post<any>(`${this.url}`,data);
+  return this.http.post<any>(`${this.url}/STR_Store/Add-Store`,data);
 }
 
 getStore(){
@@ -273,13 +279,34 @@ getStore(){
 }
 
 
-putStore(data:any,id:number){
-  return this.http.put<any>("http://localhost:3000/store/"+id,data);
+putStore(data:any){
+  return this.http.put<any>(`${this.url}/STR_Store/update-Store`,data);
 }
 
 deleteStore(id:number){
-  return this.http.delete<any>("http://localhost:3000/store/"+id);
+  return this.http.delete<any>(`${this.url}/STR_Store/delete-Store-by-id/`+id);
+}
+//  commodity
+postCommodity(data: any){
+  console.log("add product data: ", data)
+
+  return this.http.post<any>("http://ims.aswan.gov.eg/api/STR_Commodity/Add-Commodity",data);
 }
 
+getCommodity(){
+  return this.http.get<any>("http://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity");
+}
+
+
+putCommodity(data:any){
+  console.log("edit data by id: ", data)
+
+  return this.http.put<any>("http://ims.aswan.gov.eg/api/STR_Commodity/update-commodity",data);
+}
+
+deleteCommodity(id:number){
+  console.log("delete by id: ", id)
+  return this.http.delete<any>("http://ims.aswan.gov.eg/api/STR_Commodity/delete-commodity-by-id/"+id);
+}
 
 }

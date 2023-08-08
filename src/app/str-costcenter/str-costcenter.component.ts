@@ -100,6 +100,7 @@ export class StrCostcenterComponent  implements OnInit {
   }
 
   deleteCostCenter(id:number){
+    if (confirm("هل انت متأكد من الحذف؟"))
 this.api.deleteCostCenter(id)
 .subscribe({
 next:(res)=>{

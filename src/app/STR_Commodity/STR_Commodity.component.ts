@@ -1,35 +1,38 @@
 
 
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import {StrStoreDialogComponent } from '../str-store-dialog/str-store-dialog.component'; 
+import { StrCommodityDialogComponent } from '../STR_Commodity_dialog/str-commodity-dialog.component';
+import { ApiService } from '../services/api.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ApiService } from '../services/api.service';
-
-
-
-
+import {MatButtonModule} from '@angular/material/button';
+import {NgIf} from '@angular/common';
+import {MatSidenavModule} from '@angular/material/sidenav';
 @Component({
-  selector: 'app-str-store',
-  templateUrl: './str-store.component.html',
-  styleUrls: ['./str-store.component.css']
+  selector: 'app-str-commodity',
+    templateUrl: './STR_Commodity.component.html',
+    styleUrls: ['./STR_Commodity.component.css'],
 })
-export class StrStoreComponent  implements OnInit {
+export class StrCommodityComponent implements OnInit {
+  badgevisible = false;
+    badgevisibility() {
+      this.badgevisible = true;}
+      commodity: any = {
+        id: 0,
+        name: ''
+    
+      }
+      commoditylist: any;
+
   title = 'Angular13Crud';
   //define table fields which has to be same to api fields
-  displayedColumns: string[] = [ 'name','action'];
+  displayedColumns: string[] = ['code', 'name','action'];
   dataSource!: MatTableDataSource<any>;
-  store: any = {
-    id: 0,
-    name: ''
 
-  }
-  storelist: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -37,25 +40,24 @@ export class StrStoreComponent  implements OnInit {
 
   }
   ngOnInit(): void {
-    this.getAllStores();
-    this.api.getStore().subscribe((data: any) => {
-      this.storelist = data;
-      console.log(this.storelist)
+    this.getAllCommodity();
+    this.api.getCommodity().subscribe((data: any) => {
+      this.commoditylist = data;
+      console.log(this.commoditylist)
     })
   }
-  
   openDialog() {
-    this.dialog.open(StrStoreDialogComponent, {
+    this.dialog.open(StrCommodityDialogComponent, {
       width: '30%'
     }).afterClosed().subscribe(val => {
       if (val === 'حفظ') {
-        this.getAllStores();
+        this.getAllCommodity();
       }
     });
   }
 
-  getAllStores() {
-    this.api.getStore()
+  getAllCommodity() {
+    this.api.getCommodity()
       .subscribe({
         next: (res) => {
           this.dataSource = new MatTableDataSource(res);
@@ -67,42 +69,44 @@ export class StrStoreComponent  implements OnInit {
         }
       })
   }
-  getSearchProducts(storeId:any) {
+  getSearchProducts(commodityId:any) {
 
-    this.api.getStore()
+    this.api.getCommodity()
       .subscribe({
         next: (res) => {
-          // 1-
-      
-            this.dataSource = res.filter((res: any)=> res.name==storeId!) 
+       
+    
+            this.dataSource = res.filter((res: any)=> res.name==commodityId!) 
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
           },
+        
         error: (err) => {
           alert("Error")
         }
       })
-      // this.getAllStores()
+     
     }
-  editStore(row: any) {
-    console.log("edit product:",row)
-    this.dialog.open(StrStoreDialogComponent, {
+
+
+  editCommodity(row: any) {
+    this.dialog.open(StrCommodityDialogComponent, {
       width: '30%',
       data: row
     }).afterClosed().subscribe(val => {
       if (val === 'تحديث') {
-        this.getAllStores();
+        this.getAllCommodity();
       }
     })
   }
 
-deleteStore(id:number){
+deleteCommodity(id:number){
   if(confirm("هل انت متأكد من الحذف؟")) {
-this.api.deleteStore(id)
+this.api.deleteCommodity(id)
 .subscribe({
 next:(res)=>{
 alert("تم الحذف");
-this.getAllStores();
+this.getAllCommodity();
 },
 error:()=>{
   alert("خطأ في الحذف")

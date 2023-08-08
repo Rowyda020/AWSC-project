@@ -1,0 +1,24 @@
+<div dir="rtl">
+
+    <h1 mat-dialog-title style="font-size: 30px;">اضافة سلعة جديدة</h1>
+   <div mat-dilog-content>
+   <form [formGroup]="productForm" style="padding: 20px;" >
+       <mat-form-field appearance="outline" >
+           <mat-label>كود السلعة</mat-label>
+           <input formControlName="code" matInput placeholder="ادخل كود السلعة" >
+           
+       </mat-form-field>
+       <mat-form-field appearance="outline">
+           <mat-label>السلعة</mat-label>
+           <input formControlName="name" matInput placeholder="ادخل السلعة" type="text">
+   
+       </mat-form-field>
+    
+   </form>
+   </div>
+   <div mat-dialog-action [align]="'end'" style="padding: 10px;margin-left: 30%;">
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addCommodity()">{{actionBtn}}</button>
+
+       <button mat-raised-button color="warn" mat-dialog-close>الغاء</button>
+   </div>
+   </div>

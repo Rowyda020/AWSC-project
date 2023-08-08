@@ -12,17 +12,19 @@ import {STRUnitsComponent} from './str-units/str-units.component';
 import { STRGradeComponent } from './str-grade/str-grade.component';
 import { RoleComponent } from './pages/role/role.component';
 import { StrCostcenterComponent } from './str-costcenter/str-costcenter.component';
-import { StrCategoryComponent } from './str-category/str-category.component';
+import { StrItemComponent } from './STR_item/STR_item..component';
 import { StrGroupComponent } from './str-group/str-group.component';
 import { StrStoreComponent } from './str-store/str-store.component';
 import { STRPlatoonComponent } from './str-platoon/str-platoon.component';
 import { STRHomeComponent } from './str-home/str-home.component';
+import { StrCommodityComponent } from './STR_Commodity/STR_Commodity.component';
 
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
    {path:'login' , component:LoginComponent},
-   {path:'showUsers' , component:UsersInfoComponent},
+   {path:'commodity' , component:StrCommodityComponent},
+  {path:'showUsers' , component:UsersInfoComponent},
    {path:'register' , component:RegisterComponent},
    {path:'addUser' , component:AddUserComponent},
   { path: "home", component: StrGroupHomeComponent },
@@ -31,7 +33,7 @@ const routes: Routes = [
   { path: "grade", component:STRGradeComponent },
    { path: "roles", component:RoleComponent},
   { path: "costCenter", component:StrCostcenterComponent},
-  { path: "category", component:StrCategoryComponent},
+  { path: "items", component:StrItemComponent},
   { path: "group", component:StrGroupComponent},
   { path: "store", component:StrStoreComponent},
   {path: 'str-grade', component: STRGradeComponent},
