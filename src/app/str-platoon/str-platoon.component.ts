@@ -11,9 +11,9 @@ import { FormGroup, FormBuilder, Validator, Validators, FormControl } from '@ang
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-// export class Grades {
-//   constructor(public name: string, public code: string) {}
-// }
+export class Grades {
+  constructor(public name: string, public code: string) {}
+}
 
 @Component({
   selector: 'app-str-platoon',
@@ -21,31 +21,33 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./str-platoon.component.css']
 })
 export class STRPlatoonComponent implements OnInit{
-  // gradeCtrl: FormControl;
-  // filteredgrades: Observable<any[]>;
-  // grade_list: Grades[] = [];
+  transactionUserId=localStorage.getItem('transactionUserId')
+  gradeCtrl: FormControl;
+  filteredgrades: Observable<any[]>;
+  grade_list: Grades[] = [];
   formcontrol = new FormControl('');  
   platoonForm !:FormGroup;
   title = 'angular13crud';
-  displayedColumns: string[] = ['code', 'name', 'gradeName', 'action'];
+  displayedColumns: string[] = ['transactionUserId', 'code', 'name', 'gradeName', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  selectedOption: any;
   constructor(private dialog : MatDialog, private api : ApiService){
-    // this.gradeCtrl = new FormControl();
-    // this.filteredgrades = this.gradeCtrl.valueChanges.pipe(
-    //   startWith(''),
-    //   map((grade) =>
-    //     grade ? this.filtergrade(grade) : this.grade_list.slice()
-    //   )
-    // );
+    this.gradeCtrl = new FormControl();
+    this.filteredgrades = this.gradeCtrl.valueChanges.pipe(
+      startWith(''),
+      map((grade) =>
+      grade ? this._filtergrade(grade) : this.grade_list.slice()
+      )
+    );
   }
   ngOnInit(): void {
     this.getAllPlatoons();
-    // this.api.getAllGrades().subscribe((tododata)=>{
-    //   this.grade_list = tododata;
-    // });
+    this.api.getAllGrades().subscribe((gradeData)=>{
+      this.grade_list = gradeData;
+    });
   }
   openDialog() {
     this.dialog.open(STRPlatoonDialogComponent, {
@@ -57,18 +59,25 @@ export class STRPlatoonComponent implements OnInit{
     })
   }
 
-  // optionSelected(event: MatAutocompleteSelectedEvent) {
-  //   const selectedOption = event.option.value;
-  //   this.platoonForm.patchValue({ gradeName: selectedOption });
-  // }
+  displayGradeName(grade: any): string {
+    return grade && grade.name ? grade.name : '';
+  }
 
-
-  // filtergrade(value: string) {
-  //   const searchvalue = value.toLocaleLowerCase();
-  //   let arr = this.grade_list.filter(option => option.name.toLocaleLowerCase().includes(searchvalue) || 
-  //   option.code.toLocaleLowerCase().includes(searchvalue));
-  //   return arr.length ? arr : [{ name: 'No Item found', code: 'null' }];
+  // displayGradeId(grade: any): number {
+  //   return grade && grade.id ? grade.id: '';
   // }
+  
+  gradeSelected(event: MatAutocompleteSelectedEvent) {
+       this.selectedOption = event.option.value;
+      this.platoonForm.patchValue({ gradeId: this.selectedOption.id });
+    }
+
+    _filtergrade(value: string) {
+      const searchvalue = value.toLocaleLowerCase();
+      let arr = this.grade_list.filter(option => option.name.toLocaleLowerCase().includes(searchvalue) || 
+      option.code.toLocaleLowerCase().includes(searchvalue));
+      return arr.length ? arr : [{ name: 'No Item found', code: 'null' }];
+    }
 
 
   getAllPlatoons(){
@@ -113,49 +122,50 @@ export class STRPlatoonComponent implements OnInit{
       }
     })
   }
-  // getSearchPlatoons(commidityID:any,name:any) {
-  //   if(commidityID != ''){
-  //     if(commidityID.id == 0){
-  //       commidityID = '';
+  async getSearchPlatoons(name:any) {
   
-  //     }
-  //   }
-  // console.log("com id: ", commidityID, "name: ", name );
-  
-  //   this.api.getPlatoon()
-  //     .subscribe({
-  //       next: (res) => {
-  //         // 1-
-  //         console.log(res )
-  //         if (commidityID != '' && name == '' ){
-  //           console.log("enter id only: ", "res : ", res, "input id: ", commidityID)
-  //           this.dataSource = res.filter((res: any)=> res.commodityId==commidityID!) 
-  //           this.dataSource.paginator = this.paginator;
-  //           this.dataSource.sort = this.sort;
-  //         }
-  //         else if (commidityID != '' && name != ''){
-  //           console.log("enter name & id: ", "res : ", res, "input name: ", name, "id: ", commidityID)
-  //           // this.dataSource = res.filter((res: any)=> res.name==name!)
-  //           this.dataSource = res.filter((res: any)=> res.commodityId==commidityID! && res.name.toLowerCase().includes(name.toLowerCase()))
-  //           this.dataSource.paginator = this.paginator;
-  //           this.dataSource.sort = this.sort;
-  //         }
-  //         else{
-  //           console.log("enter name only: ", "res name: ", res, "input name: ", name)
-  //           // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
-  //           this.dataSource = res.filter((res: any)=> res.name.toLowerCase().includes(name.toLowerCase()))
-  //           this.dataSource.paginator = this.paginator;
-  //           this.dataSource.sort = this.sort;
-  //         }
+    this.api.getPlatoon()
+          .subscribe({
+            next: (res) => {
+              console.log("platoon res: ", res)
+            
+              //enter id
+              if (this.selectedOption  && name == '' ){
+                console.log("filter ID id: ", this.selectedOption , "name: ", name)
+
+                this.dataSource = res.filter((res: any)=> res.gradeId==this.selectedOption.id!) 
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              }
+              //enter both
+              else if (this.selectedOption && name != ''){
+                console.log("filter both id: ", this.selectedOption , "name: ", name)
+
+                // this.dataSource = res.filter((res: any)=> res.name==name!)
+                this.dataSource = res.filter((res: any)=> res.gradeId==this.selectedOption.id! && res.name.toLowerCase().includes(name.toLowerCase()))
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              }
+              //enter name
+              else{
+                console.log("filter name id: ", this.selectedOption , "name: ", name)
+                // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
+                this.dataSource = res.filter((res: any)=> res.name.toLowerCase().includes(name.toLowerCase()))
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              }
+            
+              
+            },
+            error: (err) => {
+              alert("Error")
+            }
+          })
+          // this.getAllProducts()
+        }
+
         
-          
-  //       },
-  //       error: (err) => {
-  //         alert("Error")
-  //       }
-  //     })
-  //     // this.getAllGrades()
-  //   }
+
   
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

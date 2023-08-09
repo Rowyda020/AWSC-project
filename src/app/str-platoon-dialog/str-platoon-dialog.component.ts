@@ -10,7 +10,6 @@ import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatOptionSelectionChange } from '@angular/material/core';
 
 export class Commodities {
   constructor(public name: string, public code: string) {}
@@ -80,6 +79,7 @@ gradeName: any;
       gradeId : ['',Validators.required],
       id : ['',Validators.required],
     });
+    
 
     this.api.getAllCommodities().subscribe((commodityData)=>{
       this.commodity_list = commodityData;
@@ -95,8 +95,8 @@ gradeName: any;
       this.platoonForm.controls['transactionUserId'].setValue(this.editData.transactionUserId);
       this.platoonForm.controls['code'].setValue(this.editData.code);
       this.platoonForm.controls['name'].setValue(this.editData.name);
-      // console.log("editData commodityId: ", this.editData.commodityId)
-      // this.platoonForm.controls['commodityId'].setValue(this.editData.commodityId);
+      console.log("editData commodityId: ", this.editData.commodityId)
+      this.platoonForm.controls['commodityId'].setValue(this.editData.commodityId);
       console.log("editData gradeId: ", this.editData.gradeId)
       this.platoonForm.controls['gradeId'].setValue(this.editData.gradeId);
       // console.log("editData gradeId: ", this.editData.gradeName)
@@ -105,66 +105,24 @@ gradeName: any;
       this.platoonForm.controls['id'].setValue(this.editData.id);
     }
   }
-  // async getSearchPlatoons(gradeID:any,name:any) {
-  //   console.log("this",gradeID + name)
-  //     this.gradeName =  await this.getgradeByID(gradeID)
-  //     alert(this.gradeName)
-  //       this.api.getPlatoon()
-  //         .subscribe({
-  //           next: (res) => {
-  //             // 1-
-  //             if (gradeID != '' && name == '' ){
-  //               this.dataSource = res.filter((res: any)=> res.commodity==gradeID!) 
-  //               this.dataSource.paginator = this.paginator;
-  //               this.dataSource.sort = this.sort;
-  //             }
-  //             else if (gradeID != '' && name != ''){
-  //               // this.dataSource = res.filter((res: any)=> res.name==name!)
-  //               this.dataSource = res.filter((res: any)=> res.commodity==gradeID! && res.name.toLowerCase().includes(name.toLowerCase()))
-  //               this.dataSource.paginator = this.paginator;
-  //               this.dataSource.sort = this.sort;
-  //             }
-  //             else{
-  //               // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
-  //               this.dataSource = res.filter((res: any)=> res.name.toLowerCase().includes(name.toLowerCase()))
-  //               this.dataSource.paginator = this.paginator;
-  //               this.dataSource.sort = this.sort;
-  //             }
-            
-              
-  //           },
-  //           error: (err) => {
-  //             alert("Error")
-  //           }
-  //         })
-  //         // this.getAllProducts()
-  //       }
 
-        
-// getgradeByID(id: any) {
-//   console.log("row store id: ", id);
-//   return fetch(`http://ims.aswan.gov.eg/api/STR_Grade/get-grade-by-id/{id}`)
-//     .then(response => response.json())
-//     .then(json => {
-//       console.log("fetch name by id res: ", json[0].name);
-//       // this.storeName = res.name;
-//       // this.groupMasterForm.controls['Store'] = json[0].name;
-//       return json[0].name;
-//     })
-//     .catch((err) => {
-//       console.log("error in fetch name by id: ", err);
-//       alert("خطا اثناء جلب رقم المخزن !");
-//     });
-// }
+
+displayCommodityName(commodity: any): string {
+  return commodity && commodity.name ? commodity.name : '';
+}
 
 commoditySelected($event: MatAutocompleteSelectedEvent) {
   this.selectedOption = $event.option.value;
- this.platoonForm.patchValue({ commodityId: this.selectedOption });
+ this.platoonForm.patchValue({ commodityId: this.selectedOption.id });
+}
+
+displayGradeName(grade: any): string {
+  return grade && grade.name ? grade.name : '';
 }
 
 gradeSelected(event: MatAutocompleteSelectedEvent) {
      this.selectedOption = event.option.value;
-    this.platoonForm.patchValue({ gradeId: this.selectedOption });
+    this.platoonForm.patchValue({ gradeId: this.selectedOption.id });
   }
 
   _filtercommodity(value: string) {
@@ -185,7 +143,8 @@ gradeSelected(event: MatAutocompleteSelectedEvent) {
     if(!this.editData){
       
       this.platoonForm.removeControl('id')
-      this.platoonForm.controls['gradeId'].setValue(this.selectedOption);
+      this.platoonForm.controls['commodityId'].setValue(this.selectedOption.id);
+      this.platoonForm.controls['gradeId'].setValue(this.selectedOption.id);
       console.log("add: ", this.platoonForm.value);
       this.platoonForm.controls['transactionUserId'].setValue(this.transactionUserId);
       if(this.platoonForm.valid){
