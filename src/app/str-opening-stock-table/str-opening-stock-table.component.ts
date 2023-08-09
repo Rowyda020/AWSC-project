@@ -4,16 +4,16 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from '../services/api.service';
-import { StrGroupFormComponent } from '../str-groupBannel-form/str-group-form.component';
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
+import { StrOpeningStockDialogComponent } from '../str-opening-stock-dialog/str-opening-stock-dialog.component';
 
 @Component({
-  selector: 'app-str-group-table-header',
-  templateUrl: './str-group-table-header.component.html',
-  styleUrls: ['./str-group-table-header.component.css']
+  selector: 'app-str-opening-stock-table',
+  templateUrl: './str-opening-stock-table.component.html',
+  styleUrls: ['./str-opening-stock-table.component.css']
 })
-export class StrGroupTableHeaderComponent implements OnInit {
+export class StrOpeningStockTableComponent implements OnInit{
   displayedColumns: string[] = ['no', 'storeName', 'date', 'Action'];
   matchedIds: any;
   storeList: any;
@@ -51,7 +51,7 @@ export class StrGroupTableHeaderComponent implements OnInit {
   }
 
   editMasterForm(row: any) {
-    this.dialog.open(StrGroupFormComponent, {
+    this.dialog.open(StrOpeningStockDialogComponent, {
       width: '70%',
       data: row
     }).afterClosed().subscribe(val => {

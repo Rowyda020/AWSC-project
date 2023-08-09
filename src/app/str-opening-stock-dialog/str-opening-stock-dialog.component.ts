@@ -10,11 +10,11 @@ import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-str-group-form',
-  templateUrl: './str-group-form.component.html',
-  styleUrls: ['./str-group-form.component.css']
+  selector: 'app-str-opening-stock-dialog',
+  templateUrl: './str-opening-stock-dialog.component.html',
+  styleUrls: ['./str-opening-stock-dialog.component.css']
 })
-export class StrGroupFormComponent implements OnInit {
+export class StrOpeningStockDialogComponent implements OnInit{
   groupDetailsForm !: FormGroup;
   groupMasterForm !: FormGroup;
   actionBtnMaster: string = "Save";

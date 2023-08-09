@@ -12,10 +12,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { StrGroupContainerComponent } from './str-groupBannel-container/str-group-container.component';
 // import { StrGroupNavBarComponent } from './shared/sidebar/str-group-nav-bar.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { StrGroupFormComponent } from './str-groupBannel-form/str-group-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +33,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RoleComponent } from './pages/role/role.component';
 import { StrRoleDialogComponent } from './pages/str-role-dialog/str-role-dialog.component';
-import { StrGroupTableHeaderComponent } from './str-groupBannel-table-header/str-group-table-header.component';
 import { StrCostcenterComponent } from '../app/str-costcenter/str-costcenter.component';
 import { StrCostcenterDialogComponent } from './str-costcenter-dialog/str-costcenter-dialog.component';
 import { StrItemComponent } from './STR_item/STR_item..component';
@@ -55,6 +52,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { STRHomeComponent } from './str-home/str-home.component';
 import { StrCommodityComponent } from './STR_Commodity/STR_Commodity.component';
 import { StrCommodityDialogComponent } from './STR_Commodity_dialog/str-commodity-dialog.component';
+import { StrOpeningStockDialogComponent } from './str-opening-stock-dialog/str-opening-stock-dialog.component';
+import { StrOpeningStockTableComponent } from './str-opening-stock-table/str-opening-stock-table.component';
+import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
 
 
 
@@ -73,15 +73,12 @@ import { StrCommodityDialogComponent } from './STR_Commodity_dialog/str-commodit
     StrCommodityDialogComponent,
     LoginComponent,
     StrGroupHomeComponent,
-    StrGroupContainerComponent,
-    StrGroupFormComponent,
     AddUserComponent,
 
     STRGradeComponent,
     STRGradeDialogComponent,
     RoleComponent,
     StrRoleDialogComponent,
-    StrGroupTableHeaderComponent,
     StrCostcenterComponent,
     StrCostcenterDialogComponent, StrItemDialogComponent,
     StrItemComponent,
@@ -93,7 +90,10 @@ import { StrCommodityDialogComponent } from './STR_Commodity_dialog/str-commodit
     STRUnitsDialogComponent,
     STRPlatoonComponent,
     STRPlatoonDialogComponent,
-    STRHomeComponent
+    STRHomeComponent,
+    StrOpeningStockDialogComponent,
+    StrOpeningStockTableComponent,
+    StrOpeningStockContainerComponent
 
 
 
