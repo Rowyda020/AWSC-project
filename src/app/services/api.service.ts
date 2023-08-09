@@ -36,26 +36,31 @@ export class ApiService {
     return this.http.delete<any>(`http://ims.aswan.gov.eg/api/STR_Unit/delete-Unit-by-id/${id}`);
   }
 
+// start crud grade
+  
+postGrade(data : any){
+  return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Grade/Add-grade/",data);
+}
+getGrade(){
+  return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Grade/get-all-grades");
+}
+putGrade(data:any){
+  return this.http.put<any>("http://ims.aswan.gov.eg/api/STR_Grade/update-grade-by-id/", data);
+}
+deleteGrade(id:number){
+  return this.http.delete<any>(`https://ims.aswan.gov.eg/api/STR_Grade/delete-grade/${id}`);
+}
+getAllCommodity():Observable<any> {
+  return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity");
+}
 
-  postGrade(data : any){
-    return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Grade/Add-grade/",data);
-  }
-  getGrade(){
-    return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Grade/get-all-grades");
-  }
-  putGrade(data:any){
-    return this.http.put<any>("http://ims.aswan.gov.eg/api/STR_Grade/update-grade-by-id/", data);
-  }
-  deleteGrade(id:number){
-    return this.http.delete<any>(`https://ims.aswan.gov.eg/api/STR_Grade/delete-grade/${id}`);
-  }
-  getAllCommodity():Observable<any> {
-    return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity");
-  }
+  // end crud garde
 
   getStrOpenDetails() {
     return this.http.get<any>("http://localhost:3000/StrOpenDetails/");
   }
+
+
   
 
   getStoreList() {
@@ -64,16 +69,6 @@ export class ApiService {
   getStoreByID(id: number) {
     return this.http.get<any>("http://localhost:3000/StoreList/" + id);
   }
-
-
-
-
-
-
-
- //Grades
-
- 
 
 
 
@@ -148,25 +143,6 @@ export class ApiService {
     return this.http.delete<any>("http://localhost:3000/rolelist/"+id);
   }
 
-
-  // salvana
-  postProduct(data: any){
-    return this.http.post<any>("http://localhost:3000/productList/",data);
-  }
-  putProduct(data:any,id:number){
-    return this.http.put<any>("http://localhost:3000/productList/"+id,data);
-  }
- 
-  getProduct(){
-    return this.http.get<any>("http://localhost:3000/productList/");
-  }
- 
-
-  deleteProduct(id:number){
-    return this.http.delete<any>("http://localhost:3000/productList/"+id);
-  }
-
-  
   // Crud CostCenter
 
   
