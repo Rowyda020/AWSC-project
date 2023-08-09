@@ -142,6 +142,6 @@ console.log("com id: ", commidityID, "name: ", name );
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
-    }
+    }}
+
   }
-}
