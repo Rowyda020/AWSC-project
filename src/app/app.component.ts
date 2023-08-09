@@ -10,8 +10,12 @@ export class AppComponent {
 
   constructor(public global:GlobalService){
     
-    if(localStorage.getItem('token')) this.global.isLogIn = true
-    console.log(this.global.isLogIn)
+    // if(localStorage.getItem('token')) this.global.isLogIn = true
+    // console.log(this.global.isLogIn)
+
+    // console.log(this.global.userRoles)
+    let userRole= localStorage.getItem('userRoles')
+
     
   }
 

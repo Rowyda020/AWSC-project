@@ -27,7 +27,7 @@ const routes: Routes = [
   {path:'showUsers' , component:UsersInfoComponent},
    {path:'register' , component:RegisterComponent},
    {path:'addUser' , component:AddUserComponent},
-  { path: "home", component: StrGroupHomeComponent },
+  { path: "home", component: StrGroupHomeComponent,canActivate:[authGuard]},
   { path: "groupOpening", component: StrGroupContainerComponent },
   { path: "groupBannel", component: StrGroupComponent },
   { path: "unit", component:STRUnitsComponent},
