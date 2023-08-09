@@ -16,6 +16,13 @@
                 </mat-select>
             </mat-form-field>
 
+            <mat-form-field appearance="outline" class="groupInput">
+                <mat-label>السنة المالية</mat-label>
+                <mat-select placeholder="السنة المالية" formControlName="fiscalYearId">
+                    <mat-option [value]="fiscalYear.id" *ngFor="let fiscalYear of fiscalYearsList">{{fiscalYear.fiscalyear}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>التاريخ</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="date">
@@ -42,13 +49,13 @@
             <div class="detailsForm">
 
                 <mat-form-field appearance="outline" class="groupInput">
-                    <mat-label>الكود</mat-label>
+                    <mat-label>بحث بالكود </mat-label>
                     <input matInput placeholder="الكود" (keydown)="getItemByCode($event)">
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="groupInput">
                     <mat-label> الصنف</mat-label>
-                    <mat-select placeholder=" الصنف" formControlName="itemId"
+                    <mat-select placeholder="بحث يالكود" formControlName="itemId"
                         [value]="getDetailedRowData ? getDetailedRowData.itemId : ''">
                         <mat-option [value]="item.id" *ngFor="let item of itemsList">{{item.name}}</mat-option>
                     </mat-select>

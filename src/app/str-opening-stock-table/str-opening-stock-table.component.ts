@@ -13,7 +13,7 @@ import { StrOpeningStockDialogComponent } from '../str-opening-stock-dialog/str-
   templateUrl: './str-opening-stock-table.component.html',
   styleUrls: ['./str-opening-stock-table.component.css']
 })
-export class StrOpeningStockTableComponent implements OnInit{
+export class StrOpeningStockTableComponent implements OnInit {
   displayedColumns: string[] = ['no', 'storeName', 'date', 'Action'];
   matchedIds: any;
   storeList: any;
@@ -52,7 +52,7 @@ export class StrOpeningStockTableComponent implements OnInit{
 
   editMasterForm(row: any) {
     this.dialog.open(StrOpeningStockDialogComponent, {
-      width: '70%',
+      width: '90%',
       data: row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {
@@ -126,10 +126,11 @@ export class StrOpeningStockTableComponent implements OnInit{
 
   getSearchStrOpen(no: any, store: any, date: any) {
 
-    // console.log("no. : ", no, "store : ", store, "date: ", date);
-    this.api.getStrOpen()
+    console.log("no. : ", no, "store : ", store, "date: ", date);
+    this.api.getStrOpenSearach(no, store, date)
       .subscribe({
         next: (res) => {
+          console.log("search openingStock res: ", res);
 
           //enter no.
           if (no != '' && !store && !date) {

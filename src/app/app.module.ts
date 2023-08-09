@@ -55,7 +55,7 @@ import { StrCommodityDialogComponent } from './STR_Commodity_dialog/str-commodit
 import { StrOpeningStockDialogComponent } from './str-opening-stock-dialog/str-opening-stock-dialog.component';
 import { StrOpeningStockTableComponent } from './str-opening-stock-table/str-opening-stock-table.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
-
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -128,8 +128,8 @@ import { StrOpeningStockContainerComponent } from './str-opening-stock-container
     MatNativeDateModule,
     MatRadioModule,
     MatCardModule,
-    MatAutocompleteModule
-
+    MatAutocompleteModule,
+    ToastrModule.forRoot(),
 
 
 

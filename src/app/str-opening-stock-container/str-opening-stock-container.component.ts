@@ -27,7 +27,7 @@ export class StrOpeningStockContainerComponent implements OnInit{
 
   openOpeningStockDialog() {
     this.dialog.open(StrOpeningStockDialogComponent, {
-      width: '70%'
+      width: '90%'
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
         this.getAllGroups();
@@ -39,13 +39,12 @@ export class StrOpeningStockContainerComponent implements OnInit{
     this.api.getGroup()
       .subscribe({
         next: (res) => {
-          // console.log("response of get all getGroup from api: ", res);
           this.dataSource = new MatTableDataSource(res);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },
         error: () => {
-          alert("خطأ أثناء جلب سجلات المجموعة !!");
+          // alert("خطأ أثناء جلب سجلات المجموعة !!");
         }
       })
   }
