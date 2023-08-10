@@ -25,7 +25,7 @@ export class authGuard implements CanActivate {
   for(let i = 0; i < userRole!.length; i++) {
     let role = userRole![i];
     console.log(role);
-    if(role=='3')
+    if(role=='2')
      return true
    else
    window.alert('You dont have the permission to visit this page')
