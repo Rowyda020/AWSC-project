@@ -21,7 +21,7 @@ import { StrCommodityComponent } from './STR_Commodity/STR_Commodity.component';
 
 
 const routes: Routes = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "", redirectTo: "login", pathMatch: "full" },
    {path:'login' , component:LoginComponent},
    {path:'commodity' , component:StrCommodityComponent},
   {path:'showUsers' , component:UsersInfoComponent},
