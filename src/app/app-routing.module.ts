@@ -28,6 +28,7 @@ const routes: Routes = [
    {path:'register' , component:RegisterComponent},
    {path:'addUser' , component:AddUserComponent},
   { path: "home", component: StrGroupHomeComponent,canActivate:[authGuard]},
+  
   { path: "groupOpening", component: StrOpeningStockContainerComponent },
   { path: "groupBannel", component: StrGroupComponent },
   { path: "unit", component:STRUnitsComponent},
