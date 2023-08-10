@@ -10,11 +10,11 @@ import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-str-group-form',
-  templateUrl: './str-group-form.component.html',
-  styleUrls: ['./str-group-form.component.css']
+  selector: 'app-str-opening-stock-dialog',
+  templateUrl: './str-opening-stock-dialog.component.html',
+  styleUrls: ['./str-opening-stock-dialog.component.css']
 })
-export class StrGroupFormComponent implements OnInit {
+export class StrOpeningStockDialogComponent implements OnInit{
   groupDetailsForm !: FormGroup;
   groupMasterForm !: FormGroup;
   actionBtnMaster: string = "Save";
@@ -27,6 +27,7 @@ export class StrGroupFormComponent implements OnInit {
   getMasterRowId: any;
   storeList: any;
   itemsList: any;
+  fiscalYearsList: any;
   storeName: any;
   itemName: any;
   userIdFromStorage: any;
@@ -50,7 +51,7 @@ export class StrGroupFormComponent implements OnInit {
   ngOnInit(): void {
     this.getStores();
     this.getItems();
-
+    this.getFiscalYears();
     // console.log("next btn: ", this.editDataDetails, "edit data: ", this.editData);
 
     this.getMasterRowId = this.editData;
@@ -61,7 +62,7 @@ export class StrGroupFormComponent implements OnInit {
       storeName: ['', Validators.required],
       transactionUserId: ['', Validators.required],
       date: ['', Validators.required],
-
+      fiscalYearId: ['', Validators.required],
     });
 
     this.groupDetailsForm = this.formBuilder.group({
@@ -81,6 +82,10 @@ export class StrGroupFormComponent implements OnInit {
       this.actionBtnMaster = "Update";
       this.groupMasterForm.controls['no'].setValue(this.editData.no);
       this.groupMasterForm.controls['storeId'].setValue(this.editData.storeId);
+      alert("facialId before: "+ this.editData.fiscalYearId)
+      this.groupMasterForm.controls['fiscalYearId'].setValue(this.editData.fiscalYearId);
+      // console.log("faciaaaaal year edit: ", this.groupMasterForm.getRawValue().fiscalYearId)
+      alert("facialId after: "+ this.groupMasterForm.getRawValue().fiscalYearId)
       this.groupMasterForm.controls['date'].setValue(this.editData.date);
 
       this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
@@ -89,12 +94,12 @@ export class StrGroupFormComponent implements OnInit {
 
     this.getAllDetailsForms();
 
-    localStorage.setItem('transactionUserId', JSON.stringify("mehrail"));
+    // localStorage.setItem('transactionUserId', JSON.stringify("mehrail"));
     this.userIdFromStorage = localStorage.getItem('transactionUserId');
-    // console.log("userIdFromStorage in localStorage: ", this.userIdFromStorage)
+    console.log("userIdFromStorage in localStorage: ", this.userIdFromStorage)
     // console.log("userIdFromStorage after slice from string shape: ", this.userIdFromStorage?.slice(1, length - 1))
     // this.groupMasterForm.controls['transactionUserId'].setValue(this.userIdFromStorage?.slice(1, length - 1));
-    this.groupMasterForm.controls['transactionUserId'].setValue(1);
+    this.groupMasterForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
 
   }
 
@@ -104,7 +109,9 @@ export class StrGroupFormComponent implements OnInit {
     this.storeName = await this.getStoreByID(this.groupMasterForm.getRawValue().storeId);
     alert("store name in add: " + this.storeName)
     this.groupMasterForm.controls['storeName'].setValue(this.storeName);
-    // console.log("dataName: ", this.groupMasterForm.value)
+    // this.groupMasterForm.controls['fiscalYearId'].setValue(1)
+    console.log("faciaaaaal year add: ", this.groupMasterForm.getRawValue().fiscalYearId)
+    console.log("dataName: ", this.groupMasterForm.value)
 
     if (this.groupMasterForm.getRawValue().storeName && this.groupMasterForm.getRawValue().date && this.groupMasterForm.getRawValue().storeId && this.groupMasterForm.getRawValue().no) {
 
@@ -181,7 +188,7 @@ export class StrGroupFormComponent implements OnInit {
           this.itemName = await this.getItemByID(this.groupDetailsForm.getRawValue().itemId);
           this.groupDetailsForm.controls['itemName'].setValue(this.itemName);
           // this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage?.slice(1, length - 1));
-          this.groupDetailsForm.controls['transactionUserId'].setValue(1);
+          this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
         }
 
         this.groupDetailsForm.controls['stR_Opening_StockId'].setValue(this.getMasterRowId.id);
@@ -274,7 +281,7 @@ export class StrGroupFormComponent implements OnInit {
 
   updateBothForms() {
     console.log("pass id: ", this.getMasterRowId.id, "pass No: ", this.groupMasterForm.getRawValue().no, "pass StoreId: ", this.groupMasterForm.getRawValue().storeId, "pass Date: ", this.groupMasterForm.getRawValue().date)
-    if (this.groupMasterForm.getRawValue().no != '' && this.groupMasterForm.getRawValue().storeId != '' && this.groupMasterForm.getRawValue().date != '') {
+    if (this.groupMasterForm.getRawValue().no != '' && this.groupMasterForm.getRawValue().storeId != '' && this.groupMasterForm.getRawValue().fiscalYearId != '' && this.groupMasterForm.getRawValue().date != '') {
 
       this.groupDetailsForm.controls['stR_Opening_StockId'].setValue(this.getMasterRowId.id);
       this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
@@ -397,41 +404,6 @@ export class StrGroupFormComponent implements OnInit {
       });
   }
 
-  // openConfirmDeleteDialog(rowId: any): void {
-  //   console.log("rowId specific: ", rowId);
-  //   this.dialogRefDelete = this.dialog.open(StrGroupConfirmDeleteDialogComponent, {
-  //     width: '30%',
-  //     data: rowId
-  //   });
-  //   // dialogRef.afterOpened().subscribe(() => {
-  //   //   this.deleteConfirmBtn = "delete";
-  //   //   console.log('The dialog after opened main, val: ');
-  //   //   // if (val != undefined) {
-  //   //   // console.log('rowId: ', rowId);
-  //   //   //   // this.deleteFormDetails(rowId);
-  //   //   // }
-  //   //   // this.animal = result;
-  //   // })
-
-  //   this.dialogRefDelete.afterClosed().subscribe((val: string) => {
-  //     console.log('The dialog was closed main, val: ', val);
-  //     console.log("delete btn value: ", this.deleteConfirmBtn);
-
-  //     if (this.deleteConfirmBtn === 'delete') {
-  //       console.log('rowId: ', rowId);
-  //       // this.deleteFormDetails(rowId);
-  //     }
-  //     else {
-  //       console.log('closed without delete: ');
-  //     }
-  //     // if (val != undefined) {
-  //     // console.log('rowId: ', rowId);
-  //     //   // this.deleteFormDetails(rowId);
-  //     // }
-  //     // this.animal = result;
-  //   });
-  // }
-
   getItemByCode(code: any) {
     if (code.keyCode == 13) {
       console.log("code: ", code.target.value);
@@ -444,6 +416,34 @@ export class StrGroupFormComponent implements OnInit {
     }
 
 
+  }
+
+  getFiscalYears() {
+    this.api.getFiscalYears()
+      .subscribe({
+        next: (res) => {
+          this.fiscalYearsList = res;
+          console.log("fiscalYears res: ", this.fiscalYearsList);
+        },
+        error: (err) => {
+          // console.log("fetch fiscalYears data err: ", err);
+          // alert("خطا اثناء جلب العناصر !");
+        }
+      })
+  }
+
+  getFiscalYearsByID(id: any) {
+    console.log("row fiscalYear id: ", id);
+    return fetch(`https://ims.aswan.gov.eg/api/STR_Item/get-Item-by-id/${id}`)
+      .then(response => response.json())
+      .then(json => {
+        console.log("fetch fiscalYears name by id res: ", json.fiscalyear);
+        return json.fiscalyear;
+      })
+      .catch((err) => {
+        console.log("error in fetch fiscalYears name by id: ", err);
+        // alert("خطا اثناء جلب رقم العنصر !");
+      });
   }
 
   // toastrSuccess(): void {

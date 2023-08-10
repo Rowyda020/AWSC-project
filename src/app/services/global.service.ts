@@ -9,6 +9,8 @@ export class GlobalService {
   isLogIn = false
   bgColor :any
   isStatus= "مفعل"
+  userRoles=localStorage.getItem('userRoles')
+
   
 
   public navFlag:boolean=true
@@ -44,6 +46,11 @@ export class GlobalService {
 
   updateUser(obj : any):Observable<any>{
     return this.http.post(`${this.baseUrl}/auth/user-profile`,obj)
+  }
+
+  getRolesByUserId(userId:any):Observable<any>{
+   console.log("userId ", userId)
+   return this.http.get(`${this.url}/PR_User/getuser role/${userId}`)
   }
 //  crud group
 postGroup(data: any){

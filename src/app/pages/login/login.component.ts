@@ -9,6 +9,12 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  transactionUserId=localStorage.getItem('transactionUserId')
+
+  
+  OnIinit():void{
+
+  }
 
   loginForm = new FormGroup({
     name : new FormControl('' ,
@@ -27,7 +33,7 @@ export class LoginComponent {
 
   get userData(){return this.loginForm.controls}
 
-
+  
 
   handleSubmit(){
     console.log(this.loginForm)
@@ -37,11 +43,11 @@ export class LoginComponent {
         console.log(res)
          if( res.isActive==true) {
           
-          // localStorage.setItem('token' ,res.access_token,);
+          
           localStorage.setItem('transactionUserId',res.id);
            this.global.isLogIn=true;
 
-          // // this.router.navigateByUrl('/showUsers')
+          this.getRolesByUserId()
           this.router.navigate(['/home'])
       
         }
@@ -49,6 +55,14 @@ export class LoginComponent {
     })
     }
   }
+
+  getRolesByUserId(){
+    this.global.getRolesByUserId(this.transactionUserId).subscribe(res=>{
+      console.log(res)
+      localStorage.setItem('userRoles',res)
+
+    })
+}
 
 
 }

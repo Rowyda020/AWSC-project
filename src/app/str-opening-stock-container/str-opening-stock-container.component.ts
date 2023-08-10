@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { ApiService } from '../services/api.service';
-import { StrGroupFormComponent } from '../str-groupBannel-form/str-group-form.component';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { StrOpeningStockDialogComponent } from '../str-opening-stock-dialog/str-opening-stock-dialog.component';
 
 @Component({
-  selector: 'app-str-group-container',
-  templateUrl: './str-group-container.component.html',
-  styleUrls: ['./str-group-container.component.css']
+  selector: 'app-str-opening-stock-container',
+  templateUrl: './str-opening-stock-container.component.html',
+  styleUrls: ['./str-opening-stock-container.component.css']
 })
-export class StrGroupContainerComponent implements OnInit{
+export class StrOpeningStockContainerComponent implements OnInit{
   displayedColumns: string[] = ['groupCode','groupName', 'groupCommdityCode', 'groupCommdity', 'action'];
 
   dataSource!: MatTableDataSource<any>;
@@ -25,9 +25,9 @@ export class StrGroupContainerComponent implements OnInit{
     this.getAllGroups();
   }
 
-  openGroupDialog() {
-    this.dialog.open(StrGroupFormComponent, {
-      width: '70%'
+  openOpeningStockDialog() {
+    this.dialog.open(StrOpeningStockDialogComponent, {
+      width: '90%'
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
         this.getAllGroups();
@@ -39,13 +39,12 @@ export class StrGroupContainerComponent implements OnInit{
     this.api.getGroup()
       .subscribe({
         next: (res) => {
-          // console.log("response of get all getGroup from api: ", res);
           this.dataSource = new MatTableDataSource(res);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },
         error: () => {
-          alert("خطأ أثناء جلب سجلات المجموعة !!");
+          // alert("خطأ أثناء جلب سجلات المجموعة !!");
         }
       })
   }

@@ -7,12 +7,18 @@ import { GlobalService } from '../services/global.service';
   styleUrls: ['./str-home.component.css']
 })
 export class STRHomeComponent {
+  
+  userRole= localStorage.getItem('userRoles')
 
   constructor(public global:GlobalService){
+   
 
   }
   OnInit():void{
     this.global.bgColor= document.querySelector('section')?.classList.add('screenBackground');
+   
 
  }
+
+ 
 }
