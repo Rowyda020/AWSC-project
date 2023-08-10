@@ -1,3 +1,4 @@
+<!-- <p>str-opening-stock-dialog works!</p> -->
 <h1 mat-dialog-title dir="rtl">اضافة </h1>
 <div mat-dialog-content dir="rtl" style="padding: 30px;">
     <form [formGroup]="groupMasterForm" (keydown.enter)="$event.preventDefault()">
@@ -12,6 +13,13 @@
                 <mat-label>المخازن</mat-label>
                 <mat-select placeholder="المخازن" formControlName="storeId">
                     <mat-option [value]="store.id" *ngFor="let store of storeList">{{store.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="groupInput">
+                <mat-label>السنة المالية</mat-label>
+                <mat-select placeholder="السنة المالية" formControlName="fiscalYearId">
+                    <mat-option [value]="fiscalYear.id" *ngFor="let fiscalYear of fiscalYearsList">{{fiscalYear.fiscalyear}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
@@ -41,13 +49,13 @@
             <div class="detailsForm">
 
                 <mat-form-field appearance="outline" class="groupInput">
-                    <mat-label>الكود</mat-label>
+                    <mat-label>بحث بالكود </mat-label>
                     <input matInput placeholder="الكود" (keydown)="getItemByCode($event)">
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="groupInput">
                     <mat-label> الصنف</mat-label>
-                    <mat-select placeholder=" الصنف" formControlName="itemId"
+                    <mat-select placeholder="بحث يالكود" formControlName="itemId"
                         [value]="getDetailedRowData ? getDetailedRowData.itemId : ''">
                         <mat-option [value]="item.id" *ngFor="let item of itemsList">{{item.name}}</mat-option>
                     </mat-select>

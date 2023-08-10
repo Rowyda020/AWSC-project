@@ -1,8 +1,15 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>supervised_user_circle</mat-icon>
+  </button>
+  <span>المجموعات</span>
+  <span class="example-spacer"></span>
+  <!-- <button mat-raised-button color="warn" (click)="openDialog()">Add Product</button> -->
+  <button mat-raised-button color="warn" (click)="openGroupDialog()">اضافة </button>
+</mat-toolbar>
+
 <div class="container" dir="rtl">
   <div style="margin-top: 10px;">
-<button mat-raised-button color="warn" (click)="openGroupDialog()">اضافة مجموعة</button>
-
-    <h1 style="font-weight: bold;">شاشة المجموعات</h1>
     <mat-form-field>
       <mat-label>بحث</mat-label>
       <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input> -->

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StrGroupHomeComponent } from './str-group-home/str-group-home.component';
-import { StrGroupContainerComponent } from './str-groupBannel-container/str-group-container.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { UsersInfoComponent } from './pages/users-info/users-info.component';
@@ -18,6 +17,7 @@ import { StrStoreComponent } from './str-store/str-store.component';
 import { STRPlatoonComponent } from './str-platoon/str-platoon.component';
 import { STRHomeComponent } from './str-home/str-home.component';
 import { StrCommodityComponent } from './STR_Commodity/STR_Commodity.component';
+import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
 
 
 const routes: Routes = [
@@ -28,7 +28,7 @@ const routes: Routes = [
    {path:'register' , component:RegisterComponent},
    {path:'addUser' , component:AddUserComponent},
   { path: "home", component: StrGroupHomeComponent,canActivate:[authGuard]},
-  { path: "groupOpening", component: StrGroupContainerComponent },
+  { path: "groupOpening", component: StrOpeningStockContainerComponent },
   { path: "groupBannel", component: StrGroupComponent },
   { path: "unit", component:STRUnitsComponent},
   { path: "grade", component:STRGradeComponent },
