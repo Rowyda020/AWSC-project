@@ -13,7 +13,7 @@
       <mat-form-field appearance="outline">
         <input matInput aria-label="grade" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" required/>
         <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName" (optionSelected)="commoditySelected($event)">
-          <mat-option *ngFor="let commodity of filteredcommodities | async" [value]="commodity">
+          <mat-option *ngFor="let commodity of filteredCommodities | async" [value]="commodity">
             {{ commodity.name }} | {{ commodity.code }}
           </mat-option>
         </mat-autocomplete>
@@ -22,7 +22,7 @@
       <mat-form-field appearance="outline">
         <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required />
         <mat-autocomplete #autoGrade="matAutocomplete" [displayWith]="displayGradeName" (optionSelected)="gradeSelected($event)">
-          <mat-option *ngFor="let grade of filteredgrades | async" [value]="grade">
+          <mat-option *ngFor="let grade of filteredGrades | async" [value]="grade">
             {{ grade.name }} | {{ grade.code }}
           </mat-option>
         </mat-autocomplete>
