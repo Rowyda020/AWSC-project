@@ -22,7 +22,7 @@ export class StrOpeningStockContainerComponent implements OnInit{
   constructor(private dialog: MatDialog, private api: ApiService){}
 
   ngOnInit(): void {
-    this.getAllGroups();
+    // this.getAllGroups();
   }
 
   openOpeningStockDialog() {
@@ -30,22 +30,22 @@ export class StrOpeningStockContainerComponent implements OnInit{
       width: '90%'
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
-        this.getAllGroups();
+        // this.getAllGroups();
       }
     })
   }
 
-  getAllGroups() {
-    this.api.getGroup()
-      .subscribe({
-        next: (res) => {
-          this.dataSource = new MatTableDataSource(res);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        },
-        error: () => {
-          // alert("خطأ أثناء جلب سجلات المجموعة !!");
-        }
-      })
-  }
+  // getAllGroups() {
+  //   this.api.getGroup()
+  //     .subscribe({
+  //       next: (res) => {
+  //         this.dataSource = new MatTableDataSource(res);
+  //         this.dataSource.paginator = this.paginator;
+  //         this.dataSource.sort = this.sort;
+  //       },
+  //       error: () => {
+  //         // alert("خطأ أثناء جلب سجلات المجموعة !!");
+  //       }
+  //     })
+  // }
 }
