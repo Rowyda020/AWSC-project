@@ -22,6 +22,13 @@
                 </mat-select>
             </mat-form-field>
 
+            <mat-form-field appearance="outline">
+                <mat-label>السنة المالية</mat-label>
+                <mat-select #fiscalYear plceholder="اختر السنة المالية">
+                    <mat-option *ngFor="let fiscalYear of fiscalYearsList" [value]="fiscalYear.fiscalyear">{{fiscalYear.fiscalyear}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>التاريخ</mat-label>
                 <input #date matInput [matDatepicker]="picker">
@@ -33,7 +40,7 @@
 
             <!-- <button (click)=" getSearchStrOpen(store.value,no.value)" >عرض</button>  -->
 
-            <button mat-icon-button color="primary" (click)="getSearchStrOpen(no.value, storeId.value, date.value )">
+            <button mat-icon-button color="primary" (click)="getSearchStrOpen(no.value, storeId.value, date.value, fiscalYear.value)">
                 <mat-icon>search</mat-icon>
             </button>
         </div>

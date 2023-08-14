@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 import { StrOpeningStockDialogComponent } from '../str-opening-stock-dialog/str-opening-stock-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-str-opening-stock-table',
@@ -18,19 +19,25 @@ export class StrOpeningStockTableComponent implements OnInit {
   matchedIds: any;
   storeList: any;
   storeName: any;
+  fiscalYearsList: any;
 
   dataSource2!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private api: ApiService, private dialog: MatDialog, private http: HttpClient, @Inject(LOCALE_ID) private locale: string) {
+  constructor(private api: ApiService,
+    private dialog: MatDialog,
+    private http: HttpClient,
+    @Inject(LOCALE_ID) private locale: string,
+    private toastr: ToastrService) {
 
   }
 
   ngOnInit(): void {
     this.getAllMasterForms();
     this.getStores();
+    this.getFiscalYears();
   }
 
   getAllMasterForms() {
@@ -86,6 +93,7 @@ export class StrOpeningStockTableComponent implements OnInit {
                 alert("خطا اثناء تحديد المجموعة !!")
               })
 
+            this.toastrDeleteSuccess();
             this.getAllMasterForms()
           },
           error: () => {
@@ -124,16 +132,30 @@ export class StrOpeningStockTableComponent implements OnInit {
       })
   }
 
-  getSearchStrOpen(no: any, store: any, date: any) {
+  getFiscalYears() {
+    this.api.getFiscalYears()
+      .subscribe({
+        next: (res) => {
+          this.fiscalYearsList = res;
+          console.log("fiscalYears res in search: ", this.fiscalYearsList);
+        },
+        error: (err) => {
+          // console.log("fetch fiscalYears data err: ", err);
+          // alert("خطا اثناء جلب العناصر !");
+        }
+      })
+  }
 
-    console.log("no. : ", no, "store : ", store, "date: ", date);
-    this.api.getStrOpenSearach(no, store, date)
+  getSearchStrOpen(no: any, store: any, date: any, fiscalYear: any) {
+
+    console.log("no. : ", no, "store : ", store, "date: ", date, "fiscalYear: ", fiscalYear);
+    this.api.getStrOpenSearach(no, store, date, fiscalYear)
       .subscribe({
         next: (res) => {
           console.log("search openingStock res: ", res);
 
           //enter no.
-          if (no != '' && !store && !date) {
+          if (no != '' && !store && !date && !fiscalYear) {
             // console.log("enter no. ")
             // console.log("no. : ", no, "store: ", store, "date: ", date)
             this.dataSource2 = res.filter((res: any) => res.no == no!)
@@ -142,7 +164,7 @@ export class StrOpeningStockTableComponent implements OnInit {
           }
 
           //enter store
-          else if (!no && store && !date) {
+          else if (!no && store && !date && !fiscalYear) {
             // console.log("enter store. ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
             this.dataSource2 = res.filter((res: any) => res.storeId == store)
@@ -151,7 +173,7 @@ export class StrOpeningStockTableComponent implements OnInit {
           }
 
           //enter date
-          else if (!no && !store && date) {
+          else if (!no && !store && date && !fiscalYear) {
             // console.log("enter date. ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
             this.dataSource2 = res.filter((res: any) => formatDate(res.date, 'M/d/yyyy', this.locale) == date)
@@ -159,8 +181,17 @@ export class StrOpeningStockTableComponent implements OnInit {
             this.dataSource2.sort = this.sort;
           }
 
+          //enter fiscalYear
+          else if (!no && !store && !date && fiscalYear) {
+            // console.log("enter date. ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.fiscalyear == fiscalYear)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
           //enter no. & store
-          else if (no && store && !date) {
+          else if (no && store && !date && !fiscalYear) {
             // console.log("enter no & store ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
             this.dataSource2 = res.filter((res: any) => res.no == no! && res.storeId == store)
@@ -169,7 +200,7 @@ export class StrOpeningStockTableComponent implements OnInit {
           }
 
           //enter no. & date
-          else if (no && !store && date) {
+          else if (no && !store && date && !fiscalYear) {
             // console.log("enter no & date ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
             this.dataSource2 = res.filter((res: any) => res.no == no! && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
@@ -178,7 +209,7 @@ export class StrOpeningStockTableComponent implements OnInit {
           }
 
           //enter store & date
-          else if (!no && store && date) {
+          else if (!no && store && date && !fiscalYear) {
             // console.log("enter store & date ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
             this.dataSource2 = res.filter((res: any) => res.storeId == store && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
@@ -187,10 +218,10 @@ export class StrOpeningStockTableComponent implements OnInit {
           }
 
           //enter all data
-          else if (no != '' && store != '' && date != '') {
+          else if (no != '' && store != '' && date != '' && fiscalYear != '') {
             // console.log("enter all data. ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.no == no! && res.storeId == store && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && res.storeId == store && formatDate(res.date, 'M/d/yyyy', this.locale) == date && res.fiscalyear == fiscalYear)
             this.dataSource2.paginator = this.paginator;
             this.dataSource2.sort = this.sort;
           }
@@ -209,5 +240,9 @@ export class StrOpeningStockTableComponent implements OnInit {
           alert("Error")
         }
       })
+  }
+
+  toastrDeleteSuccess(): void {
+    this.toastr.success("تم الحذف بنجاح");
   }
 }

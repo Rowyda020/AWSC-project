@@ -319,22 +319,27 @@ getAllCommodity():Observable<any> {
     return this.http.get<any>("https://ims.aswan.gov.eg/api/StrFiscalYear/get-all-FiscalYear");
   }
 
-  getStrOpenSearach(no:any, storeId:any, date:any) {
+  getStrOpenSearach(no:any, storeId:any, date:any, fiscalYear:any) {
 
     //enter no.
-    if(no != '' && !storeId && !date){
+    if(no != '' && !storeId && !date && !fiscalYear){
       console.log("enter no. strOpen search");
       return this.http.get<any>(`https://ims.aswan.gov.eg/api/STR_Opening_Stock/search?No=${no}`);
     }
     //enter store
-    else if (!no && storeId && !date){
+    else if (!no && storeId && !date && !fiscalYear){
       console.log("enter store strOpen search");
       return this.http.get<any>(`https://ims.aswan.gov.eg/api/STR_Opening_Stock/search?StoreId=${storeId}`);
     }
     //enter date
-    else if (!no && !storeId && date){
+    else if (!no && !storeId && date && !fiscalYear){
       console.log("enter date strOpen search");
       return this.http.get<any>(`https://ims.aswan.gov.eg/api/STR_Opening_Stock/search?Date=${date}`);
+    }
+    //enter fiscalYear
+    else if (!no && !storeId && !date && fiscalYear){
+      console.log("enter fisalYear strOpen search");
+      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STR_Opening_Stock/search?fiscalyear=${fiscalYear}`);
     }
     //enter no. & store
     else if (no && storeId && !date){
@@ -352,9 +357,9 @@ getAllCommodity():Observable<any> {
       return this.http.get<any>(`https://ims.aswan.gov.eg/api/STR_Opening_Stock/search?StoreId=${storeId}&Date=${date}`);
     }
     //enter all data
-    else if (no != '' && storeId != '' && date != ''){
+    else if (no != '' && storeId != '' && date != '' && fiscalYear != ''){
       console.log("enter all data strOpen search");
-      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STR_Opening_Stock/search?StoreId=${storeId}&Date=${date}&No=${no}`);
+      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STR_Opening_Stock/search?StoreId=${storeId}&Date=${date}&No=${no}&fiscalyear=${fiscalYear}`);
     }
 
     console.log("didn't enter any condition search");

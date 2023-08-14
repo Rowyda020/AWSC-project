@@ -45,14 +45,14 @@ export class StrOpeningStockDialogComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public editDataDetails: any,
     private http: HttpClient,
     // private toastr: ToastrService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
     this.getStores();
     this.getItems();
     this.getFiscalYears();
-    // console.log("next btn: ", this.editDataDetails, "edit data: ", this.editData);
 
     this.getMasterRowId = this.editData;
 
@@ -78,14 +78,14 @@ export class StrOpeningStockDialogComponent implements OnInit{
 
 
     if (this.editData) {
-      console.log("master edit form: ", this.editData);
+      // console.log("master edit form: ", this.editData);
       this.actionBtnMaster = "Update";
       this.groupMasterForm.controls['no'].setValue(this.editData.no);
       this.groupMasterForm.controls['storeId'].setValue(this.editData.storeId);
-      alert("facialId before: "+ this.editData.fiscalYearId)
+      // alert("facialId before: "+ this.editData.fiscalYearId)
       this.groupMasterForm.controls['fiscalYearId'].setValue(this.editData.fiscalYearId);
       // console.log("faciaaaaal year edit: ", this.groupMasterForm.getRawValue().fiscalYearId)
-      alert("facialId after: "+ this.groupMasterForm.getRawValue().fiscalYearId)
+      // alert("facialId after: "+ this.groupMasterForm.getRawValue().fiscalYearId)
       this.groupMasterForm.controls['date'].setValue(this.editData.date);
 
       this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
@@ -96,7 +96,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
 
     // localStorage.setItem('transactionUserId', JSON.stringify("mehrail"));
     this.userIdFromStorage = localStorage.getItem('transactionUserId');
-    console.log("userIdFromStorage in localStorage: ", this.userIdFromStorage)
+    // console.log("userIdFromStorage in localStorage: ", this.userIdFromStorage)
     // console.log("userIdFromStorage after slice from string shape: ", this.userIdFromStorage?.slice(1, length - 1))
     // this.groupMasterForm.controls['transactionUserId'].setValue(this.userIdFromStorage?.slice(1, length - 1));
     this.groupMasterForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
@@ -107,16 +107,16 @@ export class StrOpeningStockDialogComponent implements OnInit{
     this.groupMasterForm.removeControl('id')
 
     this.storeName = await this.getStoreByID(this.groupMasterForm.getRawValue().storeId);
-    alert("store name in add: " + this.storeName)
+    // alert("store name in add: " + this.storeName)
     this.groupMasterForm.controls['storeName'].setValue(this.storeName);
     // this.groupMasterForm.controls['fiscalYearId'].setValue(1)
-    console.log("faciaaaaal year add: ", this.groupMasterForm.getRawValue().fiscalYearId)
-    console.log("dataName: ", this.groupMasterForm.value)
+    // console.log("faciaaaaal year add: ", this.groupMasterForm.getRawValue().fiscalYearId)
+    // console.log("dataName: ", this.groupMasterForm.value)
 
     if (this.groupMasterForm.getRawValue().storeName && this.groupMasterForm.getRawValue().date && this.groupMasterForm.getRawValue().storeId && this.groupMasterForm.getRawValue().no) {
 
 
-      console.log("Master add form : ", this.groupMasterForm.value)
+      // console.log("Master add form : ", this.groupMasterForm.value)
       this.api.postStrOpen(this.groupMasterForm.value)
         .subscribe({
           next: (res) => {
@@ -124,10 +124,11 @@ export class StrOpeningStockDialogComponent implements OnInit{
             this.getMasterRowId = {
               "id": res
             };
-            console.log("mastered res: ", this.getMasterRowId.id)
+            // console.log("mastered res: ", this.getMasterRowId.id)
             this.MasterGroupInfoEntered = true;
             
             // alert("تم الحفظ بنجاح");
+            this.toastrSuccess();
             this.getAllDetailsForms();
             // this.updateDetailsForm();
             this.addDetailsInfo();
@@ -149,10 +150,10 @@ export class StrOpeningStockDialogComponent implements OnInit{
     if (this.getMasterRowId) {
       this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/get-all-Opening_Stock_Details")
         .subscribe(res => {
-          console.log("res to get all details form: ", res, "masterRowId: ", this.getMasterRowId.id);
+          // console.log("res to get all details form: ", res, "masterRowId: ", this.getMasterRowId.id);
 
           this.matchedIds = res.filter((a: any) => {
-            console.log("matchedIds: ", a.stR_Opening_StockId == this.getMasterRowId.id, "res: ", this.matchedIds)
+            // console.log("matchedIds: ", a.stR_Opening_StockId == this.getMasterRowId.id, "res: ", this.matchedIds)
             return a.stR_Opening_StockId == this.getMasterRowId.id
           })
 
@@ -182,7 +183,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
 
     if (this.getMasterRowId.id) {
       if (this.getMasterRowId.id) {
-        console.log("form  headerId: ", this.getMasterRowId.id)
+        // console.log("form  headerId: ", this.getMasterRowId.id)
 
         if (this.groupDetailsForm.getRawValue().itemId) {
           this.itemName = await this.getItemByID(this.groupDetailsForm.getRawValue().itemId);
@@ -194,7 +195,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
         this.groupDetailsForm.controls['stR_Opening_StockId'].setValue(this.getMasterRowId.id);
         this.groupDetailsForm.controls['total'].setValue((parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty)));
 
-        console.log("form details after item: ", this.groupDetailsForm.value, "DetailedRowData: ", !this.getDetailedRowData)
+        // console.log("form details after item: ", this.groupDetailsForm.value, "DetailedRowData: ", !this.getDetailedRowData)
 
 
         if (this.groupDetailsForm.valid && !this.getDetailedRowData) {
@@ -203,6 +204,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
             .subscribe({
               next: (res) => {
                 // alert("تمت إضافة المجموعة بنجاح");
+                this.toastrSuccess();
                 this.groupDetailsForm.reset();
                 this.updateDetailsForm()
                 this.getAllDetailsForms();
@@ -226,38 +228,38 @@ export class StrOpeningStockDialogComponent implements OnInit{
 
   async updateDetailsForm() {
     this.storeName = await this.getStoreByID(this.groupMasterForm.getRawValue().storeId);
-    alert("update Store name: " + this.storeName)
+    // alert("update Store name: " + this.storeName)
     this.groupMasterForm.controls['storeName'].setValue(this.storeName);
     // console.log("data storeName in edit: ", this.groupMasterForm.value)
 
     this.groupDetailsForm.controls['itemName'].setValue(this.itemName);
 
-    console.log("values master form: ", this.groupMasterForm.value)
-    console.log("values getMasterRowId: ", this.getMasterRowId)
-    console.log("values details form: ", this.groupDetailsForm.value)
+    // console.log("values master form: ", this.groupMasterForm.value)
+    // console.log("values getMasterRowId: ", this.getMasterRowId)
+    // console.log("values details form: ", this.groupDetailsForm.value)
 
     if (this.editData) {
       this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
       this.groupMasterForm.controls['id'].setValue(this.editData.id);
-      console.log("data item Name in edit: ", this.groupMasterForm.value)
+      // console.log("data item Name in edit: ", this.groupMasterForm.value)
     }
 
     this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
     this.groupMasterForm.controls['id'].setValue(this.getMasterRowId.id);
     // this.groupMasterForm.controls['stR_Opening_StockId'].setValue(this.getMasterRowId.id);
-    console.log("data item Name in edit without id: ", this.groupMasterForm.value)
+    // console.log("data item Name in edit without id: ", this.groupMasterForm.value)
 
     this.api.putStrOpen(this.groupMasterForm.value)
       .subscribe({
         next: (res) => {
           // alert("تم الحفظ بنجاح");
-          console.log("update res: ", res, "details form values: ", this.groupDetailsForm.value, "details id: ", this.getDetailedRowData);
+          // console.log("update res: ", res, "details form values: ", this.groupDetailsForm.value, "details id: ", this.getDetailedRowData);
           if (this.groupDetailsForm.value && this.getDetailedRowData) {
             this.api.putStrOpenDetails(this.groupDetailsForm.value, this.getDetailedRowData.id)
               .subscribe({
                 next: (res) => {
                   // alert("تم الحفظ بنجاح");
-                  // this.toastrSuccess();
+                  this.toastrSuccess();
                   // console.log("update res: ", res);
                   this.groupDetailsForm.reset();
                   this.getAllDetailsForms();
@@ -280,7 +282,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
   }
 
   updateBothForms() {
-    console.log("pass id: ", this.getMasterRowId.id, "pass No: ", this.groupMasterForm.getRawValue().no, "pass StoreId: ", this.groupMasterForm.getRawValue().storeId, "pass Date: ", this.groupMasterForm.getRawValue().date)
+    // console.log("pass id: ", this.getMasterRowId.id, "pass No: ", this.groupMasterForm.getRawValue().no, "pass StoreId: ", this.groupMasterForm.getRawValue().storeId, "pass Date: ", this.groupMasterForm.getRawValue().date)
     if (this.groupMasterForm.getRawValue().no != '' && this.groupMasterForm.getRawValue().storeId != '' && this.groupMasterForm.getRawValue().fiscalYearId != '' && this.groupMasterForm.getRawValue().date != '') {
 
       this.groupDetailsForm.controls['stR_Opening_StockId'].setValue(this.getMasterRowId.id);
@@ -307,7 +309,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
       this.groupDetailsForm.controls['price'].setValue(this.getDetailedRowData.price);
       this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
 
-      console.log("itemid focus: ", this.matchedIds);
+      // console.log("itemid focus: ", this.matchedIds);
 
       this.groupDetailsForm.controls['itemId'].setValue(this.getDetailedRowData.itemId);
 
@@ -323,6 +325,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
         .subscribe({
           next: (res) => {
             // alert("تم الحذف بنجاح");
+            this.toastrDeleteSuccess();
             this.getAllDetailsForms()
           },
           error: () => {
@@ -337,7 +340,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
     this.api.getStrOpen()
       .subscribe({
         next: (res) => {
-          console.log("response of get all getStrOpen from api: ", res);
+          // console.log("response of get all getStrOpen from api: ", res);
           this.dataSource = new MatTableDataSource(res);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -363,11 +366,11 @@ export class StrOpeningStockDialogComponent implements OnInit{
   }
 
   getStoreByID(id: any) {
-    console.log("row store id: ", id);
+    // console.log("row store id: ", id);
     return fetch(`https://ims.aswan.gov.eg/api/STR_Store/get-UniStoret-by-id/${id}`)
       .then(response => response.json())
       .then(json => {
-        console.log("fetch name by id res: ", json.name);
+        // console.log("fetch name by id res: ", json.name);
         return json.name;
       })
       .catch((err) => {
@@ -391,22 +394,22 @@ export class StrOpeningStockDialogComponent implements OnInit{
   }
 
   getItemByID(id: any) {
-    console.log("row item id: ", id);
+    // console.log("row item id: ", id);
     return fetch(`https://ims.aswan.gov.eg/api/STR_Item/get-Item-by-id/${id}`)
       .then(response => response.json())
       .then(json => {
-        console.log("fetch item name by id res: ", json.name);
+        // console.log("fetch item name by id res: ", json.name);
         return json.name;
       })
       .catch((err) => {
-        console.log("error in fetch item name by id: ", err);
+        // console.log("error in fetch item name by id: ", err);
         // alert("خطا اثناء جلب رقم العنصر !");
       });
   }
 
   getItemByCode(code: any) {
     if (code.keyCode == 13) {
-      console.log("code: ", code.target.value);
+      // console.log("code: ", code.target.value);
 
       this.itemsList.filter((a: any) => {
         if (a.fullCode === code.target.value) {
@@ -446,7 +449,10 @@ export class StrOpeningStockDialogComponent implements OnInit{
       });
   }
 
-  // toastrSuccess(): void {
-  //   this.toastr.success("تم الحفظ بنجاح");
-  // }
+  toastrSuccess(): void {
+    this.toastr.success("تم الحفظ بنجاح");
+  }
+  toastrDeleteSuccess(): void {
+    this.toastr.success("تم الحذف بنجاح");
+  }
 }
