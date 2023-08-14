@@ -62,7 +62,7 @@ justify-content: space-between;
 padding: 10px;
 width: 80px;
 height: 50px;
-background-color: rgb(63 81 181);
+background-color:#2DC4F3;
 color: white;
 border: none;
 }
@@ -72,7 +72,7 @@ margin:30px auto;
 }
 mat-panel-description{
 font-size: 20px;
-color: rgb(63 81 181);
+color: #2DC4F3;
 font-weight: 500;
 text-align: right;
 }
