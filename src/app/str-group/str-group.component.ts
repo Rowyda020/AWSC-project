@@ -7,6 +7,7 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { ApiService } from '../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class StrGroupComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private api: ApiService) { }
+  constructor(private dialog: MatDialog, private api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getAllGroups();
@@ -45,19 +46,19 @@ export class StrGroupComponent {
     this.api.getGroup()
       .subscribe({
         next: (res) => {
-          console.log("response of get all getGroup from api bannel: ", res);
+          // console.log("response of get all getGroup from api bannel: ", res);
           this.dataSource = new MatTableDataSource(res);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },
         error: () => {
-          alert("خطأ أثناء جلب سجلات المجموعة !!");
+          // alert("خطأ أثناء جلب سجلات المجموعة !!");
         }
       })
   }
 
   editGroup(row: any) {
-    console.log("edit row: ", row)
+    // console.log("edit row: ", row)
     this.dialog.open(StrGroupDialogComponent, {
       width: '30%',
       data: row
@@ -74,6 +75,7 @@ export class StrGroupComponent {
       this.api.deleteGroup(id)
         .subscribe({
           next: (res) => {
+            this.toastrDeleteSuccess();
             // alert("تم حذف المجموعة بنجاح");
             this.getAllGroups()
           },
@@ -95,5 +97,8 @@ export class StrGroupComponent {
     })
   }
 
+  toastrDeleteSuccess(): void {
+    this.toastr.success("تم الحذف بنجاح");
+  }
 
 }
