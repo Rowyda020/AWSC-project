@@ -10,19 +10,27 @@ export class authGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      let token = localStorage.getItem('token')
-      let userId =localStorage.getItem('id')
-
+      let userRole= localStorage.getItem('userRoles')
      
-    
-      if(token && userId=='2') {
-      
-        return true
-      }
-      else
-      window.alert('You dont have the permission to visit this page')
-      this.router.navigateByUrl('login')
-      return false;
+
+  //     userRole.forEach(element => {
+  //     if( element==1)
+  //       return true
+  //     else
+  //     window.alert('You dont have the permission to visit this page')
+  //     this.router.navigateByUrl('login')
+  //     return false;
+  // })
+
+  for(let i = 0; i < userRole!.length; i++) {
+    let role = userRole![i];
+    console.log(role);
+    if(role=='2')
+     return true
+   else
+   window.alert('You dont have the permission to visit this page')
+   this.router.navigateByUrl('login')
+    return false;
   }
-  
-}
+  return true
+}}

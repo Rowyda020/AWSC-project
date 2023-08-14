@@ -11,13 +11,14 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-export class Commodities {
-  constructor(public name: string, public code: string) {}
+export class Commodity {
+  constructor(public id: number, public name: string, public code: string) {}
 }
 
-export class Grades {
-  constructor(public name: string, public code: string) {}
+export class Grade {
+  constructor(public id: number, public name: string, public code: string,public commodityId: number) {}
 }
+
 
 
 @Component({
@@ -28,11 +29,13 @@ export class Grades {
 export class STRPlatoonDialogComponent implements OnInit{
   transactionUserId=localStorage.getItem('transactionUserId')
   commodityCtrl: FormControl;
-  filteredcommodities: Observable<any[]>;
-  commodity_list: Commodities[] = [];
+  filteredCommodities: Observable<Commodity[]>;
+  commodities: Commodity[] = [];
   gradeCtrl: FormControl;
-  filteredgrades: Observable<any[]>;
-  grade_list: Grades[] = [];
+  filteredGrades: Observable<Grade[]>;
+  grades: Grade[] = [];
+  selectedCommodity: Commodity | undefined;
+  selectedGrade: Grade | undefined;
   formcontrol = new FormControl('');  
   platoonForm !:FormGroup;
   selectedOption: any;
@@ -54,18 +57,15 @@ gradeName: any;
      @Inject(MAT_DIALOG_DATA) public editData : any,
      private dialogRef : MatDialogRef<STRPlatoonDialogComponent>){
       this.commodityCtrl = new FormControl();
-    this.filteredcommodities = this.commodityCtrl.valueChanges.pipe(
+    this.filteredCommodities = this.commodityCtrl.valueChanges.pipe(
       startWith(''),
-      map((commodity) =>
-      commodity ? this._filtercommodity(commodity) : this.commodity_list.slice()
-      )
+      map(value => this._filterCommodities(value))
     );
-      this.gradeCtrl = new FormControl();
-    this.filteredgrades = this.gradeCtrl.valueChanges.pipe(
+
+    this.gradeCtrl = new FormControl();
+    this.filteredGrades = this.gradeCtrl.valueChanges.pipe(
       startWith(''),
-      map((grade) =>
-      grade ? this._filtergrade(grade) : this.grade_list.slice()
-      )
+      map(value => this._filterGrades(value))
     );
      }
 
@@ -77,16 +77,17 @@ gradeName: any;
       name : ['',Validators.required],
       commodityId : ['',Validators.required],
       gradeId : ['',Validators.required],
-      id : ['',Validators.required],
+      gradeName : [''],
+       id : [''],
     });
     
 
-    this.api.getAllCommodities().subscribe((commodityData)=>{
-      this.commodity_list = commodityData;
+    this.api.getAllCommodities().subscribe((commodities)=>{
+      this.commodities = commodities;
     });
 
-    this.api.getAllGrades().subscribe((gradeData)=>{
-      this.grade_list = gradeData;
+    this.api.getAllGrades().subscribe((grades)=>{
+      this.grades = grades;
     });
     
 
@@ -95,14 +96,11 @@ gradeName: any;
       this.platoonForm.controls['transactionUserId'].setValue(this.editData.transactionUserId);
       this.platoonForm.controls['code'].setValue(this.editData.code);
       this.platoonForm.controls['name'].setValue(this.editData.name);
-      console.log("editData commodityId: ", this.editData.commodityId)
       this.platoonForm.controls['commodityId'].setValue(this.editData.commodityId);
-      console.log("editData gradeId: ", this.editData.gradeId)
       this.platoonForm.controls['gradeId'].setValue(this.editData.gradeId);
-      // console.log("editData gradeId: ", this.editData.gradeName)
-      // this.platoonForm.controls['gradeId'].setValue(this.editData.gradeName);
+      this.platoonForm.controls['gradeName'].setValue(this.editData.gradeName);
       this.platoonForm.addControl('id', new FormControl('', Validators.required));
-      this.platoonForm.controls['id'].setValue(this.editData.id);
+     this.platoonForm.controls['id'].setValue(this.editData.id);
     }
   }
 
@@ -111,40 +109,47 @@ displayCommodityName(commodity: any): string {
   return commodity && commodity.name ? commodity.name : '';
 }
 
-commoditySelected($event: MatAutocompleteSelectedEvent) {
-  this.selectedOption = $event.option.value;
- this.platoonForm.patchValue({ commodityId: this.selectedOption.id });
-}
-
 displayGradeName(grade: any): string {
   return grade && grade.name ? grade.name : '';
 }
 
-gradeSelected(event: MatAutocompleteSelectedEvent) {
-     this.selectedOption = event.option.value;
-    this.platoonForm.patchValue({ gradeId: this.selectedOption.id });
-  }
+commoditySelected(event: MatAutocompleteSelectedEvent): void {
+  const commodity = event.option.value as Commodity;
+  this.selectedCommodity = commodity;
+  this.platoonForm.patchValue({ commodityId: commodity.id });
+  this.platoonForm.patchValue({ commodityName: commodity.name });
+  this.gradeCtrl.setValue('');
+}
 
-  _filtercommodity(value: string) {
-    const searchvalue = value.toLocaleLowerCase();
-    let arr = this.commodity_list.filter(option => option.name.toLocaleLowerCase().includes(searchvalue) || 
-    option.code.toLocaleLowerCase().includes(searchvalue));
-    return arr.length ? arr : [{ name: 'No Item found', code: 'null' }];
-  }
+gradeSelected(event: MatAutocompleteSelectedEvent): void {
+  const grade = event.option.value as Grade;
+  this.selectedGrade = grade;
+  this.platoonForm.patchValue({ gradeId: grade.id });
+  this.platoonForm.patchValue({ gradeName: grade.name });
+}
 
-  _filtergrade(value: string) {
-    const searchvalue = value.toLocaleLowerCase();
-    let arr = this.grade_list.filter(option => option.name.toLocaleLowerCase().includes(searchvalue) || 
-    option.code.toLocaleLowerCase().includes(searchvalue));
-    return arr.length ? arr : [{ name: 'No Item found', code: 'null' }];
-  }
+private _filterCommodities(value: string): Commodity[] {
+  const filterValue = value.toLowerCase();
+  return this.commodities.filter(commodity =>
+    commodity.name.toLowerCase().includes(filterValue) || commodity.code.toLowerCase().includes(filterValue)
+  );
+}
+
+private _filterGrades(value: string): Grade[] {
+  const filterValue = value.toLowerCase();
+  return this.grades.filter(
+    grade =>
+      (grade.name.toLowerCase().includes(filterValue) || grade.code.toLowerCase().includes(filterValue)) &&
+      grade.commodityId === this.selectedCommodity?.id
+  );
+}
 
   addPlatoon(){
     if(!this.editData){
       
       this.platoonForm.removeControl('id')
-      this.platoonForm.controls['commodityId'].setValue(this.selectedOption.id);
-      this.platoonForm.controls['gradeId'].setValue(this.selectedOption.id);
+      // this.platoonForm.controls['commodityId'].setValue(this.selectedOption.id);
+      // this.platoonForm.controls['gradeId'].setValue(this.selectedOption.id);
       console.log("add: ", this.platoonForm.value);
       this.platoonForm.controls['transactionUserId'].setValue(this.transactionUserId);
       if(this.platoonForm.valid){
@@ -164,31 +169,7 @@ gradeSelected(event: MatAutocompleteSelectedEvent) {
       this.updatePlatoon()
     }
   }
-  // async addPlatoon() {
-  //   if (!this.editData) {
-  //     this.gradeName =  await this.getgradeByID(this.platoonForm.getRawValue().gradeId)
-  //     console.log("form add: ", this.platoonForm.value, "comm name: ", this.gradeName)
-  //     this.platoonForm.controls['gradeName'].setValue(this.gradeName);
-  //     console.log("form add after select: ", this.platoonForm.value)
-  //     if (this.platoonForm.valid) {
-  //       this.api.postPlatoon(this.platoonForm.value)
-  //         .subscribe({
-  //           next: (res) => {
-
-  //             alert("تمت الاضافة بنجاح");
-  //             this.platoonForm.reset();
-  //             this.dialogRef.close('save');
-  //           },
-  //           error: (err) => {
-  //             alert("Error")
-  //             // console.log("add product err:", err);
-  //           }
-  //         })
-  //     }
-  //   }else{
-  //     this.updatePlatoon()
-  //   }
-  // }
+  
     updatePlatoon(){
       this.api.putPlatoon(this.platoonForm.value)
       .subscribe({

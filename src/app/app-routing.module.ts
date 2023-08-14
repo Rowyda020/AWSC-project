@@ -21,13 +21,21 @@ import { StrOpeningStockContainerComponent } from './str-opening-stock-container
 
 
 const routes: Routes = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
+
+//  {path: 'products',
+//  children: [
+//    {
+//      path: ':productID',
+//      component: ProductComponent,
+//    },
+//  ],} ,
+  { path: "", redirectTo: "login", pathMatch: "full" },
    {path:'login' , component:LoginComponent},
    {path:'commodity' , component:StrCommodityComponent},
   {path:'showUsers' , component:UsersInfoComponent},
    {path:'register' , component:RegisterComponent},
    {path:'addUser' , component:AddUserComponent},
-  { path: "home", component: StrGroupHomeComponent },
+  { path: "home", component: StrGroupHomeComponent,canActivate:[authGuard]},
   { path: "groupOpening", component: StrOpeningStockContainerComponent },
   { path: "groupBannel", component: StrGroupComponent },
   { path: "unit", component:STRUnitsComponent},
@@ -40,6 +48,7 @@ const routes: Routes = [
   {path: 'str-grade', component: STRGradeComponent},
   {path: 'str-platoon', component: STRPlatoonComponent},
   {path: 'str-home', component:STRHomeComponent},
+  
   
 
 
