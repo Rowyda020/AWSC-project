@@ -94,8 +94,8 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
             // this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/get-all-Opening_Stock_Details")
             //   .subscribe(res => {
             //     this.matchedIds = res.filter((a: any) => {
-            //       // console.log("matched Id & HeaderId : ", a.HeaderId === id)
-            //       return a.HeaderId === id
+            //       // console.log("matched Id & employee_ExchangeId : ", a.employee_ExchangeId === id)
+            //       return a.employee_ExchangeId === id
             //     })
 
             //     for (let i = 0; i < this.matchedIds.length; i++) {
@@ -118,19 +118,26 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
 
   }
 
-  // deleteFormDetails(id: number) {
-  //   this.api.deleteStrOpenDetails(id)
-  //     .subscribe({
-  //       next: (res) => {
-  //         alert("تم حذف الصنف بنجاح");
-  //         this.getAllMasterForms()
-  //       },
-  //       error: (err) => {
-  //         // console.log("delete details err: ", err)
-  //         alert("خطأ أثناء حذف الصنف !!");
-  //       }
-  //     })
-  // }
+  deleteFormDetails(id: number) {
+    // this.groupDetailsForm.addControl('id', new FormControl('', Validators.required));
+    // this.groupDetailsForm.controls['id'].setValue(this.editData.id);
+    console.log("details id: ", id)
+
+    var result = confirm("هل ترغب بتاكيد الحذف ؟");
+    if (result) {
+      this.api.deleteStrEmployeeExchangeDetails(id)
+        .subscribe({
+          next: (res) => {
+            // alert("تم الحذف بنجاح");
+            this.toastrDeleteSuccess();
+          },
+          error: () => {
+            // alert("خطأ أثناء حذف التفاصيل !!");
+          }
+        })
+    }
+
+  }
   
   toastrDeleteSuccess(): void {
     this.toastr.success("تم الحذف بنجاح");
