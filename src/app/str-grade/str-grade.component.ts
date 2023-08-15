@@ -103,9 +103,8 @@ export class STRGradeComponent {
   }
 
 deleteGrade(id:number){
-  if(confirm("Are you sure to delete ")) {
-    console.log("Implement delete functionality here");
-  }
+  var result = confirm("هل ترغب بتاكيد مسح النوعية ؟ ");
+    if (result) {
 this.api.deleteGrade(id)
 .subscribe({
 next:(res)=>{
@@ -117,7 +116,7 @@ error:()=>{
 }
 })
 }
-
+}
 
 
 async getSearchGrades(commidityID :any,name:any) {

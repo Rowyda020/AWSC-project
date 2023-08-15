@@ -17,6 +17,7 @@ import { StrStoreComponent } from './str-store/str-store.component';
 import { STRPlatoonComponent } from './str-platoon/str-platoon.component';
 import { STRHomeComponent } from './str-home/str-home.component';
 import { StrCommodityComponent } from './STR_Commodity/STR_Commodity.component';
+import { STRPlatoon1Component } from './str-platoon1/str-platoon1.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
 
 
@@ -35,7 +36,7 @@ const routes: Routes = [
   {path:'showUsers' , component:UsersInfoComponent},
    {path:'register' , component:RegisterComponent},
    {path:'addUser' , component:AddUserComponent},
-  { path: "home", component: StrGroupHomeComponent,canActivate:[authGuard]},
+  { path: "home", component: StrGroupHomeComponent},
   { path: "groupOpening", component: StrOpeningStockContainerComponent },
   { path: "groupBannel", component: StrGroupComponent },
   { path: "unit", component:STRUnitsComponent},
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: "store", component:StrStoreComponent},
   {path: 'str-grade', component: STRGradeComponent},
   {path: 'str-platoon', component: STRPlatoonComponent},
+  {path: 'str-platoon1', component: STRPlatoon1Component},
   {path: 'str-home', component:STRHomeComponent},
   
   

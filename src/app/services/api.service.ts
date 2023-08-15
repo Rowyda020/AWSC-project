@@ -66,6 +66,9 @@ getAllCommodity():Observable<any> {
     return this.http.get<any>("http://localhost:3000/StoreList/" + id);
   }
 
+
+  
+
   postPlatoon(data: any) {
     return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Platoon/Add-platoon", data);
   }

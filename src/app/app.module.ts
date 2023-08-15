@@ -56,6 +56,8 @@ import { StrOpeningStockDialogComponent } from './str-opening-stock-dialog/str-o
 import { StrOpeningStockTableComponent } from './str-opening-stock-table/str-opening-stock-table.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
 import { ToastrModule } from 'ngx-toastr';
+import { STRPlatoon1Component } from './str-platoon1/str-platoon1.component';
+import { STRPlatoon1DialogComponent } from './str-platoon1-dialog/str-platoon1-dialog.component';
 
 
 
@@ -93,7 +95,9 @@ import { ToastrModule } from 'ngx-toastr';
     STRHomeComponent,
     StrOpeningStockDialogComponent,
     StrOpeningStockTableComponent,
-    StrOpeningStockContainerComponent
+    StrOpeningStockContainerComponent,
+    STRPlatoon1Component,
+    STRPlatoon1DialogComponent
 
 
 

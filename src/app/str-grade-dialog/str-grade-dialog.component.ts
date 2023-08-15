@@ -35,6 +35,7 @@ export class STRGradeDialogComponent {
   gradeForm !:FormGroup;
   actionBtn : string = "حفظ"
   selectedOption:any;
+  getPlatoonData: any;
   Id:string  | undefined | null;
    commidityDt:any={
   id:0,
@@ -80,6 +81,7 @@ commodityName: any;
   
       if(this.editData){
         this.actionBtn = "تعديل";
+      this.getPlatoonData = this.editData;
       this.gradeForm.controls['transactionUserId'].setValue(this.editData.transactionUserId);
         this.gradeForm.controls['code'].setValue(this.editData.code);
       this.gradeForm.controls['name'].setValue(this.editData.name);
@@ -90,51 +92,6 @@ commodityName: any;
       this.gradeForm.controls['id'].setValue(this.editData.id);
       }
     }
-
-    
-  
-          
-  // getcommodityByID(id: any) {
-  //   console.log("row store id: ", id);
-  //   return fetch(`http://ims.aswan.gov.eg/api/STR_Commodity/get-commodity-by-id/{id}`)
-  //     .then(response => response.json())
-  //     .then(json => {
-  //       console.log("fetch name by id res: ", json[0].name);
-  //       // this.storeName = res.name;
-  //       // this.groupMasterForm.controls['Store'] = json[0].name;
-  //      this.commname =  json[0].name;
-  //      return this.commname 
-  //     })
-  //     .catch((err) => {
-  //       console.log("error in fetch name by id: ", err);
-  //       alert("خطا اثناء جلب رقم المخزن !");
-  //     });
-  // }
-  //  async addGrade() {
-  //     if (!this.editData) {
-  //       this.commodityName =  await this.getcommodityByID(this.gradeForm.getRawValue().commodityId)
-  //       console.log("form add: ", this.gradeForm.value, "comm name: ", this.commodityName)
-  //       this.gradeForm.controls['commodityName'].setValue(this.commodityName);
-  //       console.log("form add after select: ", this.gradeForm.value)
-  //       if (this.gradeForm.valid) {
-  //         this.api.postGrade(this.gradeForm.value)
-  //           .subscribe({
-  //             next: (res) => {
-  
-  //               alert("تمت الاضافة بنجاح");
-  //               this.gradeForm.reset();
-  //               this.dialogRef.close('save');
-  //             },
-  //             error: (err) => {
-  //               alert("Error")
-  //               // console.log("add product err:", err);
-  //             }
-  //           })
-  //       }
-  //     }else{
-  //       this.updateGrade()
-  //     }
-  //   }
 
   addGrade(){
     if(!this.editData){
