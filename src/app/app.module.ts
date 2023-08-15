@@ -27,8 +27,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { STRGradeComponent } from './str-grade/str-grade.component'
-import { STRGradeDialogComponent } from './str-grade-dialog/str-grade-dialog.component'
+import { STRGradeComponent } from './str-grade/str-grade.component';
+import { STRGradeDialogComponent } from './str-grade-dialog/str-grade-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { StrCostcenterComponent } from '../app/str-costcenter/str-costcenter.component';
@@ -52,6 +52,8 @@ import { StrOpeningStockDialogComponent } from './str-opening-stock-dialog/str-o
 import { StrOpeningStockTableComponent } from './str-opening-stock-table/str-opening-stock-table.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
 import { ToastrModule } from 'ngx-toastr';
+import { StrReportComponent } from './str-report/str-report.component';
+import { MatStepperModule } from '@angular/material/stepper';
 import { STRPlatoon1Component } from './str-platoon1/str-platoon1.component';
 import { STRPlatoon1DialogComponent } from './str-platoon1-dialog/str-platoon1-dialog.component';
 import { StrEmployeeExchangeContainerComponent } from './str-employee-exchange-container/str-employee-exchange-container.component';
@@ -63,29 +65,20 @@ import { STREmployeeOpeningCustodyDialogComponent } from './str-employee-opening
 import { STRGroup1Component } from './str-group1/str-group1.component';
 import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.component';
 
-
-
-
-
-
-
-
-
-
 @NgModule({
   declarations: [
-    AppComponent, 
-    StrCommodityComponent, 
+    AppComponent,
+    StrCommodityComponent,
     StrCommodityDialogComponent,
     LoginComponent,
     StrGroupHomeComponent,
-    
 
     STRGradeComponent,
     STRGradeDialogComponent,
-  
+
     StrCostcenterComponent,
-    StrCostcenterDialogComponent, StrItemDialogComponent,
+    StrCostcenterDialogComponent,
+    StrItemDialogComponent,
     StrItemComponent,
     StrGroupComponent,
     StrGroupDialogComponent,
@@ -99,6 +92,7 @@ import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.
     StrOpeningStockDialogComponent,
     StrOpeningStockTableComponent,
     StrOpeningStockContainerComponent,
+    StrReportComponent,
     STRPlatoon1Component,
     STRPlatoon1DialogComponent,
     StrEmployeeExchangeContainerComponent,
@@ -108,11 +102,7 @@ import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.
     STREmployeeOpeningCustodyTableComponent,
     STREmployeeOpeningCustodyDialogComponent,
     STRGroup1Component,
-    STRGroup1DialogComponent
-
-
-
-
+    STRGroup1DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -144,18 +134,16 @@ import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.
     MatRadioModule,
     MatCardModule,
     MatAutocompleteModule,
+    MatStepperModule,
     ToastrModule.forRoot(),
-
-
-
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true,
-  }
-
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

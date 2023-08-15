@@ -4,7 +4,7 @@ import { StrGroupHomeComponent } from './str-group-home/str-group-home.component
 import { LoginComponent } from './pages/login/login.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { authGuard } from './shared/auth.guard';
-import {STRUnitsComponent} from './str-units/str-units.component';
+import { STRUnitsComponent } from './str-units/str-units.component';
 import { STRGradeComponent } from './str-grade/str-grade.component';
 
 import { StrCostcenterComponent } from './str-costcenter/str-costcenter.component';
@@ -16,52 +16,49 @@ import { STRHomeComponent } from './str-home/str-home.component';
 import { StrCommodityComponent } from './STR_Commodity/STR_Commodity.component';
 import { STRPlatoon1Component } from './str-platoon1/str-platoon1.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
+import { StrReportComponent } from './str-report/str-report.component';
 import { StrEmployeeExchangeContainerComponent } from './str-employee-exchange-container/str-employee-exchange-container.component';
 import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custody/str-employee-opening-custody.component';
 
-
 const routes: Routes = [
+  //  {path: 'products',
+  //  children: [
+  //    {
+  //      path: ':productID',
+  //      component: ProductComponent,
+  //    },
+  //  ],} ,
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'commodity', component: StrCommodityComponent },
+  { path: 'home', component: StrGroupHomeComponent },
+  { path: 'groupOpening', component: StrOpeningStockContainerComponent },
+  { path: 'employeeOpening', component: StrEmployeeExchangeContainerComponent },
+  { path: 'groupBannel', component: StrGroupComponent },
+  { path: 'unit', component: STRUnitsComponent },
+  { path: 'grade', component: STRGradeComponent },
+  { path: 'costCenter', component: StrCostcenterComponent },
+  { path: 'items', component: StrItemComponent },
+  { path: 'group', component: StrGroupComponent },
+  { path: 'store', component: StrStoreComponent },
+  { path: 'str-grade', component: STRGradeComponent },
+  { path: 'str-platoon', component: STRPlatoonComponent },
+  { path: 'str-platoon1', component: STRPlatoon1Component },
+  { path: 'str-home', component: STRHomeComponent },
+  { path: 'report', component: StrReportComponent },
 
-//  {path: 'products',
-//  children: [
-//    {
-//      path: ':productID',
-//      component: ProductComponent,
-//    },
-//  ],} ,
-  { path: "", redirectTo: "login", pathMatch: "full" },
-   {path:'login' , component:LoginComponent},
-   {path:'commodity' , component:StrCommodityComponent},
-  { path: "home", component: StrGroupHomeComponent},
-  { path: "groupOpening", component: StrOpeningStockContainerComponent },
-  { path: "employeeOpening", component: StrEmployeeExchangeContainerComponent },
-  { path: "groupBannel", component: StrGroupComponent },
-  { path: "unit", component:STRUnitsComponent},
-  { path: "grade", component:STRGradeComponent },
-  { path: "costCenter", component:StrCostcenterComponent},
-  { path: "items", component:StrItemComponent},
-  { path: "group", component:StrGroupComponent},
-  { path: "store", component:StrStoreComponent},
-  {path: 'str-grade', component: STRGradeComponent},
-  {path: 'str-platoon', component: STRPlatoonComponent},
-  {path: 'str-platoon1', component: STRPlatoon1Component},
-  {path: 'str-home', component:STRHomeComponent},
-  {path: 'str-employee', component:STREmployeeOpeningCustodyComponent},
-  
-
-
-
+  { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
 
   // {path:'dashboard' , canActivateChild:[CanActivateChildGuard],children:[
   //   {path:''  , component:DashboardComponent  },
   //   {path:'profile'  , component:ProfileComponent},
   //   {path:'edit-profile'  , component:EditProfileComponent},
   // ]},
-   {path:'**' , component:ErrorComponent},
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
