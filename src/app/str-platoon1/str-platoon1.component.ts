@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { STRPlatoonDialogComponent } from '../str-platoon-dialog/str-platoon-dialog.component';
+import { STRPlatoon1DialogComponent } from '../str-platoon1-dialog/str-platoon1-dialog.component';
 import { ApiService } from '../services/api.service';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
@@ -16,11 +16,11 @@ export class Grades {
 }
 
 @Component({
-  selector: 'app-str-platoon',
-  templateUrl: './str-platoon.component.html',
-  styleUrls: ['./str-platoon.component.css']
+  selector: 'app-str-platoon1',
+  templateUrl: './str-platoon1.component.html',
+  styleUrls: ['./str-platoon1.component.css']
 })
-export class STRPlatoonComponent implements OnInit{
+export class STRPlatoon1Component {
   transactionUserId=localStorage.getItem('transactionUserId')
   gradeCtrl: FormControl;
   filteredgrades: Observable<any[]>;
@@ -50,7 +50,7 @@ export class STRPlatoonComponent implements OnInit{
     });
   }
   openDialog() {
-    this.dialog.open(STRPlatoonDialogComponent, {
+    this.dialog.open(STRPlatoon1DialogComponent, {
       width: '30%'
     }).afterClosed().subscribe(val=>{
       if(val === 'save'){
@@ -98,7 +98,7 @@ export class STRPlatoonComponent implements OnInit{
   }
   editPlatoon(row : any){
     console.log("data : " , row)
-    this.dialog.open(STRPlatoonDialogComponent,{
+    this.dialog.open(STRPlatoon1DialogComponent,{
       width:'30%',
       data:row
     }).afterClosed().subscribe(val=>{
@@ -176,3 +176,4 @@ export class STRPlatoonComponent implements OnInit{
     }
   }
 }
+

@@ -39,6 +39,7 @@ export class STRPlatoonDialogComponent implements OnInit{
   formcontrol = new FormControl('');  
   platoonForm !:FormGroup;
   selectedOption: any;
+  getPlatoonData: any;
   actionBtn : string = "حفظ"
   Id:string  | undefined | null;
    commidityDt:any={
@@ -90,9 +91,11 @@ gradeName: any;
       this.grades = grades;
     });
     
+    
 
     if(this.editData){
       this.actionBtn = "تعديل";
+      this.getPlatoonData = this.editData;
       this.platoonForm.controls['transactionUserId'].setValue(this.editData.transactionUserId);
       this.platoonForm.controls['code'].setValue(this.editData.code);
       this.platoonForm.controls['name'].setValue(this.editData.name);
