@@ -18,7 +18,7 @@ import { STRPlatoonComponent } from './str-platoon/str-platoon.component';
 import { STRHomeComponent } from './str-home/str-home.component';
 import { StrCommodityComponent } from './STR_Commodity/STR_Commodity.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
-
+import { StrReportComponent } from './str-report/str-report.component';
 
 const routes: Routes = [
 
@@ -48,6 +48,7 @@ const routes: Routes = [
   {path: 'str-grade', component: STRGradeComponent},
   {path: 'str-platoon', component: STRPlatoonComponent},
   {path: 'str-home', component:STRHomeComponent},
+  {path: 'report', component:StrReportComponent},
   
   
 

@@ -27,8 +27,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { STRGradeComponent } from './str-grade/str-grade.component'
-import { STRGradeDialogComponent } from './str-grade-dialog/str-grade-dialog.component'
+import { STRGradeComponent } from './str-grade/str-grade.component';
+import { STRGradeDialogComponent } from './str-grade-dialog/str-grade-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RoleComponent } from './pages/role/role.component';
@@ -56,20 +56,13 @@ import { StrOpeningStockDialogComponent } from './str-opening-stock-dialog/str-o
 import { StrOpeningStockTableComponent } from './str-opening-stock-table/str-opening-stock-table.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
 import { ToastrModule } from 'ngx-toastr';
-
-
-
-
-
-
-
-
-
+import { StrReportComponent } from './str-report/str-report.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    StrCommodityComponent, 
+    AppComponent,
+    StrCommodityComponent,
     StrCommodityDialogComponent,
     LoginComponent,
     StrGroupHomeComponent,
@@ -80,7 +73,8 @@ import { ToastrModule } from 'ngx-toastr';
     RoleComponent,
     StrRoleDialogComponent,
     StrCostcenterComponent,
-    StrCostcenterDialogComponent, StrItemDialogComponent,
+    StrCostcenterDialogComponent,
+    StrItemDialogComponent,
     StrItemComponent,
     StrGroupComponent,
     StrGroupDialogComponent,
@@ -93,11 +87,8 @@ import { ToastrModule } from 'ngx-toastr';
     STRHomeComponent,
     StrOpeningStockDialogComponent,
     StrOpeningStockTableComponent,
-    StrOpeningStockContainerComponent
-
-
-
-
+    StrOpeningStockContainerComponent,
+    StrReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,18 +120,16 @@ import { ToastrModule } from 'ngx-toastr';
     MatRadioModule,
     MatCardModule,
     MatAutocompleteModule,
+    MatStepperModule,
     ToastrModule.forRoot(),
-
-
-
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true,
-  }
-
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
