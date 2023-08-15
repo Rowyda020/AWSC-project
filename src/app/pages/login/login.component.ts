@@ -19,7 +19,7 @@ export class LoginComponent {
   loginForm = new FormGroup({
     name : new FormControl('' ,
      [Validators.required ,  Validators.maxLength(50)]), // Validators.pattern()
-    password: new FormControl([Validators.required])
+    password: new FormControl('',[Validators.required,Validators.maxLength(10)])
   })
 
   isSubmit = false

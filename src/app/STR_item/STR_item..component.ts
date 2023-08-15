@@ -1,30 +1,37 @@
-
-
 import { Component, OnInit, inject, ViewChild } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { StrItemDialogComponent } from '../STR_item_dialog/STR_item_dialog.component';
 import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+
+const doc = new jsPDF({});
+
 @Component({
   selector: 'app-str-category',
   templateUrl: './STR_item.component.html',
-  styleUrls: ['./STR_item.component.css']
+  styleUrls: ['./STR_item.component.css'],
 })
 export class StrItemComponent implements OnInit {
   commodity: any = {
     id: 0,
-    name: ''
-  }
+    name: '',
+  };
   platoon: any = {
     id: 0,
-    name: ''
-
-  }
+    name: '',
+  };
 
   commoditylist: any;
   platoonlist: any;
@@ -38,54 +45,71 @@ export class StrItemComponent implements OnInit {
 
   title = 'Category';
 
-  displayedColumns: string[] = ['name', 'commodityName', 'gradeName', 'platoonName', 'groupName', 'unitName'
-    , 'isActive', 'type', 'action'];
-
+  displayedColumns: string[] = [
+    'name',
+    'commodityName',
+    'gradeName',
+    'platoonName',
+    'groupName',
+    'unitName',
+    'isActive',
+    'type',
+    'action',
+  ];
 
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private api: ApiService) {
-
-  }
+  constructor(
+    private dialog: MatDialog,
+    private api: ApiService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.getAllItems();
     this.api.getAllcommodity().subscribe((data: any) => {
       this.commoditylist = data;
-      console.log(this.commoditylist)
-    })
+      console.log(this.commoditylist);
+    });
     this.api.getAllplatoon().subscribe((data: any) => {
       this.platoonlist = data;
-      console.log(this.platoonlist)
-    })
+      console.log(this.platoonlist);
+    });
   }
   openDialog() {
-    this.dialog.open(StrItemDialogComponent, {
-      width: '55%'
-    }).afterClosed().subscribe(val => {
-      if (val === 'حفظ') {
-        this.getAllItems();
-      }
-    });
+    this.dialog
+      .open(StrItemDialogComponent, {
+        width: '55%',
+      })
+      .afterClosed()
+      .subscribe((val) => {
+        if (val === 'حفظ') {
+          this.getAllItems();
+        }
+      });
   }
 
   getAllItems() {
-    this.api.getItems()
-      .subscribe({
-        next: (res) => {
-          this.dataSource = new MatTableDataSource(res);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        },
-        error: (err) => {
-          alert("Error")
-        }
-      })
+    this.api.getItems().subscribe({
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+
+        // Load report Data on Start
+
+        this.api.reportData = res;
+        console.log(this.api.reportData);
+      },
+      error: (err) => {
+        alert('Error');
+      },
+    });
   }
 
   //   if (commidityID != '' && name == '' ){
-  //     this.dataSource = res.filter((res: any)=> res.commodity==commidityID!) 
+  //     this.dataSource = res.filter((res: any)=> res.commodity==commidityID!)
   //     this.dataSource.paginator = this.paginator;
   //     this.dataSource.sort = this.sort;
   //   }
@@ -102,76 +126,75 @@ export class StrItemComponent implements OnInit {
   //     this.dataSource.sort = this.sort;
   //   }
 
-
   // },
   // error: (err) => {
   //   alert("Error")
   // }
   // })
   getSearchProducts(commodityId: any, platoonId: any) {
+    console.log('commodityId', commodityId);
+    this.api.getItems().subscribe({
+      next: (res) => {
+        // this.dataSource = res.filter((res: any) => res.name == commodityId!)
 
-    console.log("commodityId",commodityId)
-    this.api.getItems()
-      .subscribe({
-        next: (res) => {
-          // this.dataSource = res.filter((res: any) => res.name == commodityId!)
+        // this.dataSource.paginator = this.paginator;
+        // this.dataSource.sort = this.sort;
+        // 1-
+        console.log('commodityId', res.commodityName);
+        if (commodityId != '' && platoonId == '') {
+          this.dataSource = res.filter(
+            (res: any) => res.commodityName == commodityId!
+          );
 
-          // this.dataSource.paginator = this.paginator;
-          // this.dataSource.sort = this.sort;
-          // 1-
-          console.log("commodityId",res.commodityName)
-          if (commodityId != '' && platoonId == '' ){
-
-                    this.dataSource = res.filter((res: any)=> res.commodityName==commodityId! ) 
-
-                    this.dataSource.paginator = this.paginator;
-                    this.dataSource.sort = this.sort;
-          }     else if (commodityId != '' && platoonId != ''){
-                // this.dataSource = res.filter((res: any)=> res.name==name!)
-                this.dataSource = res.filter((res: any)=> res.name==commodityId! && res.name==platoonId!)
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-              }
-                else{
-            this.dataSource = res.filter((res: any)=> res.name==platoonId!)
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-          }
-        },
-        error: (err) => {
-          alert("Error")
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        } else if (commodityId != '' && platoonId != '') {
+          // this.dataSource = res.filter((res: any)=> res.name==name!)
+          this.dataSource = res.filter(
+            (res: any) => res.name == commodityId! && res.name == platoonId!
+          );
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        } else {
+          this.dataSource = res.filter((res: any) => res.name == platoonId!);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
         }
-      })
+      },
+      error: (err) => {
+        alert('Error');
+      },
+    });
     // this.getAllItems()
   }
 
-
   editItem(row: any) {
-    console.log("edit product:",row)
+    console.log('edit product:', row);
     // this.productForm.removeControl('id')
-    this.dialog.open(StrItemDialogComponent, {
-      width: '55%',
-      data: row,
-      
-    }).afterClosed().subscribe(val => {
-      if (val === 'تحديث') {
-        this.getAllItems();
-      }
-    })
+    this.dialog
+      .open(StrItemDialogComponent, {
+        width: '55%',
+        data: row,
+      })
+      .afterClosed()
+      .subscribe((val) => {
+        if (val === 'تحديث') {
+          this.getAllItems();
+        }
+      });
   }
 
   deleteItem(id: number) {
-    if (confirm("هل انت متأكد من الحذف؟")) {
-      this.api.deleteItem(id)
-        .subscribe({
-          next: (res) => {
-            alert("تم الحذف");
-            this.getAllItems();
-          },
-          error: () => {
-            alert("خطأ في الحذف")
-          }
-        })
+    if (confirm('هل انت متأكد من الحذف؟')) {
+      this.api.deleteItem(id).subscribe({
+        next: (res) => {
+          alert('تم الحذف');
+          this.getAllItems();
+        },
+        error: () => {
+          alert('خطأ في الحذف');
+        },
+      });
     }
   }
 
@@ -183,6 +206,12 @@ export class StrItemComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  exportTable() {
+    // console.log(doc)
+    // autoTable(doc, { html: '#my-table',styles:{font: 'Cairo'} })
+    // doc.setFont("Cairo")
+    // doc.save('table.pdf')
+    this.router.navigate(['/report']);
+  }
 }
-
-

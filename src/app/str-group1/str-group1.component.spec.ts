@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterComponent } from './register.component';
+import { STRGroup1Component } from './str-group1.component';
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+describe('STRGroup1Component', () => {
+  let component: STRGroup1Component;
+  let fixture: ComponentFixture<STRGroup1Component>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RegisterComponent]
+      declarations: [STRGroup1Component]
     });
-    fixture = TestBed.createComponent(RegisterComponent);
+    fixture = TestBed.createComponent(STRGroup1Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

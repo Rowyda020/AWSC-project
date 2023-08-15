@@ -53,6 +53,7 @@
   
         <button (click)="getSearchProducts(commidityId.value,platoonId.value)" >عرض</button> 
       </div>
+      <button (click)="exportTable()" >تصدير</button> 
       </mat-expansion-panel>
     <div class="container">
       <div>
@@ -64,7 +65,7 @@
     
     
      <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" matSort>
+      <table id="my-table" mat-table [dataSource]="dataSource" matSort>
     
         <ng-container matColumnDef="name">
           <th  mat-header-cell *matHeaderCellDef mat-sort-header> اسم الصنف </th>

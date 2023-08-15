@@ -1,0 +1,41 @@
+.container {
+  padding: 30px 0;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
+
+.header div {
+  height: 100px;
+  background-color: #04365f;
+  color: white;
+}
+
+.header p {
+  font-size: large;
+  font-weight: bold;
+}
+
+.header .header-one p {
+  padding: 21px;
+}
+
+.header .header-two {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+.header .header-two p {
+  width: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.header .header-two img {
+  height: 80%;
+}
