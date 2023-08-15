@@ -85,6 +85,9 @@ export class ApiService {
     return this.http.get<any>('http://localhost:3000/StoreList/' + id);
   }
 
+
+  
+
   postPlatoon(data: any) {
     return this.http.post<any>(
       'https://ims.aswan.gov.eg/api/STR_Platoon/Add-platoon',
@@ -471,5 +474,63 @@ export class ApiService {
     return this.http.get<any>(
       `https://ims.aswan.gov.eg/api/STR_Opening_Stock/search?StoreId=${0}`
     );
+  }
+
+
+  getHrEmployees() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/HR_Employee/get-all-employee");
+    // return this.http.get<any>("http://localhost:3000/StoreList/");
+  }
+
+  getFiCostCenter() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/FI_CostCenter/get-all-CostCenter");
+    // return this.http.get<any>("http://localhost:3000/StoreList/");
+  }
+
+  postStrEmployeeExchange(data: any) {
+    return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Employe_Exchange/Add-Employee-Exchange", data);
+  }
+  getStrEmployeeExchange() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employe_Exchange/get-Employee-Exchang/");
+  }
+  putStrEmployeeExchange(data: any) {
+    return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Employe_Exchange/update-Employee-Exchange", data);
+  }
+  deleteStrEmployeeExchange(id: number) {
+    return this.http.delete<any>("https://ims.aswan.gov.eg/api/STR_Employe_Exchange/delete-Employee-Exchang-by-id/" + id);
+  }
+
+
+  // open Empoyee
+  postStrEmployeeOpen(data: any) {
+    return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/Add-Employee_Opening_Custody", data);
+  }
+  getStrEmployeeOpen() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/get-all-Employee_Opening_Custody");
+  }
+  putStrEmployeeOpen(data: any) {
+    return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/update-Employee_Opening_Custody", data);
+  }
+  deleteStrEmployeeOpen(id: number) {
+    return this.http.delete<any>("https://ims.aswan.gov.eg//api/STR_Employee_Opening_Custody/delete-Employee_Opening_Custody/" + id);
+  }
+  getAllEmployees() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/HR_Employee/get-all-employee");
+  }
+  
+  postStrEmployeeOpenDetails(data: any) {
+    return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/Add-Employee_Opening_Custody_Detail", data);
+  }
+  // getStrOpenDetails() {
+  //   return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/get-all-Opening_Stock_Details");
+  // }
+  putStrEmployeeOpenDetails(data: any, id: number) {
+    console.log("StrEmployeeOpenDetails id: ", id, "StrEmployeeOpenDetails data: ", data);
+    return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/update-Employee_Opening_Custody_Detail/" + id, data);
+  }
+
+  deleteStrEmployeeOpenDetails(HeaderId: number) {
+    // console.log("deleted row id: ", HeaderId)
+    return this.http.delete<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/delete-Employee_Opening_Custody_Detail/" + HeaderId);
   }
 }

@@ -1,26 +1,18 @@
-@import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
-@import url('http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css');
-
 mat-card{
   margin: 2%;
+  text-align: right;
+}
+
+.mat-mdc-form-field {
+  width: 98%;
+  margin: 1%;
+}
+
+.mat-50{
+  width: 48%;
+  margin: 1%;
 }
 
 button{
   margin: 2px;
 }
-
-th{
-  background-color: #147a9f !important;
-  color: white;
-  font-family: 'Droid Arabic Kufi', serif;
-  font-size: 16px;
-}
-
-.add{
-  background-color: #147a9f;
-  color: white;  
-  font-family: 'Droid Arabic Kufi', serif;
-  font-size: 15px;
-  padding: 25px;
-}
-
