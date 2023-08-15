@@ -22,7 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { CommonModule } from '@angular/common';
-import { AddUserComponent } from './pages/add-user/add-user.component';
+
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -31,8 +31,6 @@ import { STRGradeComponent } from './str-grade/str-grade.component'
 import { STRGradeDialogComponent } from './str-grade-dialog/str-grade-dialog.component'
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { RoleComponent } from './pages/role/role.component';
-import { StrRoleDialogComponent } from './pages/str-role-dialog/str-role-dialog.component';
 import { StrCostcenterComponent } from '../app/str-costcenter/str-costcenter.component';
 import { StrCostcenterDialogComponent } from './str-costcenter-dialog/str-costcenter-dialog.component';
 import { StrItemComponent } from './STR_item/STR_item..component';
@@ -42,8 +40,6 @@ import { StrGroupComponent } from './str-group/str-group.component';
 import { StrGroupDialogComponent } from './str-group-dialog/str-group-dialog.component';
 import { StrStoreComponent } from './str-store/str-store.component';
 import { StrStoreDialogComponent } from './str-store-dialog/str-store-dialog.component';
-import { AutoComponent } from './auto/auto.component';
-import { AutoDialogComponent } from './auto-dialog/auto-dialog.component';
 import { STRUnitsComponent } from './str-units/str-units.component';
 import { STRUnitsDialogComponent } from './str-units-dialog/str-units-dialog.component';
 import { STRPlatoonComponent } from './str-platoon/str-platoon.component';
@@ -59,6 +55,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { StrEmployeeExchangeContainerComponent } from './str-employee-exchange-container/str-employee-exchange-container.component';
 import { StrEmployeeExchangeDialogComponent } from './str-employee-exchange-dialog/str-employee-exchange-dialog.component';
 import { StrEmployeeExchangeTableComponent } from './str-employee-exchange-table/str-employee-exchange-table.component';
+import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custody/str-employee-opening-custody.component';
+import { STREmployeeOpeningCustodyTableComponent } from './str-employee-opening-custody-table/str-employee-opening-custody-table.component';
+import { STREmployeeOpeningCustodyDialogComponent } from './str-employee-opening-custody-dialog/str-employee-opening-custody-dialog.component';
 
 
 
@@ -76,12 +75,11 @@ import { StrEmployeeExchangeTableComponent } from './str-employee-exchange-table
     StrCommodityDialogComponent,
     LoginComponent,
     StrGroupHomeComponent,
-    AddUserComponent,
+    
 
     STRGradeComponent,
     STRGradeDialogComponent,
-    RoleComponent,
-    StrRoleDialogComponent,
+  
     StrCostcenterComponent,
     StrCostcenterDialogComponent, StrItemDialogComponent,
     StrItemComponent,
@@ -99,7 +97,10 @@ import { StrEmployeeExchangeTableComponent } from './str-employee-exchange-table
     StrOpeningStockContainerComponent,
     StrEmployeeExchangeContainerComponent,
     StrEmployeeExchangeDialogComponent,
-    StrEmployeeExchangeTableComponent
+    StrEmployeeExchangeTableComponent,
+    STREmployeeOpeningCustodyComponent,
+    STREmployeeOpeningCustodyTableComponent,
+    STREmployeeOpeningCustodyDialogComponent
 
 
 
