@@ -7,7 +7,8 @@ import { GlobalService } from './services/global.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+   transactionUserId= localStorage.getItem('transactionUserId')
+   user:any
   constructor(public global:GlobalService){
     
     // if(localStorage.getItem('token')) this.global.isLogIn = true
@@ -15,6 +16,7 @@ export class AppComponent {
 
     // console.log(this.global.userRoles)
     let userRole= localStorage.getItem('userRoles')
+   
 
     
   }
@@ -22,7 +24,7 @@ export class AppComponent {
   ngOnInit():void
   {
     this.global.bgColor= document.querySelector('section')?.classList.add('screenBackground');
-
+    this.gitUserById()
   }
   title = 'str-group';
 
@@ -33,9 +35,17 @@ export class AppComponent {
     this.toggleButtonCounter++;
   } 
 
- sssd(){
-  
-  // document.querySelector('section')?.classList.add('.screenBackground');
+
+
+ gitUserById(){
+  this.global.getUserById(this.transactionUserId)
+  .subscribe(
+    res => {
+      this.user=res
+      console.log('res',res)
+    },
+   
+  )
  }
 
   handleLogOut(){
