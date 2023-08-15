@@ -56,6 +56,9 @@ import { StrOpeningStockDialogComponent } from './str-opening-stock-dialog/str-o
 import { StrOpeningStockTableComponent } from './str-opening-stock-table/str-opening-stock-table.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
 import { ToastrModule } from 'ngx-toastr';
+import { StrEmployeeExchangeContainerComponent } from './str-employee-exchange-container/str-employee-exchange-container.component';
+import { StrEmployeeExchangeDialogComponent } from './str-employee-exchange-dialog/str-employee-exchange-dialog.component';
+import { StrEmployeeExchangeTableComponent } from './str-employee-exchange-table/str-employee-exchange-table.component';
 
 
 
@@ -93,7 +96,10 @@ import { ToastrModule } from 'ngx-toastr';
     STRHomeComponent,
     StrOpeningStockDialogComponent,
     StrOpeningStockTableComponent,
-    StrOpeningStockContainerComponent
+    StrOpeningStockContainerComponent,
+    StrEmployeeExchangeContainerComponent,
+    StrEmployeeExchangeDialogComponent,
+    StrEmployeeExchangeTableComponent
 
 
 
