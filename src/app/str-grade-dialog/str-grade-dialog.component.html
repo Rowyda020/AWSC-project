@@ -14,9 +14,9 @@
         <mat-label>النوعية </mat-label>
         <input formControlName="name" matInput placeholder="ادخل النوعية">
       </mat-form-field>
-
+      <mat-label>السلعة </mat-label>
       <mat-form-field appearance="outline">
-        <input matInput placeholder="ادخل السلعة" aria-label="option" [matAutocomplete]="auto" [formControl]="commodityCtrl"
+        <input matInput placeholder="{{getPlatoonData ? getPlatoonData.commodityName : ''}}" aria-label="option" [matAutocomplete]="auto" [formControl]="commodityCtrl"
           required />
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)" [displayWith]="displayCommodity">
           <mat-option *ngFor="let option of filteredcommodities | async" [value]="option">

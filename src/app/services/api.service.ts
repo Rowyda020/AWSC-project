@@ -66,6 +66,9 @@ getAllCommodity():Observable<any> {
     return this.http.get<any>("http://localhost:3000/StoreList/" + id);
   }
 
+
+  
+
   postPlatoon(data: any) {
     return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Platoon/Add-platoon", data);
   }
@@ -394,13 +397,13 @@ getAllCommodity():Observable<any> {
 
   // open Empoyee
   postStrEmployeeOpen(data: any) {
-    return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/Add-Opening_Stock", data);
+    return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/Add-Employee_Opening_Custody", data);
   }
   getStrEmployeeOpen() {
     return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/get-all-Employee_Opening_Custody");
   }
   putStrEmployeeOpen(data: any) {
-    return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/update-Opening_Stock", data);
+    return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/update-Employee_Opening_Custody", data);
   }
   deleteStrEmployeeOpen(id: number) {
     return this.http.delete<any>("https://ims.aswan.gov.eg//api/STR_Employee_Opening_Custody/delete-Employee_Opening_Custody/" + id);
@@ -416,9 +419,10 @@ getAllCommodity():Observable<any> {
   //   return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/get-all-Opening_Stock_Details");
   // }
   putStrEmployeeOpenDetails(data: any, id: number) {
-    console.log("strOpenDetails id: ", id, "strOpenDetails data: ", data);
+    console.log("StrEmployeeOpenDetails id: ", id, "StrEmployeeOpenDetails data: ", data);
     return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/update-Employee_Opening_Custody_Detail/" + id, data);
   }
+
   deleteStrEmployeeOpenDetails(HeaderId: number) {
     // console.log("deleted row id: ", HeaderId)
     return this.http.delete<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/delete-Employee_Opening_Custody_Detail/" + HeaderId);

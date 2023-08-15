@@ -14,6 +14,7 @@ import { StrStoreComponent } from './str-store/str-store.component';
 import { STRPlatoonComponent } from './str-platoon/str-platoon.component';
 import { STRHomeComponent } from './str-home/str-home.component';
 import { StrCommodityComponent } from './STR_Commodity/STR_Commodity.component';
+import { STRPlatoon1Component } from './str-platoon1/str-platoon1.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
 import { StrEmployeeExchangeContainerComponent } from './str-employee-exchange-container/str-employee-exchange-container.component';
 import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custody/str-employee-opening-custody.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: "store", component:StrStoreComponent},
   {path: 'str-grade', component: STRGradeComponent},
   {path: 'str-platoon', component: STRPlatoonComponent},
+  {path: 'str-platoon1', component: STRPlatoon1Component},
   {path: 'str-home', component:STRHomeComponent},
   {path: 'str-employee', component:STREmployeeOpeningCustodyComponent},
   
