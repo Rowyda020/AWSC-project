@@ -366,4 +366,28 @@ getAllCommodity():Observable<any> {
     return this.http.get<any>(`https://ims.aswan.gov.eg/api/STR_Opening_Stock/search?StoreId=${0}`);
 
   }
+
+
+  getHrEmployees() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/HR_Employee/get-all-employee");
+    // return this.http.get<any>("http://localhost:3000/StoreList/");
+  }
+
+  getFiCostCenter() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/FI_CostCenter/get-all-CostCenter");
+    // return this.http.get<any>("http://localhost:3000/StoreList/");
+  }
+
+  postStrEmployeeExchange(data: any) {
+    return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Employe_Exchange/Add-Employee-Exchange", data);
+  }
+  getStrEmployeeExchange() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employe_Exchange/get-Employee-Exchang/");
+  }
+  putStrEmployeeExchange(data: any) {
+    return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Employe_Exchange/update-Employee-Exchange", data);
+  }
+  deleteStrEmployeeExchange(id: number) {
+    return this.http.delete<any>("https://ims.aswan.gov.eg/api/STR_Employe_Exchange/delete-Employee-Exchang-by-id/" + id);
+  }
 }
