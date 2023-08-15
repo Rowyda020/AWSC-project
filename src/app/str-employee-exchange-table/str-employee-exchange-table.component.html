@@ -1,4 +1,4 @@
-<!-- <p>str-opening-stock-table works!</p> -->
+<p>str-employee-exchange-table works!</p>
 <mat-accordion class="example-headers-align" multi dir="rtl">
     <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -40,9 +40,9 @@
 
             <!-- <button (click)=" getSearchStrOpen(store.value,no.value)" >عرض</button>  -->
 
-            <button mat-icon-button color="primary" (click)="getSearchStrOpen(no.value, storeId.value, date.value, fiscalYear.value)">
+            <!-- <button mat-icon-button color="primary" (click)="getSearchStrOpen(no.value, storeId.value, date.value, fiscalYear.value)">
                 <mat-icon>search</mat-icon>
-            </button>
+            </button> -->
         </div>
     </mat-expansion-panel>
 </mat-accordion>
@@ -56,10 +56,28 @@
             <td mat-cell *matCellDef="let row"> {{row.no}} </td>
         </ng-container>
 
-        <!-- Store Column -->
-        <ng-container matColumnDef="storeName">
-            <th mat-header-cell *matHeaderCellDef> المخزن </th>
-            <td mat-cell *matCellDef="let row"> {{row.storeName}} </td>
+        <!-- fiscalyear Column -->
+        <ng-container matColumnDef="fiscalyear">
+            <th mat-header-cell *matHeaderCellDef> السنة المالية </th>
+            <td mat-cell *matCellDef="let row"> {{row.fiscalyear}} </td>
+        </ng-container>
+
+        <!-- employeeName Column -->
+        <ng-container matColumnDef="employeeName">
+            <th mat-header-cell *matHeaderCellDef> الموظف</th>
+            <td mat-cell *matCellDef="let row"> {{row.employeeName}} </td>
+        </ng-container>
+
+        <!-- destEmployeeName Column -->
+        <ng-container matColumnDef="destEmployeeName">
+            <th mat-header-cell *matHeaderCellDef> الموظف المحول اليه </th>
+            <td mat-cell *matCellDef="let row"> {{row.destEmployeeName}} </td>
+        </ng-container>
+
+        <!-- costCenterName Column -->
+        <ng-container matColumnDef="costCenterName">
+            <th mat-header-cell *matHeaderCellDef> مركز التكلفة </th>
+            <td mat-cell *matCellDef="let row"> {{row.costCenterName}} </td>
         </ng-container>
 
         <!-- Date Column -->
@@ -76,7 +94,7 @@
                     <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="warn" (click)="deleteBothForms(row.id)">
-                    <mat-icon>delete</mat-icon>
+                    <mat-icon >delete</mat-icon>
                 </button>
             </td>
         </ng-container>

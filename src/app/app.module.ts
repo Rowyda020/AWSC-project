@@ -58,6 +58,11 @@ import { StrOpeningStockContainerComponent } from './str-opening-stock-container
 import { ToastrModule } from 'ngx-toastr';
 import { STRPlatoon1Component } from './str-platoon1/str-platoon1.component';
 import { STRPlatoon1DialogComponent } from './str-platoon1-dialog/str-platoon1-dialog.component';
+import { StrEmployeeExchangeContainerComponent } from './str-employee-exchange-container/str-employee-exchange-container.component';
+import { StrEmployeeExchangeDialogComponent } from './str-employee-exchange-dialog/str-employee-exchange-dialog.component';
+import { StrEmployeeExchangeTableComponent } from './str-employee-exchange-table/str-employee-exchange-table.component';
+import { STRGroup1Component } from './str-group1/str-group1.component';
+import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.component';
 
 
 
@@ -97,7 +102,12 @@ import { STRPlatoon1DialogComponent } from './str-platoon1-dialog/str-platoon1-d
     StrOpeningStockTableComponent,
     StrOpeningStockContainerComponent,
     STRPlatoon1Component,
-    STRPlatoon1DialogComponent
+    STRPlatoon1DialogComponent,
+    StrEmployeeExchangeContainerComponent,
+    StrEmployeeExchangeDialogComponent,
+    StrEmployeeExchangeTableComponent,
+    STRGroup1Component,
+    STRGroup1DialogComponent
 
 
 

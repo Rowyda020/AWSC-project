@@ -19,6 +19,7 @@ import { STRHomeComponent } from './str-home/str-home.component';
 import { StrCommodityComponent } from './STR_Commodity/STR_Commodity.component';
 import { STRPlatoon1Component } from './str-platoon1/str-platoon1.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
+import { StrEmployeeExchangeContainerComponent } from './str-employee-exchange-container/str-employee-exchange-container.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
    {path:'addUser' , component:AddUserComponent},
   { path: "home", component: StrGroupHomeComponent},
   { path: "groupOpening", component: StrOpeningStockContainerComponent },
+  { path: "employeeOpening", component: StrEmployeeExchangeContainerComponent },
   { path: "groupBannel", component: StrGroupComponent },
   { path: "unit", component:STRUnitsComponent},
   { path: "grade", component:STRGradeComponent },
