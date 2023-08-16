@@ -15,7 +15,7 @@ export class GlobalService {
 
   baseUrl = 'http://127.0.0.1:8000/api';
 
-  url = 'http://ims.aswan.gov.eg/api';
+  url = 'https://ims.aswan.gov.eg/api';
 
   public reportData: [] = [];
 
