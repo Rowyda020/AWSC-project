@@ -544,4 +544,3 @@ export class ApiService {
     return this.http.delete<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/delete-Employee_Opening_Custody_Detail/" + HeaderId);
   }
   }
-
