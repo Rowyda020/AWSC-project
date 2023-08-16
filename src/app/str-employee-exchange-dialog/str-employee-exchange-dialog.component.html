@@ -19,28 +19,32 @@
             <mat-form-field appearance="outline" class="groupInput">
                 <mat-label>السنة المالية</mat-label>
                 <mat-select placeholder="السنة المالية" formControlName="fiscalYearId">
-                    <mat-option [value]="fiscalYear.id" *ngFor="let fiscalYear of fiscalYearsList">{{fiscalYear.fiscalyear}}</mat-option>
+                    <mat-option [value]="fiscalYear.id"
+                        *ngFor="let fiscalYear of fiscalYearsList">{{fiscalYear.fiscalyear}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="groupInput">
                 <mat-label> الموظف </mat-label>
                 <mat-select placeholder=" الموظف" formControlName="employeeId">
-                    <mat-option [value]="employee.id" *ngFor="let employee of employeesList">{{employee.name}}</mat-option>
+                    <mat-option [value]="employee.id"
+                        *ngFor="let employee of employeesList">{{employee.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="groupInput">
                 <mat-label>الموظف المحول اليه</mat-label>
                 <mat-select placeholder="الموظف المحول اليه" formControlName="destEmployeeId">
-                    <mat-option [value]="distEmployee.id" *ngFor="let distEmployee of distEmployeesList">{{distEmployee.name}}</mat-option>
+                    <mat-option [value]="employee.id"
+                        *ngFor="let employee of employeesList">{{employee.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="groupInput">
                 <mat-label> مركز التكلفة</mat-label>
                 <mat-select placeholder=" مركز التكلفة" formControlName="costCenterId">
-                    <mat-option [value]="costCenter.id" *ngFor="let costCenter of costCentersList">{{costCenter.name}}</mat-option>
+                    <mat-option [value]="costCenter.id"
+                        *ngFor="let costCenter of costCentersList">{{costCenter.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
@@ -68,7 +72,7 @@
         <div [ngClass]="(MasterGroupInfoEntered || editDataDetails) ? 'restGroupInfo' : 'restGroupInfoDisable'">
 
             <div class="detailsForm">
-<!-- 
+                <!-- 
                 <mat-form-field appearance="outline" class="groupInput">
                     <mat-label>بحث بالكود </mat-label>
                     <input matInput placeholder="الكود" (keydown)="getItemByCode($event)">
@@ -94,24 +98,49 @@
                 </mat-form-field>
 
 
+                <mat-form-field appearance="outline" class="groupInput">
+                    <mat-label>النسبة</mat-label>
+                    <input type="number" matInput placeholder="النسبة" formControlName="percentage"
+                        [value]="getDetailedRowData ? getDetailedRowData.percentage : ''">
+                </mat-form-field>
+
+                <mat-radio-group aria-label="Select an option" formControlName="state"  [value]="getDetailedRowData ? getDetailedRowData.state : ''">
+                    <mat-label>الحالة</mat-label>
+                    <div class="statusRadioBtns">
+                        <mat-radio-button value="جديد">جديد</mat-radio-button>
+                        <mat-radio-button value="مستعمل">مستعمل</mat-radio-button>
+                    </div>
+                </mat-radio-group>
+
                 <div mat-dialog-action [align]="'end'">
                     <div class="groupAction">
                         <button mat-raised-button color="primary" style="margin-left: 8px;"
-                        (click)="addDetailsInfo()">{{actionBtnDetails.toLowerCase() =='save' ?
+                            (click)="addDetailsInfo()">{{actionBtnDetails.toLowerCase() =='save' ?
                             'اضافة':'تعديل'}}</button>
-                        <button mat-raised-button color="warn" mat-dialog-close
-                           >اغلاق</button>
+                        <button mat-raised-button color="warn" mat-dialog-close>اغلاق</button>
                     </div>
                 </div>
             </div>
 
-            <div >
+            <div>
                 <table mat-table [dataSource]="dataSource" matSort class="headerTable">
 
                     <!-- itemName Column -->
                     <ng-container matColumnDef="itemName">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> الصنف</th>
                         <td mat-cell *matCellDef="let row"> {{row.itemName}} </td>
+                    </ng-container>
+
+                    <!-- percentage Column -->
+                    <ng-container matColumnDef="percentage">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> النسبة</th>
+                        <td mat-cell *matCellDef="let row"> {{row.percentage}} </td>
+                    </ng-container>
+
+                    <!-- state Column -->
+                    <ng-container matColumnDef="state">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> الحالة</th>
+                        <td mat-cell *matCellDef="let row"> {{row.state}} </td>
                     </ng-container>
 
                     <!-- price Column -->
@@ -136,10 +165,10 @@
                     <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> الاجراء </th>
                         <td mat-cell *matCellDef="let row">
-                            <button mat-icon-button color="primary" >
+                            <button mat-icon-button color="primary" (click)="editDetailsForm(row)">
                                 <mat-icon>edit</mat-icon>
                             </button>
-                            <button mat-icon-button color="warn" >
+                            <button mat-icon-button color="warn" (click)="deleteFormDetails(row.id)">
                                 <mat-icon>delete</mat-icon>
                             </button>
                         </td>

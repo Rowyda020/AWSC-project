@@ -13,10 +13,10 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
+// import jsPDF from 'jspdf';
+// import autoTable from 'jspdf-autotable';
 
-const doc = new jsPDF({});
+// const doc = new jsPDF({});
 
 @Component({
   selector: 'app-str-category',
