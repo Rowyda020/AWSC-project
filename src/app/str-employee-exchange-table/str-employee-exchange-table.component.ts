@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { StrEmployeeExchangeDialogComponent } from '../str-employee-exchange-dialog/str-employee-exchange-dialog.component';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-str-employee-exchange-table',
@@ -14,11 +15,13 @@ import { StrEmployeeExchangeDialogComponent } from '../str-employee-exchange-dia
   styleUrls: ['./str-employee-exchange-table.component.css']
 })
 export class StrEmployeeExchangeTableComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'fiscalyear','employeeName', 'destEmployeeName', 'costCenterName', 'date', 'Action'];
+  displayedColumns: string[] = ['no', 'fiscalyear', 'employeeName', 'destEmployeeName', 'costCenterName', 'date', 'Action'];
   matchedIds: any;
   storeList: any;
   storeName: any;
   fiscalYearsList: any;
+  employeesList: any;
+  costCentersList: any;
 
   dataSource2!: MatTableDataSource<any>;
 
@@ -36,7 +39,9 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
   ngOnInit(): void {
     this.getAllMasterForms();
     this.getStores();
-    // this.getFiscalYears();
+    this.getFiscalYears();
+    this.getEmployees();
+    this.getCostCenters();
   }
 
   getAllMasterForms() {
@@ -45,8 +50,8 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
         next: (res) => {
           console.log("response of get all EmployeeExchange from api: ", res);
           this.dataSource2 = new MatTableDataSource(res);
-          // this.dataSource2.paginator = this.paginator;
-          // this.dataSource2.sort = this.sort;
+          this.dataSource2.paginator = this.paginator;
+          this.dataSource2.sort = this.sort;
         },
         error: () => {
           alert("خطأ أثناء جلب سجلات المجموعة !!");
@@ -82,63 +87,223 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
   }
 
   deleteBothForms(id: number) {
-    console.log("master employee id: ", id)
-    var result = confirm("تاكيد الحذف ؟ ");
-
-    if (result) {
-      this.api.deleteStrEmployeeExchange(id)
-        .subscribe({
-          next: (res) => {
-            alert("تم حذف المجموعة بنجاح");
-
-            // this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/get-all-Opening_Stock_Details")
-            //   .subscribe(res => {
-            //     this.matchedIds = res.filter((a: any) => {
-            //       // console.log("matched Id & employee_ExchangeId : ", a.employee_ExchangeId === id)
-            //       return a.employee_ExchangeId === id
-            //     })
-
-            //     for (let i = 0; i < this.matchedIds.length; i++) {
-
-            //       this.deleteFormDetails(this.matchedIds[i].id)
-            //     }
-
-            //   }, err => {
-            //     alert("خطا اثناء تحديد المجموعة !!")
-            //   })
-
-            this.toastrDeleteSuccess();
-            this.getAllMasterForms()
-          },
-          error: () => {
-            alert("خطأ أثناء حذف الموظف !!");
-          }
+    
+    this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/get-Employee-Exchang-Details")
+      .subscribe(res => {
+        this.matchedIds = res.filter((a: any) => {
+          console.log("matched Id & employee_ExchangeId : ", a.employee_ExchangeId === id)
+          return a.employee_ExchangeId === id
         })
-    }
+        var result = confirm("هل ترغب بتاكيد حذف التفاصيل و الرئيسي؟");
+
+        if (this.matchedIds.length) {
+          for (let i = 0; i < this.matchedIds.length; i++) {
+
+            console.log("matchedIds details in loop: ", this.matchedIds[i].id)
+
+            if (result) {
+              this.api.deleteStrEmployeeExchangeDetails(this.matchedIds[i].id)
+                .subscribe({
+                  next: (res) => {
+                    // alert("تم الحذف التفاصيل بنجاح");
+
+                    // var resultMaster = confirm("هل ترغب بتاكيد حذف الرئيسي؟");
+                    // if (resultMaster) {
+                    console.log("master id to be deleted: ", id)
+
+                    this.api.deleteStrEmployeeExchange(id)
+                      .subscribe({
+                        next: (res) => {
+                          // alert("تم حذف الرئيسي بنجاح");
+                          this.toastrDeleteSuccess();
+                          this.getAllMasterForms();
+                        },
+                        error: () => {
+                          alert("خطأ أثناء حذف الرئيسي !!");
+                        }
+                      })
+                    // }
+
+                  },
+                  error: () => {
+                    alert("خطأ أثناء حذف التفاصيل !!");
+                  }
+                })
+            }
+
+          }
+        }
+        else {
+          if (result) {
+            console.log("master id to be deleted: ", id)
+
+            this.api.deleteStrEmployeeExchange(id)
+              .subscribe({
+                next: (res) => {
+                  // alert("تم حذف الرئيسي بنجاح");
+                  this.toastrDeleteSuccess();
+                  this.getAllMasterForms();
+                },
+                error: () => {
+                  alert("خطأ أثناء حذف الرئيسي !!");
+                }
+              })
+          }
+        }
+
+      }, err => {
+        alert("خطا اثناء تحديد المجموعة !!")
+      })
 
   }
 
-  deleteFormDetails(id: number) {
-    // this.groupDetailsForm.addControl('id', new FormControl('', Validators.required));
-    // this.groupDetailsForm.controls['id'].setValue(this.editData.id);
-    console.log("details id: ", id)
-
-    var result = confirm("هل ترغب بتاكيد الحذف ؟");
-    if (result) {
-      this.api.deleteStrEmployeeExchangeDetails(id)
-        .subscribe({
-          next: (res) => {
-            // alert("تم الحذف بنجاح");
-            this.toastrDeleteSuccess();
-          },
-          error: () => {
-            // alert("خطأ أثناء حذف التفاصيل !!");
-          }
-        })
-    }
-
+  getFiscalYears() {
+    this.api.getFiscalYears()
+      .subscribe({
+        next: (res) => {
+          this.fiscalYearsList = res;
+          console.log("fiscalYears res in search: ", this.fiscalYearsList);
+        },
+        error: (err) => {
+          // console.log("fetch fiscalYears data err: ", err);
+          // alert("خطا اثناء جلب العناصر !");
+        }
+      })
   }
-  
+
+  getEmployees() {
+    this.api.getHrEmployees()
+      .subscribe({
+        next: (res) => {
+          this.employeesList = res;
+          console.log("employees res: ", this.employeesList);
+        },
+        error: (err) => {
+          console.log("fetch employees data err: ", err);
+          alert("خطا اثناء جلب الموظفين !");
+        }
+      })
+  }
+
+  getCostCenters() {
+    this.api.getFiCostCenter()
+      .subscribe({
+        next: (res) => {
+          this.costCentersList = res;
+          console.log("costCenter res: ", this.costCentersList);
+        },
+        error: (err) => {
+          console.log("fetch costCenter data err: ", err);
+          alert("خطا اثناء جلب مراكز التكلفة !");
+        }
+      })
+  }
+
+  getSearchStrOpen(no: any, costCenterId: any, employeeId: any, date: any, fiscalYear: any) {
+
+    console.log("no. : ", no, "costCenterId: ", costCenterId, "employeeId : ", employeeId, "date: ", date, "fiscalYear: ", fiscalYear);
+    this.api.getStrEmployeeExchangeSearach(no, costCenterId, employeeId, date, fiscalYear)
+      .subscribe({
+        next: (res) => {
+          console.log("search employeeExchange res: ", res);
+
+          //enter no.
+          if (no != '' && !costCenterId && !employeeId && !date && !fiscalYear) {
+            // console.log("enter no. ")
+            // console.log("no. : ", no, "store: ", store, "date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.no == no!)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter costCenterId.
+          if (!no && costCenterId != '' && !employeeId && !date && !fiscalYear) {
+            // console.log("enter no. ")
+            // console.log("no. : ", no, "store: ", store, "date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter employeeId
+          else if (!no && !costCenterId && employeeId && !date && !fiscalYear) {
+            // console.log("enter store. ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId || res.destEmployeeId == employeeId)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter date
+          else if (!no && !costCenterId && !employeeId && date && !fiscalYear) {
+            // console.log("enter date. ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter fiscalYear
+          else if (!no && !costCenterId && !employeeId && !date && fiscalYear) {
+            // console.log("enter date. ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.fiscalyear == fiscalYear)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter no. & employeeId
+          else if (no && employeeId && !date && !fiscalYear) {
+            // console.log("enter no & store ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && res.employeeId == employeeId || res.destEmployeeId == employeeId)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter no. & date
+          else if (no && !employeeId && date && !fiscalYear) {
+            // console.log("enter no & date ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter employeeId & date
+          else if (!no && employeeId && date && !fiscalYear) {
+            // console.log("enter store & date ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId || res.destEmployeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter all data
+          else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && fiscalYear != '') {
+            // console.log("enter all data. ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && res.costCenterId == costCenterId && res.employeeId == employeeId || res.destEmployeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date && res.fiscalyear == fiscalYear)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //didn't enter any data
+          else {
+            // console.log("enter no data ")
+            this.dataSource2 = res;
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+
+        },
+        error: (err) => {
+          alert("Error")
+        }
+      })
+  }
+
   toastrDeleteSuccess(): void {
     this.toastr.success("تم الحذف بنجاح");
   }

@@ -56,8 +56,8 @@
                 <mat-form-field appearance="outline" class="groupInput">
                     <mat-label> الصنف</mat-label>
                     <mat-select placeholder="بحث يالكود" formControlName="itemId"
-                        [value]="getDetailedRowData ? getDetailedRowData.itemId : ''">
-                        <mat-option [value]="item.id" *ngFor="let item of itemsList">{{item.name}}</mat-option>
+                        [value]="getDetailedRowData ? getDetailedRowData.itemId : ''" (valueChange)="itemOnChange($event)">
+                        <mat-option [value]="item.id" *ngFor="let item of itemsList" >{{item.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
@@ -66,11 +66,17 @@
                     <input type="number" matInput placeholder="الكمية" formControlName="qty"
                         [value]="getDetailedRowData ? getDetailedRowData.qty : ''">
                 </mat-form-field>
+
+                <mat-form-field appearance="outline" class="groupInput">
+                    <mat-label>متوسط السعر </mat-label>
+                    <input matInput placeholder="الرقم" type="number" [value]="getDetailedRowData ? getDetailedRowData.price : ''" formControlName="price" [readonly]="isReadOnly">
+                </mat-form-field>
+<!-- 
                 <mat-form-field appearance="outline" class="groupInput">
                     <mat-label>السعر</mat-label>
                     <input type="number" matInput placeholder="السعر" formControlName="price"
                         [value]="getDetailedRowData ? getDetailedRowData.price : ''">
-                </mat-form-field>
+                </mat-form-field> -->
 
 
                 <div mat-dialog-action [align]="'end'">
@@ -95,7 +101,7 @@
 
                     <!-- price Column -->
                     <ng-container matColumnDef="price">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> السعر </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> متوسط السعر </th>
                         <td mat-cell *matCellDef="let row"> {{row.price}} </td>
                     </ng-container>
 
