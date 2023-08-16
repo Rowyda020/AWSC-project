@@ -17,8 +17,8 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <mat-label>المخزن</mat-label>
-                <mat-select #storeId plceholder="اختر المخزن">
+                <mat-label>الموظف</mat-label>
+                <mat-select #storeId plceholder="اختر الموظف">
                     <mat-option *ngFor="let store of storeList" [value]="store.id">{{store.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -59,7 +59,7 @@
 
         <!-- Store Column -->
         <ng-container matColumnDef="employeeName">
-            <th mat-header-cell *matHeaderCellDef> المخزن </th>
+            <th mat-header-cell *matHeaderCellDef> الموظف </th>
             <td mat-cell *matCellDef="let row"> {{row.employeeName}} </td>
         </ng-container>
 
