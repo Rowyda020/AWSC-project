@@ -19,6 +19,7 @@ import { StrOpeningStockContainerComponent } from './str-opening-stock-container
 import { StrReportComponent } from './str-report/str-report.component';
 import { StrEmployeeExchangeContainerComponent } from './str-employee-exchange-container/str-employee-exchange-container.component';
 import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custody/str-employee-opening-custody.component';
+import { StrProductComponent } from './str-product/str-product.component';
 
 const routes: Routes = [
   //  {path: 'products',
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'grade', component: STRGradeComponent },
   { path: 'costCenter', component: StrCostcenterComponent },
   { path: 'items', component: StrItemComponent },
+  { path: 'products', component: StrProductComponent },
   { path: 'group', component: StrGroupComponent },
   { path: 'store', component: StrStoreComponent },
   { path: 'str-grade', component: STRGradeComponent },

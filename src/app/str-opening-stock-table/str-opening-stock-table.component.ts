@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./str-opening-stock-table.component.css']
 })
 export class StrOpeningStockTableComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'storeName', 'date', 'Action'];
+  displayedColumns: string[] = ['no', 'storeName', 'fiscalyear', 'date', 'Action'];
   matchedIds: any;
   storeList: any;
   storeName: any;
