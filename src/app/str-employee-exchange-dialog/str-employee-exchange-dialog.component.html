@@ -80,7 +80,7 @@
 
                 <mat-form-field appearance="outline" class="groupInput">
                     <mat-label> الصنف</mat-label>
-                    <mat-select placeholder="بحث يالكود" formControlName="itemId"
+                    <mat-select placeholder="الصنف" formControlName="itemId"
                         [value]="getDetailedRowData ? getDetailedRowData.itemId : ''">
                         <mat-option [value]="item.id" *ngFor="let item of itemsList">{{item.name}}</mat-option>
                     </mat-select>

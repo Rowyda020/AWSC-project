@@ -304,13 +304,13 @@ export class StrOpeningStockDialogComponent implements OnInit {
 
 
       console.log("details form new: ", this.groupDetailsForm.value, "getDetailedRowData: ", this.getDetailedRowData)
-      alert("price: "+ this.groupDetailsForm.getRawValue().price)
+      alert("price: " + this.groupDetailsForm.getRawValue().price)
       // this.groupDetailsForm.controls['price'].setValue(5);
-      alert("price after: "+ this.groupDetailsForm.getRawValue().price)
+      alert("price after: " + this.groupDetailsForm.getRawValue().price)
 
       console.log("change readOnly to enable");
 
-      
+
       this.groupDetailsForm.controls['stR_Opening_StockId'].setValue(this.getMasterRowId.id);
       this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
 
@@ -333,7 +333,7 @@ export class StrOpeningStockDialogComponent implements OnInit {
 
       this.groupDetailsForm.controls['qty'].setValue(this.getDetailedRowData.qty);
       this.groupDetailsForm.controls['price'].setValue(this.getDetailedRowData.price);
-      alert("price in edit: "+ this.groupDetailsForm.getRawValue().price)
+      alert("price in edit: " + this.groupDetailsForm.getRawValue().price)
 
       this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
 
@@ -443,6 +443,8 @@ export class StrOpeningStockDialogComponent implements OnInit {
       this.itemsList.filter((a: any) => {
         if (a.fullCode === code.target.value) {
           this.groupDetailsForm.controls['itemId'].setValue(a.id);
+
+          this.itemOnChange(this.groupDetailsForm.getRawValue().itemId)
         }
       })
     }
@@ -486,7 +488,7 @@ export class StrOpeningStockDialogComponent implements OnInit {
       this.isReadOnly = false;
       console.log("change readOnly to enable");
     }
-    else{
+    else {
       this.isReadOnly = true;
       console.log("change readOnly to disable");
     }
@@ -497,7 +499,7 @@ export class StrOpeningStockDialogComponent implements OnInit {
       formatDate(this.groupMasterForm.getRawValue().date, 'yyyy-MM-dd', this.locale),
       itemEvent)
 
-      
+
   }
 
   getAvgPrice(storeId: any, fiscalYear: any, date: any, itemId: any) {
