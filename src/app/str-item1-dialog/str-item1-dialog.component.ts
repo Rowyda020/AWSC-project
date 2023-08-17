@@ -159,11 +159,14 @@ gradeName: any;
       this.units = units;
     });
 
-    this.fullCode= "commodityCode"+"gradeCode"+"platoonCode"+"groupCode"+"no"
-
+    this.fullCode= Commodity+"gradeCode"+"platoonCode"+"groupCode"+"no"
+    
     if(this.editData){
       this.actionBtn = "تعديل";
       this.getItemData = this.editData;
+
+      console.log("comm code: ", this.editData)
+alert("full: "+ this.fullCode);
       this.itemForm.controls['transactionUserId'].setValue(this.editData.transactionUserId);
       this.itemForm.controls['name'].setValue(this.editData.name);
       this.itemForm.controls['fullCode'].setValue(this.editData.fullCode);
@@ -312,7 +315,7 @@ gradeName: any;
             this.dialogRef.close('save');
           },
           error:(err)=>{ 
-            alert("خطأ عند تحديث البيانات") 
+            alert("خطأ عند حفظ البيانات") 
           }
         })
       }

@@ -1,19 +1,21 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ApiService } from '../services/api.service';
+// import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ApiService } from '../services/api.service';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { MatTableDataSource } from '@angular/material/table';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+
 
 @Component({
-  selector: 'app-str-employee-exchange-dialog',
-  templateUrl: './str-employee-exchange-dialog.component.html',
-  styleUrls: ['./str-employee-exchange-dialog.component.css']
+  selector: 'app-str-employee-opening-custody-dialog',
+  templateUrl: './str-employee-opening-custody-dialog.component.html',
+  styleUrls: ['./str-employee-opening-custody-dialog.component.css']
 })
-export class StrEmployeeExchangeDialogComponent implements OnInit {
+export class STREmployeeOpeningCustodyDialogComponent implements OnInit{
   groupDetailsForm !: FormGroup;
   groupMasterForm !: FormGroup;
   actionBtnMaster: string = "Save";
@@ -86,7 +88,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
     });
 
     this.groupDetailsForm = this.formBuilder.group({
-      employee_ExchangeId: ['', Validators.required], //MasterId
+      custodyId: ['', Validators.required], //MasterId
       qty: ['', Validators.required],
       price: ['', Validators.required],
       total: ['', Validators.required],
@@ -204,13 +206,13 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
 
     console.log("mastered row get all data: ", this.getMasterRowId)
     if (this.getMasterRowId) {
-      this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/get-Employee-Exchang-Details")
+      this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/get-all-Employee_Opening_Custody_Detail")
         .subscribe(res => {
           console.log("res to get all details form: ", res, "masterRowId: ", this.getMasterRowId.id);
 
           this.matchedIds = res.filter((a: any) => {
             // console.log("matchedIds: ", a.employee_ExchangeId == this.getMasterRowId.id, "res: ", this.matchedIds)
-            return a.employee_ExchangeId == this.getMasterRowId.id
+            return a.custodyId == this.getMasterRowId.id
           })
 
           if (this.matchedIds) {
@@ -251,7 +253,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
 
 
       console.log("Master add form : ", this.groupMasterForm.value)
-      this.api.postStrEmployeeExchange(this.groupMasterForm.value)
+      this.api.postStrEmployeeOpen(this.groupMasterForm.value)
         .subscribe({
           next: (res) => {
             // console.log("ID header after post req: ", res);
@@ -320,7 +322,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
           alert("item name: " + this.itemName + " transactionUserId: " + this.userIdFromStorage)
           // this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage?.slice(1, length - 1));
           this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
-          this.groupDetailsForm.controls['employee_ExchangeId'].setValue(this.getMasterRowId.id);
+          this.groupDetailsForm.controls['custodyId'].setValue(this.getMasterRowId.id);
           this.groupDetailsForm.controls['total'].setValue((parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty)));
 
           console.log("add details second time, details form: ", this.groupDetailsForm.value)
@@ -338,7 +340,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
         // if (this.groupDetailsForm.valid && !this.getDetailedRowData) {
         if (this.groupDetailsForm.valid && !this.getDetailedRowData) {
 
-          this.api.postStrEmployeeExchangeDetails(this.groupDetailsForm.value)
+          this.api.postStrEmployeeOpenDetails(this.groupDetailsForm.value)
             .subscribe({
               next: (res) => {
                 this.getDetailsRowId = {
@@ -401,7 +403,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
     // this.groupMasterForm.controls['employee_ExchangeId'].setValue(this.getMasterRowId.id);
     // console.log("data item Name in edit without id: ", this.groupMasterForm.value)
 
-    this.api.putStrEmployeeExchange(this.groupMasterForm.value)
+    this.api.putStrEmployeeOpen(this.groupMasterForm.value)
       .subscribe({
         next: (res) => {
           alert("تم التعديل بنجاح");
@@ -412,7 +414,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
             this.groupDetailsForm.addControl('id', new FormControl('', Validators.required));
             this.groupDetailsForm.controls['id'].setValue(this.getDetailedRowData.id);
 
-            this.api.putStrEmployeeExchangeDetails(this.groupDetailsForm.value)
+            this.api.putStrEmployeeOpenDetails(this.groupDetailsForm.value)
               .subscribe({
                 next: (res) => {
                   alert("تم تحديث التفاصيل بنجاح");
@@ -444,7 +446,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
     // console.log("pass id: ", this.getMasterRowId.id, "pass No: ", this.groupMasterForm.getRawValue().no, "pass StoreId: ", this.groupMasterForm.getRawValue().storeId, "pass Date: ", this.groupMasterForm.getRawValue().date)
     if (this.groupMasterForm.getRawValue().no != '' && this.groupMasterForm.getRawValue().storeId != '' && this.groupMasterForm.getRawValue().fiscalYearId != '' && this.groupMasterForm.getRawValue().date != '') {
 
-      this.groupDetailsForm.controls['employee_ExchangeId'].setValue(this.getMasterRowId.id);
+      this.groupDetailsForm.controls['custodyId'].setValue(this.getMasterRowId.id);
       this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
 
       this.updateDetailsForm();
@@ -462,7 +464,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
       this.getDetailedRowData = row;
 
       this.actionBtnDetails = "Update";
-      this.groupDetailsForm.controls['employee_ExchangeId'].setValue(this.getDetailedRowData.employee_ExchangeId);
+      this.groupDetailsForm.controls['custodyId'].setValue(this.getDetailedRowData.custodyId);
 
       this.groupDetailsForm.controls['qty'].setValue(this.getDetailedRowData.qty);
       this.groupDetailsForm.controls['price'].setValue(this.getDetailedRowData.price);
@@ -487,7 +489,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
 
     var result = confirm("هل ترغب بتاكيد الحذف ؟");
     if (result) {
-      this.api.deleteStrEmployeeExchangeDetails(id)
+      this.api.deleteStrEmployeeOpenDetails(id)
         .subscribe({
           next: (res) => {
             // alert("تم الحذف بنجاح");
