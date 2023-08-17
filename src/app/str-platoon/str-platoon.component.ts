@@ -11,8 +11,12 @@ import { FormGroup, FormBuilder, Validator, Validators, FormControl } from '@ang
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-export class Grades {
-  constructor(public name: string, public code: string) {}
+export class Commodity {
+  constructor(public id: number, public name: string, public code: string) {}
+}
+
+export class Grade {
+  constructor(public id: number, public name: string, public code: string,public commodityId: number) {}
 }
 
 @Component({
@@ -22,9 +26,14 @@ export class Grades {
 })
 export class STRPlatoonComponent implements OnInit{
   transactionUserId=localStorage.getItem('transactionUserId')
+  commodityCtrl: FormControl;
+  filteredCommodities: Observable<Commodity[]>;
+  commodities: Commodity[] = [];
   gradeCtrl: FormControl;
-  filteredgrades: Observable<any[]>;
-  grade_list: Grades[] = [];
+  filteredGrades: Observable<Grade[]>;
+  grades: Grade[] = [];
+  selectedCommodity!: Commodity;
+  selectedGrade!: Grade;
   formcontrol = new FormControl('');  
   platoonForm !:FormGroup;
   title = 'angular13crud';
@@ -33,20 +42,28 @@ export class STRPlatoonComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  selectedOption: any;
+  // selectedGrade: any;
   constructor(private dialog : MatDialog, private api : ApiService){
-    this.gradeCtrl = new FormControl();
-    this.filteredgrades = this.gradeCtrl.valueChanges.pipe(
+    this.commodityCtrl = new FormControl();
+    this.filteredCommodities = this.commodityCtrl.valueChanges.pipe(
       startWith(''),
-      map((grade) =>
-      grade ? this._filtergrade(grade) : this.grade_list.slice()
-      )
+      map(value => this._filterCommodities(value))
+    );
+
+    this.gradeCtrl = new FormControl();
+    this.filteredGrades = this.gradeCtrl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterGrades(value))
     );
   }
   ngOnInit(): void {
     this.getAllPlatoons();
-    this.api.getAllGrades().subscribe((gradeData)=>{
-      this.grade_list = gradeData;
+    this.api.getAllCommodities().subscribe((commodities)=>{
+      this.commodities = commodities;
+    });
+
+    this.api.getAllGrades().subscribe((grades)=>{
+      this.grades = grades;
     });
   }
   openDialog() {
@@ -59,25 +76,44 @@ export class STRPlatoonComponent implements OnInit{
     })
   }
 
+  displayCommodityName(commodity: any): string {
+    return commodity && commodity.name ? commodity.name : '';
+  }
+  
   displayGradeName(grade: any): string {
     return grade && grade.name ? grade.name : '';
   }
-
-  // displayGradeId(grade: any): number {
-  //   return grade && grade.id ? grade.id: '';
-  // }
   
-  gradeSelected(event: MatAutocompleteSelectedEvent) {
-       this.selectedOption = event.option.value;
-      this.platoonForm.patchValue({ gradeId: this.selectedOption.id });
-    }
-
-    _filtergrade(value: string) {
-      const searchvalue = value.toLocaleLowerCase();
-      let arr = this.grade_list.filter(option => option.name.toLocaleLowerCase().includes(searchvalue) || 
-      option.code.toLocaleLowerCase().includes(searchvalue));
-      return arr.length ? arr : [{ name: 'No Item found', code: 'null' }];
-    }
+  commoditySelected(event: MatAutocompleteSelectedEvent): void {
+    const commodity = event.option.value as Commodity;
+    this.selectedCommodity = commodity;
+    this.platoonForm.patchValue({ commodityId: commodity.id });
+    this.platoonForm.patchValue({ commodityName: commodity.name });
+    this.gradeCtrl.setValue('');
+  }
+  
+  gradeSelected(event: MatAutocompleteSelectedEvent): void {
+    const grade = event.option.value as Grade;
+    this.selectedGrade = grade;
+    this.platoonForm.patchValue({ gradeId: grade.id });
+    this.platoonForm.patchValue({ gradeName: grade.name });
+  }
+  
+  private _filterCommodities(value: string): Commodity[] {
+    const filterValue = value.toLowerCase();
+    return this.commodities.filter(commodity =>
+      commodity.name.toLowerCase().includes(filterValue) || commodity.code.toLowerCase().includes(filterValue)
+    );
+  }
+  
+  private _filterGrades(value: string): Grade[] {
+    const filterValue = value.toLowerCase();
+    return this.grades.filter(
+      grade =>
+        (grade.name.toLowerCase().includes(filterValue) || grade.code.toLowerCase().includes(filterValue)) &&
+        grade.commodityId === this.selectedCommodity?.id
+    );
+  }
 
 
   getAllPlatoons(){
@@ -127,28 +163,26 @@ export class STRPlatoonComponent implements OnInit{
     this.api.getPlatoon()
           .subscribe({
             next: (res) => {
-              console.log("platoon res: ", res)
-            
               //enter id
-              if (this.selectedOption  && name == '' ){
-                console.log("filter ID id: ", this.selectedOption , "name: ", name)
+              if (this.selectedGrade  && name == '' ){
+                console.log("filter ID id: ", this.selectedGrade , "name: ", name)
 
-                this.dataSource = res.filter((res: any)=> res.gradeId==this.selectedOption.id!) 
+                this.dataSource = res.filter((res: any)=> res.gradeId==this.selectedGrade.id!) 
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               }
               //enter both
-              else if (this.selectedOption && name != ''){
-                console.log("filter both id: ", this.selectedOption , "name: ", name)
+              else if (this.selectedGrade && name != ''){
+                console.log("filter both id: ", this.selectedGrade , "name: ", name)
 
                 // this.dataSource = res.filter((res: any)=> res.name==name!)
-                this.dataSource = res.filter((res: any)=> res.gradeId==this.selectedOption.id! && res.name.toLowerCase().includes(name.toLowerCase()))
+                this.dataSource = res.filter((res: any)=> res.gradeId==this.selectedGrade.id! && res.name.toLowerCase().includes(name.toLowerCase()))
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               }
               //enter name
               else{
-                console.log("filter name id: ", this.selectedOption , "name: ", name)
+                console.log("filter name id: ", this.selectedGrade , "name: ", name)
                 // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
                 this.dataSource = res.filter((res: any)=> res.name.toLowerCase().includes(name.toLowerCase()))
                 this.dataSource.paginator = this.paginator;
