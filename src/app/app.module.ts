@@ -63,6 +63,8 @@ import { StrEmployeeExchangeDialogComponent } from './str-employee-exchange-dial
 import { StrEmployeeExchangeTableComponent } from './str-employee-exchange-table/str-employee-exchange-table.component';
 import { STRGroup1Component } from './str-group1/str-group1.component';
 import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.component';
+import { STRItem1Component } from './str-item1/str-item1.component';
+import { STRItem1DialogComponent } from './str-item1-dialog/str-item1-dialog.component';
 
 
 
@@ -107,7 +109,9 @@ import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.
     StrEmployeeExchangeDialogComponent,
     StrEmployeeExchangeTableComponent,
     STRGroup1Component,
-    STRGroup1DialogComponent
+    STRGroup1DialogComponent,
+    STRItem1Component,
+    STRItem1DialogComponent
 
 
 

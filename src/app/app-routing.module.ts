@@ -20,6 +20,8 @@ import { StrCommodityComponent } from './STR_Commodity/STR_Commodity.component';
 import { STRPlatoon1Component } from './str-platoon1/str-platoon1.component';
 import { StrOpeningStockContainerComponent } from './str-opening-stock-container/str-opening-stock-container.component';
 import { StrEmployeeExchangeContainerComponent } from './str-employee-exchange-container/str-employee-exchange-container.component';
+import { STRGroup1Component } from './str-group1/str-group1.component';
+import { STRItem1Component } from './str-item1/str-item1.component';
 
 
 const routes: Routes = [
@@ -46,12 +48,16 @@ const routes: Routes = [
    { path: "roles", component:RoleComponent},
   { path: "costCenter", component:StrCostcenterComponent},
   { path: "items", component:StrItemComponent},
+  {path: 'items1', component:STRItem1Component},
   { path: "group", component:StrGroupComponent},
+  { path: "group1", component:STRGroup1Component},
   { path: "store", component:StrStoreComponent},
   {path: 'str-grade', component: STRGradeComponent},
   {path: 'str-platoon', component: STRPlatoonComponent},
   {path: 'str-platoon1', component: STRPlatoon1Component},
   {path: 'str-home', component:STRHomeComponent},
+  
+
   
   
 
