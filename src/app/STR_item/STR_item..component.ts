@@ -100,7 +100,8 @@ export class StrItemComponent implements OnInit {
         // Load report Data on Start
 
         this.api.reportData = res;
-        console.log(this.api.reportData);
+        localStorage.setItem('reportData', JSON.stringify(res));
+        // console.log(this.api.reportData);
       },
       error: (err) => {
         alert('Error');
@@ -213,5 +214,6 @@ export class StrItemComponent implements OnInit {
     // doc.setFont("Cairo")
     // doc.save('table.pdf')
     this.router.navigate(['/report']);
+    // window.print();
   }
 }
