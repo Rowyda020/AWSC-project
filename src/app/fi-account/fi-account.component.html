@@ -17,51 +17,57 @@
         </mat-expansion-panel-header>
     <div class="search">
         <mat-form-field appearance="outline">
-          <mat-label>النوعية </mat-label>
-          <input #grade matInput placeholder="ادخل النوعية">
+          <mat-label>الحساب </mat-label>
+          <input #account matInput placeholder="ادخل الحساب">
       </mat-form-field>
       <mat-form-field appearance="outline">   
-        <mat-label>السلعة</mat-label>     
-        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" (click)="openAutoCommodity()" required/>
-        <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName" (optionSelected)="commoditySelected($event)">
-          <mat-option *ngFor="let commodity of filteredCommodities | async" [value]="commodity">
-            {{ commodity.name }} | {{ commodity.code }}
+        <mat-label>شجرة الحساب</mat-label>     
+        <input matInput aria-label="hierarchy" [matAutocomplete]="autoHierarchy" [formControl]="hierarchyCtrl" (click)="openAutoHierarchy()" required/>
+        <mat-autocomplete #autoHierarchy="matAutocomplete" [displayWith]="displayHierarchyName" (optionSelected)="hierarchySelected($event)">
+          <mat-option *ngFor="let hierarchy of filteredHierarchies | async" [value]="hierarchy">
+            {{ hierarchy.name }} | {{ hierarchy.level }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
 
-      <button (click)=" getSearchGrades(grade.value)" >عرض</button>
+      <button (click)=" getSearchAccounts(account.value)" >عرض</button>
       </div>
       </mat-expansion-panel>
     </mat-accordion>
 
     <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-      <!-- productCode Column -->
+      <!-- accountCode Column -->
       <ng-container matColumnDef="code">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> كود النوعية </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> كود الحساب </th>
         <td mat-cell *matCellDef="let row"> {{row.code}} </td>
       </ng-container>
-        <!-- productName Column -->
+        <!-- accountName Column -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> النوعية </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> الحساب </th>
           <td mat-cell *matCellDef="let row"> {{row.name}} </td>
         </ng-container>
 
-      <!-- category Column -->
-      <ng-container matColumnDef="commodityName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> السلعة </th>
-        <td mat-cell *matCellDef="let row"> {{row.commodityName}}</td>
+      <!-- HierarchyName Column -->
+      <ng-container matColumnDef="fiAccountHierarchyName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> شجرة الحساب </th>
+        <td mat-cell *matCellDef="let row"> {{row.fiAccountHierarchyName}}</td>
+      </ng-container>
+
+      <!-- Hierarchylevel Column -->
+      <ng-container matColumnDef="fiAccountlevel">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> مستوى الحساب </th>
+        <td mat-cell *matCellDef="let row"> {{row.fiAccountlevel}}</td>
       </ng-container>
 
       <!-- action Column -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> الحدث </th>
         <td mat-cell *matCellDef="let row"> 
-          <button mat-icon-button (click)="editGrade(row)" color="primary">
+          <button mat-icon-button (click)="editAccount(row)" color="primary">
             <mat-icon>edit</mat-icon>
           </button>
-          <button (click)="deleteGrade(row.id)" mat-icon-button color="warn">
+          <button (click)="deleteAccount(row.id)" mat-icon-button color="warn">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
@@ -86,3 +92,4 @@
     <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
   </mat-card-footer>
 </mat-card>
+

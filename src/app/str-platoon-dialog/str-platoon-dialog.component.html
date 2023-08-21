@@ -11,9 +11,11 @@
         <input formControlName="name" matInput placeholder="اسم الفصيلة">
       </mat-form-field>
       <mat-label>السلعة</mat-label>
-      <mat-form-field appearance="outline">        
-        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" placeholder="{{getPlatoonData ? getPlatoonData.commodityName : ''}}" required/>
-        <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName" (optionSelected)="commoditySelected($event)">
+      <mat-form-field appearance="outline">
+        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl"
+          placeholder="{{getPlatoonData ? getPlatoonData.commodityName : ''}}" (click)="openAutoCommodity()" required />
+        <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName"
+          (optionSelected)="commoditySelected($event)">
           <mat-option *ngFor="let commodity of filteredCommodities | async" [value]="commodity">
             {{ commodity.name }} | {{ commodity.code }}
           </mat-option>
@@ -21,8 +23,10 @@
       </mat-form-field>
       <mat-label>النوعية</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required placeholder="{{getPlatoonData ? getPlatoonData.gradeName : ''}}" required/>
-        <mat-autocomplete #autoGrade="matAutocomplete" [displayWith]="displayGradeName" (optionSelected)="gradeSelected($event)">
+        <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required
+          placeholder="{{getPlatoonData ? getPlatoonData.gradeName : ''}}" (click)="openAutoGrade()" required />
+        <mat-autocomplete #autoGrade="matAutocomplete" [displayWith]="displayGradeName"
+          (optionSelected)="gradeSelected($event)">
           <mat-option *ngFor="let grade of filteredGrades | async" [value]="grade">
             {{ grade.name }} | {{ grade.code }}
           </mat-option>
@@ -32,6 +36,6 @@
   </div>
   <div mat-dialog-actions>
     <button mat-raised-button color="warn" mat-dialog-close>اغلاق</button>
-  <button mat-raised-button color="primary" (click)="addPlatoon()" style="margin-left: 8px;">{{actionBtn}}</button> 
+    <button mat-raised-button color="primary" (click)="addPlatoon()" style="margin-left: 8px;">{{actionBtn}}</button>
   </div>
-  </form>
+</form>

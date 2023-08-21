@@ -188,6 +188,25 @@ private _filterPlatoons(value: string): Platoon[] {
   );
 }
 
+openAutoCommodity() {
+  this.commodityCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.commodityCtrl.updateValueAndValidity();
+}
+openAutoGrade() {
+  this.gradeCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.gradeCtrl.updateValueAndValidity();
+}
+openAutoPlatoon() {
+  this.platoonCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.platoonCtrl.updateValueAndValidity();
+}
+
   addGroup(){
     if(!this.editData){
       

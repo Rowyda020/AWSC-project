@@ -24,6 +24,7 @@ import { STRItem1Component } from './str-item1/str-item1.component';
 import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custody/str-employee-opening-custody.component';
 import { StrProductComponent } from './str-product/str-product.component';
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
+import { FIAccountComponent } from './fi-account/fi-account.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 
 const routes: Routes = [
@@ -89,6 +90,7 @@ const routes: Routes = [
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
 
   { path: 'fi-entry', component: FiEntryContainerComponent },
+  { path: 'account', component: FIAccountComponent },
 
   // {path:'dashboard' , canActivateChild:[CanActivateChildGuard],children:[
   //   {path:''  , component:DashboardComponent  },
