@@ -32,13 +32,13 @@ export class GlobalService {
   }
 
   getUserById(id: any): Observable<any> {
-    return this.http.get(`${this.url}/PR_User/get-user-by-id/${id}`);
+    return this.http.get(`${this.url}/PRUser/get/${id}`);
   }
 
   login(obj: any): Observable<any> {
     // console.log("obj ", obj)
     return this.http.get(
-      `${this.url}/PR_User/chekUser/${obj.name},${obj.password}`
+      `${this.url}/PRUser/check/${obj.name},${obj.password}`
     );
   }
 

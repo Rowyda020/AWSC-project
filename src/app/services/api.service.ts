@@ -112,7 +112,7 @@ export class ApiService {
   }
   getAllCommodities(): Observable<any> {
     return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity'
+      'http://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity'
     );
   }
   getAllGrades(): Observable<any> {
