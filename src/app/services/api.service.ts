@@ -859,6 +859,12 @@ upload(file:any):Observable<any> {
   getJournals() {
     return this.http.get<any>(`${this.url}/FIJournal/get/all`);
   }
+  getFiAccounts() {
+    return this.http.get<any>(`${this.url}/FIAccount/get/all`);
+  }
+  getFiAccountItems() {
+    return this.http.get<any>(`${this.url}/FiAccountItem/get/all`);
+  }
 
   postFiEntry(data: any) {
     return this.http.post<any>(`${this.url}/FIEntry/Add`, data);
@@ -867,23 +873,24 @@ upload(file:any):Observable<any> {
     return this.http.get<any>(`${this.url}/FIEntry/get/all`);
   }
   putFiEntry(data: any) {
+    console.log("put fiEntry data with id: ", data)
     return this.http.put<any>(`${this.url}/FIEntry/update`, data);
   }
   deleteFiEntry(id: number) {
     return this.http.delete<any>(`${this.url}/FIEntry/delete/` + id);
   }
 
-  // postFiEntryDetails(data: any) {
-  //   return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/Add-Employee-Exchange-Details", data);
-  // }
-  // putFiEntryDetails(data: any) {
-  //   console.log("FiEntryDetails data: ", data);
-  //   return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/update-Employee-Exchange-Details/", data);
-  // }
-  // deleteFiEntryDetails(HeaderId: number) {
-  //   console.log("deleted row id: ", HeaderId)
-  //   return this.http.delete<any>("https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/delete-Employee-Exchang-Details-by-id/" + HeaderId);
-  // }
+  postFiEntryDetails(data: any) {
+    return this.http.post<any>(`${this.url}/FIEntryDetails/Add`, data);
+  }
+  putFiEntryDetails(data: any) {
+    console.log("put fiEntryDetails data with id: ", data);
+    return this.http.put<any>(`${this.url}/FIEntryDetails/update/`, data);
+  }
+  deleteFiEntryDetails(HeaderId: number) {
+    console.log("deleted row id: ", HeaderId)
+    return this.http.delete<any>(`${this.url}/FIEntryDetails/delete/` + HeaderId);
+  }
   // getFiEntrySearach(no: any, costCenterId: any, employeeId: any, date: any, distEmployee: any) {
   //   console.log("values search passed: 'no: '", no, "' costCenterId: '", costCenterId, "' employeeId: '", employeeId, "' date: '", date, "' distEmployee: '", distEmployee);
   //   //enter no.
