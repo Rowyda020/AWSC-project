@@ -23,7 +23,7 @@
 
           <mat-form-field appearance="outline">
             <mat-label>الوحدة</mat-label>
-            <input matInput aria-label="unit" [matAutocomplete]="autoUnit" [formControl]="unitCtrl" required />
+            <input matInput aria-label="unit" [matAutocomplete]="autoUnit" [formControl]="unitCtrl" (click)="openAutoUnit()" required />
             <mat-autocomplete #autoUnit="matAutocomplete" [displayWith]="displayUnitName"
               (optionSelected)="unitSelected($event)">
               <mat-option *ngFor="let unit of filteredUnits | async" [value]="unit">
@@ -34,7 +34,7 @@
 
           <mat-form-field appearance="outline">
             <mat-label>السلعة</mat-label>
-            <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl"
+            <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" (click)="openAutoCommodity()" [formControl]="commodityCtrl"
               required />
             <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName"
               (optionSelected)="commoditySelected($event)">
@@ -46,7 +46,7 @@
 
           <mat-form-field appearance="outline">
             <mat-label>النوعية</mat-label>
-            <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required
+            <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required (click)="openAutoGrade()"
               required />
             <mat-autocomplete #autoGrade="matAutocomplete" [displayWith]="displayGradeName"
               (optionSelected)="gradeSelected($event)">
@@ -58,7 +58,7 @@
 
           <mat-form-field appearance="outline">
             <mat-label>الفصيلة</mat-label>
-            <input matInput aria-label="platoon" [matAutocomplete]="autoPlatoon" [formControl]="platoonCtrl" required />
+            <input matInput aria-label="platoon" [matAutocomplete]="autoPlatoon" [formControl]="platoonCtrl"  (click)="openAutoPlatoon()"required />
             <mat-autocomplete #autoPlatoon="matAutocomplete" [displayWith]="displayPlatoonName"
               (optionSelected)="platoonSelected($event)">
               <mat-option *ngFor="let platoon of filteredPlatoons | async" [value]="platoon">
@@ -69,7 +69,7 @@
 
           <mat-form-field appearance="outline">
             <mat-label>المجموعة</mat-label>
-            <input matInput aria-label="group" [matAutocomplete]="autoGroup" [formControl]="groupCtrl" required />
+            <input matInput aria-label="group" [matAutocomplete]="autoGroup" [formControl]="groupCtrl" (click)="openAutoGroup()" required />
             <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="displayGroupName"
               (optionSelected)="groupSelected($event)">
               <mat-option *ngFor="let group of filteredGroups | async" [value]="group">

@@ -12,7 +12,7 @@
       </mat-form-field>
       <mat-label>السلعة</mat-label>
       <mat-form-field appearance="outline">        
-        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" placeholder="{{getGroupData ? getGroupData.commodityName : ''}}" required/>
+        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" placeholder="{{getGroupData ? getGroupData.commodityName : ''}}" (click)="openAutoCommodity()" required/>
         <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName" (optionSelected)="commoditySelected($event)">
           <mat-option *ngFor="let commodity of filteredCommodities | async" [value]="commodity">
             {{ commodity.name }} | {{ commodity.code }}
@@ -21,7 +21,7 @@
       </mat-form-field>
       <mat-label>النوعية</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required placeholder="{{getGroupData ? getGroupData.gradeName : ''}}" required/>
+        <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required placeholder="{{getGroupData ? getGroupData.gradeName : ''}}" (click)="openAutoGrade()" required/>
         <mat-autocomplete #autoGrade="matAutocomplete" [displayWith]="displayGradeName" (optionSelected)="gradeSelected($event)">
           <mat-option *ngFor="let grade of filteredGrades | async" [value]="grade">
             {{ grade.name }} | {{ grade.code }}
@@ -30,7 +30,7 @@
       </mat-form-field>
       <mat-label>الفصيلة</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput aria-label="platoon" [matAutocomplete]="autoPlatoon" [formControl]="platoonCtrl" required placeholder="{{getGroupData ? getGroupData.platoonName : ''}}" required/>
+        <input matInput aria-label="platoon" [matAutocomplete]="autoPlatoon" [formControl]="platoonCtrl" required placeholder="{{getGroupData ? getGroupData.platoonName : ''}}" (click)="openAutoPlatoon()" required/>
         <mat-autocomplete #autoPlatoon="matAutocomplete" [displayWith]="displayPlatoonName" (optionSelected)="platoonSelected($event)">
           <mat-option *ngFor="let platoon of filteredPlatoons | async" [value]="platoon">
             {{ platoon.name }} | {{ platoon.code }}

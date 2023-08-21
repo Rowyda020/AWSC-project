@@ -3,10 +3,6 @@
   <div mat-dialog-content>
     <form [formGroup]="gradeForm">
       <mat-form-field appearance="outline">
-        <mat-label>كود المستخدم</mat-label>
-        <input formControlName="transactionUserId" matInput placeholder="كود المستخدم">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
         <mat-label>كود النوعية</mat-label>
         <input formControlName="code" matInput placeholder="ادخل كود النوعية">
       </mat-form-field>
@@ -14,13 +10,14 @@
         <mat-label>النوعية </mat-label>
         <input formControlName="name" matInput placeholder="ادخل النوعية">
       </mat-form-field>
-      <mat-label>السلعة </mat-label>
+      <mat-label>السلعة</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput placeholder="{{getPlatoonData ? getPlatoonData.commodityName : ''}}" aria-label="option" [matAutocomplete]="auto" [formControl]="commodityCtrl"
-          required />
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)" [displayWith]="displayCommodity">
-          <mat-option *ngFor="let option of filteredcommodities | async" [value]="option">
-            {{ option.name }}
+        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl"
+          placeholder="{{getGradeData ? getGradeData.commodityName : ''}}" (click)="openAutoCommodity()" required />
+        <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName"
+          (optionSelected)="commoditySelected($event)">
+          <mat-option *ngFor="let commodity of filteredCommodities | async" [value]="commodity">
+            {{ commodity.name }} | {{ commodity.code }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
