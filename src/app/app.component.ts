@@ -41,8 +41,10 @@ export class AppComponent {
   this.global.getUserById(this.transactionUserId)
   .subscribe(
     res => {
-      this.user=res
-      console.log('res',res)
+      if(res)
+   return  this.user=res
+      else
+      this.user=""
     },
    
   )
