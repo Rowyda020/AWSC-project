@@ -86,7 +86,29 @@ export class ApiService {
     return this.http.get<any>('http://localhost:3000/StoreList/' + id);
   }
 
-
+   // FIAccountHierarchy
+   getFIAccountHierarchy() {
+    return this.http.get<any>(
+      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/get/all'
+    );
+  }
+  putFIAccountHierarchy(data: any) {
+    return this.http.put<any>(
+      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/update',
+      data
+    );
+  }
+  deleteFIAccountHierarchy(id: number) {
+    return this.http.delete<any>(
+      `http://ims.aswan.gov.eg/api/FIAccountHierarchy/delete/${id}`
+    );
+  }
+  postFIAccountHierarchy(data: any) {
+    return this.http.post<any>(
+      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/Add',
+      data
+    );
+  }
 
   //Fatma
 
