@@ -1,0 +1,30 @@
+<form [formGroup]="fiscalForm" dir="rtl">
+  <h1 mat-dialog-title>إضافة وحدة</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="fiscalForm">
+      <mat-form-field appearance="outline">
+        <mat-label>كود المستخدم</mat-label>
+        <input
+          formControlName="transactionUserId"
+          matInput
+          placeholder="كود المستخدم"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>السنة</mat-label>
+        <input formControlName="fiscalyear" matInput placeholder="السنة" />
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" mat-dialog-close>اغلاق</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="addFiscal()"
+      style="margin-left: 8px"
+    >
+      {{ actionBtn }}
+    </button>
+  </div>
+</form>

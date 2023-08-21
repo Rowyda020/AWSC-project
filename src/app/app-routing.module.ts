@@ -6,6 +6,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { authGuard } from './shared/auth.guard';
 import { STRUnitsComponent } from './str-units/str-units.component';
 import { STRGradeComponent } from './str-grade/str-grade.component';
+import { StrFiscalYearComponent } from './str-fiscal-year/str-fiscal-year.component';
 
 import { StrCostcenterComponent } from './str-costcenter/str-costcenter.component';
 import { StrItemComponent } from './STR_item/STR_item..component';
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'str-platoon1', component: STRPlatoon1Component },
   { path: 'str-home', component: STRHomeComponent },
   { path: 'report', component: StrReportComponent },
+  { path: 'fiscal', component: StrFiscalYearComponent },
 
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
 

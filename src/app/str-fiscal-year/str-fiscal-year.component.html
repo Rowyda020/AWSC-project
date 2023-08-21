@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-card-header>
+    <span class="spacer"></span>
+
+    <button mat-raised-button (click)="openDialog()" class="add">إضافة</button>
+  </mat-card-header>
+  <mat-card-content>
+    <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Units Name Column -->
+      <ng-container matColumnDef="fiscalyear">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>السنة</th>
+        <td mat-cell *matCellDef="let row">{{ row.fiscalyear }}</td>
+      </ng-container>
+
+      <!-- action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="editunit(row)" color="primary">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="daleteunit(row.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <!-- s -->
+    </table>
+  </mat-card-content>
+  <br />
+  <mat-card-footer>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+  </mat-card-footer>
+</mat-card>

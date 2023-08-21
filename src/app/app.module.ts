@@ -64,6 +64,8 @@ import { STREmployeeOpeningCustodyTableComponent } from './str-employee-opening-
 import { STREmployeeOpeningCustodyDialogComponent } from './str-employee-opening-custody-dialog/str-employee-opening-custody-dialog.component';
 import { STRGroup1Component } from './str-group1/str-group1.component';
 import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.component';
+import { StrFiscalYearComponent } from './str-fiscal-year/str-fiscal-year.component';
+import { StrFiscalYearDialogComponent } from './str-fiscal-year-dialog/str-fiscal-year-dialog.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +105,8 @@ import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.
     STREmployeeOpeningCustodyDialogComponent,
     STRGroup1Component,
     STRGroup1DialogComponent,
+    StrFiscalYearComponent,
+    StrFiscalYearDialogComponent,
   ],
   imports: [
     BrowserModule,
