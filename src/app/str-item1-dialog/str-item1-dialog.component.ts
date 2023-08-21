@@ -75,6 +75,7 @@ dataSource!: MatTableDataSource<any>;
 @ViewChild(MatAccordion)
 accordion!: MatAccordion;
 gradeName: any;
+  no: any;
   constructor(private formBuilder : FormBuilder,
      private api : ApiService,
      private readonly route:ActivatedRoute,
@@ -117,7 +118,7 @@ gradeName: any;
     this.itemForm = this.formBuilder.group({
       transactionUserId : ['',Validators.required],
       fullCode : [''],
-      no:['0001'],
+      // no:[''],
       name : ['',Validators.required],
       commodityId : ['',Validators.required],
       type : ['',Validators.required],
@@ -157,6 +158,7 @@ gradeName: any;
 
     this.api.getAllUnitsi().subscribe((units)=>{
       this.units = units;
+      
     });
 
     
@@ -171,7 +173,7 @@ gradeName: any;
       this.itemForm.controls['fullCode'].setValue(this.editData.fullCode);
       this.itemForm.controls['type'].setValue(this.editData.type);
       this.itemForm.controls['isActive'].setValue(this.editData.isActive);
-      this.itemForm.controls['no'].setValue(this.editData.no);
+      // this.itemForm.controls['no'].setValue(this.editData.no);
       this.itemForm.controls['commodityId'].setValue(this.editData.commodityId);
       this.itemForm.controls['commodityName'].setValue(this.editData.commodityName);
       this.itemForm.controls['commodityCode'].setValue(this.editData.commodityCode);
@@ -297,10 +299,10 @@ gradeName: any;
   }
 
   openAutoUnit() {
-    this.commodityCtrl.setValue(''); // Clear the input field value
+    this.unitCtrl.setValue(''); // Clear the input field value
   
     // Open the autocomplete dropdown by triggering the value change event
-    this.commodityCtrl.updateValueAndValidity();
+    this.unitCtrl.updateValueAndValidity();
   }
 
   openAutoCommodity() {
@@ -331,15 +333,12 @@ gradeName: any;
 
   addItem(){
     if(!this.editData){
-
+      // this.itemForm.controls['no'].setValue(this.no);
       this.fullCode= this.itemForm.value.commodityCode+this.itemForm.value.gradeCode+this.itemForm.value.platoonCode+this.itemForm.value.groupCode;
-      this.fullCode=  this.fullCode.concat('0001'.toString());
       // this.fullCode= this.itemForm.value.commodityCode+this.itemForm.value.gradeCode+this.itemForm.value.platoonCode+this.itemForm.value.groupCode+this.itemForm.value.platoonCode;
       console.log("full code:",this.fullCode, "transactionId: ",this.transactionUserId);
       this.itemForm.controls['fullCode'].setValue(this.fullCode);
       this.itemForm.removeControl('id')
-      // this.itemForm.controls['commodityId'].setValue(this.selectedOption.id);
-      // this.itemForm.controls['gradeId'].setValue(this.selectedOption.id);
       console.log("add: ", this.itemForm.value);
       this.itemForm.controls['transactionUserId'].setValue(this.transactionUserId);
       if(this.itemForm.valid){
@@ -347,6 +346,8 @@ gradeName: any;
         .subscribe({
           next:(res)=>{
             console.log(res)
+      console.log("this.no:",this.no);
+      
             alert("تمت الاضافة بنجاح");
             this.itemForm.reset();
             this.dialogRef.close('save');

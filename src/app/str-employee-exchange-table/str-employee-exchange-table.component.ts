@@ -199,16 +199,16 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
       })
   }
 
-  getSearchStrOpen(no: any, costCenterId: any, employeeId: any, date: any, fiscalYear: any) {
+  getSearchStrOpen(no: any, costCenterId: any, employeeId: any, date: any, distEmployee: any) {
 
-    console.log("no. : ", no, "costCenterId: ", costCenterId, "employeeId : ", employeeId, "date: ", date, "fiscalYear: ", fiscalYear);
-    this.api.getStrEmployeeExchangeSearach(no, costCenterId, employeeId, date, fiscalYear)
+    console.log("no. : ", no, "costCenterId: ", costCenterId, "employeeId : ", employeeId, "date: ", date, "distEmployee: ", distEmployee);
+    this.api.getStrEmployeeExchangeSearach(no, costCenterId, employeeId, date, distEmployee)
       .subscribe({
         next: (res) => {
           console.log("search employeeExchange res: ", res);
 
           //enter no.
-          if (no != '' && !costCenterId && !employeeId && !date && !fiscalYear) {
+          if (no != '' && !costCenterId && !employeeId && !date && !distEmployee) {
             // console.log("enter no. ")
             // console.log("no. : ", no, "store: ", store, "date: ", date)
             this.dataSource2 = res.filter((res: any) => res.no == no!)
@@ -217,7 +217,7 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
           }
 
           //enter costCenterId.
-          if (!no && costCenterId != '' && !employeeId && !date && !fiscalYear) {
+          if (!no && costCenterId != '' && !employeeId && !date && !distEmployee) {
             // console.log("enter no. ")
             // console.log("no. : ", no, "store: ", store, "date: ", date)
             this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId)
@@ -226,16 +226,16 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
           }
 
           //enter employeeId
-          else if (!no && !costCenterId && employeeId && !date && !fiscalYear) {
+          else if (!no && !costCenterId && employeeId && !date && !distEmployee) {
             // console.log("enter store. ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId || res.destEmployeeId == employeeId)
+            this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId)
             this.dataSource2.paginator = this.paginator;
             this.dataSource2.sort = this.sort;
           }
 
           //enter date
-          else if (!no && !costCenterId && !employeeId && date && !fiscalYear) {
+          else if (!no && !costCenterId && !employeeId && date && !distEmployee) {
             // console.log("enter date. ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
             this.dataSource2 = res.filter((res: any) => formatDate(res.date, 'M/d/yyyy', this.locale) == date)
@@ -243,26 +243,35 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
             this.dataSource2.sort = this.sort;
           }
 
-          //enter fiscalYear
-          else if (!no && !costCenterId && !employeeId && !date && fiscalYear) {
+          //enter distEmployee
+          else if (!no && !costCenterId && !employeeId && !date && distEmployee) {
             // console.log("enter date. ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.fiscalyear == fiscalYear)
+            this.dataSource2 = res.filter((res: any) => res.destEmployeeId == distEmployee)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter no. & costCenter
+          else if (no && costCenterId && !employeeId && !date && !distEmployee) {
+            // console.log("enter no & store ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && res.costCenterId == costCenterId)
             this.dataSource2.paginator = this.paginator;
             this.dataSource2.sort = this.sort;
           }
 
           //enter no. & employeeId
-          else if (no && employeeId && !date && !fiscalYear) {
+          else if (no && !costCenterId && employeeId && !date && !distEmployee) {
             // console.log("enter no & store ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.no == no! && res.employeeId == employeeId || res.destEmployeeId == employeeId)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && res.employeeId == employeeId)
             this.dataSource2.paginator = this.paginator;
             this.dataSource2.sort = this.sort;
           }
 
           //enter no. & date
-          else if (no && !employeeId && date && !fiscalYear) {
+          else if (no && !costCenterId && !employeeId && date && !distEmployee) {
             // console.log("enter no & date ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
             this.dataSource2 = res.filter((res: any) => res.no == no! && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
@@ -270,20 +279,74 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
             this.dataSource2.sort = this.sort;
           }
 
+          //enter no. & disEmployee
+          else if (no && !costCenterId && !employeeId && !date && distEmployee) {
+            // console.log("enter no & store ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && res.destEmployeeId == distEmployee)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter costCenter & employee
+          else if (!no && costCenterId && employeeId && !date && !distEmployee) {
+            // console.log("enter no & store ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && res.employeeId == employeeId)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter costCenter & date
+          else if (!no && costCenterId && !employeeId && date && !distEmployee) {
+            // console.log("enter no & store ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter costCenter & distEmployee
+          else if (!no && costCenterId && !employeeId && !date && distEmployee) {
+            // console.log("enter no & store ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && res.destEmployeeId == distEmployee)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
           //enter employeeId & date
-          else if (!no && employeeId && date && !fiscalYear) {
+          else if (!no && !costCenterId && employeeId && date && !distEmployee) {
             // console.log("enter store & date ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId || res.destEmployeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter employeeId & distEmployee
+          else if (!no && !costCenterId && employeeId && !date && distEmployee) {
+            // console.log("enter store & date ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId && res.destEmployeeId == distEmployee)
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+          }
+
+          //enter distEmployee & date
+          else if (!no && !costCenterId && !employeeId && date && distEmployee) {
+            // console.log("enter store & date ")
+            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+            this.dataSource2 = res.filter((res: any) => res.destEmployeeId == distEmployee && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
             this.dataSource2.paginator = this.paginator;
             this.dataSource2.sort = this.sort;
           }
 
           //enter all data
-          else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && fiscalYear != '') {
+          else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && distEmployee != '') {
             // console.log("enter all data. ")
             // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.no == no! && res.costCenterId == costCenterId && res.employeeId == employeeId || res.destEmployeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date && res.fiscalyear == fiscalYear)
+            this.dataSource2 = res.filter((res: any) => res.no == no! && res.costCenterId == costCenterId && res.employeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date && res.destEmployeeId == distEmployee)
             this.dataSource2.paginator = this.paginator;
             this.dataSource2.sort = this.sort;
           }

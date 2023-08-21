@@ -22,6 +22,9 @@ import { STRGroup1Component } from './str-group1/str-group1.component';
 import { STRItem1Component } from './str-item1/str-item1.component';
 
 import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custody/str-employee-opening-custody.component';
+import { StrProductComponent } from './str-product/str-product.component';
+import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
+import { FIAccountComponent } from './fi-account/fi-account.component';
 
 const routes: Routes = [
   //  {path: 'products',
@@ -31,6 +34,7 @@ const routes: Routes = [
   //      component: ProductComponent,
   //    },
   //  ],} ,
+  // nouran
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'commodity', component: StrCommodityComponent },
@@ -42,6 +46,7 @@ const routes: Routes = [
   { path: 'grade', component: STRGradeComponent },
   { path: 'costCenter', component: StrCostcenterComponent },
   { path: 'items', component: StrItemComponent },
+  { path: 'products', component: StrProductComponent },
   { path: 'group', component: StrGroupComponent },
   { path: 'store', component: StrStoreComponent },
   { path: 'str-grade', component: STRGradeComponent },
@@ -80,12 +85,10 @@ const routes: Routes = [
   {path: 'str-home', component:STRHomeComponent},
   
 
-  
-  
-
-
-
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
+
+  { path: 'fi-entry', component: FiEntryContainerComponent },
+  { path: 'account', component: FIAccountComponent },
 
   // {path:'dashboard' , canActivateChild:[CanActivateChildGuard],children:[
   //   {path:''  , component:DashboardComponent  },

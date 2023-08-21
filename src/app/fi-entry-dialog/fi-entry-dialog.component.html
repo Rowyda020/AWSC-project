@@ -1,4 +1,4 @@
-<!-- <p>str-employee-exchange-dialog works!</p> -->
+<p>fi-entry-dialog works!</p>
 <h1 mat-dialog-title dir="rtl">اضافة </h1>
 <div mat-dialog-content dir="rtl" style="padding: 30px;">
     <form [formGroup]="groupMasterForm" (keydown.enter)="$event.preventDefault()">
@@ -9,44 +9,19 @@
                 <input matInput placeholder="الرقم" formControlName="no" type="number">
             </mat-form-field>
 
-            <!-- <mat-form-field appearance="outline" class="groupInput">
-                <mat-label>المخازن</mat-label>
-                <mat-select placeholder="المخازن" formControlName="storeId">
-                    <mat-option [value]="store.id" *ngFor="let store of storeList">{{store.name}}</mat-option>
-                </mat-select>
-            </mat-form-field> -->
-
             <mat-form-field appearance="outline" class="groupInput">
-                <mat-label>السنة المالية</mat-label>
-                <mat-select placeholder="السنة المالية" formControlName="fiscalYearId">
-                    <mat-option [value]="fiscalYear.id"
-                        *ngFor="let fiscalYear of fiscalYearsList">{{fiscalYear.fiscalyear}}</mat-option>
+                <mat-label> الدفتر </mat-label>
+                <mat-select placeholder=" الدفتر " formControlName="journalId">
+                    <mat-option [value]="journal.id"
+                        *ngFor="let journal of journalsList">{{journal.no}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="groupInput">
-                <mat-label> الموظف </mat-label>
-                <mat-select placeholder=" الموظف" formControlName="employeeId">
-                    <mat-option [value]="employee.id"
-                        *ngFor="let employee of employeesList">{{employee.name}}</mat-option>
-                </mat-select>
+                <mat-label>الموازنة</mat-label>
+                <input matInput placeholder="الموازنة" formControlName="balance" type="number">
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="groupInput">
-                <mat-label>الموظف المحول اليه</mat-label>
-                <mat-select placeholder="الموظف المحول اليه" formControlName="destEmployeeId">
-                    <mat-option [value]="employee.id"
-                        *ngFor="let employee of employeesList">{{employee.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="groupInput">
-                <mat-label> مركز التكلفة</mat-label>
-                <mat-select placeholder=" مركز التكلفة" formControlName="costCenterId">
-                    <mat-option [value]="costCenter.id"
-                        *ngFor="let costCenter of costCentersList">{{costCenter.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
 
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>التاريخ</mat-label>
@@ -57,10 +32,24 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
+            <mat-radio-group aria-label="Select an option" formControlName="type"  [value]="getDetailedRowData ? getDetailedRowData.type : ''">
+                <mat-label>النوع</mat-label>
+                <div class="statusRadioBtns">
+                    <mat-radio-button value="جديد">جديد</mat-radio-button>
+                    <mat-radio-button value="مستعمل">مستعمل</mat-radio-button>
+                </div>
+            </mat-radio-group>
+
             <mat-form-field appearance="outline" class="groupInput">
-                <mat-label>الاجمالى</mat-label>
-                <input matInput placeholder="الرقم" type="number" [value]="sumOfTotals" readonly>
+                <mat-label>مجموع الائتمان</mat-label>
+                <input matInput placeholder="مجموع الائتمان" type="number" [value]="sumOfTotals" readonly>
             </mat-form-field>
+
+            <mat-form-field appearance="outline" class="groupInput">
+                <mat-label>مجموع المدين</mat-label>
+                <input matInput placeholder="مجموع المدين" type="number" [value]="sumOfTotals" readonly>
+            </mat-form-field>
+
         </div>
 
         <button mat-raised-button color="primary" (click)="nextToAddFormDetails()"
