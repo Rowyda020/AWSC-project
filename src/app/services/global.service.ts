@@ -36,7 +36,7 @@ export class GlobalService {
   }
 
   login(obj: any): Observable<any> {
-    // console.log("obj ", obj)
+    console.log("obj ", obj)
     return this.http.get(
       `${this.url}/PRUser/check/${obj.name},${obj.password}`
     );

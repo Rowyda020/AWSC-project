@@ -77,7 +77,7 @@ export class StrOpeningStockTableComponent implements OnInit {
           next: (res) => {
             // alert("تم حذف المجموعة بنجاح");
 
-            this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/get-all-Opening_Stock_Details")
+            this.http.get<any>("http://ims.aswan.gov.eg/api/STROpeningStockDetails/get/all")
               .subscribe(res => {
                 this.matchedIds = res.filter((a: any) => {
                   // console.log("matched Id & HeaderId : ", a.HeaderId === id)

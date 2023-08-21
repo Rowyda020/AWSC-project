@@ -152,7 +152,7 @@ export class StrOpeningStockDialogComponent implements OnInit {
 
     // console.log("mastered row get all data: ", this.getMasterRowId)
     if (this.getMasterRowId) {
-      this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/get-all-Opening_Stock_Details")
+      this.http.get<any>("http://ims.aswan.gov.eg/api/STROpeningStockDetails/get/all")
         .subscribe(res => {
           // console.log("res to get all details form: ", res, "masterRowId: ", this.getMasterRowId.id);
 
@@ -396,7 +396,7 @@ export class StrOpeningStockDialogComponent implements OnInit {
 
   getStoreByID(id: any) {
     // console.log("row store id: ", id);
-    return fetch(`https://ims.aswan.gov.eg/api/STR_Store/get-UniStoret-by-id/${id}`)
+    return fetch(`http://ims.aswan.gov.eg/api/STRStore/get/${id}`)
       .then(response => response.json())
       .then(json => {
         // console.log("fetch name by id res: ", json.name);
@@ -424,7 +424,7 @@ export class StrOpeningStockDialogComponent implements OnInit {
 
   getItemByID(id: any) {
     // console.log("row item id: ", id);
-    return fetch(`https://ims.aswan.gov.eg/api/STR_Item/get-Item-by-id/${id}`)
+    return fetch(`http://ims.aswan.gov.eg/api/STRItem/get/${id}`)
       .then(response => response.json())
       .then(json => {
         // console.log("fetch item name by id res: ", json.name);
@@ -468,7 +468,7 @@ export class StrOpeningStockDialogComponent implements OnInit {
 
   getFiscalYearsByID(id: any) {
     console.log("row fiscalYear id: ", id);
-    return fetch(`https://ims.aswan.gov.eg/api/STR_Item/get-Item-by-id/${id}`)
+    return fetch(`http://ims.aswan.gov.eg/api/STRFiscalYear/get/${id}`)
       .then(response => response.json())
       .then(json => {
         console.log("fetch fiscalYears name by id res: ", json.fiscalyear);
