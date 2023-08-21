@@ -9,7 +9,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
   /******************************** crud Group **********************************/
   url = 'http://ims.aswan.gov.eg/api';
-
+  baseApiUrl = "https://file.io"
   public reportData: [] = [];
 
   getSubGrads(selectedOption: any) {
@@ -533,4 +533,82 @@ export class ApiService {
     // console.log("deleted row id: ", HeaderId)
     return this.http.delete<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/delete-Employee_Opening_Custody_Detail/" + HeaderId);
   }
+
+
+
+  /////////////withdraw///////////
+ 
+  postStrWithdraw(data: any) {
+    console.log('post data:',data)
+    return this.http.post<any>("http://ims.aswan.gov.eg/api/STR_Withdraw/Add-withdraw", data);
+  }
+
+  getStrWithdraw() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Withdraw/get-all-Withdraw");
+  }
+  putStrWithdraw(data: any) {
+    console.log("put data ",data)
+
+    return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Withdraw/update-Withdraw", data);
+  }
+  deleteStrWithdraw(id: number) {
+    return this.http.delete<any>("https://ims.aswan.gov.eg/api/STR_Withdraw/delete-Withdraw-by-id/" + id);
+  }
+
+  postStrWithdrawDetails(data: any) {
+    console.log("post details",data)
+    return this.http.post<any>("https://ims.aswan.gov.eg/api/Withdraw_Details/Add-STRwithdrawdetails", data);
+  }
+  getStrWithdrawDetails() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/Withdraw_Details/get-all-WithdrawDetails");
+  }
+  putStrWithdrawDetails(data: any) {
+    console.log("put details")
+
+    return this.http.put<any>("https://ims.aswan.gov.eg ​/api​/Withdraw_Details​/update-WithdrawDetails" , data);
+  }
+  deleteStrWithdrawDetails(HeaderId: number) {
+    // console.log("deleted row id: ", HeaderId)
+    return this.http.delete<any>("https://ims.aswan.gov.eg/api/Withdraw_Details/delete-WithdrawDetails-by-id/" + HeaderId);
+  }
+  // getGroup() {
+  //   return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Group/get-all-Groups");
+  //   // return this.http.get<any>("http://localhost:3000/GroupList/");
+  // }
+ 
+  getDestStore() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Store/get-all-Store");
+    // return this.http.get<any>("http://localhost:3000/StoreList/");
+  }
+ 
+  getEmployee() {
+    return this.http.get<any>("https://ims.aswan.gov.eg/api/HR_Employee/get-all-employee");
+    // return this.http.get<any>("http://localhost:3000/StoreList/");
+  }
+  getseller() {
+    return this.http.get<any>("http://ims.aswan.gov.eg/api/PRO_Seller/get-all-seller    ");
+    // return this.http.get<any>("http://localhost:3000/StoreList/");
+  }
+
+  
+
+  // postStrOpen(data: any) {
+  //   return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/Add-Opening_Stock", data);
+  // }
+
+
+////////file upload/////////
+upload(file:any):Observable<any> {
+  
+  // Create form data
+  const formData = new FormData(); 
+    
+  // Store form name as "file" with file data
+  formData.append("file", file, file.name);
+    
+  // Make http post request over api
+  // with formData as req
+  return this.http.post(this.baseApiUrl, formData)
+}
+
 }
