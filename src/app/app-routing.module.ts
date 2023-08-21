@@ -24,6 +24,7 @@ import { STRItem1Component } from './str-item1/str-item1.component';
 import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custody/str-employee-opening-custody.component';
 import { StrProductComponent } from './str-product/str-product.component';
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
+import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 
 const routes: Routes = [
   //  {path: 'products',
@@ -53,6 +54,7 @@ const routes: Routes = [
   { path: 'str-platoon1', component: STRPlatoon1Component },
   { path: 'str-home', component: STRHomeComponent },
   { path: 'report', component: StrReportComponent },
+  { path: 'AccountHierarchy', component: FIAccountHierarchyComponent },
 
 //  {path: 'products',
 //  children: [
