@@ -204,7 +204,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
 
     console.log("mastered row get all data: ", this.getMasterRowId)
     if (this.getMasterRowId) {
-      this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/get-Employee-Exchang-Details")
+      this.http.get<any>("http://ims.aswan.gov.eg/api/STREmployeeExchangeDetails/get/all")
         .subscribe(res => {
           console.log("res to get all details form: ", res, "masterRowId: ", this.getMasterRowId.id);
 
@@ -504,7 +504,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
 
   getItemByID(id: any) {
     // console.log("row item id: ", id);
-    return fetch(`https://ims.aswan.gov.eg/api/STR_Item/get-Item-by-id/${id}`)
+    return fetch(`http://ims.aswan.gov.eg/api/STRItem/get/${id}`)
       .then(response => response.json())
       .then(json => {
         console.log("fetch item name by id res: ", json.name);
