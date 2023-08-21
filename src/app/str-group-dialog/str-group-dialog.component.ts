@@ -137,7 +137,7 @@ export class StrGroupDialogComponent {
 
   getPlatoonByID(id: any) {
     // console.log("row platoon id: ", id);
-    return fetch(`https://ims.aswan.gov.eg/api/STR_Platoon/get-Platoon-by-id/${id}`)
+    return fetch(`http://ims.aswan.gov.eg/api/STRPlatoon/get/${id}`)
       .then(response => response.json())
       .then(json => {
         // console.log("fetch platoon name by id res: ", json.gradeName);

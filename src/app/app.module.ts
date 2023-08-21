@@ -64,6 +64,9 @@ import { STREmployeeOpeningCustodyTableComponent } from './str-employee-opening-
 import { STREmployeeOpeningCustodyDialogComponent } from './str-employee-opening-custody-dialog/str-employee-opening-custody-dialog.component';
 import { STRGroup1Component } from './str-group1/str-group1.component';
 import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.component';
+import {StrWithdrawContainerComponent} from './str-withdraw-container/str-withdraw-container.component'
+import {  StrWithdrawDialogComponent} from "./str-withdraw-dialog2/str-withdraw-dialog2.component";
+import {StrWithdrawTableComponent  } from "./str-withdraw-table2/str-withdraw-table2.component";
 import { StrProductComponent } from './str-product/str-product.component';
 import { StrProductDialogComponent } from './str-product-dialog/str-product-dialog.component';
 import { STRItem1Component } from './str-item1/str-item1.component';
@@ -73,10 +76,12 @@ import { FIAccountDialogComponent } from './fi-account-dialog/fi-account-dialog.
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
 import { FiEntryTableComponent } from './fi-entry-table/fi-entry-table.component';
 import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.component';
+import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
+import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog/fi-account-hierarchy-dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
     StrCommodityComponent,
     StrCommodityDialogComponent,
     LoginComponent,
@@ -120,7 +125,11 @@ import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.compon
     FIAccountDialogComponent,
     FiEntryContainerComponent,
     FiEntryTableComponent,
-    FiEntryDialogComponent
+    FiEntryDialogComponent,
+    FIAccountHierarchyComponent,
+    FIAccountHierarchyDialogComponent
+    
+
 
 
 

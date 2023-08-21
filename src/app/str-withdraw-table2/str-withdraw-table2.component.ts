@@ -6,20 +6,30 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from '../services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
-import { StrOpeningStockDialogComponent } from '../str-opening-stock-dialog/str-opening-stock-dialog.component';
+import { StrWithdrawDialogComponent } from '../str-withdraw-dialog2/str-withdraw-dialog2.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-str-opening-stock-table',
-  templateUrl: './str-opening-stock-table.component.html',
-  styleUrls: ['./str-opening-stock-table.component.css']
+  selector: 'app-str-withdraw-table2',
+  templateUrl: './str-withdraw-table2.component.html',
+  styleUrls: ['./str-withdraw-table2.component.css']
 })
-export class StrOpeningStockTableComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'storeName', 'fiscalyear', 'date', 'Action'];
+export class StrWithdrawTableComponent implements OnInit {
+  displayedColumns: string[] = ['no', 'storeName','employeeName','costcenterName','date', 'Action'];
   matchedIds: any;
   storeList: any;
   storeName: any;
   fiscalYearsList: any;
+  employeeList:any;
+  employeeName:any;
+  costcenterList:any;
+  costcenterName:any;
+  deststoreList:any;
+  deststoreName:any;
+  
+
+  
+
 
   dataSource2!: MatTableDataSource<any>;
 
@@ -28,20 +38,26 @@ export class StrOpeningStockTableComponent implements OnInit {
 
   constructor(private api: ApiService,
     private dialog: MatDialog,
-    private http: HttpClient,
+    private http: HttpClient
+    ,private toastr: ToastrService,
     @Inject(LOCALE_ID) private locale: string,
-    private toastr: ToastrService) {
+   ) {
 
   }
 
   ngOnInit(): void {
+    this.getCostCenters();
+    this.getDestStores();
     this.getAllMasterForms();
     this.getStores();
+    this.getEmployees();
+  
+
     this.getFiscalYears();
   }
 
   getAllMasterForms() {
-    this.api.getStrOpen()
+    this.api.getStrWithdraw()
       .subscribe({
         next: (res) => {
           console.log("response of get all getGroup from api: ", res);
@@ -58,7 +74,7 @@ export class StrOpeningStockTableComponent implements OnInit {
   }
 
   editMasterForm(row: any) {
-    this.dialog.open(StrOpeningStockDialogComponent, {
+    this.dialog.open(StrWithdrawDialogComponent, {
       width: '90%',
       data: row
     }).afterClosed().subscribe(val => {
@@ -72,12 +88,12 @@ export class StrOpeningStockTableComponent implements OnInit {
     var result = confirm("تاكيد الحذف ؟ ");
 
     if (result) {
-      this.api.deleteStrOpen(id)
+      this.api.deleteStrWithdraw(id)
         .subscribe({
           next: (res) => {
             // alert("تم حذف المجموعة بنجاح");
 
-            this.http.get<any>("http://ims.aswan.gov.eg/api/STROpeningStockDetails/get/all")
+            this.http.get<any>("https://ims.aswan.gov.eg/api/Withdraw_Details/get-all-WithdrawDetails")
               .subscribe(res => {
                 this.matchedIds = res.filter((a: any) => {
                   // console.log("matched Id & HeaderId : ", a.HeaderId === id)
@@ -105,7 +121,7 @@ export class StrOpeningStockTableComponent implements OnInit {
   }
 
   deleteFormDetails(id: number) {
-    this.api.deleteStrOpenDetails(id)
+    this.api.deleteStrWithdrawDetails(id)
       .subscribe({
         next: (res) => {
           alert("تم حذف الصنف بنجاح");
@@ -131,6 +147,46 @@ export class StrOpeningStockTableComponent implements OnInit {
         }
       })
   }
+  getEmployees() {
+    this.api.getEmployee()
+      .subscribe({
+        next: (res) => {
+          this.employeeList = res;
+          // console.log("store res: ", this.storeList);
+        },
+        error: (err) => {
+          // console.log("fetch store data err: ", err);
+          // alert("خطا اثناء جلب المخازن !");
+        }
+      })
+  }
+  getCostCenters() {
+    this.api.getCostCenter()
+      .subscribe({
+        next: (res) => {
+          this.costcenterList = res;
+          // console.log("store res: ", this.storeList);
+        },
+        error: (err) => {
+          // console.log("fetch store data err: ", err);
+          alert("خطا اثناء جلب المخازن !");
+        }
+      })
+  }
+  getDestStores() {
+    this.api.getStore()
+      .subscribe({
+        next: (res) => {
+          this.deststoreList = res;
+          // console.log("store res: ", this.storeList);
+        },
+        error: (err) => {
+          // console.log("fetch store data err: ", err);
+          alert("خطا اثناء جلب المخازن !");
+        }
+      })
+  }
+
 
   getFiscalYears() {
     this.api.getFiscalYears()
