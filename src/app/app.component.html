@@ -6,12 +6,21 @@
           <div class="toolBarUserInfo" dir="rtl">
             <mat-icon>notifications_active</mat-icon>
             <mat-icon>search</mat-icon>
-            <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <button
+              mat-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu"
+            >
               <div class="toolbarUserContent d-flex">
-                <img src="../assets/login images/userPhoto.jpg" width="50" height="50" alt="user photo" />
+                <img
+                  src="../assets/login images/userPhoto.jpg"
+                  width="50"
+                  height="50"
+                  alt="user photo"
+                />
 
                 <div>
-                  <div class="my-2">{{ user.name }}</div>
+                  <!-- <div class="my-2">{{ user.name }}</div> -->
                   <div>مدير ادارة المخازن</div>
                 </div>
               </div>
@@ -37,12 +46,20 @@
           <!-- <button type="button" mat-button (click)="drawer.toggle()" (click)="plus()">
             <mat-icon>menu</mat-icon>
           </button> -->
-          <div [ngClass]="
+          <div
+            [ngClass]="
               toggleButtonCounter % 2 == 0
                 ? 'companyInfo'
                 : 'companyInfoToggleOpened'
-            " dir="rtl">
-            <button type="button" mat-button (click)="drawer.toggle()" (click)="plus()">
+            "
+            dir="rtl"
+          >
+            <button
+              type="button"
+              mat-button
+              (click)="drawer.toggle()"
+              (click)="plus()"
+            >
               <mat-icon>menu</mat-icon>
             </button>
             <img src="../assets/login images/water logo.png" alt="user photo" />
@@ -53,69 +70,121 @@
           </div>
         </div>
 
-        <mat-drawer-container [ngClass]="
+        <mat-drawer-container
+          [ngClass]="
             toggleButtonCounter % 2 == 0
               ? 'example-containerToggleClosed'
               : 'example-container'
-          " autosize style="width: 550px">
+          "
+          autosize
+          style="width: 550px"
+        >
           <mat-drawer #drawer class="example-sidenav" mode="side">
-            <div [ngClass]="
+            <div
+              [ngClass]="
                 toggleButtonCounter % 2 != 0
                   ? 'companyInfoInToggle'
                   : 'companyInfoToggleOpened'
-              " dir="rtl">
-              <button type="button" mat-button (click)="drawer.toggle()" (click)="plus()">
+              "
+              dir="rtl"
+            >
+              <button
+                type="button"
+                mat-button
+                (click)="drawer.toggle()"
+                (click)="plus()"
+              >
                 <mat-icon>menu</mat-icon>
               </button>
-              <img src="../assets/login images/water logo.png" alt="user photo" />
+              <img
+                src="../assets/login images/water logo.png"
+                alt="user photo"
+              />
               <div class="toolbarUserContent">
                 <p>شركة مياة الشرب</p>
                 <p>و الصرف الصحى باسوان</p>
               </div>
             </div>
 
-            <mat-expansion-panel dir="rtl" style="
+            <mat-expansion-panel
+              dir="rtl"
+              style="
                 box-shadow: none;
                 border-bottom: 1px black solid;
                 margin-top: 10px;
-              ">
+              "
+            >
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   <mat-icon color="primary">store</mat-icon> المخازن
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <mat-nav-list>
-
-                <mat-expansion-panel dir="rtl" style="
+                <mat-expansion-panel
+                  dir="rtl"
+                  style="
                     box-shadow: none;
                     border-bottom: 1px black solid;
                     margin-top: 10px;
-                  ">
+                  "
+                >
                   <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      التكويد
-                    </mat-panel-title>
+                    <mat-panel-title> التكويد </mat-panel-title>
                   </mat-expansion-panel-header>
                   <mat-nav-list>
                     <a mat-list-item class="sideNavSubItems">السلعة</a>
                     <a mat-list-item class="sideNavSubItems">النوعية</a>
-                    <a mat-list-item class="sideNavSubItems" routerLink="/str-platoon">الفصيلة</a>
-                    <a mat-list-item routerLink="/groupBannel" class="sideNavSubItems">المجموعة</a>
-                    <a mat-list-item class="sideNavSubItems" routerLink="/unit">الوحدة</a>
-                    <a mat-list-item class="sideNavSubItems" routerLink="/commodity">الاصناف</a>
-                    <a mat-list-item class="sideNavSubItems" routerLink="/products">المنتجات</a>
-                    <a mat-list-item class="sideNavSubItems" routerLink="/store">المخازن</a>
+                    <a
+                      mat-list-item
+                      class="sideNavSubItems"
+                      routerLink="/str-platoon"
+                      >الفصيلة</a
+                    >
+                    <a
+                      mat-list-item
+                      routerLink="/groupBannel"
+                      class="sideNavSubItems"
+                      >المجموعة</a
+                    >
+                    <a mat-list-item class="sideNavSubItems" routerLink="/unit"
+                      >الوحدة</a
+                    >
+                    <a
+                      mat-list-item
+                      class="sideNavSubItems"
+                      routerLink="/commodity"
+                      >الاصناف</a
+                    >
+                    <a
+                      mat-list-item
+                      class="sideNavSubItems"
+                      routerLink="/products"
+                      >المنتجات</a
+                    >
+                    <a mat-list-item class="sideNavSubItems" routerLink="/store"
+                      >المخازن</a
+                    >
                     <a mat-list-item class="sideNavSubItems">مركز التكلفة</a>
                   </mat-nav-list>
                 </mat-expansion-panel>
                 <a mat-list-item class="sideNavSubItems">اذن صرف</a>
                 <a mat-list-item class="sideNavSubItems">اذن اضافة</a>
-                <a mat-list-item routerLink="/groupOpening" class="sideNavSubItems"
-                  (click)="global.getPermissionUserRoles(2)">الافتتاحى</a>
+                <a
+                  mat-list-item
+                  routerLink="/groupOpening"
+                  class="sideNavSubItems"
+                  (click)="global.getPermissionUserRoles(2)"
+                  >الافتتاحى</a
+                >
                 <a mat-list-item class="sideNavSubItems">اضافة صنف</a>
                 <a mat-list-item class="sideNavSubItems">اضافة مخزن</a>
                 <a mat-list-item class="sideNavSubItems">اضافة مجموعة</a>
-                <a mat-list-item routerLink="/employeeOpening" class="sideNavSubItems">نقل عهدة</a>
+                <a
+                  mat-list-item
+                  routerLink="/employeeOpening"
+                  class="sideNavSubItems"
+                  >نقل عهدة</a
+                >
               </mat-nav-list>
             </mat-expansion-panel>
           </mat-drawer>
@@ -123,11 +192,13 @@
       </mat-toolbar-row>
     </mat-toolbar>
 
-    <div [ngClass]="
+    <div
+      [ngClass]="
         toggleButtonCounter % 2 == 0
           ? 'container routingContainerToggleClosed'
           : 'container routingContainerToggleOpened'
-      ">
+      "
+    >
       <router-outlet></router-outlet>
     </div>
   </div>

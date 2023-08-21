@@ -89,15 +89,15 @@ export class StrReportComponent {
     let date: any = document.getElementById('date');
     reportFooter.style.display = 'block';
     date.style.display = 'block';
-    let printContent: any = document.getElementById('content')?.innerHTML;
-    let originalContent: any = document.body.innerHTML;
-    document.body.innerHTML = printContent;
-    // console.log(document.body.children);
-    document.body.style.cssText =
-      'direction:rtl;-webkit-print-color-adjust:exact;';
+    // let printContent: any = document.getElementById('content')?.innerHTML;
+    // let originalContent: any = document.body.innerHTML;
+    // document.body.innerHTML = printContent;
+    // // console.log(document.body.children);
+    // document.body.style.cssText =
+    //   'direction:rtl;-webkit-print-color-adjust:exact;';
     window.print();
-    document.body.innerHTML = originalContent;
-    location.reload();
+    // document.body.innerHTML = originalContent;
+    // location.reload();
   }
 
   first() {
