@@ -33,6 +33,7 @@ const routes: Routes = [
   //      component: ProductComponent,
   //    },
   //  ],} ,
+
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'commodity', component: StrCommodityComponent },
