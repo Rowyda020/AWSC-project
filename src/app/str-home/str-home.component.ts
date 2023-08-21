@@ -16,7 +16,10 @@ export class STRHomeComponent {
   }
   OnInit():void{
     this.global.bgColor= document.querySelector('section')?.classList.add('screenBackground');
-   
+
+    
+
+    // commit
 
  }
 

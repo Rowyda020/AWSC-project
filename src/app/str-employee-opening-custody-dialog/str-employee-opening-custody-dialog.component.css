@@ -64,3 +64,12 @@
 .headerTable {
     align-items: center;
 }
+
+.statusRadioBtns{
+    display: flex;
+}
+
+mat-radio-group{
+    padding: 2%;
+    margin-top: -3%;
+}

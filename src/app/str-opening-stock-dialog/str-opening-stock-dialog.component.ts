@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, LOCALE_ID } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 // import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -8,13 +8,14 @@ import { MatSort } from '@angular/material/sort';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-str-opening-stock-dialog',
   templateUrl: './str-opening-stock-dialog.component.html',
   styleUrls: ['./str-opening-stock-dialog.component.css']
 })
-export class StrOpeningStockDialogComponent implements OnInit{
+export class StrOpeningStockDialogComponent implements OnInit {
   groupDetailsForm !: FormGroup;
   groupMasterForm !: FormGroup;
   actionBtnMaster: string = "Save";
@@ -24,6 +25,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
   matchedIds: any;
   getDetailedRowData: any;
   sumOfTotals = 0;
+  priceCalled = 0;
   getMasterRowId: any;
   storeList: any;
   itemsList: any;
@@ -33,6 +35,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
   userIdFromStorage: any;
   deleteConfirmBtn: any;
   dialogRefDelete: any;
+  isReadOnly: boolean = true;
 
   displayedColumns: string[] = ['itemName', 'price', 'qty', 'total', 'action'];
 
@@ -41,6 +44,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
 
   constructor(private formBuilder: FormBuilder,
     private api: ApiService,
+    @Inject(LOCALE_ID) private locale: string,
     @Inject(MAT_DIALOG_DATA) public editData: any,
     @Inject(MAT_DIALOG_DATA) public editDataDetails: any,
     private http: HttpClient,
@@ -126,7 +130,7 @@ export class StrOpeningStockDialogComponent implements OnInit{
             };
             // console.log("mastered res: ", this.getMasterRowId.id)
             this.MasterGroupInfoEntered = true;
-            
+
             // alert("تم الحفظ بنجاح");
             this.toastrSuccess();
             this.getAllDetailsForms();
@@ -186,8 +190,15 @@ export class StrOpeningStockDialogComponent implements OnInit{
         // console.log("form  headerId: ", this.getMasterRowId.id)
 
         if (this.groupDetailsForm.getRawValue().itemId) {
+          // this.getAvgPrice(
+          //   this.groupMasterForm.getRawValue().storeId,
+          //   this.groupMasterForm.getRawValue().fiscalYearId,
+          //   formatDate(this.groupMasterForm.getRawValue().date, 'yyyy-MM-dd', this.locale),
+          //   this.groupDetailsForm.getRawValue().itemId)
+
           this.itemName = await this.getItemByID(this.groupDetailsForm.getRawValue().itemId);
           this.groupDetailsForm.controls['itemName'].setValue(this.itemName);
+          // this.groupDetailsForm.controls['price'].setValue(this.priceCalled);
           // this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage?.slice(1, length - 1));
           this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
         }
@@ -285,6 +296,21 @@ export class StrOpeningStockDialogComponent implements OnInit{
     // console.log("pass id: ", this.getMasterRowId.id, "pass No: ", this.groupMasterForm.getRawValue().no, "pass StoreId: ", this.groupMasterForm.getRawValue().storeId, "pass Date: ", this.groupMasterForm.getRawValue().date)
     if (this.groupMasterForm.getRawValue().no != '' && this.groupMasterForm.getRawValue().storeId != '' && this.groupMasterForm.getRawValue().fiscalYearId != '' && this.groupMasterForm.getRawValue().date != '') {
 
+      // this.getAvgPrice(
+      //   this.groupMasterForm.getRawValue().storeId,
+      //   this.groupMasterForm.getRawValue().fiscalYearId,
+      //   formatDate(this.groupMasterForm.getRawValue().date, 'yyyy-MM-dd', this.locale),
+      //   this.groupDetailsForm.getRawValue().itemId)
+
+
+      console.log("details form new: ", this.groupDetailsForm.value, "getDetailedRowData: ", this.getDetailedRowData)
+      alert("price: " + this.groupDetailsForm.getRawValue().price)
+      // this.groupDetailsForm.controls['price'].setValue(5);
+      alert("price after: " + this.groupDetailsForm.getRawValue().price)
+
+      console.log("change readOnly to enable");
+
+
       this.groupDetailsForm.controls['stR_Opening_StockId'].setValue(this.getMasterRowId.id);
       this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
 
@@ -307,11 +333,14 @@ export class StrOpeningStockDialogComponent implements OnInit{
 
       this.groupDetailsForm.controls['qty'].setValue(this.getDetailedRowData.qty);
       this.groupDetailsForm.controls['price'].setValue(this.getDetailedRowData.price);
+      alert("price in edit: " + this.groupDetailsForm.getRawValue().price)
+
       this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
 
       // console.log("itemid focus: ", this.matchedIds);
 
       this.groupDetailsForm.controls['itemId'].setValue(this.getDetailedRowData.itemId);
+      // this.getAvgPrice();
 
     }
 
@@ -414,6 +443,8 @@ export class StrOpeningStockDialogComponent implements OnInit{
       this.itemsList.filter((a: any) => {
         if (a.fullCode === code.target.value) {
           this.groupDetailsForm.controls['itemId'].setValue(a.id);
+
+          this.itemOnChange(this.groupDetailsForm.getRawValue().itemId)
         }
       })
     }
@@ -447,6 +478,49 @@ export class StrOpeningStockDialogComponent implements OnInit{
         console.log("error in fetch fiscalYears name by id: ", err);
         // alert("خطا اثناء جلب رقم العنصر !");
       });
+  }
+
+  itemOnChange(itemEvent: any) {
+    // this.isReadOnly = true;
+    console.log("itemId: ", itemEvent)
+
+    if (this.groupDetailsForm.getRawValue().price == 0) {
+      this.isReadOnly = false;
+      console.log("change readOnly to enable");
+    }
+    else {
+      this.isReadOnly = true;
+      console.log("change readOnly to disable");
+    }
+
+    this.getAvgPrice(
+      this.groupMasterForm.getRawValue().storeId,
+      this.groupMasterForm.getRawValue().fiscalYearId,
+      formatDate(this.groupMasterForm.getRawValue().date, 'yyyy-MM-dd', this.locale),
+      itemEvent)
+
+
+  }
+
+  getAvgPrice(storeId: any, fiscalYear: any, date: any, itemId: any) {
+    console.log("Avg get inputs: ", "storeId: ", this.groupMasterForm.getRawValue().storeId,
+      " fiscalYear: ", this.groupMasterForm.getRawValue().fiscalYearId,
+      " date: ", formatDate(this.groupMasterForm.getRawValue().date, 'yyyy-MM-dd', this.locale),
+      " itemId: ", this.groupDetailsForm.getRawValue().itemId)
+
+    this.api.getAvgPrice(storeId, fiscalYear, date, itemId)
+
+      .subscribe({
+        next: (res) => {
+          // this.priceCalled = res;
+          this.groupDetailsForm.controls['price'].setValue(res);
+          console.log("price avg called res: ", this.groupDetailsForm.getRawValue().price);
+        },
+        error: (err) => {
+          // console.log("fetch fiscalYears data err: ", err);
+          alert("خطا اثناء جلب متوسط السعر !");
+        }
+      })
   }
 
   toastrSuccess(): void {

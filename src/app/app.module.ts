@@ -67,6 +67,14 @@ import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.
 import {StrWithdrawContainerComponent} from './str-withdraw-container/str-withdraw-container.component'
 import {  StrWithdrawDialogComponent} from "./str-withdraw-dialog2/str-withdraw-dialog2.component";
 import {StrWithdrawTableComponent  } from "./str-withdraw-table2/str-withdraw-table2.component";
+import { StrProductComponent } from './str-product/str-product.component';
+import { StrProductDialogComponent } from './str-product-dialog/str-product-dialog.component';
+import { STRItem1Component } from './str-item1/str-item1.component';
+import { STRItem1DialogComponent } from './str-item1-dialog/str-item1-dialog.component';
+import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
+import { FiEntryTableComponent } from './fi-entry-table/fi-entry-table.component';
+import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
@@ -105,6 +113,17 @@ import {StrWithdrawTableComponent  } from "./str-withdraw-table2/str-withdraw-ta
     STREmployeeOpeningCustodyDialogComponent,
     STRGroup1Component,
     STRGroup1DialogComponent,
+    StrProductComponent,
+    StrProductDialogComponent,
+    STRItem1Component,
+    STRItem1DialogComponent,
+    FiEntryContainerComponent,
+    FiEntryTableComponent,
+    FiEntryDialogComponent
+
+
+
+
   ],
   imports: [
     BrowserModule,

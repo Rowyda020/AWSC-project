@@ -13,10 +13,10 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
+// import jsPDF from 'jspdf';
+// import autoTable from 'jspdf-autotable';
 
-const doc = new jsPDF({});
+// const doc = new jsPDF({});
 
 @Component({
   selector: 'app-str-category',
@@ -100,7 +100,8 @@ export class StrItemComponent implements OnInit {
         // Load report Data on Start
 
         this.api.reportData = res;
-        console.log(this.api.reportData);
+        localStorage.setItem('reportData', JSON.stringify(res));
+        // console.log(this.api.reportData);
       },
       error: (err) => {
         alert('Error');
@@ -213,5 +214,6 @@ export class StrItemComponent implements OnInit {
     // doc.setFont("Cairo")
     // doc.save('table.pdf')
     this.router.navigate(['/report']);
+    // window.print();
   }
 }
