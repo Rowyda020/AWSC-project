@@ -32,7 +32,9 @@ export class GlobalService {
   }
 
   getUserById(id: any): Observable<any> {
-    return this.http.get(`${this.url}/PRUser/get/${id}`);
+    return this.http.get(`${this.url}PRUser/get/${id}`);
+  
+  
   }
 
   login(obj: any): Observable<any> {

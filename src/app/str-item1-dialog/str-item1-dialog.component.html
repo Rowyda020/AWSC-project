@@ -10,7 +10,7 @@
 
       <mat-label>الوحدة</mat-label>
       <mat-form-field appearance="outline">        
-        <input matInput aria-label="unit" [matAutocomplete]="autoUnit" [formControl]="unitCtrl" placeholder="{{getItemData ? getItemData.unitName : ''}}" required />
+        <input matInput aria-label="unit" [matAutocomplete]="autoUnit" [formControl]="unitCtrl" placeholder="{{getItemData ? getItemData.unitName : ''}}" (click)="openAutoUnit()" required />
         <mat-autocomplete #autoUnit="matAutocomplete" [displayWith]="displayUnitName"
           (optionSelected)="unitSelected($event)">
           <mat-option *ngFor="let unit of filteredUnits | async" [value]="unit">
@@ -21,7 +21,7 @@
 
       <mat-label>السلعة</mat-label>
       <mat-form-field appearance="outline">        
-        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" placeholder="{{getItemData ? getItemData.commodityName : ''}}" required/>
+        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" placeholder="{{getItemData ? getItemData.commodityName : ''}}" (click)="openAutoCommodity()" required/>
         <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName" (optionSelected)="commoditySelected($event)">
           <mat-option *ngFor="let commodity of filteredCommodities | async" [value]="commodity">
             {{ commodity.name }} | {{ commodity.code }}
@@ -31,7 +31,7 @@
 
       <mat-label>النوعية</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required placeholder="{{getItemData ? getItemData.gradeName : ''}}" required/>
+        <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required placeholder="{{getItemData ? getItemData.gradeName : ''}}" (click)="openAutoGrade()" required/>
         <mat-autocomplete #autoGrade="matAutocomplete" [displayWith]="displayGradeName" (optionSelected)="gradeSelected($event)">
           <mat-option *ngFor="let grade of filteredGrades | async" [value]="grade">
             {{ grade.name }} | {{ grade.code }}
@@ -41,7 +41,7 @@
 
       <mat-label>الفصيلة</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput aria-label="platoon" [matAutocomplete]="autoPlatoon" [formControl]="platoonCtrl" required placeholder="{{getItemData ? getItemData.platoonName : ''}}" required/>
+        <input matInput aria-label="platoon" [matAutocomplete]="autoPlatoon" [formControl]="platoonCtrl" required placeholder="{{getItemData ? getItemData.platoonName : ''}}" (click)="openAutoPlatoon()" required/>
         <mat-autocomplete #autoPlatoon="matAutocomplete" [displayWith]="displayPlatoonName" (optionSelected)="platoonSelected($event)">
           <mat-option *ngFor="let platoon of filteredPlatoons | async" [value]="platoon">
             {{ platoon.name }} | {{ platoon.code }}
@@ -51,7 +51,7 @@
 
       <mat-label>المجموعة</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput aria-label="platoon" [matAutocomplete]="autoGroup" [formControl]="groupCtrl" placeholder="{{getItemData ? getItemData.groupName : ''}}" required  />
+        <input matInput aria-label="platoon" [matAutocomplete]="autoGroup" [formControl]="groupCtrl" placeholder="{{getItemData ? getItemData.groupName : ''}}" (click)="openAutoGroup()" required  />
         <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="displayGroupName"
           (optionSelected)="groupSelected($event)">
           <mat-option *ngFor="let group of filteredGroups | async" [value]="group">

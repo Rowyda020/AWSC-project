@@ -46,32 +46,32 @@ export class ApiService {
   }
 
   // start crud grade
-
+//selvana
   postGrade(data: any) {
     return this.http.post<any>(
-      'https://ims.aswan.gov.eg/api/STR_Grade/Add-grade/',
+      'http://ims.aswan.gov.eg/api/STRGrade/Add/',
       data
     );
   }
   getGrade() {
     return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/STR_Grade/get-all-grades'
+      'http://ims.aswan.gov.eg/api/STRGrade/get/all'
     );
   }
   putGrade(data: any) {
     return this.http.put<any>(
-      'http://ims.aswan.gov.eg/api/STR_Grade/update-grade-by-id/',
+      'http://ims.aswan.gov.eg/api/STRGrade/update',
       data
     );
   }
   deleteGrade(id: number) {
     return this.http.delete<any>(
-      `https://ims.aswan.gov.eg/api/STR_Grade/delete-grade/${id}`
+      `http://ims.aswan.gov.eg/api/STRGrade/delete/${id}`
     );
   }
   getAllCommodity(): Observable<any> {
     return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity'
+      'http://ims.aswan.gov.eg/api/STRCommodity/get/all'
     );
   }
 
@@ -86,7 +86,29 @@ export class ApiService {
     return this.http.get<any>('http://localhost:3000/StoreList/' + id);
   }
 
-
+   // FIAccountHierarchy
+   getFIAccountHierarchy() {
+    return this.http.get<any>(
+      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/get/all'
+    );
+  }
+  putFIAccountHierarchy(data: any) {
+    return this.http.put<any>(
+      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/update',
+      data
+    );
+  }
+  deleteFIAccountHierarchy(id: number) {
+    return this.http.delete<any>(
+      `http://ims.aswan.gov.eg/api/FIAccountHierarchy/delete/${id}`
+    );
+  }
+  postFIAccountHierarchy(data: any) {
+    return this.http.post<any>(
+      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/Add',
+      data
+    );
+  }
 
   //Fatma
 
@@ -94,95 +116,124 @@ export class ApiService {
 
   postPlatoon(data: any) {
     return this.http.post<any>(
-      'https://ims.aswan.gov.eg/api/STR_Platoon/Add-platoon',
+      'http://ims.aswan.gov.eg/api/STRPlatoon/Add',
       data
     );
   }
   getPlatoon() {
     return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/STR_Platoon/get-all-Platoons'
+      'http://ims.aswan.gov.eg/api/STRPlatoon/get/all'
     );
   }
   putPlatoon(data: any) {
     return this.http.put<any>(
-      'https://ims.aswan.gov.eg/api/STR_Platoon/update-Platoon',
+      'http://ims.aswan.gov.eg/api/STRPlatoon/update',
       data
     );
   }
   deletePlatoon(id: number) {
     return this.http.delete<any>(
-      `https://ims.aswan.gov.eg/api/STR_Platoon/delete-Platoon/${id}`
+      `http://ims.aswan.gov.eg/api/STRPlatoon/delete/${id}`
     );
   }
   getAllCommodities(): Observable<any> {
     return this.http.get<any>(
-      'http://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity'
+      'http://ims.aswan.gov.eg/api/STRCommodity/get/all'
     );
   }
   getAllGrades(): Observable<any> {
     return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/STR_Grade/get-all-grades'
+      'http://ims.aswan.gov.eg/api/STRGrade/get/all'
     );
   }
 
     //Group
 
     postGroups(data: any) {
-      return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Group/Add-group", data);
+      return this.http.post<any>("http://ims.aswan.gov.eg/api/STRGroup/Add", data);
     }
     getGroups() {
-      return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Group/get-all-Groups");
+      return this.http.get<any>("http://ims.aswan.gov.eg/api/api/STRGroup/get/all");
     }
     putGroups(data: any) {
-      return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Group/update-Group", data);
+      return this.http.put<any>("http://ims.aswan.gov.eg/api/STRGroup/update", data);
     }
     deleteGroups(id: number) {
-      return this.http.delete<any>(`https://ims.aswan.gov.eg/api/STR_Group/delete-Group/${id}`);
+      return this.http.delete<any>(`http://ims.aswan.gov.eg/api/STRGroup/delete/${id}`);
     }
     getAllCommoditiesg(): Observable<any> {
-      return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity");
+      return this.http.get<any>('http://ims.aswan.gov.eg/api/STRCommodity/get/all');
     }
     getAllGradesg(): Observable<any> {
-      return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Grade/get-all-grades");
+      return this.http.get<any>("http://ims.aswan.gov.eg/api/STRGrade/get/all");
     }
 
     getAllPlatoonsg(): Observable<any> {
-      return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Platoon/get-all-Platoons");
+      return this.http.get<any>('http://ims.aswan.gov.eg/api/STRPlatoon/get/all');
     }
 
     //Item
 
     postItems(data: any) {
-      return this.http.post<any>("https://ims.aswan.gov.eg/api/STR_Item/Add-item", data);
+      console.log(data)
+      return this.http.post<any>("http://ims.aswan.gov.eg/api/STRItem/Add", data);
     }
     getItem() {
-      return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Item/get-all-Items");
+      return this.http.get<any>("http://ims.aswan.gov.eg/api/STRItem/get/all");
     }
     putItem(data: any) {
-      return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Item/update-Item", data);
+      return this.http.put<any>("http://ims.aswan.gov.eg/api/STRItem/update", data);
     }
     deleteItems(id: number) {
-      return this.http.delete<any>(`https://ims.aswan.gov.eg/api/STR_Item/delete-Item-by-id/${id}`);
+      return this.http.delete<any>(`http://ims.aswan.gov.eg/api/STRItem/delete/${id}`);
     }
     getAllCommoditiesi(): Observable<any> {
-      return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Commodity/get-all-commodity");
+      return this.http.get<any>('http://ims.aswan.gov.eg/api/STRCommodity/get/all');
     }
     getAllGradesi(): Observable<any> {
-      return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Grade/get-all-grades");
+      return this.http.get<any>("http://ims.aswan.gov.eg/api/STRGrade/get/all");
     }
 
     getAllPlatoonsi(): Observable<any> {
-      return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Platoon/get-all-Platoons");
+      return this.http.get<any>("http://ims.aswan.gov.eg/api/STRPlatoon/get/all");
     }
 
     getAllGroupsi(): Observable<any> {
-      return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Group/get-all-Groups");
+      return this.http.get<any>("http://ims.aswan.gov.eg/api/STRGroup/get/all");
     }
 
     getAllUnitsi(): Observable<any> {
-      return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Unit/get-all-Unit");
+      return this.http.get<any>("http://ims.aswan.gov.eg/api/STRUnit/get/all");
     }
+// Account
 
+postAccount(data: any) {
+  return this.http.post<any>(
+    'http://ims.aswan.gov.eg/api/FIAccount/Add',
+    data
+  );
+}
+getAccount() {
+  return this.http.get<any>(
+    'http://ims.aswan.gov.eg/api/FIAccount/get/all'
+  );
+}
+putAccount(data: any) {
+  return this.http.put<any>(
+    'http://ims.aswan.gov.eg/api/FIAccount/update',
+    data
+  );
+}
+deleteAccount(id: number) {
+  return this.http.delete<any>(
+    `http://ims.aswan.gov.eg/api/FIAccount/delete/${id}`
+  );
+}
+getAllAccountHierarchy(): Observable<any> {
+  return this.http.get<any>(
+    'http://ims.aswan.gov.eg/api/FIAccountHierarchy/get/all'
+  );
+}
 
 
   /**crud group */

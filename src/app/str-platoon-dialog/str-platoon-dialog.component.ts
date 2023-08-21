@@ -147,6 +147,19 @@ private _filterGrades(value: string): Grade[] {
   );
 }
 
+openAutoCommodity() {
+  this.commodityCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.commodityCtrl.updateValueAndValidity();
+}
+openAutoGrade() {
+  this.gradeCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.gradeCtrl.updateValueAndValidity();
+}
+
   addPlatoon(){
     if(!this.editData){
       

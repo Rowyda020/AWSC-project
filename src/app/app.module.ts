@@ -71,9 +71,13 @@ import { StrProductComponent } from './str-product/str-product.component';
 import { StrProductDialogComponent } from './str-product-dialog/str-product-dialog.component';
 import { STRItem1Component } from './str-item1/str-item1.component';
 import { STRItem1DialogComponent } from './str-item1-dialog/str-item1-dialog.component';
+import { FIAccountComponent } from './fi-account/fi-account.component';
+import { FIAccountDialogComponent } from './fi-account-dialog/fi-account-dialog.component';
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
 import { FiEntryTableComponent } from './fi-entry-table/fi-entry-table.component';
 import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.component';
+import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
+import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog/fi-account-hierarchy-dialog.component';
 
 @NgModule({
   declarations: [
@@ -117,9 +121,15 @@ import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.compon
     StrProductDialogComponent,
     STRItem1Component,
     STRItem1DialogComponent,
+    FIAccountComponent,
+    FIAccountDialogComponent,
     FiEntryContainerComponent,
     FiEntryTableComponent,
-    FiEntryDialogComponent
+    FiEntryDialogComponent,
+    FIAccountHierarchyComponent,
+    FIAccountHierarchyDialogComponent
+    
+
 
 
 

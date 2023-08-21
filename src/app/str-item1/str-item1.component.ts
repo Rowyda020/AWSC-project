@@ -270,6 +270,38 @@ export class STRItem1Component implements OnInit{
     })
   }
 }
+openAutoUnit() {
+  this.unitCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.unitCtrl.updateValueAndValidity();
+}
+
+openAutoCommodity() {
+  this.commodityCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.commodityCtrl.updateValueAndValidity();
+}
+openAutoGrade() {
+  this.gradeCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.gradeCtrl.updateValueAndValidity();
+}
+openAutoPlatoon() {
+  this.platoonCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.platoonCtrl.updateValueAndValidity();
+}
+
+openAutoGroup() {
+  this.platoonCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.platoonCtrl.updateValueAndValidity();
+}
   async getSearchItems(name:any) {
   
     this.api.getItem()
@@ -322,7 +354,7 @@ export class STRItem1Component implements OnInit{
               }
 
               //enter selectedUnit+item
-              else if (!this.selectedUnit && name && this.selectedUnit){
+              else if (this.selectedUnit && name && !this.selectedGroup){
                 console.log("selectedUnit, name: ", this.selectedUnit , "name: ", name)
 
                 // this.dataSource = res.filter((res: any)=> res.name==name!)
@@ -336,16 +368,16 @@ export class STRItem1Component implements OnInit{
                 console.log("all: ", this.selectedUnit ,this.selectedGroup, "name: ", name)
 
                 // this.dataSource = res.filter((res: any)=> res.name==name!)
-                // this.dataSource = res.filter((res: any)=> res.unitId==this.selectedUnit.id &&  res.groupId==this.selectedGroup.id! && res.name.toLowerCase().includes(name.toLowerCase()))
+                this.dataSource = res.filter((res: any)=> res.unitId==this.selectedUnit.id &&  res.groupId==this.selectedGroup.id! && res.name.toLowerCase().includes(name.toLowerCase()))
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               }
 
               //enter itemName
-              else{
-                console.log("filter name id: ", this.selectedGroup , "name: ", name)
+              else if(!this.selectedGroup  && name == '' && !this.selectedUnit){
+                console.log("filter name mmmm id: ", this.selectedGroup , "name: ", name)
                 // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
-                this.dataSource = res.filter((res: any)=> res.name.toLowerCase().includes(name.toLowerCase()))
+                // this.dataSource = res.filter((res: any)=> res.name.toLowerCase().includes(name.toLowerCase()))
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               }
