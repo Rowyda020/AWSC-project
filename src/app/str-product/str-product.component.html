@@ -1,11 +1,11 @@
-<p>str-product works!</p>
+<!-- <p>str-product works!</p> -->
 <mat-toolbar color="primary">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>supervised_user_circle</mat-icon>
     </button>
     <span>المنتجات</span>
     <span class="example-spacer"></span>
-    <button mat-raised-button color="warn">اضافة </button>
+    <button mat-raised-button color="warn" (click)="openDialog()">اضافة </button>
 </mat-toolbar>
 
 <div class="container" dir="rtl">
@@ -39,7 +39,7 @@
 
                 <!-- modelId Column -->
                 <ng-container matColumnDef="modelId">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> الموديل </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> النموذج</th>
                     <td mat-cell *matCellDef="let row"> {{row.modelId}} </td>
                 </ng-container>
 
@@ -47,10 +47,10 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> الاجراء </th>
                     <td mat-cell *matCellDef="let row">
-                        <button mat-icon-button color="primary"  >
+                        <button mat-icon-button color="primary" (click)="editProduct(row)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button color="warn"  >
+                        <button mat-icon-button color="warn" (click)="deleteProduct(row.id)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>

@@ -7,6 +7,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { StrProductDialogComponent } from '../str-product-dialog/str-product-dialog.component';
 
 @Component({
   selector: 'app-str-product',
@@ -24,7 +25,7 @@ export class StrProductComponent implements OnInit {
   constructor(private dialog: MatDialog, private api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.getAllGroups();
+    this.getAllProducts();
   }
 
   applyFilter(event: Event) {
@@ -36,7 +37,7 @@ export class StrProductComponent implements OnInit {
     }
   }
 
-  getAllGroups() {
+  getAllProducts() {
     this.api.getStrProduct()
       .subscribe({
         next: (res) => {
@@ -50,4 +51,49 @@ export class StrProductComponent implements OnInit {
         }
       })
   }
+
+  openDialog() {
+    this.dialog.open(StrProductDialogComponent, {
+      width: '30%'
+    }).afterClosed().subscribe(val => {
+      if (val === 'save') {
+        this.getAllProducts();
+      }
+    })
+  }
+
+  editProduct(row: any) {
+    // console.log("edit row: ", row)
+    this.dialog.open(StrProductDialogComponent, {
+      width: '30%',
+      data: row
+    }).afterClosed().subscribe(val => {
+      if (val === 'update') {
+        this.getAllProducts();
+      }
+    })
+  }
+
+  deleteProduct(id: number) {
+    var result = confirm("هل ترغب بتاكيد مسح المنتج ؟ ");
+    if (result) {
+      this.api.deleteStrProduct(id)
+        .subscribe({
+          next: (res) => {
+            this.toastrDeleteSuccess();
+            // alert("تم حذف المنتج بنجاح");
+            this.getAllProducts()
+          },
+          // error: () => {
+          //   alert("خطأ أثناء حذف المنتج !!");
+          // }
+        })
+    }
+
+  }
+
+  toastrDeleteSuccess(): void {
+    this.toastr.success("تم الحذف بنجاح");
+  }
+
 }
