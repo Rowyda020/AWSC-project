@@ -598,82 +598,39 @@ export class ApiService {
 
   ///////////////////////////////// STR-EmployeeExchange & details/////////////////////////////
   getHrEmployees() {
-    return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/HR_Employee/get-all-employee'
-    );
-    // return this.http.get<any>("http://localhost:3000/StoreList/");
+    return this.http.get<any>(`${this.url}/HREmployee/get/all`);
   }
 
   getFiCostCenter() {
-    return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/FI_CostCenter/get-all-CostCenter'
-    );
-    // return this.http.get<any>("http://localhost:3000/StoreList/");
+    return this.http.get<any>(`${this.url}/FICostCenter/get/all`);
   }
 
   postStrEmployeeExchange(data: any) {
-    return this.http.post<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employe_Exchange/Add-Employee-Exchange',
-      data
-    );
+    return this.http.post<any>(`${this.url}/STREmployeExchange/Add`, data);
   }
   getStrEmployeeExchange() {
-    return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employe_Exchange/get-Employee-Exchang/'
-    );
+    return this.http.get<any>(`${this.url}/STREmployeExchange/get/all/`);
   }
   putStrEmployeeExchange(data: any) {
-    return this.http.put<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employe_Exchange/update-Employee-Exchange',
-      data
-    );
+    return this.http.put<any>(`${this.url}/STREmployeExchange/update`, data);
   }
   deleteStrEmployeeExchange(id: number) {
-    return this.http.delete<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employe_Exchange/delete-Employee-Exchang-by-id/' +
-        id
-    );
+    return this.http.delete<any>(`${this.url}/STREmployeExchange/delete/` + id);
   }
 
   postStrEmployeeExchangeDetails(data: any) {
-    return this.http.post<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/Add-Employee-Exchange-Details',
-      data
-    );
+    return this.http.post<any>(`${this.url}/STREmployeeExchangeDetails/Add`, data);
   }
   putStrEmployeeExchangeDetails(data: any) {
-    console.log('StrEmployeeExchangeDetails data: ', data);
-    return this.http.put<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/update-Employee-Exchange-Details/',
-      data
-    );
+    console.log("StrEmployeeExchangeDetails data: ", data);
+    return this.http.put<any>(`${this.url}/STREmployeeExchangeDetails/update/`, data);
   }
   deleteStrEmployeeExchangeDetails(HeaderId: number) {
-    console.log('deleted row id: ', HeaderId);
-    return this.http.delete<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/delete-Employee-Exchang-Details-by-id/' +
-        HeaderId
-    );
+    console.log("deleted row id: ", HeaderId)
+    return this.http.delete<any>(`${this.url}/STREmployeeExchangeDetails/delete/by/EmployeeExchange/` + HeaderId);
   }
-  getStrEmployeeExchangeSearach(
-    no: any,
-    costCenterId: any,
-    employeeId: any,
-    date: any,
-    distEmployee: any
-  ) {
-    console.log(
-      "values search passed: 'no: '",
-      no,
-      "' costCenterId: '",
-      costCenterId,
-      "' storeId: '",
-      employeeId,
-      "' date: '",
-      date,
-      "' fiscalYear: '",
-      distEmployee
-    );
+  getStrEmployeeExchangeSearach(no: any, costCenterId: any, employeeId: any, date: any, distEmployee: any) {
+    console.log("values search passed: 'no: '", no, "' costCenterId: '", costCenterId, "' employeeId: '", employeeId, "' date: '", date, "' distEmployee: '", distEmployee);
     //enter no.
     if (no != '' && !costCenterId && !employeeId && !date && !distEmployee) {
       console.log('enter no. strOpen search');
@@ -785,13 +742,7 @@ export class ApiService {
     }
 
     //enter all data
-    else if (
-      no != '' &&
-      costCenterId != '' &&
-      employeeId != '' &&
-      date != '' &&
-      distEmployee != ''
-    ) {
+    else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && distEmployee != '') {
       console.log('enter all data strOpen search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?Date=${date}&No=${no}&DestEmployeeId=${distEmployee}&CostCenterId=${costCenterId}&EmployeeId=${employeeId}`
@@ -799,7 +750,9 @@ export class ApiService {
     }
 
     console.log("didn't enter any condition search");
-    return this.http.get<any>(`${this.url}/STREmployeExchange/search?No=${0}`);
+    return this.http.get<any>(
+      `${this.url}/STREmployeExchange/search?No=${0}`
+    );
   }
 
   // open Empoyee
