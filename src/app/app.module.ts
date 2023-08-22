@@ -81,6 +81,15 @@ import { FileUploadDialogComponent } from './file-upload-dialog/file-upload-dial
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog/fi-account-hierarchy-dialog.component';
 import {PipesModule  } from "../app/pipes/pipes.module";
+import { FIEntrySourceComponent } from './fi-entry-source/fi-entry-source.component';
+import { FIEntrySourceDialogComponent } from './fi-entry-source-dialog/fi-entry-source-dialog.component';
+
+import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-item.component';
+
+import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
+import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-account-itemd-dialog.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,FileUploadComponent,
@@ -129,7 +138,15 @@ import {PipesModule  } from "../app/pipes/pipes.module";
     FiEntryTableComponent,
     FiEntryDialogComponent,
     FIAccountHierarchyComponent,
-    FIAccountHierarchyDialogComponent
+    FIAccountHierarchyDialogComponent,
+    FIEntrySourceComponent,
+    FIEntrySourceDialogComponent,
+
+    StrReportAddItemComponent,
+
+    FiAccountItemComponent,
+    FiAccountItemdDialogComponent
+
     
 
 
