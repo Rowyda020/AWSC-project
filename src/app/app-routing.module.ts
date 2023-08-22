@@ -6,9 +6,8 @@ import { ErrorComponent } from './pages/error/error.component';
 import { authGuard } from './shared/auth.guard';
 import { STRUnitsComponent } from './str-units/str-units.component';
 import { STRGradeComponent } from './str-grade/str-grade.component';
-
 import { StrCostcenterComponent } from './str-costcenter/str-costcenter.component';
-import { StrItemComponent } from './STR_item/STR_item..component';
+// import { StrItemComponent } from './STR_item/STR_item..component';
 import { StrGroupComponent } from './str-group/str-group.component';
 import { StrStoreComponent } from './str-store/str-store.component';
 import { STRPlatoonComponent } from './str-platoon/str-platoon.component';
@@ -20,10 +19,11 @@ import { StrReportComponent } from './str-report/str-report.component';
 import { StrEmployeeExchangeContainerComponent } from './str-employee-exchange-container/str-employee-exchange-container.component';
 import { STRGroup1Component } from './str-group1/str-group1.component';
 import { STRItem1Component } from './str-item1/str-item1.component';
-
 import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custody/str-employee-opening-custody.component';
 import { StrProductComponent } from './str-product/str-product.component';
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
+import {  StrWithdrawContainerComponent} from "./str-withdraw-container/str-withdraw-container.component";
+import { FIAccountComponent } from './fi-account/fi-account.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 
@@ -46,7 +46,7 @@ const routes: Routes = [
   { path: 'unit', component: STRUnitsComponent },
   { path: 'grade', component: STRGradeComponent },
   { path: 'costCenter', component: StrCostcenterComponent },
-  { path: 'items', component: StrItemComponent },
+  // { path: 'items', component: StrItemComponent },
   { path: 'products', component: StrProductComponent },
   { path: 'group', component: StrGroupComponent },
   { path: 'store', component: StrStoreComponent },
@@ -58,6 +58,7 @@ const routes: Routes = [
   { path: 'AccountHierarchy', component: FIAccountHierarchyComponent },
   { path: 'FiAccountItem', component: FiAccountItemComponent },
 
+  {path:'withdraw',component:StrWithdrawContainerComponent },
 //  {path: 'products',
 //  children: [
 //    {
@@ -77,7 +78,7 @@ const routes: Routes = [
   { path: "grade", component:STRGradeComponent },
 
   { path: "costCenter", component:StrCostcenterComponent},
-  { path: "items", component:StrItemComponent},
+  // { path: "items", component:StrItemComponent},
   {path: 'items1', component:STRItem1Component},
   { path: "group", component:StrGroupComponent},
   { path: "group1", component:STRGroup1Component},
@@ -91,6 +92,8 @@ const routes: Routes = [
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
 
   { path: 'fi-entry', component: FiEntryContainerComponent },
+  { path: 'withdraw', component: StrWithdrawContainerComponent },
+  { path: 'account', component: FIAccountComponent },
 
   // {path:'dashboard' , canActivateChild:[CanActivateChildGuard],children:[
   //   {path:''  , component:DashboardComponent  },

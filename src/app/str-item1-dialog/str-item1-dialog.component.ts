@@ -37,7 +37,7 @@ export class Unit {
   styleUrls: ['./str-item1-dialog.component.css']
 })
 export class STRItem1DialogComponent implements OnInit{
-  transactionUserId=localStorage.getItem('transactionUserId')
+  transactionUserId= localStorage.getItem('transactionUserId'); 
   commodityCtrl: FormControl;
   filteredCommodities: Observable<Commodity[]>;
   commodities: Commodity[] = [];
@@ -75,6 +75,7 @@ dataSource!: MatTableDataSource<any>;
 @ViewChild(MatAccordion)
 accordion!: MatAccordion;
 gradeName: any;
+  no: any;
   constructor(private formBuilder : FormBuilder,
      private api : ApiService,
      private readonly route:ActivatedRoute,
@@ -139,11 +140,11 @@ gradeName: any;
     });
     
 
-    this.api.getAllCommoditiesi().subscribe((commodities)=>{
+    this.api.getAllCommodities().subscribe((commodities)=>{
       this.commodities = commodities;
     });
 
-    this.api.getAllGradesi().subscribe((grades)=>{
+    this.api.getAllGrades().subscribe((grades)=>{
       this.grades = grades;
     });
 
@@ -157,16 +158,16 @@ gradeName: any;
 
     this.api.getAllUnitsi().subscribe((units)=>{
       this.units = units;
+      
     });
 
-    this.fullCode= Commodity+"gradeCode"+"platoonCode"+"groupCode"+"no"
+    
     
     if(this.editData){
       this.actionBtn = "تعديل";
       this.getItemData = this.editData;
 
       console.log("comm code: ", this.editData)
-alert("full: "+ this.fullCode);
       this.itemForm.controls['transactionUserId'].setValue(this.editData.transactionUserId);
       this.itemForm.controls['name'].setValue(this.editData.name);
       this.itemForm.controls['fullCode'].setValue(this.editData.fullCode);
@@ -296,20 +297,57 @@ alert("full: "+ this.fullCode);
       unit.name.toLowerCase().includes(filterValue)
     );
   }
+
+  openAutoUnit() {
+    this.unitCtrl.setValue(''); // Clear the input field value
   
+    // Open the autocomplete dropdown by triggering the value change event
+    this.unitCtrl.updateValueAndValidity();
+  }
+
+  openAutoCommodity() {
+    this.commodityCtrl.setValue(''); // Clear the input field value
+  
+    // Open the autocomplete dropdown by triggering the value change event
+    this.commodityCtrl.updateValueAndValidity();
+  }
+  openAutoGrade() {
+    this.gradeCtrl.setValue(''); // Clear the input field value
+  
+    // Open the autocomplete dropdown by triggering the value change event
+    this.gradeCtrl.updateValueAndValidity();
+  }
+  openAutoPlatoon() {
+    this.platoonCtrl.setValue(''); // Clear the input field value
+  
+    // Open the autocomplete dropdown by triggering the value change event
+    this.platoonCtrl.updateValueAndValidity();
+  }
+
+  openAutoGroup() {
+    this.platoonCtrl.setValue(''); // Clear the input field value
+  
+    // Open the autocomplete dropdown by triggering the value change event
+    this.platoonCtrl.updateValueAndValidity();
+  }
 
   addItem(){
     if(!this.editData){
-      
+      // this.itemForm.controls['no'].setValue(this.no);
+      this.fullCode= this.itemForm.value.commodityCode+this.itemForm.value.gradeCode+this.itemForm.value.platoonCode+this.itemForm.value.groupCode;
+      // this.fullCode= this.itemForm.value.commodityCode+this.itemForm.value.gradeCode+this.itemForm.value.platoonCode+this.itemForm.value.groupCode+this.itemForm.value.platoonCode;
+      console.log("full code:",this.fullCode, "transactionId: ",this.transactionUserId);
+      this.itemForm.controls['fullCode'].setValue(this.fullCode);
       this.itemForm.removeControl('id')
-      // this.itemForm.controls['commodityId'].setValue(this.selectedOption.id);
-      // this.itemForm.controls['gradeId'].setValue(this.selectedOption.id);
       console.log("add: ", this.itemForm.value);
       this.itemForm.controls['transactionUserId'].setValue(this.transactionUserId);
       if(this.itemForm.valid){
         this.api.postItems(this.itemForm.value)
         .subscribe({
           next:(res)=>{
+            console.log(res)
+      console.log("this.no:",this.no);
+      
             alert("تمت الاضافة بنجاح");
             this.itemForm.reset();
             this.dialogRef.close('save');

@@ -14,12 +14,9 @@ import { MatOptionSelectionChange } from '@angular/material/core';
 // import { publishFacade } from '@angular/compiler';
 // import { STRGradeComponent } from '../str-grade/str-grade.component';
 
-
-
-export class commodities {
-  constructor(public name: string, public code: string) {}
+export class Commodity {
+  constructor(public id: number, public name: string, public code: string) {}
 }
-
 
 @Component({
   selector: 'app-str-grade-dialog',
@@ -27,15 +24,16 @@ export class commodities {
   styleUrls: ['./str-grade-dialog.component.css']
 })
 export class STRGradeDialogComponent {
-  
+  transactionUserId=localStorage.getItem('transactionUserId')
   commodityCtrl: FormControl;
-  filteredcommodities: Observable<any[]>;
-  commodity_list: commodities[] = [];
+  filteredCommodities: Observable<Commodity[]>;
+  commodities: Commodity[] = [];
+  selectedCommodity: Commodity | undefined;
   formcontrol = new FormControl('');  
   gradeForm !:FormGroup;
   actionBtn : string = "حفظ"
   selectedOption:any;
-  getPlatoonData: any;
+  getGradeData: any;
   Id:string  | undefined | null;
    commidityDt:any={
   id:0,
@@ -55,13 +53,11 @@ commodityName: any;
     private readonly route:ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public editData : any,
     private dialogRef : MatDialogRef<STRGradeDialogComponent>){
-     this.commodityCtrl = new FormControl();
-   this.filteredcommodities = this.commodityCtrl.valueChanges.pipe(
-     startWith(''),
-     map((gradd) =>
-       gradd ? this.filtercommod(gradd) : this.commodity_list.slice()
-     )
-   );
+      this.commodityCtrl = new FormControl();
+      this.filteredCommodities = this.commodityCtrl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filterCommodities(value))
+      );
     }
     ngOnInit(): void {
       this.gradeForm = this.formBuilder.group({
@@ -74,14 +70,14 @@ commodityName: any;
       // matautocompleteFieldName : [''],
       });
   
-      this.api.getAllCommodity().subscribe((data)=>{
-        this.commodity_list = data;
+      this.api.getAllCommodities().subscribe((commodities)=>{
+        this.commodities = commodities;
       });
       
   
       if(this.editData){
         this.actionBtn = "تعديل";
-      this.getPlatoonData = this.editData;
+      this.getGradeData = this.editData;
       this.gradeForm.controls['transactionUserId'].setValue(this.editData.transactionUserId);
         this.gradeForm.controls['code'].setValue(this.editData.code);
       this.gradeForm.controls['name'].setValue(this.editData.name);
@@ -93,13 +89,40 @@ commodityName: any;
       }
     }
 
+    displayCommodityName(commodity: any): string {
+      return commodity && commodity.name ? commodity.name : '';
+    }
+
+    commoditySelected(event: MatAutocompleteSelectedEvent): void {
+      const commodity = event.option.value as Commodity;
+      this.selectedCommodity = commodity;
+      this.gradeForm.patchValue({ commodityId: commodity.id });
+      this.gradeForm.patchValue({ commodityName: commodity.name });
+    }
+
+    private _filterCommodities(value: string): Commodity[] {
+      const filterValue = value.toLowerCase();
+      return this.commodities.filter(commodity =>
+        commodity.name.toLowerCase().includes(filterValue) || commodity.code.toLowerCase().includes(filterValue)
+      );
+    }
+
+    openAutoCommodity() {
+      this.commodityCtrl.setValue(''); // Clear the input field value
+    
+      // Open the autocomplete dropdown by triggering the value change event
+      this.commodityCtrl.updateValueAndValidity();
+    }
+
+    
+
   addGrade(){
     if(!this.editData){
       
       this.gradeForm.removeControl('id')
-      this.gradeForm.controls['commodityId'].setValue(this.selectedOption.id);
+      // this.gradeForm.controls['commodityId'].setValue(this.selectedOption.id);
       console.log("add: ", this.gradeForm.value);
-
+      this.gradeForm.controls['transactionUserId'].setValue(this.transactionUserId);
       if(this.gradeForm.valid){
         this.api.postGrade(this.gradeForm.value)
         .subscribe({
@@ -122,18 +145,6 @@ commodityName: any;
     return option && option.name ? option.name:'';
 
   }
-  
-    optionSelected(event: MatAutocompleteSelectedEvent) {
-      this.selectedOption = event.option.value;
-      this.gradeForm.patchValue({ commodityId: this.selectedOption.id });
-    }
-  
-    filtercommod(value: string) {
-      const searchvalue = value.toLocaleLowerCase();
-      let arr = this.commodity_list.filter(option => option.name.toLocaleLowerCase().includes(searchvalue) || 
-      option.code.toLocaleLowerCase().includes(searchvalue));
-      return arr.length ? arr : [{ name: 'No Item found', code: 'null' }];
-    }
       updateGrade(){
         this.api.putGrade(this.gradeForm.value)
         .subscribe({

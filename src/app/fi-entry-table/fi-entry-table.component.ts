@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { StrEmployeeExchangeDialogComponent } from '../str-employee-exchange-dialog/str-employee-exchange-dialog.component';
 import { formatDate } from '@angular/common';
+import { FiEntryDialogComponent } from '../fi-entry-dialog/fi-entry-dialog.component';
 
 @Component({
   selector: 'app-fi-entry-table',
@@ -15,7 +16,7 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./fi-entry-table.component.css']
 })
 export class FiEntryTableComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'balance', 'creditTotal', 'debitTotal', 'journalName','type', 'date', 'Action'];
+  displayedColumns: string[] = ['no', 'balance', 'creditTotal', 'debitTotal', 'journalName', 'type', 'date', 'Action'];
   matchedIds: any;
   storeList: any;
   storeName: any;
@@ -76,7 +77,7 @@ export class FiEntryTableComponent implements OnInit {
   }
 
   editMasterForm(row: any) {
-    this.dialog.open(StrEmployeeExchangeDialogComponent, {
+    this.dialog.open(FiEntryDialogComponent, {
       width: '100%',
       data: row
     }).afterClosed().subscribe(val => {
@@ -88,52 +89,52 @@ export class FiEntryTableComponent implements OnInit {
 
   deleteBothForms(id: number) {
 
-    // this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/get-Employee-Exchang-Details")
-    //   .subscribe(res => {
-    //     this.matchedIds = res.filter((a: any) => {
-    //       console.log("matched Id & employee_ExchangeId : ", a.employee_ExchangeId === id)
-    //       return a.employee_ExchangeId === id
-    //     })
+    this.http.get<any>("http://ims.aswan.gov.eg/api/FIEntryDetails/get/all")
+      .subscribe(res => {
+        this.matchedIds = res.filter((a: any) => {
+          console.log("matched Id & entryId : ", a.entryId === id)
+          return a.entryId === id
+        })
         var result = confirm("هل ترغب بتاكيد حذف التفاصيل و الرئيسي؟");
 
-    //     if (this.matchedIds.length) {
-    //       for (let i = 0; i < this.matchedIds.length; i++) {
+        if (this.matchedIds.length) {
+          for (let i = 0; i < this.matchedIds.length; i++) {
 
-    //         console.log("matchedIds details in loop: ", this.matchedIds[i].id)
+            console.log("matchedIds details in loop: ", this.matchedIds[i].id)
 
-    //         if (result) {
-    //           this.api.deleteStrEmployeeExchangeDetails(this.matchedIds[i].id)
-    //             .subscribe({
-    //               next: (res) => {
-    //                 // alert("تم الحذف التفاصيل بنجاح");
+            if (result) {
+              this.api.deleteFiEntryDetails(this.matchedIds[i].id)
+                .subscribe({
+                  next: (res) => {
+                    // alert("تم الحذف التفاصيل بنجاح");
 
-    //                 // var resultMaster = confirm("هل ترغب بتاكيد حذف الرئيسي؟");
-    //                 // if (resultMaster) {
-    //                 console.log("master id to be deleted: ", id)
+                    // var resultMaster = confirm("هل ترغب بتاكيد حذف الرئيسي؟");
+                    // if (resultMaster) {
+                    console.log("master id to be deleted: ", id)
 
-    //                 this.api.deleteStrEmployeeExchange(id)
-    //                   .subscribe({
-    //                     next: (res) => {
-    //                       // alert("تم حذف الرئيسي بنجاح");
-    //                       this.toastrDeleteSuccess();
-    //                       this.getAllMasterForms();
-    //                     },
-    //                     error: () => {
-    //                       alert("خطأ أثناء حذف الرئيسي !!");
-    //                     }
-    //                   })
-    //                 // }
+                    this.api.deleteFiEntry(id)
+                      .subscribe({
+                        next: (res) => {
+                          alert("تم حذف الرئيسي بنجاح");
+                          this.toastrDeleteSuccess();
+                          this.getAllMasterForms();
+                        },
+                        error: () => {
+                          alert("خطأ أثناء حذف الرئيسي !!");
+                        }
+                      })
+                    // }
 
-    //               },
-    //               error: () => {
-    //                 alert("خطأ أثناء حذف التفاصيل !!");
-    //               }
-    //             })
-    //         }
+                  },
+                  error: () => {
+                    alert("خطأ أثناء حذف التفاصيل !!");
+                  }
+                })
+            }
 
-    //       }
-    //     }
-    //     else {
+          }
+        }
+        else {
           if (result) {
             console.log("master id to be deleted: ", id)
 
@@ -149,11 +150,11 @@ export class FiEntryTableComponent implements OnInit {
                 }
               })
           }
-      //   }
+        }
 
-      // }, err => {
-      //   alert("خطا اثناء تحديد المجموعة !!")
-      // })
+      }, err => {
+        alert("خطا اثناء تحديد المجموعة !!")
+      })
 
   }
 
