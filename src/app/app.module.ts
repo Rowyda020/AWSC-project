@@ -78,6 +78,8 @@ import { FiEntryTableComponent } from './fi-entry-table/fi-entry-table.component
 import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog/fi-account-hierarchy-dialog.component';
+import { FIEntrySourceComponent } from './fi-entry-source/fi-entry-source.component';
+import { FIEntrySourceDialogComponent } from './fi-entry-source-dialog/fi-entry-source-dialog.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +129,9 @@ import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog
     FiEntryTableComponent,
     FiEntryDialogComponent,
     FIAccountHierarchyComponent,
-    FIAccountHierarchyDialogComponent
+    FIAccountHierarchyDialogComponent,
+    FIEntrySourceComponent,
+    FIEntrySourceDialogComponent
     
 
 

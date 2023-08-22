@@ -153,7 +153,7 @@ export class ApiService {
       return this.http.post<any>("http://ims.aswan.gov.eg/api/STRGroup/Add", data);
     }
     getGroups() {
-      return this.http.get<any>("http://ims.aswan.gov.eg/api/api/STRGroup/get/all");
+      return this.http.get<any>("http://ims.aswan.gov.eg/api/STRGroup/get/all");
     }
     putGroups(data: any) {
       return this.http.put<any>("http://ims.aswan.gov.eg/api/STRGroup/update", data);
@@ -175,8 +175,11 @@ export class ApiService {
     //Item
 
     postItems(data: any) {
-      console.log(data)
       return this.http.post<any>("http://ims.aswan.gov.eg/api/STRItem/Add", data);
+    }
+    postItemNo(data: any) {
+      console.log("No:",data);
+      return this.http.get<any>(`http://ims.aswan.gov.eg/api/STRItem/Get/lastNo?GroupId=${data}`);
     }
     getItem() {
       return this.http.get<any>("http://ims.aswan.gov.eg/api/STRItem/get/all");
@@ -232,6 +235,30 @@ deleteAccount(id: number) {
 getAllAccountHierarchy(): Observable<any> {
   return this.http.get<any>(
     'http://ims.aswan.gov.eg/api/FIAccountHierarchy/get/all'
+  );
+}
+
+//FiEntrySource
+postEntrySource(data: any) {
+  return this.http.post<any>(
+    'http://ims.aswan.gov.eg/api/FiEntrySourceType/Add',
+    data
+  );
+}
+getEntrySource() {
+  return this.http.get<any>(
+    'http://ims.aswan.gov.eg/api/FiEntrySourceType/get/all'
+  );
+}
+putEntrySource(data: any) {
+  return this.http.put<any>(
+    'http://ims.aswan.gov.eg/api/FiEntrySourceType/update',
+    data
+  );
+}
+deleteEntrySource(id: number) {
+  return this.http.delete<any>(
+    `http://ims.aswan.gov.eg/api/FiEntrySourceType/delete/${id}`
   );
 }
 
