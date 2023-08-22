@@ -25,7 +25,11 @@ import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-contain
 import { StrWithdrawContainerComponent } from './str-withdraw-container/str-withdraw-container.component';
 import { FIAccountComponent } from './fi-account/fi-account.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
+
 import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-item.component';
+
+import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
+
 
 const routes: Routes = [
   //  {path: 'products',
@@ -56,6 +60,7 @@ const routes: Routes = [
   { path: 'str-home', component: STRHomeComponent },
   { path: 'report', component: StrReportComponent },
   { path: 'AccountHierarchy', component: FIAccountHierarchyComponent },
+
   { path: 'withdraw', component: StrWithdrawContainerComponent },
   { path: 'add-item-report', component: StrReportAddItemComponent },
   //  {path: 'products',
@@ -68,6 +73,28 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'commodity', component: StrCommodityComponent },
+
+  { path: 'FiAccountItem', component: FiAccountItemComponent },
+
+  {path:'withdraw',component:StrWithdrawContainerComponent },
+//  {path: 'products',
+//  children: [
+//    {
+//      path: ':productID',
+//      component: ProductComponent,
+//    },
+//  ],} ,
+  { path: "", redirectTo: "login", pathMatch: "full" },
+   {path:'login' , component:LoginComponent},
+   {path:'commodity' , component:StrCommodityComponent},
+  
+  { path: "home", component: StrGroupHomeComponent},
+  { path: "groupOpening", component: StrOpeningStockContainerComponent },
+  { path: "employeeOpening", component: StrEmployeeExchangeContainerComponent },
+  { path: "groupBannel", component: StrGroupComponent },
+  { path: "unit", component:STRUnitsComponent},
+  { path: "grade", component:STRGradeComponent },
+
 
   { path: 'home', component: StrGroupHomeComponent },
   { path: 'groupOpening', component: StrOpeningStockContainerComponent },

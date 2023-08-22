@@ -80,7 +80,12 @@ import {  FileUploadComponent} from "./file-upload/file-upload.component";
 import { FileUploadDialogComponent } from './file-upload-dialog/file-upload-dialog.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog/fi-account-hierarchy-dialog.component';
+
 import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-item.component';
+
+import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
+import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-account-itemd-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -131,7 +136,12 @@ import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-
     FiEntryDialogComponent,
     FIAccountHierarchyComponent,
     FIAccountHierarchyDialogComponent,
+
     StrReportAddItemComponent
+
+    FiAccountItemComponent,
+    FiAccountItemdDialogComponent
+
     
 
 
