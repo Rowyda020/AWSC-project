@@ -13,14 +13,14 @@
             >
               <div class="toolbarUserContent d-flex">
                 <img
-                  src="../assets/login images/userPhoto.jpg"
+                  src="../assets/images/profile.png"
                   width="50"
                   height="50"
                   alt="user photo"
                 />
 
                 <div>
-                  <!-- <div class="my-2">{{ user.name }}</div> -->
+                  <div class="my-2">{{ user.name }}</div>
                   <div>مدير ادارة المخازن</div>
                 </div>
               </div>
@@ -62,7 +62,7 @@
             >
               <mat-icon>menu</mat-icon>
             </button>
-            <img src="../assets/login images/water logo.png" alt="user photo" />
+            <img src="../assets/images/water logo.png" alt="user photo" />
             <div class="toolbarUserContent">
               <p>شركة مياة الشرب</p>
               <p>و الصرف الصحى باسوان</p>
@@ -96,10 +96,7 @@
               >
                 <mat-icon>menu</mat-icon>
               </button>
-              <img
-                src="../assets/login images/water logo.png"
-                alt="user photo"
-              />
+              <img src="../assets/images/water logo.png" alt="user photo" />
               <div class="toolbarUserContent">
                 <p>شركة مياة الشرب</p>
                 <p>و الصرف الصحى باسوان</p>
@@ -167,22 +164,53 @@
                     <a mat-list-item class="sideNavSubItems">مركز التكلفة</a>
                   </mat-nav-list>
                 </mat-expansion-panel>
-                <a mat-list-item class="sideNavSubItems">اذن صرف</a>
-                <a mat-list-item class="sideNavSubItems">اذن اضافة</a>
+                <a
+                  mat-list-item
+                  class="sideNavSubItems"
+                  routerLink="/store"
+                  (click)="global.getPermissionUserRoles(1)"
+                  >اذن صرف</a
+                >
+                <a
+                  mat-list-item
+                  class="sideNavSubItems"
+                  routerLink="/withdraw"
+                  (click)="global.getPermissionUserRoles(1)"
+                  >اذن اضافة</a
+                >
                 <a
                   mat-list-item
                   routerLink="/groupOpening"
                   class="sideNavSubItems"
-                  (click)="global.getPermissionUserRoles(2)"
+                  (click)="global.getPermissionUserRoles(1)"
                   >الافتتاحى</a
                 >
-                <a mat-list-item class="sideNavSubItems">اضافة صنف</a>
-                <a mat-list-item class="sideNavSubItems">اضافة مخزن</a>
-                <a mat-list-item class="sideNavSubItems">اضافة مجموعة</a>
+                <a
+                  mat-list-item
+                  class="sideNavSubItems"
+                  routerLink="/store"
+                  (click)="global.getPermissionUserRoles(2)"
+                  >اضافة صنف</a
+                >
+                <a
+                  mat-list-item
+                  class="sideNavSubItems"
+                  routerLink="/items"
+                  (click)="global.getPermissionUserRoles(3)"
+                  >اضافة مخزن</a
+                >
+                <a
+                  mat-list-item
+                  class="sideNavSubItems"
+                  routerLink="/group"
+                  (click)="global.getPermissionUserRoles(4)"
+                  >اضافة مجموعة</a
+                >
                 <a
                   mat-list-item
                   routerLink="/employeeOpening"
                   class="sideNavSubItems"
+                  (click)="global.getPermissionUserRoles(5)"
                   >نقل عهدة</a
                 >
               </mat-nav-list>

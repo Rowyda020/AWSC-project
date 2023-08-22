@@ -23,7 +23,7 @@
 
       <mat-form-field appearance="outline">   
         <mat-label>السلعة</mat-label>     
-        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" required/>
+        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" (click)="openAutoCommodity()" required/>
         <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName" (optionSelected)="commoditySelected($event)">
           <mat-option *ngFor="let commodity of filteredCommodities | async" [value]="commodity">
             {{ commodity.name }} | {{ commodity.code }}
@@ -33,7 +33,7 @@
       
       <mat-form-field appearance="outline">
         <mat-label>النوعية</mat-label>
-        <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required required/>
+        <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" (click)="openAutoGrade()" required required/>
         <mat-autocomplete #autoGrade="matAutocomplete" [displayWith]="displayGradeName" (optionSelected)="gradeSelected($event)">
           <mat-option *ngFor="let grade of filteredGrades | async" [value]="grade">
             {{ grade.name }} | {{ grade.code }}
@@ -43,7 +43,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>الفصيلة</mat-label>
-        <input matInput aria-label="platoon" [matAutocomplete]="autoPlatoon" [formControl]="platoonCtrl" required/>
+        <input matInput aria-label="platoon" [matAutocomplete]="autoPlatoon" [formControl]="platoonCtrl" (click)="openAutoPlatoon()" required/>
         <mat-autocomplete #autoPlatoon="matAutocomplete" [displayWith]="displayPlatoonName" (optionSelected)="platoonSelected($event)">
           <mat-option *ngFor="let platoon of filteredPlatoons | async" [value]="platoon">
             {{ platoon.name }} | {{ platoon.code }}

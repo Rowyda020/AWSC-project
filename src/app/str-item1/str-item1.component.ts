@@ -97,9 +97,6 @@ export class STRItem1Component implements OnInit {
     'unitName',
     'action',
   ];
-
-  myDate: any = new Date();
-
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -315,6 +312,38 @@ export class STRItem1Component implements OnInit {
       });
     }
   }
+  openAutoUnit() {
+    this.unitCtrl.setValue(''); // Clear the input field value
+
+    // Open the autocomplete dropdown by triggering the value change event
+    this.unitCtrl.updateValueAndValidity();
+  }
+
+  openAutoCommodity() {
+    this.commodityCtrl.setValue(''); // Clear the input field value
+
+    // Open the autocomplete dropdown by triggering the value change event
+    this.commodityCtrl.updateValueAndValidity();
+  }
+  openAutoGrade() {
+    this.gradeCtrl.setValue(''); // Clear the input field value
+
+    // Open the autocomplete dropdown by triggering the value change event
+    this.gradeCtrl.updateValueAndValidity();
+  }
+  openAutoPlatoon() {
+    this.platoonCtrl.setValue(''); // Clear the input field value
+
+    // Open the autocomplete dropdown by triggering the value change event
+    this.platoonCtrl.updateValueAndValidity();
+  }
+
+  openAutoGroup() {
+    this.platoonCtrl.setValue(''); // Clear the input field value
+
+    // Open the autocomplete dropdown by triggering the value change event
+    this.platoonCtrl.updateValueAndValidity();
+  }
   async getSearchItems(name: any) {
     this.api.getItem().subscribe({
       next: (res) => {
@@ -388,7 +417,7 @@ export class STRItem1Component implements OnInit {
         }
 
         //enter selectedUnit+item
-        else if (!this.selectedUnit && name && this.selectedUnit) {
+        else if (this.selectedUnit && name && !this.selectedGroup) {
           console.log(
             'selectedUnit, name: ',
             this.selectedUnit,
@@ -417,18 +446,26 @@ export class STRItem1Component implements OnInit {
           );
 
           // this.dataSource = res.filter((res: any)=> res.name==name!)
-          // this.dataSource = res.filter((res: any)=> res.unitId==this.selectedUnit.id &&  res.groupId==this.selectedGroup.id! && res.name.toLowerCase().includes(name.toLowerCase()))
+          this.dataSource = res.filter(
+            (res: any) =>
+              res.unitId == this.selectedUnit.id &&
+              res.groupId == this.selectedGroup.id! &&
+              res.name.toLowerCase().includes(name.toLowerCase())
+          );
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }
 
         //enter itemName
-        else {
-          console.log('filter name id: ', this.selectedGroup, 'name: ', name);
-          // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
-          this.dataSource = res.filter((res: any) =>
-            res.name.toLowerCase().includes(name.toLowerCase())
+        else if (!this.selectedGroup && name == '' && !this.selectedUnit) {
+          console.log(
+            'filter name mmmm id: ',
+            this.selectedGroup,
+            'name: ',
+            name
           );
+          // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
+          // this.dataSource = res.filter((res: any)=> res.name.toLowerCase().includes(name.toLowerCase()))
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }
@@ -447,42 +484,5 @@ export class STRItem1Component implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  printReport() {
-    // this.loadAllData();
-    let header: any = document.getElementById('header');
-    let paginator: any = document.getElementById('paginator');
-    let action1: any = document.getElementById('action1');
-    let action2: any = document.querySelectorAll('action2');
-    console.log(action2);
-    let button1: any = document.querySelectorAll('#button1');
-    console.log(button1);
-    let button2: any = document.getElementById('button2');
-    let button: any = document.getElementsByClassName('mdc-icon-button');
-    console.log(button);
-    let reportFooter: any = document.getElementById('reportFooter');
-    let date: any = document.getElementById('date');
-    header.style.display = 'grid';
-    paginator.style.display = 'none';
-    action1.style.display = 'none';
-    // button1.style.display = 'none';
-    // button2.style.display = 'none';
-    for (let index = 0; index < button.length; index++) {
-      let element = button[index];
-
-      element.hidden = true;
-    }
-    reportFooter.style.display = 'block';
-    date.style.display = 'block';
-    let printContent: any = document.getElementById('content')?.innerHTML;
-    let originalContent: any = document.body.innerHTML;
-    document.body.innerHTML = printContent;
-    // console.log(document.body.children);
-    document.body.style.cssText =
-      'direction:rtl;-webkit-print-color-adjust:exact;';
-    window.print();
-    document.body.innerHTML = originalContent;
-    location.reload();
   }
 }

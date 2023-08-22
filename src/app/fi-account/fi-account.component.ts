@@ -4,7 +4,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogModule,
 } from '@angular/material/dialog';
-import { STRGradeDialogComponent } from '../str-grade-dialog/str-grade-dialog.component';
+import { FIAccountDialogComponent } from '../fi-account-dialog/fi-account-dialog.component';
 import { ApiService } from '../services/api.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -17,24 +17,24 @@ import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-export class Commodity {
-  constructor(public id: number, public name: string, public code: string) {}
+export class Hierarchy {
+  constructor(public id: number, public name: string, public level: string) {}
 }
 @Component({
-  selector: 'app-str-grade',
-  templateUrl: './str-grade.component.html',
-  styleUrls: ['./str-grade.component.css'],
+  selector: 'app-fi-account',
+  templateUrl: './fi-account.component.html',
+  styleUrls: ['./fi-account.component.css']
 })
-export class STRGradeComponent implements OnInit {
-  commodityCtrl: FormControl;
-  filteredCommodities: Observable<Commodity[]>;
-  commodities: Commodity[] = [];
-  selectedCommodity!: Commodity;
+export class FIAccountComponent implements OnInit {
+  hierarchyCtrl: FormControl;
+  filteredHierarchies: Observable<Hierarchy[]>;
+  hierarchies: Hierarchy[] = [];
+  selectedHierarchy!: Hierarchy;
   formcontrol = new FormControl('');
-  gradeForm!: FormGroup;
+  accountForm!: FormGroup;
   title = 'Angular13Crud';
   //define table fields which has to be same to api fields
-  displayedColumns: string[] = ['code', 'name', 'commodityName', 'action'];
+  displayedColumns: string[] = ['code', 'name', 'fiAccountHierarchyName', 'fiAccountlevel', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -43,51 +43,59 @@ export class STRGradeComponent implements OnInit {
     id: 0,
   };
   constructor(private dialog: MatDialog, private api: ApiService) {
-    this.commodityCtrl = new FormControl();
-    this.filteredCommodities = this.commodityCtrl.valueChanges.pipe(
+    this.hierarchyCtrl = new FormControl();
+    this.filteredHierarchies = this.hierarchyCtrl.valueChanges.pipe(
       startWith(''),
-      map((value) => this._filterCommodities(value))
+      map((value) => this._filterHierarchies(value))
     );
   }
   ngOnInit(): void {
     // console.log(productForm)
 
-    this.getAllGrades();
-    this.api.getAllCommodity().subscribe((commodities) => {
-      this.commodities = commodities;
+    this.getAllHierarchies();
+    this.api.getAllAccountHierarchy().subscribe((hierarchies) => {
+      this.hierarchies = hierarchies;
     });
   }
   openDialog() {
     this.dialog
-      .open(STRGradeDialogComponent, {
+      .open(FIAccountDialogComponent, {
         width: '30%',
       })
       .afterClosed()
       .subscribe((val) => {
         if (val === 'save') {
-          this.getAllGrades();
+          this.getAllHierarchies();
         }
       });
   }
 
-  displayCommodityName(commodity: any): string {
-    return commodity && commodity.name ? commodity.name : '';
+  displayHierarchyName(hierarchy: any): string {
+    return hierarchy && hierarchy.name ? hierarchy.name : '';
   }
-  commoditySelected(event: MatAutocompleteSelectedEvent): void {
-    const commodity = event.option.value as Commodity;
-    this.selectedCommodity = commodity;
-    this.gradeForm.patchValue({ commodityId: commodity.id });
-    this.gradeForm.patchValue({ commodityName: commodity.name });
+  hierarchySelected(event: MatAutocompleteSelectedEvent): void {
+    const hierarchy = event.option.value as Hierarchy;
+    this.selectedHierarchy = hierarchy;
+    this.accountForm.patchValue({ fiAccountHierarchyId: hierarchy.id });
+      this.accountForm.patchValue({ fiAccountHierarchyName: hierarchy.name });
+      this.accountForm.patchValue({ fiAccountHierarchyLevel: hierarchy.level });
   }
-  private _filterCommodities(value: string): Commodity[] {
+  private _filterHierarchies(value: string): Hierarchy[] {
     const filterValue = value.toLowerCase();
-    return this.commodities.filter(commodity =>
-      commodity.name.toLowerCase().includes(filterValue) || commodity.code.toLowerCase().includes(filterValue)
+    return this.hierarchies.filter(hierarchy =>
+      hierarchy.name.toLowerCase().includes(filterValue) || hierarchy.level.toLowerCase().includes(filterValue)
     );
   }
 
-  getAllGrades() {
-    this.api.getGrade().subscribe({
+  openAutoHierarchy() {
+    this.hierarchyCtrl.setValue(''); // Clear the input field value
+  
+    // Open the autocomplete dropdown by triggering the value change event
+    this.hierarchyCtrl.updateValueAndValidity();
+  }
+
+  getAllHierarchies() {
+    this.api.getAccount().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
@@ -99,27 +107,27 @@ export class STRGradeComponent implements OnInit {
     });
   }
 
-  editGrade(row: any) {
+  editAccount(row: any) {
     this.dialog
-      .open(STRGradeDialogComponent, {
+      .open(FIAccountDialogComponent, {
         width: '30%',
         data: row,
       })
       .afterClosed()
       .subscribe((val) => {
         if (val === 'update') {
-          this.getAllGrades();
+          this.getAllHierarchies();
         }
       });
   }
 
-  deleteGrade(id: number) {
-    var result = confirm('هل ترغب بتاكيد مسح النوعية ؟ ');
+  deleteAccount(id: number) {
+    var result = confirm('هل ترغب بتاكيد مسح الحساب ؟ ');
     if (result) {
-      this.api.deleteGrade(id).subscribe({
+      this.api.deleteAccount(id).subscribe({
         next: (res) => {
           alert('تم الحذف بنجاح');
-          this.getAllGrades();
+          this.getAllHierarchies();
         },
         error: () => {
           alert('خطأ فى حذف العنصر');
@@ -127,33 +135,27 @@ export class STRGradeComponent implements OnInit {
       });
     }
   }
-  openAutoCommodity() {
-    this.commodityCtrl.setValue(''); // Clear the input field value
-  
-    // Open the autocomplete dropdown by triggering the value change event
-    this.commodityCtrl.updateValueAndValidity();
-  }
-  async getSearchGrades(name: any) {
-    this.api.getGrade().subscribe({
+  async getSearchAccounts(name: any) {
+    this.api.getAccount().subscribe({
       next: (res) => {
         //enter id
-        if (this.selectedCommodity && name == '') {
-          console.log('filter ID id: ', this.selectedCommodity, 'name: ', name);
+        if (this.selectedHierarchy && name == '') {
+          console.log('filter ID id: ', this.selectedHierarchy, 'name: ', name);
 
           this.dataSource = res.filter(
-            (res: any) => res.commodityId == this.selectedCommodity.id!
+            (res: any) => res.fiAccountHierarchyId == this.selectedHierarchy.id!
           );
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }
         //enter both
-        else if (this.selectedCommodity && name != '') {
-          console.log('filter both id: ', this.selectedCommodity, 'name: ', name);
+        else if (this.selectedHierarchy && name != '') {
+          console.log('filter both id: ', this.selectedHierarchy, 'name: ', name);
 
           // this.dataSource = res.filter((res: any)=> res.name==name!)
           this.dataSource = res.filter(
             (res: any) =>
-              res.commodityId == this.selectedCommodity.id! &&
+              res.fiAccountHierarchyId == this.selectedHierarchy.id! &&
               res.name.toLowerCase().includes(name.toLowerCase())
           );
           this.dataSource.paginator = this.paginator;
@@ -161,7 +163,7 @@ export class STRGradeComponent implements OnInit {
         }
         //enter name
         else {
-          console.log('filter name id: ', this.selectedCommodity, 'name: ', name);
+          console.log('filter name id: ', this.selectedHierarchy, 'name: ', name);
           // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
           this.dataSource = res.filter((res: any) =>
             res.name.toLowerCase().includes(name.toLowerCase())
@@ -188,3 +190,4 @@ export class STRGradeComponent implements OnInit {
     }
   }
 }
+
