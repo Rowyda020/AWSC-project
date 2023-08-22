@@ -8,6 +8,8 @@ import { ApiService } from '../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { __param } from 'tslib';
 import { ParseSourceSpan } from '@angular/compiler';
+import {PipesModule  } from "../pipes/pipes.module";
+
 
 @Component({
   selector: 'app-str-product-dialog',
@@ -27,6 +29,7 @@ export class StrProductDialogComponent implements OnInit{
   itemsList: any;
   vendorsList: any;
   modelsList: any;
+  attachementList:any;
  itemName: any;
   productIdToEdit: any;
   userIdFromStorage: any;
@@ -48,7 +51,8 @@ export class StrProductDialogComponent implements OnInit{
       itemId: ['', Validators.required],
       vendorId: ['', Validators.required],
       modelId: ['', Validators.required],
-      // attachement: [, Validators.required],
+      attachment: [, Validators.required],
+
       // platoonName: [''],
       transactionUserId: [''],
       // createUserName: [''],
@@ -64,7 +68,10 @@ export class StrProductDialogComponent implements OnInit{
       this.groupForm.controls['itemId'].setValue(this.editData.itemId);
       this.groupForm.controls['vendorId'].setValue(this.editData.vendorId);
       this.groupForm.controls['modelId'].setValue(this.editData.modelId);
-      // this.groupForm.controls['attachement'].setValue(this.editData.attachement);
+      this.groupForm.controls['attachment'].setValue(this.editData.attachment);
+
+      // console.log("attachhh",this.editData.attachement
+      // )
 
       // this.groupForm.controls['platoonId'].setValue(this.editData.platoonId);
       this.userIdFromStorage = localStorage.getItem('transactionUserId');
@@ -105,7 +112,34 @@ export class StrProductDialogComponent implements OnInit{
 //     //     }
 //     // );
 // }
+onChange(event:any) {
+  alert('filleeee')
+
+    this.file = event.target.files[0];
+}
+
+// OnClick of button Upload
+onUpload() {
+
+    this.loading = !this.loading;
+    this.api.upload(this.file).subscribe(
+        (event: any) => {
+            if (typeof (event) === 'object') {
+
+                // Short link via api response
+                this.shortLink = event.link;
+
+                this.loading = false; // Flag variable 
+                console.log("shortlink",this.shortLink)
+                this.groupForm.controls['attachment'].setValue(this.shortLink);
+                alert("display link: "+this.groupForm.getRawValue().attachment)
+            }
+        }
+    );
+}
   async addProduct() {
+    // console.log("att",this.editData.attachement)
+
     console.log("form entered values", this.groupForm.value);
     if (!this.editData) {
       this.groupForm.removeControl('id')
@@ -115,9 +149,7 @@ export class StrProductDialogComponent implements OnInit{
         // this.groupForm.controls['platoonName'].setValue(this.platoonName);
         this.userIdFromStorage = localStorage.getItem('transactionUserId');
         this.groupForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
-        // this.groupForm.controls['createUserName'].setValue("211 static name");
-
-        // alert(this.groupForm.getRawValue().platoonName)
+     
         console.log("form add product value: ", this.groupForm.value)
 
         if (this.groupForm.valid) {
@@ -205,6 +237,19 @@ export class StrProductDialogComponent implements OnInit{
         }
       })
   }
+  // getAttachement() {
+  //   this.api.Attachement()
+  //     .subscribe({
+  //       next: (res) => {
+  //         this.modelsList = res;
+  //         console.log("modelsList res: ", this.modelsList);
+  //       },
+  //       error: (err) => {
+  //         console.log("fetch models data err: ", err);
+  //         alert("خطا اثناء جلب النماذج !");
+  //       }
+  //     })
+  // }
 
   toastrSuccess(): void {
     this.toastr.success("تم الحفظ بنجاح");

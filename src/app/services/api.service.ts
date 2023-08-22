@@ -250,34 +250,34 @@ export class ApiService {
 
   // crud role
 
-  postRole(data: any) {
-    return this.http.post<any>(`${this.url}/PR_Role/add-Role`, data);
-  }
-  getAllRole() {
-    return this.http.get<any>(`${this.url}/PR_Role/get-all-roles`);
-  }
-  putRole(data: any, id: number) {
-    return this.http.put<any>('http://localhost:3000/rolelist/' + id, data);
-  }
-  deleteRole(id: number) {
-    return this.http.delete<any>('http://localhost:3000/rolelist/' + id);
-  }
+  // postRole(data: any) {
+  //   return this.http.post<any>(`${this.url}/PR_Role/add-Role`, data);
+  // }
+  // getAllRole() {
+  //   return this.http.get<any>(`${this.url}/PR_Role/get-all-roles`);
+  // }
+  // putRole(data: any, id: number) {
+  //   return this.http.put<any>('http://localhost:3000/rolelist/' + id, data);
+  // }
+  // deleteRole(id: number) {
+  //   return this.http.delete<any>('http://localhost:3000/rolelist/' + id);
+  // }
 
   // salvana
-  postProduct(data: any) {
-    return this.http.post<any>('http://localhost:3000/productList/', data);
-  }
-  putProduct(data: any, id: number) {
-    return this.http.put<any>('http://localhost:3000/productList/' + id, data);
-  }
+  // postProduct(data: any) {
+  //   return this.http.post<any>('http://localhost:3000/productList/', data);
+  // }
+  // putProduct(data: any, id: number) {
+  //   return this.http.put<any>('http://localhost:3000/productList/' + id, data);
+  // }
 
-  getProduct() {
-    return this.http.get<any>('http://localhost:3000/productList/');
-  }
+  // getProduct() {
+  //   return this.http.get<any>('http://localhost:3000/productList/');
+  // }
 
-  deleteProduct(id: number) {
-    return this.http.delete<any>('http://localhost:3000/productList/' + id);
-  }
+  // deleteProduct(id: number) {
+  //   return this.http.delete<any>('http://localhost:3000/productList/' + id);
+  // }
 
   postCostCenter(data: any) {
     return this.http.post<any>(
@@ -287,7 +287,7 @@ export class ApiService {
   }
 
   getCostCenter() {
-    return this.http.get<any>(`http://ims.aswan.gov.eg/api/FICostCenter/get/all`);
+    return this.http.get<any>(`http://ims.aswan.gov.eg/api/FICostCenter/get/all `);
   }
 
   putCostCenter(data: any) {
@@ -901,12 +901,20 @@ upload(file:any):Observable<any> {
     
   // Make http post request over api
   // with formData as req
+  
   return this.http.post(this.baseApiUrl, formData)
+  // alert(this.baseApiUrl)
 }
-showfile(){ 
-  const formData = new FormData(); 
-  return this.http.post(this.baseApiUrl, formData)
-}
+//  showfile(file:any){ 
+//   const formData = new FormData(); 
+    
+//   // Store form name as "file" with file data
+//   formData.append("file", file);
+    
+//   // Make http post request over api
+//   // with formData as req
+//   return this.http.get(this.baseApiUrl)
+// }
   ///////////////////////////////// STR-Product/////////////////////////////
   postStrProduct(data: any) {
     console.log('form add product data to backend: ', data);
