@@ -88,7 +88,7 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
 
   deleteBothForms(id: number) {
     
-    this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/get-Employee-Exchang-Details")
+    this.http.get<any>("http://ims.aswan.gov.eg/api/STREmployeeExchangeDetails/get/all")
       .subscribe(res => {
         this.matchedIds = res.filter((a: any) => {
           console.log("matched Id & employee_ExchangeId : ", a.employee_ExchangeId === id)

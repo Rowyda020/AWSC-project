@@ -16,7 +16,31 @@ body {  font-family: 'Cairo', sans-serif;}
   background: linear-gradient(rgb(60, 202, 252), rgb(3, 21, 89));
   height: 100vh;
 }
-
+.role1{
+  padding: 20px;
+  background: linear-gradient(rgb(252, 60, 194), rgb(3, 21, 89));
+  height: 100vh;
+}
+.role2{
+  padding: 20px;
+  background: linear-gradient(rgb(60, 252, 146), rgb(3, 21, 89));
+  height: 100vh;
+}
+.role3{
+  padding: 20px;
+  background: linear-gradient(rgb(252, 169, 60), rgb(3, 21, 89));
+  height: 100vh;
+}
+.role4{
+  padding: 20px;
+  background: linear-gradient(rgb(252, 60, 60), rgb(3, 21, 89));
+  height: 100vh;
+}
+.role5{
+  padding: 20px;
+  background: linear-gradient(rgb(233, 252, 60), rgb(3, 21, 89));
+  height: 100vh;
+}
 .baseContainer {
   background: var(--primary-color);
   height: 100vh;

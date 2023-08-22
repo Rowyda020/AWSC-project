@@ -107,7 +107,7 @@ gradeName: any;
       this.grades = grades;
     });
 
-    this.api.getAllPlatoons().subscribe((platoons)=>{
+    this.api.getAllPlatoonsg().subscribe((platoons)=>{
       this.platoons = platoons;
     });
 
@@ -186,6 +186,25 @@ private _filterPlatoons(value: string): Platoon[] {
       (platoon.name.toLowerCase().includes(filterValue) || platoon.code.toLowerCase().includes(filterValue)) &&
       platoon.gradeId === this.selectedGrade?.id
   );
+}
+
+openAutoCommodity() {
+  this.commodityCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.commodityCtrl.updateValueAndValidity();
+}
+openAutoGrade() {
+  this.gradeCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.gradeCtrl.updateValueAndValidity();
+}
+openAutoPlatoon() {
+  this.platoonCtrl.setValue(''); // Clear the input field value
+
+  // Open the autocomplete dropdown by triggering the value change event
+  this.platoonCtrl.updateValueAndValidity();
 }
 
   addGroup(){
