@@ -25,6 +25,7 @@ import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custo
 import { StrProductComponent } from './str-product/str-product.component';
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
+import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 
 const routes: Routes = [
   //  {path: 'products',
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: 'str-home', component: STRHomeComponent },
   { path: 'report', component: StrReportComponent },
   { path: 'AccountHierarchy', component: FIAccountHierarchyComponent },
+  { path: 'FiAccountItem', component: FiAccountItemComponent },
 
 //  {path: 'products',
 //  children: [

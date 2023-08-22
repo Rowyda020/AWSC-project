@@ -109,6 +109,34 @@ export class ApiService {
       data
     );
   }
+   // FiAccountItem
+   getFiAccountItem() {
+    return this.http.get<any>(
+      'http://ims.aswan.gov.eg/api/FiAccountItem/get/all'
+    );
+  }
+  putFiAccountItem(data: any) {
+    return this.http.put<any>(
+      'http://ims.aswan.gov.eg/api/FiAccountItem/update',
+      data
+    );
+  }
+  deleteFiAccountItem(id: number) {
+    return this.http.delete<any>(
+      `http://ims.aswan.gov.eg/api/FiAccountItem/delete/${id}`
+    );
+  }
+  postFiAccountItem(data: any) {
+    return this.http.post<any>(
+      'http://ims.aswan.gov.eg/api/FiAccountItem/Add',
+      data
+    );
+  }
+  getAllAccounts(): Observable<any> {
+    return this.http.get<any>(
+      'http://ims.aswan.gov.eg/api/FIAccount/get/all'
+    );
+  }
 
   //Fatma
 
