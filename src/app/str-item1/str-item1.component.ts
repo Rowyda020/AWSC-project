@@ -16,6 +16,7 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 export class Commodity {
   constructor(public id: number, public name: string, public code: string) {}
@@ -59,6 +60,7 @@ export class Unit {
   selector: 'app-str-item1',
   templateUrl: './str-item1.component.html',
   styleUrls: ['./str-item1.component.css'],
+  providers: [DatePipe],
 })
 export class STRItem1Component implements OnInit {
   transactionUserId = localStorage.getItem('transactionUserId');
@@ -97,11 +99,18 @@ export class STRItem1Component implements OnInit {
     'unitName',
     'action',
   ];
+
+  myDate: any = new Date();
+
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private dialog: MatDialog, private api: ApiService) {
+  constructor(
+    private dialog: MatDialog,
+    private api: ApiService,
+    private datePipe: DatePipe
+  ) {
     this.commodityCtrl = new FormControl();
     this.filteredCommodities = this.commodityCtrl.valueChanges.pipe(
       startWith(''),
@@ -131,6 +140,8 @@ export class STRItem1Component implements OnInit {
       startWith(''),
       map((value) => this._filterUnits(value))
     );
+
+    this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
   }
   ngOnInit(): void {
     this.getAllItems();
@@ -484,5 +495,42 @@ export class STRItem1Component implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  printReport() {
+    // this.loadAllData();
+    let header: any = document.getElementById('header');
+    let paginator: any = document.getElementById('paginator');
+    let action1: any = document.getElementById('action1');
+    let action2: any = document.querySelectorAll('action2');
+    console.log(action2);
+    let button1: any = document.querySelectorAll('#button1');
+    console.log(button1);
+    let button2: any = document.getElementById('button2');
+    let button: any = document.getElementsByClassName('mdc-icon-button');
+    console.log(button);
+    let reportFooter: any = document.getElementById('reportFooter');
+    let date: any = document.getElementById('date');
+    header.style.display = 'grid';
+    paginator.style.display = 'none';
+    action1.style.display = 'none';
+    // button1.style.display = 'none';
+    // button2.style.display = 'none';
+    for (let index = 0; index < button.length; index++) {
+      let element = button[index];
+
+      element.hidden = true;
+    }
+    reportFooter.style.display = 'block';
+    date.style.display = 'block';
+    let printContent: any = document.getElementById('content')?.innerHTML;
+    let originalContent: any = document.body.innerHTML;
+    document.body.innerHTML = printContent;
+    // console.log(document.body.children);
+    document.body.style.cssText =
+      'direction:rtl;-webkit-print-color-adjust:exact;';
+    window.print();
+    document.body.innerHTML = originalContent;
+    location.reload();
   }
 }
