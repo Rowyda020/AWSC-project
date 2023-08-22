@@ -106,7 +106,7 @@ export class FiEntryDialogComponent implements OnInit {
       this.groupMasterForm.controls['creditTotal'].setValue(this.editData.creditTotal);
       this.groupMasterForm.controls['debitTotal'].setValue(this.editData.debitTotal);
 
-      if(this.groupDetailsForm.getRawValue().credit || this.groupDetailsForm.getRawValue().debit){
+      if (this.groupDetailsForm.getRawValue().credit || this.groupDetailsForm.getRawValue().debit) {
         console.log("found redit & debit: ", "credit: ", this.groupDetailsForm.getRawValue().credit, "debit: ", this.groupDetailsForm.getRawValue().debit)
         // this.groupMasterForm.controls['creditTotal'].setValue(this.groupDetailsForm.getRawValue().credit);
       }
@@ -191,7 +191,10 @@ export class FiEntryDialogComponent implements OnInit {
             this.sumOfDebitTotals = 0;
             for (let i = 0; i < this.matchedIds.length; i++) {
               this.sumOfCreditTotals = this.sumOfCreditTotals + parseFloat(this.matchedIds[i].credit);
+              this.groupMasterForm.controls['creditTotal'].setValue(this.sumOfCreditTotals);
               this.sumOfDebitTotals = this.sumOfDebitTotals + parseFloat(this.matchedIds[i].debit);
+              this.groupMasterForm.controls['debitTotal'].setValue(this.sumOfDebitTotals);
+
             }
 
           }
@@ -274,12 +277,12 @@ export class FiEntryDialogComponent implements OnInit {
         //   this.itemName = await this.getItemByID(this.groupDetailsForm.getRawValue().itemId);
         //   this.groupDetailsForm.controls['itemName'].setValue(this.itemName);
         //   alert("item name: " + this.itemName + " transactionUserId: " + this.userIdFromStorage)
-          this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
-          this.groupDetailsForm.controls['entryId'].setValue(this.getMasterRowId.id);
-          // this.groupDetailsForm.controls['total'].setValue((parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty)));
+        this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
+        this.groupDetailsForm.controls['entryId'].setValue(this.getMasterRowId.id);
+        // this.groupDetailsForm.controls['total'].setValue((parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty)));
 
-          // console.log("add details second time, details form: ", this.groupDetailsForm.value)
-          console.log("add details second time, get detailed row data: ", !this.getDetailedRowData)
+        // console.log("add details second time, details form: ", this.groupDetailsForm.value)
+        console.log("add details second time, get detailed row data: ", !this.getDetailedRowData)
         // }
 
         alert("item name controller: " + this.groupDetailsForm.getRawValue().itemName + " transactionUserId controller: " + this.groupDetailsForm.getRawValue().transactionUserId)
@@ -339,6 +342,12 @@ export class FiEntryDialogComponent implements OnInit {
     this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
     this.groupMasterForm.controls['id'].setValue(this.getMasterRowId.id);
 
+    console.log("sum of credit: ", this.sumOfCreditTotals, "sum of debit: ", this.sumOfDebitTotals)
+
+    this.groupMasterForm.controls['creditTotal'].setValue(this.sumOfCreditTotals);
+    this.groupMasterForm.controls['debitTotal'].setValue(this.sumOfDebitTotals);
+
+    console.log("update master form: ", this.groupMasterForm.value, "update details form: ", this.groupDetailsForm.value)
     this.api.putFiEntry(this.groupMasterForm.value)
       .subscribe({
         next: (res) => {
@@ -381,7 +390,9 @@ export class FiEntryDialogComponent implements OnInit {
     if (this.groupMasterForm.getRawValue().no != '' && this.groupMasterForm.getRawValue().storeId != '' && this.groupMasterForm.getRawValue().fiscalYearId != '' && this.groupMasterForm.getRawValue().date != '') {
 
       this.groupDetailsForm.controls['entryId'].setValue(this.getMasterRowId.id);
-      this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
+
+
+      // this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
 
       this.updateDetailsForm();
     }
