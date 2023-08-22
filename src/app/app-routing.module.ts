@@ -22,9 +22,10 @@ import { STRItem1Component } from './str-item1/str-item1.component';
 import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custody/str-employee-opening-custody.component';
 import { StrProductComponent } from './str-product/str-product.component';
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
-import {  StrWithdrawContainerComponent} from "./str-withdraw-container/str-withdraw-container.component";
+import { StrWithdrawContainerComponent } from './str-withdraw-container/str-withdraw-container.component';
 import { FIAccountComponent } from './fi-account/fi-account.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
+import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-item.component';
 
 const routes: Routes = [
   //  {path: 'products',
@@ -55,36 +56,36 @@ const routes: Routes = [
   { path: 'str-home', component: STRHomeComponent },
   { path: 'report', component: StrReportComponent },
   { path: 'AccountHierarchy', component: FIAccountHierarchyComponent },
-  {path:'withdraw',component:StrWithdrawContainerComponent },
-//  {path: 'products',
-//  children: [
-//    {
-//      path: ':productID',
-//      component: ProductComponent,
-//    },
-//  ],} ,
-  { path: "", redirectTo: "login", pathMatch: "full" },
-   {path:'login' , component:LoginComponent},
-   {path:'commodity' , component:StrCommodityComponent},
-  
-  { path: "home", component: StrGroupHomeComponent},
-  { path: "groupOpening", component: StrOpeningStockContainerComponent },
-  { path: "employeeOpening", component: StrEmployeeExchangeContainerComponent },
-  { path: "groupBannel", component: StrGroupComponent },
-  { path: "unit", component:STRUnitsComponent},
-  { path: "grade", component:STRGradeComponent },
+  { path: 'withdraw', component: StrWithdrawContainerComponent },
+  { path: 'add-item-report', component: StrReportAddItemComponent },
+  //  {path: 'products',
+  //  children: [
+  //    {
+  //      path: ':productID',
+  //      component: ProductComponent,
+  //    },
+  //  ],} ,
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'commodity', component: StrCommodityComponent },
 
-  { path: "costCenter", component:StrCostcenterComponent},
+  { path: 'home', component: StrGroupHomeComponent },
+  { path: 'groupOpening', component: StrOpeningStockContainerComponent },
+  { path: 'employeeOpening', component: StrEmployeeExchangeContainerComponent },
+  { path: 'groupBannel', component: StrGroupComponent },
+  { path: 'unit', component: STRUnitsComponent },
+  { path: 'grade', component: STRGradeComponent },
+
+  { path: 'costCenter', component: StrCostcenterComponent },
   // { path: "items", component:StrItemComponent},
-  {path: 'items1', component:STRItem1Component},
-  { path: "group", component:StrGroupComponent},
-  { path: "group1", component:STRGroup1Component},
-  { path: "store", component:StrStoreComponent},
-  {path: 'str-grade', component: STRGradeComponent},
-  {path: 'str-platoon', component: STRPlatoonComponent},
-  {path: 'str-platoon1', component: STRPlatoon1Component},
-  {path: 'str-home', component:STRHomeComponent},
-  
+  { path: 'items1', component: STRItem1Component },
+  { path: 'group', component: StrGroupComponent },
+  { path: 'group1', component: STRGroup1Component },
+  { path: 'store', component: StrStoreComponent },
+  { path: 'str-grade', component: STRGradeComponent },
+  { path: 'str-platoon', component: STRPlatoonComponent },
+  { path: 'str-platoon1', component: STRPlatoon1Component },
+  { path: 'str-home', component: STRHomeComponent },
 
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
 
