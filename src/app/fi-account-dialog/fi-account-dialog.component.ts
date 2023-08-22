@@ -33,11 +33,6 @@ export class FIAccountDialogComponent {
   actionBtn : string = "حفظ"
   selectedOption:any;
   getAccountData: any;
-  Id:string  | undefined | null;
-   commidityDt:any={
-  id:0,
-}
-commname:any;
 dataSource!: MatTableDataSource<any>;
 
 @ViewChild(MatPaginator) paginator!: MatPaginator;

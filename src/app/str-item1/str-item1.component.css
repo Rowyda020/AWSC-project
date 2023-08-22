@@ -1,55 +1,127 @@
-@import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
-@import url('http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css');
+@import url("http://fonts.googleapis.com/earlyaccess/droidarabickufi.css");
+@import url("http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css");
 
-mat-card{
+mat-card {
   margin: 2%;
 }
 
-button{
+button {
   margin: 2px;
 }
 
-th{
+th {
   background-color: #147a9f !important;
   color: white;
-  font-family: 'Droid Arabic Kufi', serif;
+  font-family: "Droid Arabic Kufi", serif;
   font-size: 16px;
 }
 
-.add{
+.add {
   background-color: #147a9f;
-  color: white;  
-  font-family: 'Droid Arabic Kufi', serif;
+  color: white;
+  font-family: "Droid Arabic Kufi", serif;
   font-size: 15px;
   padding: 25px;
 }
-.search mat-form-field{
+.search mat-form-field {
   width: 250px;
 }
-.search{
+.search {
   display: flex;
   justify-content: space-between;
 }
-.search button{
+.search button {
   padding: 10px;
   width: 80px;
   height: 50px;
   font-size: 15px;
-  font-family: 'Droid Arabic Kufi', serif;
+  font-family: "Droid Arabic Kufi", serif;
   background-color: #147a9f;
   color: white;
   border: none;
   border-radius: 5px;
 }
-mat-expansion-panel{
+mat-expansion-panel {
   width: 88%;
-  margin:30px auto;
+  margin: 30px auto;
 }
-mat-panel-description{
+mat-panel-description {
   font-size: 20px;
   color: rgb(63 81 181);
   font-weight: 500;
   text-align: right;
 }
 
+.header {
+  display: none;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
 
+.header div {
+  height: 100px;
+  background-color: #04365f;
+  color: white;
+  /* color: #04365f; */
+}
+
+.header p,
+.date p {
+  font-size: large;
+  font-weight: bold;
+}
+
+.header .header-one p {
+  padding: 21px;
+}
+
+.header .header-two {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+.header .header-two p {
+  width: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.header .header-two img {
+  height: 80%;
+}
+
+table {
+  margin: 28px 0;
+}
+
+footer {
+  display: none;
+  position: absolute;
+  bottom: 42px;
+  width: 100%;
+  font-size: large;
+  font-weight: bold;
+  padding: 21px;
+  border: black solid 3px;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+}
+
+footer h3 {
+  color: red;
+  font-size: large;
+  font-weight: bold;
+}
+
+.date {
+  position: absolute;
+  bottom: 0;
+  left: 7px;
+  margin-top: 14px;
+  display: none;
+}

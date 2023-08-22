@@ -1,9 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-} from '@angular/material/dialog';
+import {  MatDialog,  MAT_DIALOG_DATA,  MatDialogModule} from '@angular/material/dialog';
 import { STRGradeDialogComponent } from '../str-grade-dialog/str-grade-dialog.component';
 import { ApiService } from '../services/api.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -17,75 +13,79 @@ import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-export class Commodity {
+import { FiAccountItemdDialogComponent } from '../fi-account-itemd-dialog/fi-account-itemd-dialog.component';
+export class Account {
   constructor(public id: number, public name: string, public code: string) {}
 }
+
 @Component({
-  selector: 'app-str-grade',
-  templateUrl: './str-grade.component.html',
-  styleUrls: ['./str-grade.component.css'],
+  selector: 'app-fi-account-item',
+  templateUrl: './fi-account-item.component.html',
+  styleUrls: ['./fi-account-item.component.css']
 })
-export class STRGradeComponent implements OnInit {
-  commodityCtrl: FormControl;
-  filteredCommodities: Observable<Commodity[]>;
-  commodities: Commodity[] = [];
-  selectedCommodity!: Commodity;
+export class FiAccountItemComponent  implements OnInit {
+  accountCtrl: FormControl;
+  filteredAccounts: Observable<Account[]>;
+  accounts: Account[] = [];
+  selectedAccount!: Account;
   formcontrol = new FormControl('');
-  gradeForm!: FormGroup;
+  accountItemForm!: FormGroup;
   title = 'Angular13Crud';
   //define table fields which has to be same to api fields
-  displayedColumns: string[] = ['code', 'name', 'commodityName', 'action'];
+  displayedColumns: string[] = [ 'name', 'accounName', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
+  // commidityDt: any = {
+  //   id: 0,
+  // };
   constructor(private dialog: MatDialog, private api: ApiService) {
-    this.commodityCtrl = new FormControl();
-    this.filteredCommodities = this.commodityCtrl.valueChanges.pipe(
+    this.accountCtrl = new FormControl();
+    this.filteredAccounts = this.accountCtrl.valueChanges.pipe(
       startWith(''),
-      map((value) => this._filterCommodities(value))
+      map((value) => this._filterAccounts(value))
     );
   }
   ngOnInit(): void {
     // console.log(productForm)
 
-    this.getAllGrades();
-    this.api.getAllCommodity().subscribe((commodities) => {
-      this.commodities = commodities;
+    this.getAllAccountItem();
+    this.api.getAllAccounts().subscribe((fiAccount) => {
+      this.accounts = fiAccount;
     });
   }
   openDialog() {
     this.dialog
-      .open(STRGradeDialogComponent, {
+      .open(FiAccountItemdDialogComponent, {
         width: '30%',
       })
       .afterClosed()
       .subscribe((val) => {
         if (val === 'save') {
-          this.getAllGrades();
+          this.getAllAccountItem();
         }
       });
   }
 
-  displayCommodityName(commodity: any): string {
-    return commodity && commodity.name ? commodity.name : '';
+  displayAccountName(account: any): string {
+    return account && account.name ? account.name : '';
   }
-  commoditySelected(event: MatAutocompleteSelectedEvent): void {
-    const commodity = event.option.value as Commodity;
-    this.selectedCommodity = commodity;
-    this.gradeForm.patchValue({ commodityId: commodity.id });
-    this.gradeForm.patchValue({ commodityName: commodity.name });
+  accountSelected(event: MatAutocompleteSelectedEvent): void {
+    const account = event.option.value as Account;
+    this.selectedAccount = account;
+    this.accountItemForm.patchValue({ accountId: account.id });
+    this.accountItemForm.patchValue({ accounName: account.name });
   }
-  private _filterCommodities(value: string): Commodity[] {
+  private _filterAccounts(value: string): Account[] {
     const filterValue = value.toLowerCase();
-    return this.commodities.filter(commodity =>
-      commodity.name.toLowerCase().includes(filterValue) || commodity.code.toLowerCase().includes(filterValue)
+    return this.accounts.filter(account =>
+      account.name.toLowerCase().includes(filterValue) || account.code.toLowerCase().includes(filterValue)
     );
   }
 
-  getAllGrades() {
-    this.api.getGrade().subscribe({
+  getAllAccountItem() {
+    this.api.getFiAccountItem().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
@@ -97,27 +97,27 @@ export class STRGradeComponent implements OnInit {
     });
   }
 
-  editGrade(row: any) {
+  editFiAccountItem(row: any) {
     this.dialog
-      .open(STRGradeDialogComponent, {
+      .open(FiAccountItemdDialogComponent, {
         width: '30%',
         data: row,
       })
       .afterClosed()
       .subscribe((val) => {
         if (val === 'update') {
-          this.getAllGrades();
+          this.getAllAccountItem();
         }
       });
   }
 
-  deleteGrade(id: number) {
+  deleteFiAccountItem(id: number) {
     var result = confirm('هل ترغب بتاكيد مسح النوعية ؟ ');
     if (result) {
-      this.api.deleteGrade(id).subscribe({
+      this.api.deleteFiAccountItem(id).subscribe({
         next: (res) => {
           alert('تم الحذف بنجاح');
-          this.getAllGrades();
+          this.getAllAccountItem();
         },
         error: () => {
           alert('خطأ فى حذف العنصر');
@@ -125,33 +125,33 @@ export class STRGradeComponent implements OnInit {
       });
     }
   }
-  openAutoCommodity() {
-    this.commodityCtrl.setValue(''); // Clear the input field value
+  openAutoFiAccountItem() {
+    this.accountCtrl.setValue(''); // Clear the input field value
   
     // Open the autocomplete dropdown by triggering the value change event
-    this.commodityCtrl.updateValueAndValidity();
+    this.accountCtrl.updateValueAndValidity();
   }
-  async getSearchGrades(name: any) {
-    this.api.getGrade().subscribe({
+  async getSearchAccountItem(name: any) {
+    this.api.getFiAccountItem().subscribe({
       next: (res) => {
         //enter id
-        if (this.selectedCommodity && name == '') {
-          console.log('filter ID id: ', this.selectedCommodity, 'name: ', name);
+        if (this.selectedAccount && name == '') {
+          console.log('filter ID id: ', this.selectedAccount, 'name: ', name);
 
           this.dataSource = res.filter(
-            (res: any) => res.commodityId == this.selectedCommodity.id!
+            (res: any) => res.accountId == this.selectedAccount.id!
           );
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }
         //enter both
-        else if (this.selectedCommodity && name != '') {
-          console.log('filter both id: ', this.selectedCommodity, 'name: ', name);
+        else if (this.selectedAccount && name != '') {
+          console.log('filter both id: ', this.selectedAccount, 'name: ', name);
 
           // this.dataSource = res.filter((res: any)=> res.name==name!)
           this.dataSource = res.filter(
             (res: any) =>
-              res.commodityId == this.selectedCommodity.id! &&
+              res.accountId == this.selectedAccount.id! &&
               res.name.toLowerCase().includes(name.toLowerCase())
           );
           this.dataSource.paginator = this.paginator;
@@ -159,7 +159,7 @@ export class STRGradeComponent implements OnInit {
         }
         //enter name
         else {
-          console.log('filter name id: ', this.selectedCommodity, 'name: ', name);
+          console.log('filter name id: ', this.selectedAccount, 'name: ', name);
           // this.dataSource = res.filter((res: any)=> res.commodity==commidityID! && res.name==name!)
           this.dataSource = res.filter((res: any) =>
             res.name.toLowerCase().includes(name.toLowerCase())
@@ -174,9 +174,6 @@ export class STRGradeComponent implements OnInit {
     });
     // this.getAllProducts()
   }
-
-
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -185,4 +182,6 @@ export class STRGradeComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+
 }

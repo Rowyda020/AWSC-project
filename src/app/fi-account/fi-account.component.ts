@@ -52,7 +52,7 @@ export class FIAccountComponent implements OnInit {
   ngOnInit(): void {
     // console.log(productForm)
 
-    this.getAllHierarchies();
+    this.getAllAccounts();
     this.api.getAllAccountHierarchy().subscribe((hierarchies) => {
       this.hierarchies = hierarchies;
     });
@@ -65,7 +65,7 @@ export class FIAccountComponent implements OnInit {
       .afterClosed()
       .subscribe((val) => {
         if (val === 'save') {
-          this.getAllHierarchies();
+          this.getAllAccounts();
         }
       });
   }
@@ -94,7 +94,7 @@ export class FIAccountComponent implements OnInit {
     this.hierarchyCtrl.updateValueAndValidity();
   }
 
-  getAllHierarchies() {
+  getAllAccounts() {
     this.api.getAccount().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
@@ -116,7 +116,7 @@ export class FIAccountComponent implements OnInit {
       .afterClosed()
       .subscribe((val) => {
         if (val === 'update') {
-          this.getAllHierarchies();
+          this.getAllAccounts();
         }
       });
   }
@@ -127,7 +127,7 @@ export class FIAccountComponent implements OnInit {
       this.api.deleteAccount(id).subscribe({
         next: (res) => {
           alert('تم الحذف بنجاح');
-          this.getAllHierarchies();
+          this.getAllAccounts();
         },
         error: () => {
           alert('خطأ فى حذف العنصر');
