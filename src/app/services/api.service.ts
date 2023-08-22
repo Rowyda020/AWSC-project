@@ -84,6 +84,58 @@ export class ApiService {
     return this.http.get<any>('http://localhost:3000/StoreList/' + id);
   }
 
+   // FIAccountHierarchy
+   getFIAccountHierarchy() {
+    return this.http.get<any>(
+      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/get/all'
+    );
+  }
+  putFIAccountHierarchy(data: any) {
+    return this.http.put<any>(
+      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/update',
+      data
+    );
+  }
+  deleteFIAccountHierarchy(id: number) {
+    return this.http.delete<any>(
+      `http://ims.aswan.gov.eg/api/FIAccountHierarchy/delete/${id}`
+    );
+  }
+  postFIAccountHierarchy(data: any) {
+    return this.http.post<any>(
+      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/Add',
+      data
+    );
+  }
+   // FiAccountItem
+   getFiAccountItem() {
+    return this.http.get<any>(
+      'http://ims.aswan.gov.eg/api/FiAccountItem/get/all'
+    );
+  }
+  putFiAccountItem(data: any) {
+    return this.http.put<any>(
+      'http://ims.aswan.gov.eg/api/FiAccountItem/update',
+      data
+    );
+  }
+  deleteFiAccountItem(id: number) {
+    return this.http.delete<any>(
+      `http://ims.aswan.gov.eg/api/FiAccountItem/delete/${id}`
+    );
+  }
+  postFiAccountItem(data: any) {
+    return this.http.post<any>(
+      'http://ims.aswan.gov.eg/api/FiAccountItem/Add',
+      data
+    );
+  }
+  getAllAccounts(): Observable<any> {
+    return this.http.get<any>(
+      'http://ims.aswan.gov.eg/api/FIAccount/get/all'
+    );
+  }
+
   //Fatma
 
   //Platoon
@@ -804,28 +856,7 @@ export class ApiService {
         HeaderId
     );
   }
-  getFIAccountHierarchy() {
-    return this.http.get<any>(
-      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/get/all'
-    );
-  }
-  putFIAccountHierarchy(data: any) {
-    return this.http.put<any>(
-      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/update',
-      data
-    );
-  }
-  deleteFIAccountHierarchy(id: number) {
-    return this.http.delete<any>(
-      `http://ims.aswan.gov.eg/api/FIAccountHierarchy/delete/${id}`
-    );
-  }
-  postFIAccountHierarchy(data: any) {
-    return this.http.post<any>(
-      'http://ims.aswan.gov.eg/api/FIAccountHierarchy/Add',
-      data
-    );
-  }
+ 
 
 
 
