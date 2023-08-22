@@ -80,6 +80,7 @@ import {  FileUploadComponent} from "./file-upload/file-upload.component";
 import { FileUploadDialogComponent } from './file-upload-dialog/file-upload-dialog.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog/fi-account-hierarchy-dialog.component';
+import {PipesModule  } from "../app/pipes/pipes.module";
 import { FIEntrySourceComponent } from './fi-entry-source/fi-entry-source.component';
 import { FIEntrySourceDialogComponent } from './fi-entry-source-dialog/fi-entry-source-dialog.component';
 
@@ -154,7 +155,7 @@ import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-acco
 
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,PipesModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,

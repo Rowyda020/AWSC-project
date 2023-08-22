@@ -44,10 +44,7 @@ export class StrWithdrawDialogComponent implements OnInit {
   deleteConfirmBtn: any;
   dialogRefDelete: any;
   employeeList: any;
-  sellerList:any;
   employeeName: any;
-  sellerName:any;
-  sourceStoreName:any;
   costcenterName: any;
   costcenterList: any;
   deststoreList:any;
@@ -74,10 +71,8 @@ export class StrWithdrawDialogComponent implements OnInit {
     this.getItems();
     this.getFiscalYears();
     this.getEmployees();
-    this.getsellers();
     this.getCostCenters();
     this.getDestStores();
-    this.getsourceStores();
 
 
 
@@ -87,8 +82,8 @@ export class StrWithdrawDialogComponent implements OnInit {
       total: ['0',Validators.required],
       no: ['', Validators.required],
       // itemName:['',Validators.required],
-      storeId: ['', Validators.required],
-      storeName: ['', Validators.required],
+      storeId: [''],
+      storeName: [''],
       transactionUserId: [1, Validators.required],
       destStoreUserId: [1, Validators.required],
 
@@ -96,15 +91,15 @@ export class StrWithdrawDialogComponent implements OnInit {
       fiscalYearId: ['', Validators.required],
       costcenterId: [''],
       employeeId: [''],
-      sellerId: [''],
-      sellerName: ['', Validators.required],
-      sourceStoreId: ['', Validators.required],
-      sourceStoreName: ['', Validators.required],
+      // sellerId: [''],
+      // sellerName: [''],
+      // sourceStoreId: [''],
+      // sourceStoreName: [''],
 
-      employeeName: ['', Validators.required],
+      employeeName: [''],
       costcenterName: [''],
-      deststoreId: ['', Validators.required],
-      desstoreName: ['', Validators.required],
+      deststoreId: [''],
+      desstoreName: [''],
     });
 
     this.groupDetailsForm = this.formBuilder.group({
@@ -140,6 +135,8 @@ export class StrWithdrawDialogComponent implements OnInit {
       // this.groupMasterForm.controls['notesName'].setValue(this.editData.notesName);
 
       this.groupMasterForm.controls['storeId'].setValue(this.editData.storeId);
+      this.groupMasterForm.controls['storeName'].setValue(this.editData.storeName);
+
       // alert("facialId before: "+ this.editData.fiscalYearId)
       this.groupMasterForm.controls['fiscalYearId'].setValue(this.editData.fiscalYearId);
   
@@ -151,8 +148,8 @@ export class StrWithdrawDialogComponent implements OnInit {
       this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
       this.groupMasterForm.controls['id'].setValue(this.getMasterRowId.id);
       this.groupMasterForm.controls['employeeId'].setValue(this.editData.employeeId);
-      this.groupMasterForm.controls['sellerId'].setValue(this.editData.sellerId);
-      this.groupMasterForm.controls['sellerName'].setValue(this.editData.sellerName);
+      // this.groupMasterForm.controls['sellerId'].setValue(this.editData.sellerId);
+      // this.groupMasterForm.controls['sellerName'].setValue(this.editData.sellerName);
       this.groupMasterForm.controls['sourceStoreId'].setValue(this.editData.sourceStoreId);
       
       this.groupMasterForm.controls['sourceStoreName'].setValue(this.editData.sourceStoreName);
@@ -185,10 +182,11 @@ export class StrWithdrawDialogComponent implements OnInit {
 
     this.storeName = await this.getStoreByID(this.groupMasterForm.getRawValue().storeId);
     this.employeeName = await this.getemployeeByID(this.groupMasterForm.getRawValue().employeeId);
-    this.sellerName = await this.getsellerByID(this.groupMasterForm.getRawValue().sellerId );
-    this.sourceStoreName=await this.getStoreByID(this.groupMasterForm.getRawValue().sourceStoreId );
+    alert(this.groupMasterForm.getRawValue().employeeId)
 
-    this.desstoreName = await this.getdeststoreByID(this.groupMasterForm.getRawValue().deststoreId);
+    // this.sellerName = await this.getsellerByID(this.groupMasterForm.getRawValue().sellerId );
+
+    this.desstoreName = await this.getDestStoreById(this.groupMasterForm.getRawValue().deststoreId);
 
 
     this.costcenterName = await this.getcostcenterByID(this.groupMasterForm.getRawValue().costcenterId);
@@ -202,9 +200,9 @@ export class StrWithdrawDialogComponent implements OnInit {
     // console.log("faciaaaaal year add: ", this.groupMasterForm.getRawValue().fiscalYearId)
     // console.log("dataName: ", this.groupMasterForm.value)
 
-    if (this.groupMasterForm.getRawValue().storeName && this.groupMasterForm.getRawValue().deststoreId  && this.groupMasterForm.getRawValue().employeeId && 
+    if ( this.groupMasterForm.getRawValue().storeId  && this.groupMasterForm.getRawValue().employeeId && 
     this.groupMasterForm.getRawValue().costcenterId && this.groupMasterForm.getRawValue().date && 
-    this.groupMasterForm.getRawValue().storeId && this.groupMasterForm.getRawValue().no  && this.groupMasterForm.getRawValue().sellerId && this.groupMasterForm.getRawValue().sourceStore ) {
+    this.groupMasterForm.getRawValue().deststoreId && this.groupMasterForm.getRawValue().no   ) {
       // this.groupMasterForm.removeControl('id');
 
       // console.log("Master add form : ", this.groupMasterForm.value)
@@ -235,24 +233,20 @@ export class StrWithdrawDialogComponent implements OnInit {
     //   alert("تاكد من ادخال البيانات صحيحة")
     // }
   }
-  set_Seller_Employee_Null(sourceStoreId:any) {
-    console.log("sourceStoreId:",sourceStoreId)
-    this.groupMasterForm.controls['sellerId'].setValue(null); 
-    //this.groupMasterForm.controls['sourceStoreId'].setValue(this.editData.sourceStoreId); 
-    this.groupMasterForm.controls['employeeId'].setValue(null);  
-  }
+  // set_Seller_Employee_Null(sourceStoreId:any) {
+  //   this.groupMasterForm.controls['sellerId'].setValue(null); 
+  //   this.groupMasterForm.controls['employeeId'].setValue(null);  
+  // }
   
-  set_store_Employee_Null(sellerId:any) {
-    console.log("sellerId:",sellerId)
-    // this.groupMasterForm.controls['sellerId'].setValue(''); 
-    this.groupMasterForm.controls['sourceStoreId'].setValue(null); 
-    this.groupMasterForm.controls['employeeId'].setValue(null);  
+  set_Employee_Null(deststoreId:any) {
+    console.log("deststoreId:",deststoreId)
+
+    this.groupMasterForm.controls['destStoreId'].setValue(null); 
   }
-  set_store_Seller_Null(employeeId:any) {
+  set_store_Null(employeeId:any) {
     console.log("employeeId:",employeeId)
 
-    this.groupMasterForm.controls['sellerId'].setValue(null); 
-    this.groupMasterForm.controls['sourceStoreId'].setValue(null); 
+    this.groupMasterForm.controls['employeeId'].setValue(null); 
     // this.groupMasterForm.controls['employeeId'].setValue('');  
   }
   getAllDetailsForms() {
@@ -362,11 +356,9 @@ export class StrWithdrawDialogComponent implements OnInit {
     // alert("update Store name: " + this.storeName)
     this.groupMasterForm.controls['storeName'].setValue(this.storeName);
     this.employeeName = await this.getemployeeByID(this.groupMasterForm.getRawValue().employeeId);
-    this.sellerName = await this.getsellerByID(this.groupMasterForm.getRawValue().sellerId);
-    this.sourceStoreName= await this.getStoreByID(this.groupMasterForm.getRawValue().sourceStoreId);
 
         this.costcenterName = await this.getcostcenterByID(this.groupMasterForm.getRawValue().costcenterId);
-        this.desstoreName = await this.getdeststoreByID(this.groupMasterForm.getRawValue().deststoreId);
+        this.desstoreName = await this.getDestStoreById(this.groupMasterForm.getRawValue().deststoreId);
 
     // console.log("data storeName in edit: ", this.groupMasterForm.value)
 
@@ -425,7 +417,7 @@ console.log("put before",this.groupMasterForm.value)
 
   updateBothForms() {
     // console.log("pass id: ", this.getMasterRowId.id, "pass No: ", this.groupMasterForm.getRawValue().no, "pass StoreId: ", this.groupMasterForm.getRawValue().storeId, "pass Date: ", this.groupMasterForm.getRawValue().date)
-    if (this.groupMasterForm.getRawValue().no != ''  && this.groupMasterForm.getRawValue().employeeId  && this.groupMasterForm.getRawValue().sourceStoreId && this.groupMasterForm.getRawValue().sellerId && 
+    if (this.groupMasterForm.getRawValue().no != ''  && this.groupMasterForm.getRawValue().employeeId && 
     this.groupMasterForm.getRawValue().deststoreId && this.groupMasterForm.getRawValue().costcenterId 
     && this.groupMasterForm.getRawValue().storeId != '' && this.groupMasterForm.getRawValue().fiscalYearId != '' && this.groupMasterForm.getRawValue().date != '') {
 
@@ -526,32 +518,20 @@ console.log("put before",this.groupMasterForm.value)
             }
           })
       }
-      getsellers() {
-        this.api.getseller()
-          .subscribe({
-            next: (res) => {
-              this.sellerList = res;
-              // console.log("store res: ", this.storeList);
-            },
-            error: (err) => {
-              // console.log("fetch store data err: ", err);
-              // alert("خطا اثناء جلب المخازن !");
-            }
-          })
-      }
-      getsourceStores() {
-        this.api.getStore()
-          .subscribe({
-            next: (res) => {
-              this.sellerList = res;
-              // console.log("store res: ", this.storeList);
-            },
-            error: (err) => {
-              // console.log("fetch store data err: ", err);
-              // alert("خطا اثناء جلب المخازن !");
-            }
-          })
-      }
+      // getsellers() {
+      //   this.api.getseller()
+      //     .subscribe({
+      //       next: (res) => {
+      //         this.sellerList = res;
+      //         // console.log("store res: ", this.storeList);
+      //       },
+      //       error: (err) => {
+      //         // console.log("fetch store data err: ", err);
+      //         // alert("خطا اثناء جلب المخازن !");
+      //       }
+      //     })
+      // }
+   
       getCostCenters() {
         this.api.getCostCenter()
           .subscribe({
@@ -579,7 +559,7 @@ console.log("put before",this.groupMasterForm.value)
           })
       }
 
-  getStoreByID(id: any) {
+  getDestStoreById(id: any) {
     console.log("row store id: ", id);
     return fetch(`http://ims.aswan.gov.eg/api/STRStore/get/${id}`)
       .then(response => response.json())
@@ -592,11 +572,11 @@ console.log("put before",this.groupMasterForm.value)
       });
   }
   getemployeeByID(id: any) {
-        console.log("row store id: ", id);
-        return fetch(`http://ims.aswan.gov.eg/api/HREmployee/get/`,id)
+        console.log("row employee id: ", id);
+        return fetch(`http://ims.aswan.gov.eg/api/HREmployee/get/${id}`)
           .then(response => response.json())
           .then(json => {
-            console.log("fetch name by id res: ", json.name);
+            // console.log("fetch name by id res: ", json.name);
             return json.name;
           })
           .catch((err) => {
@@ -604,35 +584,27 @@ console.log("put before",this.groupMasterForm.value)
             // alert("خطا اثناء جلب رقم المخزن !");
           });
       }
-      getsellerByID(id: any) {
-        console.log("seller ", id);
-        return fetch(`http://ims.aswan.gov.eg/api/PRSeller/get/${id}`)
-          .then(response => response.json())
-          .then(json => {
-            console.log("fetch name by id res seller: ", json.name);
-            return json.name;
-          })
-          .catch((err) => {
-            // console.log("error in fetch name by id: ", err);
-            // alert("خطا اثناء جلب رقم المخزن !");
-          });
-      }
-      // getsourceStoreByID(id: any) {
-      //   console.log("row store id: ", id);
-      //   return fetch(`https://ims.aswan.gov.eg/api/PRO_Seller/get-seller-by-id/${id}`)
+
+
+      // getsellerByID(id : null) {
+      //   console.log("seller ", id);
+      //   // this.groupMasterForm.controls['sellerId'].setValue(null); 
+
+      //   return fetch(`http://ims.aswan.gov.eg/api/PRSeller/get/${id}`)
       //     .then(response => response.json())
       //     .then(json => {
-      //       console.log("fetch name by id res: ", json.name);
+      //       console.log("fetch name by id res seller: ", json.name);
       //       return json.name;
       //     })
       //     .catch((err) => {
-      //       // console.log("error in fetch name by id: ", err);
-      //       // alert("خطا اثناء جلب رقم المخزن !");
+      //       console.log("error in fetch name by id: ", err);
+      //       alert("خطا اثناء جلب رقم المخزن !");
       //     });
       // }
+ 
       getcostcenterByID(id: any) {
-        // console.log("row store id: ", id);
-        return fetch(`http://ims.aswan.gov.eg​/api​/FICostCenter​/get​/${id}`)
+        console.log("costcenter id: ", id);
+        return fetch(`http://ims.aswan.gov.eg/api/FICostCenter/get/${id}`)
           .then(response => response.json())
           .then(json => {
             console.log("fetch name by id res: ", json.name);
@@ -643,8 +615,8 @@ console.log("put before",this.groupMasterForm.value)
             // alert("خطا اثناء جلب رقم المخزن !");
           });
       }
-      getdeststoreByID(id: any) {
-        // console.log("row store id: ", id);
+      getStoreByID(id: any) {
+        console.log(" store: ", id);
         return fetch(`http://ims.aswan.gov.eg/api/STRStore/get/${id}`)
       .then(response => response.json())
       .then(json => {
@@ -669,20 +641,32 @@ console.log("put before",this.groupMasterForm.value)
         }
       })
   }
-
   getItemByID(id: any) {
     // console.log("row item id: ", id);
     return fetch(`http://ims.aswan.gov.eg/api/STRItem/get/${id}`)
       .then(response => response.json())
       .then(json => {
-        // console.log("fetch item name by id res: ", json.name);
+        console.log("fetch item name by id res: ", json.name);
         return json.name;
       })
       .catch((err) => {
         // console.log("error in fetch item name by id: ", err);
         // alert("خطا اثناء جلب رقم العنصر !");
       });
-  }
+    }
+  // getItemByID(id: any) {
+  //   // console.log("row item id: ", id);
+  //   return fetch(`http://ims.aswan.gov.eg/api/STRItem/get/${id}`)
+  //     .then(response => response.json())
+  //     .then(json => {
+  //       // console.log("fetch item name by id res: ", json.name);
+  //       return json.name;
+  //     })
+  //     .catch((err) => {
+  //       // console.log("error in fetch item name by id: ", err);
+  //       // alert("خطا اثناء جلب رقم العنصر !");
+  //     });
+  // }
 
   getItemByCode(code: any) {
     if (code.keyCode == 13) {
