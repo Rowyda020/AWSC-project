@@ -33,8 +33,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { StrCostcenterComponent } from '../app/str-costcenter/str-costcenter.component';
 import { StrCostcenterDialogComponent } from './str-costcenter-dialog/str-costcenter-dialog.component';
-import { StrItemComponent } from './STR_item/STR_item..component';
-import { StrItemDialogComponent } from './STR_item_dialog/STR_item_dialog.component';
+// import { StrItemComponent } from './STR_item/STR_item..component';
+// import { StrItemDialogComponent } from './STR_item_dialog/STR_item_dialog.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { StrGroupComponent } from './str-group/str-group.component';
 import { StrGroupDialogComponent } from './str-group-dialog/str-group-dialog.component';
@@ -74,10 +74,12 @@ import { STRItem1DialogComponent } from './str-item1-dialog/str-item1-dialog.com
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
 import { FiEntryTableComponent } from './fi-entry-table/fi-entry-table.component';
 import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.component';
+import {  FileUploadComponent} from "./file-upload/file-upload.component";
+import { FileUploadDialogComponent } from './file-upload-dialog/file-upload-dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
+    AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,FileUploadComponent,
     StrCommodityComponent,
     StrCommodityDialogComponent,
     LoginComponent,
@@ -88,8 +90,8 @@ import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.compon
 
     StrCostcenterComponent,
     StrCostcenterDialogComponent,
-    StrItemDialogComponent,
-    StrItemComponent,
+    // StrItemDialogComponent,
+    // StrItemComponent,
     StrGroupComponent,
     StrGroupDialogComponent,
     StrStoreComponent,
@@ -119,7 +121,8 @@ import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.compon
     STRItem1DialogComponent,
     FiEntryContainerComponent,
     FiEntryTableComponent,
-    FiEntryDialogComponent
+    FiEntryDialogComponent,
+    FileUploadDialogComponent
 
 
 

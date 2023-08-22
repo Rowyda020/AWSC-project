@@ -99,23 +99,23 @@ export class STRItem1Component implements OnInit{
   }
   ngOnInit(): void {
     this.getAllItems();
-    this.api.getAllCommoditiesi().subscribe((commodities)=>{
+    this.api.getAllCommodities().subscribe((commodities)=>{
       this.commodities = commodities;
     });
 
-    this.api.getAllGradesi().subscribe((grades)=>{
+    this.api.getAllGrades().subscribe((grades)=>{
       this.grades = grades;
     });
 
-    this.api.getAllPlatoonsi().subscribe((platoons)=>{
+    this.api.getAllPlatoons().subscribe((platoons)=>{
       this.platoons = platoons;
     });
 
-    this.api.getAllGroupsi().subscribe((groups)=>{
+    this.api.getAllGroups().subscribe((groups)=>{
       this.groups = groups;
     });
 
-    this.api.getAllUnitsi().subscribe((units)=>{
+    this.api.getAllUnits().subscribe((units)=>{
       this.units = units;
     });
   }

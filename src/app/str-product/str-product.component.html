@@ -43,6 +43,23 @@
                     <td mat-cell *matCellDef="let row"> {{row.modelId}} </td>
                 </ng-container>
 
+
+                <ng-container matColumnDef="attachement">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> الملفات </th>
+                    <td mat-cell *matCellDef="let row">
+
+                        <button mat-icon-button color="primary" *ngIf="shortLink">
+                            
+                            
+
+                           <a href="{{shortLink}}">{{shortLink}}</a> 
+
+
+                        </button>
+
+                    </td>
+                </ng-container>
+
                 <!-- action Column -->
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> الاجراء </th>
