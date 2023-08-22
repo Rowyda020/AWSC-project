@@ -10,13 +10,14 @@ export class AppComponent {
    transactionUserId= localStorage.getItem('transactionUserId')
    user:any
   constructor(public global:GlobalService){
+    this.gitUserById()
     
     // if(localStorage.getItem('token')) this.global.isLogIn = true
     // console.log(this.global.isLogIn)
 
     // console.log(this.global.userRoles)
     let userRole= localStorage.getItem('userRoles')
-   
+    this.gitUserById()
 
     
   }
@@ -24,7 +25,7 @@ export class AppComponent {
   ngOnInit():void
   {
     this.global.bgColor= document.querySelector('section')?.classList.add('screenBackground');
-    this.gitUserById()
+    
   }
   title = 'str-group';
 

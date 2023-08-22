@@ -93,7 +93,7 @@ export class StrWithdrawTableComponent implements OnInit {
           next: (res) => {
             // alert("تم حذف المجموعة بنجاح");
 
-            this.http.get<any>("https://ims.aswan.gov.eg/api/Withdraw_Details/get-all-WithdrawDetails")
+            this.http.get<any>("http://ims.aswan.gov.eg/api/STRWithdrawDetails/get/all ")
               .subscribe(res => {
                 this.matchedIds = res.filter((a: any) => {
                   // console.log("matched Id & HeaderId : ", a.HeaderId === id)
@@ -169,7 +169,7 @@ export class StrWithdrawTableComponent implements OnInit {
         },
         error: (err) => {
           // console.log("fetch store data err: ", err);
-          alert("خطا اثناء جلب المخازن !");
+          alert("خطا اثناء جلب مركز التكلفة !");
         }
       })
   }

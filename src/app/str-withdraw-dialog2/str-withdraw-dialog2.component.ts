@@ -94,7 +94,7 @@ export class StrWithdrawDialogComponent implements OnInit {
 
       date: ['2023-08-08T21:00:00', Validators.required],
       fiscalYearId: ['', Validators.required],
-      costcenterId: ['', Validators.required],
+      costcenterId: [''],
       employeeId: [''],
       sellerId: [''],
       sellerName: ['', Validators.required],
@@ -102,7 +102,7 @@ export class StrWithdrawDialogComponent implements OnInit {
       sourceStoreName: ['', Validators.required],
 
       employeeName: ['', Validators.required],
-      costcenterName: ['', Validators.required],
+      costcenterName: [''],
       deststoreId: ['', Validators.required],
       desstoreName: ['', Validators.required],
     });
@@ -259,7 +259,7 @@ export class StrWithdrawDialogComponent implements OnInit {
 
     // console.log("mastered row get all data: ", this.getMasterRowId)
     if (this.getMasterRowId) {
-      this.http.get<any>("https://ims.aswan.gov.eg/api/Withdraw_Details/get-all-WithdrawDetails")
+      this.http.get<any>("http://ims.aswan.gov.eg/api/STRWithdrawDetails/get/all")
         .subscribe(res => {
           // console.log("res to get all details form: ", res, "masterRowId: ", this.getMasterRowId.id);
 
@@ -566,7 +566,7 @@ console.log("put before",this.groupMasterForm.value)
           })
       }
       getDestStores() {
-        this.api.getDestStore()
+        this.api.getStore()
           .subscribe({
             next: (res) => {
               this.deststoreList = res;
@@ -580,8 +580,8 @@ console.log("put before",this.groupMasterForm.value)
       }
 
   getStoreByID(id: any) {
-    // console.log("row store id: ", id);
-    return fetch(`https://ims.aswan.gov.eg/api/STR_Store/get-UniStoret-by-id/${id}`)
+    console.log("row store id: ", id);
+    return fetch(`http://ims.aswan.gov.eg/api/STRStore/get/${id}`)
       .then(response => response.json())
       .then(json => {
         // console.log("fetch name by id res: ", json.name);
@@ -593,7 +593,7 @@ console.log("put before",this.groupMasterForm.value)
   }
   getemployeeByID(id: any) {
         console.log("row store id: ", id);
-        return fetch(`https://ims.aswan.gov.eg/api/HR_Employee/get-employee-by-id/`,id)
+        return fetch(`http://ims.aswan.gov.eg/api/HREmployee/get/`,id)
           .then(response => response.json())
           .then(json => {
             console.log("fetch name by id res: ", json.name);
@@ -606,7 +606,7 @@ console.log("put before",this.groupMasterForm.value)
       }
       getsellerByID(id: any) {
         console.log("seller ", id);
-        return fetch(`https://ims.aswan.gov.eg/api/PRO_Seller/get-seller-by-id/${id}`)
+        return fetch(`http://ims.aswan.gov.eg/api/PRSeller/get/${id}`)
           .then(response => response.json())
           .then(json => {
             console.log("fetch name by id res seller: ", json.name);
@@ -632,7 +632,7 @@ console.log("put before",this.groupMasterForm.value)
       // }
       getcostcenterByID(id: any) {
         // console.log("row store id: ", id);
-        return fetch(`https://ims.aswan.gov.eg/api/FI_CostCenter/get-CostCenter-by-id/${id}`)
+        return fetch(`http://ims.aswan.gov.eg​/api​/FICostCenter​/get​/${id}`)
           .then(response => response.json())
           .then(json => {
             console.log("fetch name by id res: ", json.name);
@@ -645,7 +645,7 @@ console.log("put before",this.groupMasterForm.value)
       }
       getdeststoreByID(id: any) {
         // console.log("row store id: ", id);
-        return fetch(`https://ims.aswan.gov.eg/api/STR_Store/get-UniStoret-by-id/${id}`)
+        return fetch(`http://ims.aswan.gov.eg/api/STRStore/get/${id}`)
       .then(response => response.json())
       .then(json => {
         // console.log("fetch name by id res: ", json.name);
@@ -672,7 +672,7 @@ console.log("put before",this.groupMasterForm.value)
 
   getItemByID(id: any) {
     // console.log("row item id: ", id);
-    return fetch(`https://ims.aswan.gov.eg/api/STR_Item/get-Item-by-id/${id}`)
+    return fetch(`http://ims.aswan.gov.eg/api/STRItem/get/${id}`)
       .then(response => response.json())
       .then(json => {
         // console.log("fetch item name by id res: ", json.name);
@@ -714,7 +714,7 @@ console.log("put before",this.groupMasterForm.value)
 
   getFiscalYearsByID(id: any) {
     console.log("row fiscalYear id: ", id);
-    return fetch(`https://ims.aswan.gov.eg/api/STR_Item/get-Item-by-id/${id}`)
+    return fetch(`https://ims.aswan.gov.eg/api/STRFiscalYear/get/${id}`)
       .then(response => response.json())
       .then(json => {
         console.log("fetch fiscalYears name by id res: ", json.fiscalyear);
