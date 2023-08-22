@@ -1,3 +1,12 @@
+import { FileUploadComponent } from './../file-upload/file-upload.component';
+// import { FileUploadDialogComponent } from 'module';
+import { FileUploadDialogComponent } from './../file-upload-dialog/file-upload-dialog.component';
+
+
+
+
+
+// import { FileUploadComponent } from "./FileUploadComponent,";
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { StrGroupDialogComponent } from '../str-group-dialog/str-group-dialog.component';
@@ -8,24 +17,33 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { StrProductDialogComponent } from '../str-product-dialog/str-product-dialog.component';
+// import { GlobalService } from '../services/global.service';
 
 @Component({
   selector: 'app-str-product',
   templateUrl: './str-product.component.html',
+  providers: [ FileUploadComponent ,GlobalService],
+
+
   styleUrls: ['./str-product.component.css']
 })
 export class StrProductComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'itemId', 'vendorId', 'modelId', 'action'];
+  loading: boolean = false; // Flag variable
+  file:any
+  File = null;
+  // baseApiUrl = "https://file.io"
+  displayedColumns: string[] = ['name', 'itemId', 'vendorId', 'modelId','attachement', 'action'];
 
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private api: ApiService, private toastr: ToastrService) { }
+  constructor(private dialog: MatDialog, public shortLink: FileUploadComponent, private api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getAllProducts();
+    console.log("shortlink",this.shortLink)
   }
 
   applyFilter(event: Event) {
@@ -36,6 +54,7 @@ export class StrProductComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
 
   getAllProducts() {
     this.api.getStrProduct()
@@ -51,7 +70,21 @@ export class StrProductComponent implements OnInit {
         }
       })
   }
+//   onUpload() {
+//     this.loading = !this.loading;
+//     console.log(this.file);
+//     this.api.upload(this.file).subscribe(
+//         (event: any) => {
+//             if (typeof (event) === 'object') {
 
+//                 // Short link via api response
+//                 this.shortLink = event.link;
+
+//                 this.loading = false; // Flag variable 
+//             }
+//         }
+//     );
+// }
   openDialog() {
     this.dialog.open(StrProductDialogComponent, {
       width: '30%'
@@ -73,6 +106,19 @@ export class StrProductComponent implements OnInit {
       }
     })
   }
+   
+  showfile() {
+
+this.dialog.open(FileUploadDialogComponent, {
+  width: '30%',
+
+}).afterClosed().subscribe(val => {
+
+    this.getAllProducts();
+  
+})
+      }
+    
 
   deleteProduct(id: number) {
     var result = confirm("هل ترغب بتاكيد مسح المنتج ؟ ");

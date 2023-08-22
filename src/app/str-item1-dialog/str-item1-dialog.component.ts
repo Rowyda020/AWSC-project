@@ -140,11 +140,11 @@ gradeName: any;
     });
     
 
-    this.api.getAllCommoditiesi().subscribe((commodities)=>{
+    this.api.getAllCommodities().subscribe((commodities)=>{
       this.commodities = commodities;
     });
 
-    this.api.getAllGradesi().subscribe((grades)=>{
+    this.api.getAllGrades().subscribe((grades)=>{
       this.grades = grades;
     });
 

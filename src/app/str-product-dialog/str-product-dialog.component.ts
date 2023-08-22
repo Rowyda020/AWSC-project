@@ -1,17 +1,24 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Inject ,ViewChild} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GlobalService } from '../services/global.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { __param } from 'tslib';
+import { ParseSourceSpan } from '@angular/compiler';
 
 @Component({
   selector: 'app-str-product-dialog',
   templateUrl: './str-product-dialog.component.html',
   styleUrls: ['./str-product-dialog.component.css']
 })
-export class StrProductDialogComponent implements OnInit {
+export class StrProductDialogComponent implements OnInit{
+  shortLink: string = "";
+  loading: boolean = false; // Flag variable
+  file:any;
+   File = null; // Variable to store file
   freshnessList = ["Brand new", "Second Hand", "Refurbished"];
   groupForm !: FormGroup;
   actionBtn: string = "Save";
@@ -26,7 +33,7 @@ export class StrProductDialogComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private api: ApiService,
-    @Inject(MAT_DIALOG_DATA) public editData: any,
+    @Inject(MAT_DIALOG_DATA) public editData: any,private http:HttpClient,
     private dialogRef: MatDialogRef<StrProductDialogComponent>,
     private toastr: ToastrService) { }
 
@@ -41,6 +48,7 @@ export class StrProductDialogComponent implements OnInit {
       itemId: ['', Validators.required],
       vendorId: ['', Validators.required],
       modelId: ['', Validators.required],
+      // attachement: [, Validators.required],
       // platoonName: [''],
       transactionUserId: [''],
       // createUserName: [''],
@@ -56,6 +64,8 @@ export class StrProductDialogComponent implements OnInit {
       this.groupForm.controls['itemId'].setValue(this.editData.itemId);
       this.groupForm.controls['vendorId'].setValue(this.editData.vendorId);
       this.groupForm.controls['modelId'].setValue(this.editData.modelId);
+      // this.groupForm.controls['attachement'].setValue(this.editData.attachement);
+
       // this.groupForm.controls['platoonId'].setValue(this.editData.platoonId);
       this.userIdFromStorage = localStorage.getItem('transactionUserId');
 
@@ -68,7 +78,33 @@ export class StrProductDialogComponent implements OnInit {
 
   }
 
+//   onChange(event:any) {
+//     this.file = event.target.files[0];
+//     console.log(event)
+// }
 
+
+// // OnClick of button Upload
+// onUpload() {
+//   const fd=new FormData;
+//   fd.append('IMAGES',this.file,this.file.name);
+//   this.api.upload(this.file).subscribe(event=>{console.log(event)
+
+//   })
+//     // this.loading = !this.loading;
+//     // console.log(this.file);
+//     // this.api.upload(this.file).subscribe(
+//     //     (event: any) => {
+//     //         if (typeof (event) === 'object') {
+
+//     //             // Short link via api response
+//     //             this.shortLink = event.link;
+
+//     //             this.loading = false; // Flag variable 
+//     //         }
+//     //     }
+//     // );
+// }
   async addProduct() {
     console.log("form entered values", this.groupForm.value);
     if (!this.editData) {

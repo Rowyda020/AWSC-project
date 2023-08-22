@@ -145,7 +145,7 @@ export class STRItem1Component implements OnInit {
   }
   ngOnInit(): void {
     this.getAllItems();
-    this.api.getAllCommoditiesi().subscribe((commodities) => {
+    this.api.getAllCommodities().subscribe((commodities) => {
       this.commodities = commodities;
     });
 

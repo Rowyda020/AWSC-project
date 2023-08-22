@@ -99,11 +99,11 @@ gradeName: any;
     });
     
 
-    this.api.getAllCommoditiesg().subscribe((commodities)=>{
+    this.api.getAllCommodities().subscribe((commodities)=>{
       this.commodities = commodities;
     });
 
-    this.api.getAllGradesg().subscribe((grades)=>{
+    this.api.getAllGrades().subscribe((grades)=>{
       this.grades = grades;
     });
 

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class GlobalService {
+  public shortLink='';
   isLogIn = false;
   bgColor: any;
   isStatus = 'مفعل';
