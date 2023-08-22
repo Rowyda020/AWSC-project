@@ -71,11 +71,11 @@ export class STRGroup1Component implements OnInit{
   }
   ngOnInit(): void {
     this.getAllGroups();
-    this.api.getAllCommoditiesg().subscribe((commodities)=>{
+    this.api.getAllCommodities().subscribe((commodities)=>{
       this.commodities = commodities;
     });
 
-    this.api.getAllGradesg().subscribe((grades)=>{
+    this.api.getAllGrades().subscribe((grades)=>{
       this.grades = grades;
     });
 

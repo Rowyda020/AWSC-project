@@ -17,7 +17,7 @@ export class AppComponent {
 
     // console.log(this.global.userRoles)
     let userRole= localStorage.getItem('userRoles')
-   
+    this.gitUserById()
 
     
   }
