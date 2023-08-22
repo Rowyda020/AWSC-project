@@ -13,8 +13,6 @@ export class GlobalService {
 
   public navFlag: boolean = true;
 
-  baseUrl = 'http://127.0.0.1:8000/api';
-
   url = 'http://ims.aswan.gov.eg/api';
 
   public reportData: [] = [];
@@ -32,9 +30,7 @@ export class GlobalService {
   }
 
   getUserById(id: any): Observable<any> {
-    return this.http.get(`${this.url}PRUser/get/${id}`);
-  
-  
+    return this.http.get(`${this.url}/PRUser/get/${id}`);
   }
 
   login(obj: any): Observable<any> {
@@ -48,13 +44,7 @@ export class GlobalService {
     return this.http.post('http://ims.aswan.gov.eg/api/PR_User/Add-user', obj);
   }
 
-  authUser(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/auth/user-profile`);
-  }
 
-  updateUser(obj: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/user-profile`, obj);
-  }
 
   getRolesByUserId(userId: any): Observable<any> {
     console.log('userId ', userId);
@@ -89,7 +79,20 @@ export class GlobalService {
     let userRoles = localStorage.getItem('userRoles')?.split('');
     console.log(userRoles);
     for (let i = 0; i < userRoles!.length; i++) {
-      if (role == userRoles![i]) return true;
+      if (role == userRoles![i])
+     if(role==1)
+      this.bgColor= document.querySelector('section')?.setAttribute("class","role1")
+    if (role==2)
+    this.bgColor= document.querySelector('section')?.setAttribute("class","role2")
+    if (role==3)
+    this.bgColor= document.querySelector('section')?.setAttribute("class","role3")
+    if (role==4)
+    this.bgColor= document.querySelector('section')?.setAttribute("class","role4")
+    if (role==5)
+    this.bgColor= document.querySelector('section')?.setAttribute("class","role5")
+    // else
+    // this.bgColor= document.querySelector('section')?.setAttribute("class","screenBackground ")
+       return true;
     }
     window.alert('You dont have the permission to visit this page');
     this.router.navigate(['/home']);
