@@ -10,7 +10,6 @@ import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatOptionSelectionChange } from '@angular/material/core';
 
 export class Hierarchy {
   constructor(public id: number, public name: string, public level: string) {}

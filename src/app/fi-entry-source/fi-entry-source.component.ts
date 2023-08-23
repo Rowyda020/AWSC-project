@@ -67,7 +67,7 @@ export class FIEntrySourceComponent  implements OnInit {
     });
   }
 
-  editAccount(row: any) {
+  editEntrySource(row: any) {
     this.dialog
       .open(FIEntrySourceDialogComponent, {
         width: '30%',
@@ -81,7 +81,7 @@ export class FIEntrySourceComponent  implements OnInit {
       });
   }
 
-  deleteAccount(id: number) {
+  deleteEntrySource(id: number) {
     var result = confirm('هل ترغب بتاكيد الحذف ؟ ');
     if (result) {
       this.api.deleteEntrySource(id).subscribe({

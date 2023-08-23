@@ -88,6 +88,9 @@ import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-
 
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-account-itemd-dialog.component';
+import { FIEntrySourceTypeComponent } from './fi-entry-source-type/fi-entry-source-type.component';
+import { FIEntrySourceTypeDialogComponent } from './fi-entry-source-type-dialog/fi-entry-source-type-dialog.component';
+
 import { FIJournalComponent } from './fi-journal/fi-journal.component';
 import { FIJournalDialogComponent } from './fi-journal-dialog/fi-journal-dialog.component';
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
@@ -154,6 +157,8 @@ import { STRAddTableComponent } from './str-add-table/str-add-table.component';
 // selvana
     FiAccountItemComponent,
     FiAccountItemdDialogComponent,
+    FIEntrySourceTypeComponent,
+    FIEntrySourceTypeDialogComponent,
     FIJournalComponent,
     FIJournalDialogComponent,
     STRAddContainerComponent,
