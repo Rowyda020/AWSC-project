@@ -21,24 +21,25 @@
                     <mat-option [value]="employee.id" *ngFor="let employee of employeeList">{{employee.name}}</mat-option>
                 </mat-select>
             </mat-form-field> -->
+           
             <mat-form-field appearance="outline" class="groupInput">
-                <mat-label>المورد</mat-label>
-                <mat-select placeholder="المورد" (valueChange)="set_store_Employee_Null($event)" formControlName="sellerId">
-                    <mat-option [value]="seller.id" *ngFor="let seller of sellerList">{{seller.name}}</mat-option>
+                <mat-label>مخزن خارجي </mat-label>
+                <mat-select placeholder="مخزن خارجي " (valueChange)="set_Employee_Null($event)" formControlName="deststoreId">
+                    <mat-option [value]="deststore.id" *ngFor="let deststore of deststoreList">{{deststore.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
              <mat-form-field appearance="outline" class="groupInput">
                 <mat-label>الموظف</mat-label>
-                <mat-select placeholder="الموظف" (valueChange)="set_store_Seller_Null($event)" formControlName="employeeId">
+                <mat-select placeholder="الموظف" (valueChange)="set_store_Null($event)" formControlName="employeeId">
                     <mat-option [value]="employee.id" *ngFor="let employee of employeeList">{{employee.name}}</mat-option>
                 </mat-select>
                 </mat-form-field>
-                <!-- <mat-form-field appearance="outline" class="groupInput">
+                <mat-form-field appearance="outline" class="groupInput">
                     <mat-label>المخازن</mat-label>
                     <mat-select placeholder="المخازن" formControlName="storeId">
                         <mat-option [value]="store.id" *ngFor="let store of storeList">{{store.name}}</mat-option>
                     </mat-select>
-                </mat-form-field> -->
+                </mat-form-field>
                 
             <mat-form-field appearance="outline" class="groupInput">
                 <mat-label>مركز التكلفة</mat-label>
@@ -46,12 +47,7 @@
                     <mat-option [value]="costcenter.id" *ngFor="let costcenter of costcenterList">{{costcenter.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field appearance="outline" class="groupInput">
-                <mat-label>مخزن خارجي </mat-label>
-                <mat-select placeholder="مخزن خارجي " formControlName="deststoreId">
-                    <mat-option [value]="deststore.id" *ngFor="let deststore of deststoreList">{{deststore.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
+           
             <mat-form-field appearance="outline" class="groupInput">
                 <mat-label>السنة المالية</mat-label>
                 <mat-select placeholder="السنة المالية" formControlName="fiscalYearId">

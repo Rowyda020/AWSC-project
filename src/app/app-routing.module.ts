@@ -22,12 +22,17 @@ import { STRItem1Component } from './str-item1/str-item1.component';
 import { STREmployeeOpeningCustodyComponent } from './str-employee-opening-custody/str-employee-opening-custody.component';
 import { StrProductComponent } from './str-product/str-product.component';
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
-import {  StrWithdrawContainerComponent} from "./str-withdraw-container/str-withdraw-container.component";
+import { StrWithdrawContainerComponent } from './str-withdraw-container/str-withdraw-container.component';
 import { FIAccountComponent } from './fi-account/fi-account.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
+import { FIEntrySourceComponent } from './fi-entry-source/fi-entry-source.component';
+
+import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-item.component';
+
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FIJournalComponent } from './fi-journal/fi-journal.component';
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
+
 
 const routes: Routes = [
   //  {path: 'products',
@@ -58,6 +63,21 @@ const routes: Routes = [
   { path: 'str-home', component: STRHomeComponent },
   { path: 'report', component: StrReportComponent },
   { path: 'AccountHierarchy', component: FIAccountHierarchyComponent },
+  { path: 'EntrySource' , component: FIEntrySourceComponent},
+
+  { path: 'withdraw', component: StrWithdrawContainerComponent },
+  { path: 'add-item-report', component: StrReportAddItemComponent },
+  //  {path: 'products',
+  //  children: [
+  //    {
+  //      path: ':productID',
+  //      component: ProductComponent,
+  //    },
+  //  ],} ,
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'commodity', component: StrCommodityComponent },
+
   { path: 'FiAccountItem', component: FiAccountItemComponent },
   { path: 'FIJournal', component: FIJournalComponent },
   { path: 'STRAdd', component: STRAddContainerComponent },
@@ -82,17 +102,24 @@ const routes: Routes = [
   { path: "unit", component:STRUnitsComponent},
   { path: "grade", component:STRGradeComponent },
 
-  { path: "costCenter", component:StrCostcenterComponent},
-  // { path: "items", component:StrItemComponent},
-  {path: 'items1', component:STRItem1Component},
-  { path: "group", component:StrGroupComponent},
-  { path: "group1", component:STRGroup1Component},
-  { path: "store", component:StrStoreComponent},
-  {path: 'str-grade', component: STRGradeComponent},
-  {path: 'str-platoon', component: STRPlatoonComponent},
-  {path: 'str-platoon1', component: STRPlatoon1Component},
-  {path: 'str-home', component:STRHomeComponent},
-  
+
+  { path: 'home', component: StrGroupHomeComponent },
+  { path: 'groupOpening', component: StrOpeningStockContainerComponent },
+  { path: 'employeeOpening', component: StrEmployeeExchangeContainerComponent },
+  { path: 'groupBannel', component: StrGroupComponent },
+  { path: 'unit', component: STRUnitsComponent },
+  { path: 'grade', component: STRGradeComponent },
+
+  { path: 'costCenter', component: StrCostcenterComponent },
+  //  { path: "items", component:StrItemComponent},
+  { path: 'items1', component: STRItem1Component },
+  { path: 'group', component: StrGroupComponent },
+  { path: 'group1', component: STRGroup1Component },
+  { path: 'store', component: StrStoreComponent },
+  { path: 'str-grade', component: STRGradeComponent },
+  { path: 'str-platoon', component: STRPlatoonComponent },
+  { path: 'str-platoon1', component: STRPlatoon1Component },
+  { path: 'str-home', component: STRHomeComponent },
 
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
 

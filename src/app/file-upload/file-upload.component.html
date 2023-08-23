@@ -1,9 +1,9 @@
 <div class="text-center">
-	<input class="form-control" type="file"
-			(change)="onChange($event)">
+	<input class="form-control" type="file" formControlName="attachement"
+			(change)="onChange($event)" >
 
-	<button (click)="onUpload()"
-		class="btn btn-success">
+	<button 
+		class="btn btn-success" (click)="onUpload()" >
 		حفظ
 	</button>
 </div>

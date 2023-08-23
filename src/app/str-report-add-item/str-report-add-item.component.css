@@ -1,0 +1,61 @@
+mat-panel-description {
+  font-size: 20px;
+  color: rgb(63 81 181);
+  font-weight: 500;
+  text-align: right;
+}
+
+.header {
+  display: none;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
+
+.header div {
+  height: 100px;
+  background-color: #04365f;
+  color: white;
+  /* color: #04365f; */
+}
+
+.header p,
+.date p {
+  font-size: large;
+  font-weight: bold;
+}
+
+.header .header-one p {
+  padding: 21px;
+}
+
+.header .header-two {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+.header .header-two p {
+  width: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.header .header-two img {
+  height: 80%;
+}
+
+table {
+  margin: 35px 0;
+}
+
+th {
+  background-color: #147a9f !important;
+  color: white;
+  font-family: "Droid Arabic Kufi", serif;
+  font-size: 16px;
+}
+
+.mdc-data-table__cell {
+  text-wrap: nowrap;
+}
