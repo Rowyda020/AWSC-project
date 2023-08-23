@@ -160,7 +160,7 @@ export class STRItem1DialogComponent implements OnInit {
       groupCode: [''],
       unitId: ['', Validators.required],
       unitName: [''],
-      id: [''],
+      // id: [''],
     });
 
     this.api.getAllCommoditiesi().subscribe((commodities) => {
@@ -363,7 +363,7 @@ export class STRItem1DialogComponent implements OnInit {
   }
 
   getNoByGroupId() {
-    this.api.postItemNo(this.selectedGroup.id).subscribe({
+    this.api.getItemNo(this.selectedGroup.id).subscribe({
       next: (res) => {
 
         this.No = res;
@@ -387,16 +387,20 @@ export class STRItem1DialogComponent implements OnInit {
     this.No;
     this.itemForm.controls['fullCode'].setValue(this.fullCode);
     this.itemForm.controls['no'].setValue(this.No);
+    console.log('add: ', this.itemForm.value);
+    this.itemForm.controls['transactionUserId'].setValue(
+      this.transactionUserId
+    );
     
     if (!this.editData) {  
 
 
       this.itemForm.removeControl('id');
-      console.log('add: ', this.itemForm.value);
+    
       this.itemForm.controls['transactionUserId'].setValue(
         this.transactionUserId
       );
-
+      console.log("post item form: ", this.itemForm.value)
       if (this.itemForm.valid) {
         
         this.api.postItems(this.itemForm.value).subscribe({
@@ -407,6 +411,7 @@ export class STRItem1DialogComponent implements OnInit {
             this.dialogRef.close('save');
           },
           error: (err) => {
+            console.log("post err: ", err)
             alert('خطأ عند حفظ البيانات');
           },
         });

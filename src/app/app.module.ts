@@ -87,6 +87,8 @@ import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-
 
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-account-itemd-dialog.component';
+import { FIEntrySourceTypeComponent } from './fi-entry-source-type/fi-entry-source-type.component';
+import { FIEntrySourceTypeDialogComponent } from './fi-entry-source-type-dialog/fi-entry-source-type-dialog.component';
 
 
 @NgModule({
@@ -144,7 +146,9 @@ import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-acco
     StrReportAddItemComponent,
 
     FiAccountItemComponent,
-    FiAccountItemdDialogComponent
+    FiAccountItemdDialogComponent,
+    FIEntrySourceTypeComponent,
+    FIEntrySourceTypeDialogComponent
 
     
 
