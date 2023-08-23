@@ -713,56 +713,56 @@ export class ApiService {
     //enter no.
     if (no != '' && !storeId && !date && !fiscalYear) {
       console.log('enter no. strOpen search');
-      return this.http.get<any>(`${this.url}/STRAdd/search?No=${no}`);
+      return this.http.get<any>(`${this.url}/STROpeningStock/search?No=${no}`);
     }
     //enter store
     else if (!no && storeId && !date && !fiscalYear) {
       console.log('enter store strOpen search');
-      return this.http.get<any>(`${this.url}/STRAdd/search?StoreId=${storeId}`);
+      return this.http.get<any>(`${this.url}/STROpeningStock/search?StoreId=${storeId}`);
     }
     //enter date
     else if (!no && !storeId && date && !fiscalYear) {
       console.log('enter date strOpen search');
-      return this.http.get<any>(`${this.url}/STRAdd/search?Date=${date}`);
+      return this.http.get<any>(`${this.url}/STROpeningStock/search?Date=${date}`);
     }
     //enter fiscalYear
     else if (!no && !storeId && !date && fiscalYear) {
       console.log('enter fisalYear strOpen search');
       return this.http.get<any>(
-        `${this.url}/STRAdd/search?fiscalyear=${fiscalYear}`
+        `${this.url}/STROpeningStock/search?fiscalyear=${fiscalYear}`
       );
     }
     //enter no. & store
     else if (no && storeId && !date) {
       console.log('enter no. & store strOpen search');
       return this.http.get<any>(
-        `${this.url}/STRAdd/search?StoreId=${storeId}&No=${no}`
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}&No=${no}`
       );
     }
     //enter no. & date
     else if (no && !storeId && date) {
       console.log('enter no. & date strOpen search');
       return this.http.get<any>(
-        `${this.url}/STRAdd/search?Date=${date}&No=${no}`
+        `${this.url}/STROpeningStock/search?Date=${date}&No=${no}`
       );
     }
     //enter store & date
     else if (!no && storeId && date) {
       console.log('enter store & date strOpen search');
       return this.http.get<any>(
-        `${this.url}/STRAdd/search?StoreId=${storeId}&Date=${date}`
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}&Date=${date}`
       );
     }
     //enter all data
     else if (no != '' && storeId != '' && date != '' && fiscalYear != '') {
       console.log('enter all data strOpen search');
       return this.http.get<any>(
-        `${this.url}/STRAdd/search?StoreId=${storeId}&Date=${date}&No=${no}&fiscalyear=${fiscalYear}`
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}&Date=${date}&No=${no}&fiscalyear=${fiscalYear}`
       );
     }
 
     console.log("didn't enter any condition search");
-    return this.http.get<any>(`${this.url}/STRAdd/search?StoreId=${0}`);
+    return this.http.get<any>(`${this.url}/STROpeningStock/search?StoreId=${0}`);
   }
 
   ///////////////////////////////// STR-EmployeeExchange & details/////////////////////////////
@@ -1323,7 +1323,7 @@ export class ApiService {
   }
   deleteStrAddDetails(HeaderId: number) {
     // console.log("deleted row id: ", HeaderId)
-    return this.http.delete<any>("https://ims.aswan.gov.eg//api/STRAddDetails/Delete/" + HeaderId);
+    return this.http.delete<any>(`${this.url}/STRAddDetails/Delete/` + HeaderId);
   }
 
   // -------end add--------
