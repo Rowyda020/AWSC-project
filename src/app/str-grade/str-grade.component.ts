@@ -39,9 +39,7 @@ export class STRGradeComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  commidityDt: any = {
-    id: 0,
-  };
+  
   constructor(private dialog: MatDialog, private api: ApiService) {
     this.commodityCtrl = new FormControl();
     this.filteredCommodities = this.commodityCtrl.valueChanges.pipe(

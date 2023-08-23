@@ -25,10 +25,13 @@ import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-contain
 import { StrWithdrawContainerComponent } from './str-withdraw-container/str-withdraw-container.component';
 import { FIAccountComponent } from './fi-account/fi-account.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
+import { FIEntrySourceComponent } from './fi-entry-source/fi-entry-source.component';
 
 import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-item.component';
 
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
+import { FIJournalComponent } from './fi-journal/fi-journal.component';
+import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
 
 
 const routes: Routes = [
@@ -60,6 +63,7 @@ const routes: Routes = [
   { path: 'str-home', component: STRHomeComponent },
   { path: 'report', component: StrReportComponent },
   { path: 'AccountHierarchy', component: FIAccountHierarchyComponent },
+  { path: 'EntrySource' , component: FIEntrySourceComponent},
 
   { path: 'withdraw', component: StrWithdrawContainerComponent },
   { path: 'add-item-report', component: StrReportAddItemComponent },
@@ -75,6 +79,9 @@ const routes: Routes = [
   { path: 'commodity', component: StrCommodityComponent },
 
   { path: 'FiAccountItem', component: FiAccountItemComponent },
+  { path: 'FIJournal', component: FIJournalComponent },
+  { path: 'STRAdd', component: STRAddContainerComponent },
+  
 
   {path:'withdraw',component:StrWithdrawContainerComponent },
 //  {path: 'products',

@@ -64,9 +64,9 @@ import { STREmployeeOpeningCustodyTableComponent } from './str-employee-opening-
 import { STREmployeeOpeningCustodyDialogComponent } from './str-employee-opening-custody-dialog/str-employee-opening-custody-dialog.component';
 import { STRGroup1Component } from './str-group1/str-group1.component';
 import { STRGroup1DialogComponent } from './str-group1-dialog/str-group1-dialog.component';
-import {StrWithdrawContainerComponent} from './str-withdraw-container/str-withdraw-container.component'
-import {  StrWithdrawDialogComponent} from "./str-withdraw-dialog2/str-withdraw-dialog2.component";
-import {StrWithdrawTableComponent  } from "./str-withdraw-table2/str-withdraw-table2.component";
+import { StrWithdrawContainerComponent } from './str-withdraw-container/str-withdraw-container.component';
+import { StrWithdrawDialogComponent } from './str-withdraw-dialog2/str-withdraw-dialog2.component';
+import { StrWithdrawTableComponent } from './str-withdraw-table2/str-withdraw-table2.component';
 import { StrProductComponent } from './str-product/str-product.component';
 import { StrProductDialogComponent } from './str-product-dialog/str-product-dialog.component';
 import { STRItem1Component } from './str-item1/str-item1.component';
@@ -76,20 +76,31 @@ import { FIAccountDialogComponent } from './fi-account-dialog/fi-account-dialog.
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
 import { FiEntryTableComponent } from './fi-entry-table/fi-entry-table.component';
 import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.component';
-import {  FileUploadComponent} from "./file-upload/file-upload.component";
+import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileUploadDialogComponent } from './file-upload-dialog/file-upload-dialog.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog/fi-account-hierarchy-dialog.component';
+import {PipesModule  } from "../app/pipes/pipes.module";
+import { FIEntrySourceComponent } from './fi-entry-source/fi-entry-source.component';
+import { FIEntrySourceDialogComponent } from './fi-entry-source-dialog/fi-entry-source-dialog.component';
 
 import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-item.component';
 
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-account-itemd-dialog.component';
-
+import { FIJournalComponent } from './fi-journal/fi-journal.component';
+import { FIJournalDialogComponent } from './fi-journal-dialog/fi-journal-dialog.component';
+import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
+import { STRAddDialogComponent } from './str-add-dialog/str-add-dialog.component';
+import { STRAddTableComponent } from './str-add-table/str-add-table.component';
 
 @NgModule({
   declarations: [
-    AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,FileUploadComponent,
+    AppComponent,
+    StrWithdrawContainerComponent,
+    StrWithdrawDialogComponent,
+    StrWithdrawTableComponent,
+    FileUploadComponent,
     StrCommodityComponent,
     StrCommodityDialogComponent,
     LoginComponent,
@@ -136,21 +147,25 @@ import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-acco
     FiEntryDialogComponent,
     FIAccountHierarchyComponent,
     FIAccountHierarchyDialogComponent,
+    FIEntrySourceComponent,
+    FIEntrySourceDialogComponent,
 
     StrReportAddItemComponent,
-
+// selvana
     FiAccountItemComponent,
-    FiAccountItemdDialogComponent
-
-    
-
+    FiAccountItemdDialogComponent,
+    FIJournalComponent,
+    FIJournalDialogComponent,
+    STRAddContainerComponent,
+    STRAddDialogComponent,
+    STRAddTableComponent
 
 
 
 
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,PipesModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
