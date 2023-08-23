@@ -10,14 +10,14 @@ button {
 }
 
 th {
-  background-color: #147a9f !important;
+  background-color:rgb(60, 202, 252) !important;
   color: white;
   font-family: "Droid Arabic Kufi", serif;
   font-size: 16px;
 }
 
 .add {
-  background-color: #147a9f;
+  background-color:rgb(60, 202, 252);
   color: white;
   font-family: "Droid Arabic Kufi", serif;
   font-size: 15px;
@@ -37,7 +37,7 @@ th {
   height: 50px;
   font-size: 15px;
   font-family: "Droid Arabic Kufi", serif;
-  background-color: #147a9f;
+  background-color:rgb(60, 202, 252);
   color: white;
   border: none;
   border-radius: 5px;
@@ -55,7 +55,7 @@ mat-expansion-panel {
 }
 mat-panel-description {
   font-size: 20px;
-  color: rgb(63 81 181);
+  color:rgb(60, 202, 252);
   font-weight: 500;
   text-align: right;
 }
@@ -68,7 +68,7 @@ mat-panel-description {
 
 .header div {
   height: 100px;
-  background-color: #04365f;
+  background-color: rgb(60, 202, 252);
   color: white;
   /* color: #04365f; */
 }
@@ -102,8 +102,15 @@ mat-panel-description {
 
 table {
   margin: 28px 0;
+  overflow-y: scroll;
+  width: 80%;
 }
-
+.mat-mdc-table {
+  --mat-table-row-item-outline-width: 1px;
+  table-layout:fixed;
+  white-space: normal;
+  background-color: var(--mat-table-background-color);
+}
 footer {
   display: none;
   position: absolute;
