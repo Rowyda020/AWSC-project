@@ -1324,7 +1324,7 @@ upload(file:any):Observable<any> {
     return this.http.put<any>("http://ims.aswan.gov.eg/api/STRAdd/update", data);
   }
   deleteStrAdd(id: number) {
-    return this.http.delete<any>("http://ims.aswan.gov.eg/api/STRAdd/Delete/{id}/" + id);
+    return this.http.delete<any>("http://ims.aswan.gov.eg/api/STRAdd/Delete/" + id);
   }
 
   postStrAddDetails(data: any) {
@@ -1336,7 +1336,7 @@ upload(file:any):Observable<any> {
   }
   deleteStrAddDetails(HeaderId: number) {
     // console.log("deleted row id: ", HeaderId)
-    return this.http.delete<any>("https://ims.aswan.gov.eg//api/STRAddDetails/Delete/{id}/" + HeaderId);
+    return this.http.delete<any>("https://ims.aswan.gov.eg//api/STRAddDetails/Delete/" + HeaderId);
   }
 
   // -------end add--------
@@ -1390,41 +1390,41 @@ upload(file:any):Observable<any> {
     //enter no.
     if(no != '' && !storeId && !date){
       console.log("enter no. stradd search");
-      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?No=${no}`);
+      return this.http.get<any>(`http://ims.aswan.gov.eg/api/STRAdd/search?No=${no}`);
     }
     //enter store
     else if (!no && storeId && !date){
       console.log("enter store stradd search");
-      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}`);
+      return this.http.get<any>(`http://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}`);
     }
     //enter date
     else if (!no && !storeId && date){
       console.log("enter date stradd search");
-      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?Date=${date}`);
+      return this.http.get<any>(`http://ims.aswan.gov.eg/api/STRAdd/search?Date=${date}`);
     }
     //enter no. & store
     else if (no && storeId && !date){
       console.log("enter no. & store stradd search");
-      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}&No=${no}`);
+      return this.http.get<any>(`http://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}&No=${no}`);
     }
     //enter no. & date
     else if (no && !storeId && date){
       console.log("enter no. & date stradd search");
-      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?Date=${date}&No=${no}`);
+      return this.http.get<any>(`http://ims.aswan.gov.eg/api/STRAdd/search?Date=${date}&No=${no}`);
     }
     //enter store & date
     else if (!no && storeId && date){
       console.log("enter store & date stradd search");
-      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}&Date=${date}`);
+      return this.http.get<any>(`http://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}&Date=${date}`);
     }
     //enter all data
     else if (no != '' && storeId != '' && date != ''){
       console.log("enter all data stradd search");
-      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}&Date=${date}&No=${no}`);
+      return this.http.get<any>(`http://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}&Date=${date}&No=${no}`);
     }
 
     console.log("didn't enter any condition search");
-    return this.http.get<any>(`https://ims.aswan.gov.eg/api/api/STRAdd/search?StoreId=${0}`);
+    return this.http.get<any>(`http://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${0}`);
 
   }
 }
