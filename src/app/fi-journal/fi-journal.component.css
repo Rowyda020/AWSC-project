@@ -10,14 +10,14 @@ button{
 }
 
 th{
-  background-color: rgb(60, 202, 252) !important;
+  background-color: #147a9f !important;
   color: white;
   font-family: 'Droid Arabic Kufi', serif;
   font-size: 16px;
 }
 
 .add{
-  background-color:rgb(60, 202, 252);
+  background-color: #147a9f;
   color: white;  
   font-family: 'Droid Arabic Kufi', serif;
   font-size: 15px;

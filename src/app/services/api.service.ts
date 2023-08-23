@@ -138,6 +138,30 @@ export class ApiService {
   getAllAccounts(): Observable<any> {
     return this.http.get<any>('http://ims.aswan.gov.eg/api/FIAccount/get/all');
   }
+     // FIJournal
+     getFIJournal() {
+      return this.http.get<any>(
+        ' http://ims.aswan.gov.eg/api/FIJournal/get/all'
+      );
+    }
+    putFIJournal(data: any) {
+      return this.http.put<any>(
+        'http://ims.aswan.gov.eg/api/FIJournal/update',
+        data
+      );
+    }
+    deleteFIJournal(id: number) {
+      return this.http.delete<any>(
+        `http://ims.aswan.gov.eg/api/FIJournal/delete/${id}`
+      );
+    }
+    postFIJournal(data: any) {
+      return this.http.post<any>(
+        'http://ims.aswan.gov.eg/api/FIJournal/Add',
+        data
+      );
+    }
+ 
 
   //Fatma
 
@@ -626,7 +650,7 @@ export class ApiService {
   }
   deleteStrOpen(id: number) {
     return this.http.delete<any>(
-      'https://ims.aswan.gov.eg/api/STR_Opening_Stock/delete-Opening_Stock/' +
+      `${this.url}/STROpeningStock/delete/` +
         id
     );
   }
@@ -637,7 +661,7 @@ export class ApiService {
   putStrOpenDetails(data: any, id: number) {
     console.log('strOpenDetails id: ', id, 'strOpenDetails data: ', data);
     return this.http.put<any>(
-      'https://ims.aswan.gov.eg/api/STR_Opening_Stock/update-Opening_Stock_Details-by-id/' +
+      `${this.url}/STROpeningStockDetails/update/` +
         id,
       data
     );
@@ -645,7 +669,7 @@ export class ApiService {
   deleteStrOpenDetails(HeaderId: number) {
     // console.log("deleted row id: ", HeaderId)
     return this.http.delete<any>(
-      'https://ims.aswan.gov.eg/api/STR_Opening_Stock/delete-Opening_Stock_Details-by-id/' +
+      `${this.url}/STROpeningStockDetails/delete/` +
         HeaderId
     );
   }
@@ -727,82 +751,39 @@ export class ApiService {
 
   ///////////////////////////////// STR-EmployeeExchange & details/////////////////////////////
   getHrEmployees() {
-    return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/HR_Employee/get-all-employee'
-    );
-    // return this.http.get<any>("http://localhost:3000/StoreList/");
+    return this.http.get<any>(`${this.url}/HREmployee/get/all`);
   }
 
   getFiCostCenter() {
-    return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/FI_CostCenter/get-all-CostCenter'
-    );
-    // return this.http.get<any>("http://localhost:3000/StoreList/");
+    return this.http.get<any>(`${this.url}/FICostCenter/get/all`);
   }
 
   postStrEmployeeExchange(data: any) {
-    return this.http.post<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employe_Exchange/Add-Employee-Exchange',
-      data
-    );
+    return this.http.post<any>(`${this.url}/STREmployeExchange/Add`, data);
   }
   getStrEmployeeExchange() {
-    return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employe_Exchange/get-Employee-Exchang/'
-    );
+    return this.http.get<any>(`${this.url}/STREmployeExchange/get/all/`);
   }
   putStrEmployeeExchange(data: any) {
-    return this.http.put<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employe_Exchange/update-Employee-Exchange',
-      data
-    );
+    return this.http.put<any>(`${this.url}/STREmployeExchange/update`, data);
   }
   deleteStrEmployeeExchange(id: number) {
-    return this.http.delete<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employe_Exchange/delete-Employee-Exchang-by-id/' +
-        id
-    );
+    return this.http.delete<any>(`${this.url}/STREmployeExchange/delete/` + id);
   }
 
   postStrEmployeeExchangeDetails(data: any) {
-    return this.http.post<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/Add-Employee-Exchange-Details',
-      data
-    );
+    return this.http.post<any>(`${this.url}/STREmployeeExchangeDetails/Add`, data);
   }
   putStrEmployeeExchangeDetails(data: any) {
-    console.log('StrEmployeeExchangeDetails data: ', data);
-    return this.http.put<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/update-Employee-Exchange-Details/',
-      data
-    );
+    console.log("StrEmployeeExchangeDetails data: ", data);
+    return this.http.put<any>(`${this.url}/STREmployeeExchangeDetails/update/`, data);
   }
   deleteStrEmployeeExchangeDetails(HeaderId: number) {
-    console.log('deleted row id: ', HeaderId);
-    return this.http.delete<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Exchange_Details/delete-Employee-Exchang-Details-by-id/' +
-        HeaderId
-    );
+    console.log("deleted row id: ", HeaderId)
+    return this.http.delete<any>(`${this.url}/STREmployeeExchangeDetails/delete/by/EmployeeExchange/` + HeaderId);
   }
-  getStrEmployeeExchangeSearach(
-    no: any,
-    costCenterId: any,
-    employeeId: any,
-    date: any,
-    distEmployee: any
-  ) {
-    console.log(
-      "values search passed: 'no: '",
-      no,
-      "' costCenterId: '",
-      costCenterId,
-      "' storeId: '",
-      employeeId,
-      "' date: '",
-      date,
-      "' fiscalYear: '",
-      distEmployee
-    );
+  getStrEmployeeExchangeSearach(no: any, costCenterId: any, employeeId: any, date: any, distEmployee: any) {
+    console.log("values search passed: 'no: '", no, "' costCenterId: '", costCenterId, "' employeeId: '", employeeId, "' date: '", date, "' distEmployee: '", distEmployee);
     //enter no.
     if (no != '' && !costCenterId && !employeeId && !date && !distEmployee) {
       console.log('enter no. strOpen search');
@@ -914,13 +895,7 @@ export class ApiService {
     }
 
     //enter all data
-    else if (
-      no != '' &&
-      costCenterId != '' &&
-      employeeId != '' &&
-      date != '' &&
-      distEmployee != ''
-    ) {
+    else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && distEmployee != '') {
       console.log('enter all data strOpen search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?Date=${date}&No=${no}&DestEmployeeId=${distEmployee}&CostCenterId=${costCenterId}&EmployeeId=${employeeId}`
@@ -928,7 +903,9 @@ export class ApiService {
     }
 
     console.log("didn't enter any condition search");
-    return this.http.get<any>(`${this.url}/STREmployeExchange/search?No=${0}`);
+    return this.http.get<any>(
+      `${this.url}/STREmployeExchange/search?No=${0}`
+    );
   }
 
   // open Empoyee
@@ -1308,4 +1285,121 @@ export class ApiService {
   //     `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?No=${0}`
   //   );
   // }
+
+   // ----Start Add----
+
+   postStrAdd(data: any) {
+    console.log("dataaaaaa: ", data)
+    return this.http.post<any>("http://ims.aswan.gov.eg/api/STRAdd/Add", data);
+  }
+  getStrAdd() {
+    return this.http.get<any>("http://ims.aswan.gov.eg/api/STRAdd/get/all");
+  }
+  putStrAdd(data: any) {
+    return this.http.put<any>("http://ims.aswan.gov.eg/api/STRAdd/update", data);
+  }
+  deleteStrAdd(id: number) {
+    return this.http.delete<any>("http://ims.aswan.gov.eg/api/STRAdd/Delete/{id}/" + id);
+  }
+
+  postStrAddDetails(data: any) {
+    return this.http.post<any>("http://ims.aswan.gov.eg/api/STRAddDetails/Add", data);
+  }
+  putStrAddDetails(data: any) {
+    console.log( "strOpenDetails data: ", data);
+    return this.http.put<any>("http://ims.aswan.gov.eg/api/STRAddDetails/Update/", data);
+  }
+  deleteStrAddDetails(HeaderId: number) {
+    // console.log("deleted row id: ", HeaderId)
+    return this.http.delete<any>("https://ims.aswan.gov.eg//api/STRAddDetails/Delete/{id}/" + HeaderId);
+  }
+
+  // -------end add--------
+
+
+  // getStrOpenDetails() {
+  //   return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/get-all-Opening_Stock_Details");
+  // }
+  // putStrOpenDetails(data: any, id: number) {
+  //   console.log("strOpenDetails id: ", id, "strOpenDetails data: ", data);
+  //   return this.http.put<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/update-Opening_Stock_Details-by-id/" + id, data);
+  // }
+  // deleteStrOpenDetails(HeaderId: number) {
+  //   // console.log("deleted row id: ", HeaderId)
+  //   return this.http.delete<any>("https://ims.aswan.gov.eg/api/STR_Opening_Stock/delete-Opening_Stock_Details-by-id/" + HeaderId);
+  // }
+
+  // getStore() {
+  //   return this.http.get<any>("http://ims.aswan.gov.eg/api/STRStore/get/all");
+  //   // return this.http.get<any>("http://localhost:3000/StoreList/");
+  // }
+  getType() {
+    return this.http.get<any>("http://ims.aswan.gov.eg/api/STRAddType/get/all");
+    // return this.http.get<any>("http://localhost:3000/StoreList/");
+  }
+  getSeller() {
+    return this.http.get<any>("http://ims.aswan.gov.eg/api/PRSeller/get/all");
+    // return this.http.get<any>("http://localhost:3000/StoreList/");
+  }
+  getReciept() {
+    return this.http.get<any>("http://ims.aswan.gov.eg/api/STRAddReceipt/get/all");
+    // return this.http.get<any>("http://localhost:3000/StoreList/");
+  }
+  // getEmployee() {
+  //   return this.http.get<any>("http://ims.aswan.gov.eg/api/HREmployee/get/all");
+  //   // return this.http.get<any>("http://localhost:3000/StoreList/");
+  // }
+ 
+
+
+  // getItems() {
+  //   return this.http.get<any>("http://ims.aswan.gov.eg/api/STRItem/get/all");
+  // }
+
+  // getFiscalYears() {
+  //   return this.http.get<any>("http://ims.aswan.gov.eg/api/STRFiscalYear/get/all");
+  // }
+
+  getStrAddSearach(no:any, storeId:any, date:any) {
+
+    //enter no.
+    if(no != '' && !storeId && !date){
+      console.log("enter no. stradd search");
+      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?No=${no}`);
+    }
+    //enter store
+    else if (!no && storeId && !date){
+      console.log("enter store stradd search");
+      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}`);
+    }
+    //enter date
+    else if (!no && !storeId && date){
+      console.log("enter date stradd search");
+      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?Date=${date}`);
+    }
+    //enter no. & store
+    else if (no && storeId && !date){
+      console.log("enter no. & store stradd search");
+      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}&No=${no}`);
+    }
+    //enter no. & date
+    else if (no && !storeId && date){
+      console.log("enter no. & date stradd search");
+      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?Date=${date}&No=${no}`);
+    }
+    //enter store & date
+    else if (!no && storeId && date){
+      console.log("enter store & date stradd search");
+      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}&Date=${date}`);
+    }
+    //enter all data
+    else if (no != '' && storeId != '' && date != ''){
+      console.log("enter all data stradd search");
+      return this.http.get<any>(`https://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${storeId}&Date=${date}&No=${no}`);
+    }
+
+    console.log("didn't enter any condition search");
+    return this.http.get<any>(`https://ims.aswan.gov.eg/api/api/STRAdd/search?StoreId=${0}`);
+
+  }
 }

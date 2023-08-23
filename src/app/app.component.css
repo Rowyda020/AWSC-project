@@ -1,6 +1,7 @@
 @import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
 app-str-group-home{
   font-family: 'Droid Arabic Kufi', serif;
 }
@@ -100,6 +101,8 @@ mat-drawer-content {
   /* background: #000; */
   justify-content: space-between;
   padding: 10px;
+  text-align: center;
+align-items: center;
 }
 .toolBarUserInfo{
   display: flex;
@@ -112,20 +115,30 @@ mat-drawer-content {
 .companyInfo{
   display: flex;
   flex-direction: row;
-  border: 1px black solid;
+  border: 1px rgb(240, 236, 236) solid;
   border-radius: 10px;
-  box-shadow: 0.5px 2px 5px 0.5px rgb(230, 173, 200);
+  box-shadow: 0.5px 2px 5px 0.5px lightblue;
   padding: 5px;
-  margin-right: -25%;
+  margin-right: -28%;
+ 
+ 
+}
+#pageTitle{
+  margin-right: -65%;
+  font-family: 'Cairo', sans-serif;
+  font-weight: bold;
+
 }
 .companyInfoInToggle{
   display: flex;
   flex-direction: row;
-  border: 1px black solid;
+  border: 1px rgb(240, 236, 236) solid;
   border-radius: 10px;
   box-shadow: 0.5px 2px 5px 0.5px lightblue;
   padding: 5px;
-  width: auto;
+  margin-right: -28%;
+ 
+
 }
 .companyInfoToggleOpened{
   display: none;
@@ -177,3 +190,21 @@ mat-drawer-content {
 }
 
 
+.mat-toolbar-row {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 16px;
+  margin-top: 10px;
+  width: 100%;
+  justify-content:space-between;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  height: var(--mat-toolbar-standard-height);
+}
+
+.toolbarContainer{
+  display: flex;
+  align-items: center;
+
+}
