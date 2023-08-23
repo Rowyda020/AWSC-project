@@ -87,7 +87,7 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
   }
 
   deleteBothForms(id: number) {
-    
+
     this.http.get<any>("http://ims.aswan.gov.eg/api/STREmployeeExchangeDetails/get/all")
       .subscribe(res => {
         this.matchedIds = res.filter((a: any) => {
@@ -207,157 +207,161 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
         next: (res) => {
           console.log("search employeeExchange res: ", res);
 
-          //enter no.
-          if (no != '' && !costCenterId && !employeeId && !date && !distEmployee) {
-            // console.log("enter no. ")
-            // console.log("no. : ", no, "store: ", store, "date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.no == no!)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          this.dataSource2 = res
+          this.dataSource2.paginator = this.paginator;
+          this.dataSource2.sort = this.sort;
 
-          //enter costCenterId.
-          if (!no && costCenterId != '' && !employeeId && !date && !distEmployee) {
-            // console.log("enter no. ")
-            // console.log("no. : ", no, "store: ", store, "date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter no.
+          // if (no != '' && !costCenterId && !employeeId && !date && !distEmployee) {
+          //   // console.log("enter no. ")
+          //   // console.log("no. : ", no, "store: ", store, "date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.no == no!)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter employeeId
-          else if (!no && !costCenterId && employeeId && !date && !distEmployee) {
-            // console.log("enter store. ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter costCenterId.
+          // if (!no && costCenterId != '' && !employeeId && !date && !distEmployee) {
+          //   // console.log("enter no. ")
+          //   // console.log("no. : ", no, "store: ", store, "date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter date
-          else if (!no && !costCenterId && !employeeId && date && !distEmployee) {
-            // console.log("enter date. ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => formatDate(res.date, 'M/d/yyyy', this.locale) == date)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter employeeId
+          // else if (!no && !costCenterId && employeeId && !date && !distEmployee) {
+          //   // console.log("enter store. ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter distEmployee
-          else if (!no && !costCenterId && !employeeId && !date && distEmployee) {
-            // console.log("enter date. ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.destEmployeeId == distEmployee)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter date
+          // else if (!no && !costCenterId && !employeeId && date && !distEmployee) {
+          //   // console.log("enter date. ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter no. & costCenter
-          else if (no && costCenterId && !employeeId && !date && !distEmployee) {
-            // console.log("enter no & store ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.no == no! && res.costCenterId == costCenterId)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter distEmployee
+          // else if (!no && !costCenterId && !employeeId && !date && distEmployee) {
+          //   // console.log("enter date. ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.destEmployeeId == distEmployee)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter no. & employeeId
-          else if (no && !costCenterId && employeeId && !date && !distEmployee) {
-            // console.log("enter no & store ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.no == no! && res.employeeId == employeeId)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter no. & costCenter
+          // else if (no && costCenterId && !employeeId && !date && !distEmployee) {
+          //   // console.log("enter no & store ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.no == no! && res.costCenterId == costCenterId)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter no. & date
-          else if (no && !costCenterId && !employeeId && date && !distEmployee) {
-            // console.log("enter no & date ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.no == no! && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter no. & employeeId
+          // else if (no && !costCenterId && employeeId && !date && !distEmployee) {
+          //   // console.log("enter no & store ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.no == no! && res.employeeId == employeeId)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter no. & disEmployee
-          else if (no && !costCenterId && !employeeId && !date && distEmployee) {
-            // console.log("enter no & store ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.no == no! && res.destEmployeeId == distEmployee)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter no. & date
+          // else if (no && !costCenterId && !employeeId && date && !distEmployee) {
+          //   // console.log("enter no & date ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.no == no! && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter costCenter & employee
-          else if (!no && costCenterId && employeeId && !date && !distEmployee) {
-            // console.log("enter no & store ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && res.employeeId == employeeId)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter no. & disEmployee
+          // else if (no && !costCenterId && !employeeId && !date && distEmployee) {
+          //   // console.log("enter no & store ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.no == no! && res.destEmployeeId == distEmployee)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter costCenter & date
-          else if (!no && costCenterId && !employeeId && date && !distEmployee) {
-            // console.log("enter no & store ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter costCenter & employee
+          // else if (!no && costCenterId && employeeId && !date && !distEmployee) {
+          //   // console.log("enter no & store ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && res.employeeId == employeeId)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter costCenter & distEmployee
-          else if (!no && costCenterId && !employeeId && !date && distEmployee) {
-            // console.log("enter no & store ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && res.destEmployeeId == distEmployee)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter costCenter & date
+          // else if (!no && costCenterId && !employeeId && date && !distEmployee) {
+          //   // console.log("enter no & store ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter employeeId & date
-          else if (!no && !costCenterId && employeeId && date && !distEmployee) {
-            // console.log("enter store & date ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter costCenter & distEmployee
+          // else if (!no && costCenterId && !employeeId && !date && distEmployee) {
+          //   // console.log("enter no & store ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && res.destEmployeeId == distEmployee)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter employeeId & distEmployee
-          else if (!no && !costCenterId && employeeId && !date && distEmployee) {
-            // console.log("enter store & date ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId && res.destEmployeeId == distEmployee)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter employeeId & date
+          // else if (!no && !costCenterId && employeeId && date && !distEmployee) {
+          //   // console.log("enter store & date ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter distEmployee & date
-          else if (!no && !costCenterId && !employeeId && date && distEmployee) {
-            // console.log("enter store & date ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.destEmployeeId == distEmployee && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter employeeId & distEmployee
+          // else if (!no && !costCenterId && employeeId && !date && distEmployee) {
+          //   // console.log("enter store & date ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId && res.destEmployeeId == distEmployee)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //enter all data
-          else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && distEmployee != '') {
-            // console.log("enter all data. ")
-            // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-            this.dataSource2 = res.filter((res: any) => res.no == no! && res.costCenterId == costCenterId && res.employeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date && res.destEmployeeId == distEmployee)
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter distEmployee & date
+          // else if (!no && !costCenterId && !employeeId && date && distEmployee) {
+          //   // console.log("enter store & date ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.destEmployeeId == distEmployee && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
-          //didn't enter any data
-          else {
-            // console.log("enter no data ")
-            this.dataSource2 = res;
-            this.dataSource2.paginator = this.paginator;
-            this.dataSource2.sort = this.sort;
-          }
+          // //enter all data
+          // else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && distEmployee != '') {
+          //   // console.log("enter all data. ")
+          //   // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
+          //   this.dataSource2 = res.filter((res: any) => res.no == no! && res.costCenterId == costCenterId && res.employeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date && res.destEmployeeId == distEmployee)
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
+
+          // //didn't enter any data
+          // else {
+          //   // console.log("enter no data ")
+          //   this.dataSource2 = res;
+          //   this.dataSource2.paginator = this.paginator;
+          //   this.dataSource2.sort = this.sort;
+          // }
 
 
         },

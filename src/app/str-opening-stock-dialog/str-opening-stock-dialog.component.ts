@@ -66,6 +66,7 @@ export class StrOpeningStockDialogComponent implements OnInit {
       storeName: ['', Validators.required],
       transactionUserId: ['', Validators.required],
       date: ['', Validators.required],
+      total: ['', Validators.required],
       fiscalYearId: ['', Validators.required],
     });
 
@@ -91,6 +92,7 @@ export class StrOpeningStockDialogComponent implements OnInit {
       // console.log("faciaaaaal year edit: ", this.groupMasterForm.getRawValue().fiscalYearId)
       // alert("facialId after: "+ this.groupMasterForm.getRawValue().fiscalYearId)
       this.groupMasterForm.controls['date'].setValue(this.editData.date);
+      this.groupMasterForm.controls['total'].setValue(this.editData.total);
 
       this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
       this.groupMasterForm.controls['id'].setValue(this.editData.id);
@@ -113,6 +115,8 @@ export class StrOpeningStockDialogComponent implements OnInit {
     this.storeName = await this.getStoreByID(this.groupMasterForm.getRawValue().storeId);
     // alert("store name in add: " + this.storeName)
     this.groupMasterForm.controls['storeName'].setValue(this.storeName);
+    this.groupMasterForm.controls['total'].setValue(this.sumOfTotals);
+
     // this.groupMasterForm.controls['fiscalYearId'].setValue(1)
     // console.log("faciaaaaal year add: ", this.groupMasterForm.getRawValue().fiscalYearId)
     // console.log("dataName: ", this.groupMasterForm.value)
@@ -120,7 +124,7 @@ export class StrOpeningStockDialogComponent implements OnInit {
     if (this.groupMasterForm.getRawValue().storeName && this.groupMasterForm.getRawValue().date && this.groupMasterForm.getRawValue().storeId && this.groupMasterForm.getRawValue().no) {
 
 
-      // console.log("Master add form : ", this.groupMasterForm.value)
+      console.log("Master add form : ", this.groupMasterForm.value)
       this.api.postStrOpen(this.groupMasterForm.value)
         .subscribe({
           next: (res) => {
@@ -170,6 +174,8 @@ export class StrOpeningStockDialogComponent implements OnInit {
             this.sumOfTotals = 0;
             for (let i = 0; i < this.matchedIds.length; i++) {
               this.sumOfTotals = this.sumOfTotals + parseFloat(this.matchedIds[i].total);
+              this.groupMasterForm.controls['total'].setValue(this.sumOfTotals);
+              this.updateBothForms();
             }
 
           }
