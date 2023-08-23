@@ -103,13 +103,13 @@ export class FiEntryDialogComponent implements OnInit {
       this.groupMasterForm.controls['date'].setValue(this.editData.date);
 
       this.groupMasterForm.controls['journalId'].setValue(this.editData.journalId);
-      this.groupMasterForm.controls['creditTotal'].setValue(this.editData.creditTotal);
-      this.groupMasterForm.controls['debitTotal'].setValue(this.editData.debitTotal);
-
-      if(this.groupDetailsForm.getRawValue().credit || this.groupDetailsForm.getRawValue().debit){
-        console.log("found redit & debit: ", "credit: ", this.groupDetailsForm.getRawValue().credit, "debit: ", this.groupDetailsForm.getRawValue().debit)
-        // this.groupMasterForm.controls['creditTotal'].setValue(this.groupDetailsForm.getRawValue().credit);
-      }
+      // // this.groupMasterForm.controls['creditTotal'].setValue(this.editData.creditTotal);
+      // // this.groupMasterForm.controls['debitTotal'].setValue(this.editData.debitTotal);
+      // alert("edit credit: " + this.groupMasterForm.getRawValue().creditTotal)
+      // if (this.groupDetailsForm.getRawValue().credit || this.groupDetailsForm.getRawValue().debit) {
+      //   console.log("found redit & debit: ", "credit: ", this.groupDetailsForm.getRawValue().credit, "debit: ", this.groupDetailsForm.getRawValue().debit)
+      //   // this.groupMasterForm.controls['creditTotal'].setValue(this.groupDetailsForm.getRawValue().credit);
+      // }
 
       // this.groupMasterForm.controls['balance'].setValue(this.editData.balance);
       // this.groupMasterForm.controls['type'].setValue(this.editData.type);
@@ -170,6 +170,7 @@ export class FiEntryDialogComponent implements OnInit {
 
   getAllDetailsForms() {
 
+    console.log("edddit get all data: ", this.editData)
     console.log("mastered row get all data: ", this.getMasterRowId)
     if (this.getMasterRowId) {
       this.http.get<any>("http://ims.aswan.gov.eg/api/FIEntryDetails/get/all")
@@ -177,7 +178,7 @@ export class FiEntryDialogComponent implements OnInit {
           console.log("res to get all details form: ", res, "masterRowId: ", this.getMasterRowId.id);
 
           this.matchedIds = res.filter((a: any) => {
-            console.log("matchedIds: ", a.entryId == this.getMasterRowId.id, "res: ", this.matchedIds)
+            // console.log("matchedIds: ", a.entryId == this.getMasterRowId.id, "res: ", this.matchedIds)
             return a.entryId == this.getMasterRowId.id
           })
 
@@ -191,8 +192,14 @@ export class FiEntryDialogComponent implements OnInit {
             this.sumOfDebitTotals = 0;
             for (let i = 0; i < this.matchedIds.length; i++) {
               this.sumOfCreditTotals = this.sumOfCreditTotals + parseFloat(this.matchedIds[i].credit);
+              this.groupMasterForm.controls['creditTotal'].setValue(this.sumOfCreditTotals);
               this.sumOfDebitTotals = this.sumOfDebitTotals + parseFloat(this.matchedIds[i].debit);
+              this.groupMasterForm.controls['debitTotal'].setValue(this.sumOfDebitTotals);
             }
+            //   alert("credit inLoop: "+ this.sumOfCreditTotals + " credit controller: "+ this.groupMasterForm.getRawValue().creditTotal)
+
+            // }
+            // alert("credit afterLoop: "+ this.sumOfCreditTotals + " credit controller: "+ this.groupMasterForm.getRawValue().creditTotal)
 
           }
         }
@@ -259,6 +266,31 @@ export class FiEntryDialogComponent implements OnInit {
       if (this.getMasterRowId.id) {
         console.log("form  headerId: ", this.getMasterRowId, "details form: ", this.groupDetailsForm.value)
 
+        if (this.groupDetailsForm.getRawValue().credit || this.groupDetailsForm.getRawValue().debit) {
+          if (this.editData) {
+            console.log("found details: ", this.editData)
+            this.sumOfCreditTotals = this.editData.creditTotal;
+            this.sumOfDebitTotals = this.editData.debitTotal;
+            alert("b: " + this.groupMasterForm.getRawValue().creditTotal)
+            // this.groupDetailsForm.controls['credit'].setValue(this.getDetailedRowData.credit)
+            // this.groupDetailsForm.controls['debit'].setValue(this.getDetailedRowData.debit)
+            // alert("a: " + this.groupDetailsForm.getRawValue().credit)
+
+            this.sumOfCreditTotals = this.sumOfCreditTotals + this.groupDetailsForm.getRawValue().credit;
+            this.sumOfDebitTotals = this.sumOfDebitTotals + this.groupDetailsForm.getRawValue().debit;
+            this.groupMasterForm.controls['creditTotal'].setValue(this.sumOfCreditTotals)
+            this.groupMasterForm.controls['debitTotal'].setValue(this.sumOfDebitTotals)
+          }
+          else {
+            console.log("found details withoutEdit: ", this.groupDetailsForm.value)
+            this.sumOfCreditTotals = this.sumOfCreditTotals + this.groupDetailsForm.getRawValue().credit;
+            this.sumOfDebitTotals = this.sumOfDebitTotals + this.groupDetailsForm.getRawValue().debit;
+            this.groupMasterForm.controls['creditTotal'].setValue(this.sumOfCreditTotals)
+            this.groupMasterForm.controls['debitTotal'].setValue(this.sumOfDebitTotals)
+          }
+
+        }
+
         // if (this.groupDetailsForm.getRawValue().itemId) {
         //   // this.itemName = await this.getItemByID(this.groupDetailsForm.getRawValue().itemId);
         //   this.groupDetailsForm.controls['itemName'].setValue(this.itemName);
@@ -274,12 +306,12 @@ export class FiEntryDialogComponent implements OnInit {
         //   this.itemName = await this.getItemByID(this.groupDetailsForm.getRawValue().itemId);
         //   this.groupDetailsForm.controls['itemName'].setValue(this.itemName);
         //   alert("item name: " + this.itemName + " transactionUserId: " + this.userIdFromStorage)
-          this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
-          this.groupDetailsForm.controls['entryId'].setValue(this.getMasterRowId.id);
-          // this.groupDetailsForm.controls['total'].setValue((parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty)));
+        this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
+        this.groupDetailsForm.controls['entryId'].setValue(this.getMasterRowId.id);
+        // this.groupDetailsForm.controls['total'].setValue((parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty)));
 
-          // console.log("add details second time, details form: ", this.groupDetailsForm.value)
-          console.log("add details second time, get detailed row data: ", !this.getDetailedRowData)
+        // console.log("add details second time, details form: ", this.groupDetailsForm.value)
+        console.log("add details second time, get detailed row data: ", !this.getDetailedRowData)
         // }
 
         alert("item name controller: " + this.groupDetailsForm.getRawValue().itemName + " transactionUserId controller: " + this.groupDetailsForm.getRawValue().transactionUserId)
@@ -296,12 +328,13 @@ export class FiEntryDialogComponent implements OnInit {
                   "id": res
                 };
                 console.log("Details res: ", this.getDetailsRowId.id)
+                alert("postDetails res credit: " + this.sumOfCreditTotals + " credit res: " + res.credit)
 
                 alert("تمت إضافة التفاصيل بنجاح");
                 this.toastrSuccess();
                 this.groupDetailsForm.reset();
-                this.updateDetailsForm()
                 this.getAllDetailsForms();
+                this.updateDetailsForm()
               },
               error: () => {
                 // alert("حدث خطأ أثناء إضافة مجموعة")
@@ -336,9 +369,11 @@ export class FiEntryDialogComponent implements OnInit {
       this.groupMasterForm.controls['id'].setValue(this.editData.id);
     }
 
+    this.getAllDetailsForms();
     this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
     this.groupMasterForm.controls['id'].setValue(this.getMasterRowId.id);
-
+    console.log("enteeeeeeeeeer to update master form: ", this.groupMasterForm.getRawValue().creditTotal)
+    console.log("update master form: ", this.groupMasterForm.value, "update details form: ", this.groupDetailsForm.value)
     this.api.putFiEntry(this.groupMasterForm.value)
       .subscribe({
         next: (res) => {
@@ -349,6 +384,19 @@ export class FiEntryDialogComponent implements OnInit {
 
             this.groupDetailsForm.addControl('id', new FormControl('', Validators.required));
             this.groupDetailsForm.controls['id'].setValue(this.getDetailedRowData.id);
+
+            if (!this.groupDetailsForm.getRawValue().credit) {
+              console.log("enter credit only")
+              this.groupDetailsForm.controls['credit'].setValue(this.getDetailedRowData.credit)
+            }
+            else if (!this.groupDetailsForm.getRawValue().debit) {
+              console.log("enter debit only")
+              this.groupDetailsForm.controls['debit'].setValue(this.getDetailedRowData.debit)
+            }
+
+
+            console.log("details form submit to edit: ", this.groupDetailsForm.value);
+
 
             this.api.putFiEntryDetails(this.groupDetailsForm.value)
               .subscribe({
@@ -381,7 +429,13 @@ export class FiEntryDialogComponent implements OnInit {
     if (this.groupMasterForm.getRawValue().no != '' && this.groupMasterForm.getRawValue().storeId != '' && this.groupMasterForm.getRawValue().fiscalYearId != '' && this.groupMasterForm.getRawValue().date != '') {
 
       this.groupDetailsForm.controls['entryId'].setValue(this.getMasterRowId.id);
-      this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
+
+      // alert("credit: "+ this.sumOfCreditTotals + " credit controller: "+ this.groupMasterForm.getRawValue().creditTotal)
+      // console.log("sum of credit: ", this.sumOfCreditTotals, "sum of debit: ", this.sumOfDebitTotals)
+
+      // this.groupMasterForm.controls['creditTotal'].setValue(this.sumOfCreditTotals);
+      // this.groupMasterForm.controls['debitTotal'].setValue(this.sumOfDebitTotals);
+      // this.groupDetailsForm.controls['total'].setValue(parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty));
 
       this.updateDetailsForm();
     }
@@ -399,6 +453,15 @@ export class FiEntryDialogComponent implements OnInit {
 
       this.actionBtnDetails = "Update";
       this.groupDetailsForm.controls['entryId'].setValue(this.getDetailedRowData.entryId);
+
+      // console.log("found details: ", this.editData)
+      // this.sumOfCreditTotals = this.editData.creditTotal;
+      // this.sumOfDebitTotals = this.editData.debitTotal;
+
+      // this.sumOfCreditTotals = this.sumOfCreditTotals + this.groupDetailsForm.getRawValue().credit;
+      // this.sumOfDebitTotals = this.sumOfDebitTotals + this.groupDetailsForm.getRawValue().debit;
+      // this.groupMasterForm.controls['creditTotal'].setValue(this.sumOfCreditTotals)
+      // this.groupMasterForm.controls['debitTotal'].setValue(this.sumOfDebitTotals)
 
       // this.groupDetailsForm.controls['qty'].setValue(this.getDetailedRowData.qty);
       // this.groupDetailsForm.controls['price'].setValue(this.getDetailedRowData.price);

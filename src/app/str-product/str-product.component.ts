@@ -17,6 +17,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { StrProductDialogComponent } from '../str-product-dialog/str-product-dialog.component';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 // import { GlobalService } from '../services/global.service';
 
 @Component({
@@ -28,18 +29,21 @@ import { StrProductDialogComponent } from '../str-product-dialog/str-product-dia
   styleUrls: ['./str-product.component.css']
 })
 export class StrProductComponent implements OnInit {
+  // myUrl='javascript:alert("attachment")';
+  // mytrustedUrl;
   loading: boolean = false; // Flag variable
   file:any
   File = null;
-  // baseApiUrl = "https://file.io"
-  displayedColumns: string[] = ['name', 'itemId', 'vendorId', 'modelId','attachement', 'action'];
+  displayedColumns: string[] = ['name', 'itemId', 'vendorId', 'modelId','attachementId', 'action'];
 
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, public shortLink: FileUploadComponent, private api: ApiService, private toastr: ToastrService) { }
+  constructor(private dialog: MatDialog, public shortLink: FileUploadComponent, private api: ApiService, private toastr: ToastrService) {
+    // this.mytrustedUrl=sanitizer.bypassSecurityTrustUrl(this.myUrl)
+   }
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -94,6 +98,18 @@ export class StrProductComponent implements OnInit {
       }
     })
   }
+  // showfile(event:Event){
+  //   alert("shortfileeee")
+  //   this.api.showfile(this.file).subscribe(
+  //     (event: any) => {
+  //             this.shortLink = event.link;
+
+  //             this.loading = false; // Flag variable 
+  //             console.log("shortlink",this.shortLink)
+  //         }
+     
+  // );
+  //   }
 
   editProduct(row: any) {
     // console.log("edit row: ", row)
@@ -107,17 +123,17 @@ export class StrProductComponent implements OnInit {
     })
   }
    
-  showfile() {
+//   showfile() {
 
-this.dialog.open(FileUploadDialogComponent, {
-  width: '30%',
+// this.dialog.open(FileUploadDialogComponent, {
+//   width: '30%',
 
-}).afterClosed().subscribe(val => {
+// }).afterClosed().subscribe(val => {
 
-    this.getAllProducts();
+//     this.getAllProducts();
   
-})
-      }
+// })
+//       }
     
 
   deleteProduct(id: number) {

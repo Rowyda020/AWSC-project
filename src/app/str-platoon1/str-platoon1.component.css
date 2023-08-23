@@ -10,14 +10,14 @@ button{
 }
 
 th{
-  background-color: #147a9f !important;
+  background-color: rgb(60, 202, 252)!important;
   color: white;
   font-family: 'Droid Arabic Kufi', serif;
   font-size: 16px;
 }
 
 .add{
-  background-color: #147a9f;
+  background-color: rgb(60, 202, 252);
   color: white;  
   font-family: 'Droid Arabic Kufi', serif;
   font-size: 15px;
@@ -36,7 +36,7 @@ th{
   height: 50px;
   font-size: 15px;
   font-family: 'Droid Arabic Kufi', serif;
-  background-color: #147a9f;
+  background-color:rgb(60, 202, 252);
   color: white;
   border: none;
   border-radius: 5px;
@@ -47,7 +47,7 @@ mat-expansion-panel{
 }
 mat-panel-description{
   font-size: 20px;
-  color: rgb(63 81 181);
+  color:rgb(60, 202, 252);
   font-weight: 500;
   text-align: right;
 }
