@@ -2,11 +2,12 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
 @import '~ngx-toastr/toastr';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Droid Arabic Kufi', serif;}
+body { margin: 0; font-family: 'Cairo', sans-serif;}
 
    
 
