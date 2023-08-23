@@ -82,6 +82,11 @@ import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-h
 import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog/fi-account-hierarchy-dialog.component';
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-account-itemd-dialog.component';
+import { FIJournalComponent } from './fi-journal/fi-journal.component';
+import { FIJournalDialogComponent } from './fi-journal-dialog/fi-journal-dialog.component';
+import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
+import { STRAddDialogComponent } from './str-add-dialog/str-add-dialog.component';
+import { STRAddTableComponent } from './str-add-table/str-add-table.component';
 
 @NgModule({
   declarations: [
@@ -133,7 +138,12 @@ import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-acco
     FIAccountHierarchyComponent,
     FIAccountHierarchyDialogComponent,
     FiAccountItemComponent,
-    FiAccountItemdDialogComponent
+    FiAccountItemdDialogComponent,
+    FIJournalComponent,
+    FIJournalDialogComponent,
+    STRAddContainerComponent,
+    STRAddDialogComponent,
+    STRAddTableComponent
     
 
 

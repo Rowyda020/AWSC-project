@@ -26,6 +26,8 @@ import {  StrWithdrawContainerComponent} from "./str-withdraw-container/str-with
 import { FIAccountComponent } from './fi-account/fi-account.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
+import { FIJournalComponent } from './fi-journal/fi-journal.component';
+import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
 
 const routes: Routes = [
   //  {path: 'products',
@@ -57,6 +59,9 @@ const routes: Routes = [
   { path: 'report', component: StrReportComponent },
   { path: 'AccountHierarchy', component: FIAccountHierarchyComponent },
   { path: 'FiAccountItem', component: FiAccountItemComponent },
+  { path: 'FIJournal', component: FIJournalComponent },
+  { path: 'STRAdd', component: STRAddContainerComponent },
+  
 
   {path:'withdraw',component:StrWithdrawContainerComponent },
 //  {path: 'products',
