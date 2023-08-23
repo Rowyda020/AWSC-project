@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card dir="rtl">
   <mat-card-header>
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event)" placeholder="بحث" #input />
@@ -151,7 +151,9 @@
 
           <button (click)="getSearchItems(item.value)">عرض</button>
         </div>
-        <button (click)="printReport()">طباعة</button>
+        <div class="print">
+          <button (click)="printReport()">طباعة</button>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
     <div id="content" class="content">
