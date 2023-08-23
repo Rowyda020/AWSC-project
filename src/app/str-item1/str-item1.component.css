@@ -30,7 +30,8 @@ th {
   display: flex;
   justify-content: space-between;
 }
-.search button {
+.search button,
+.print button {
   padding: 10px;
   width: 80px;
   height: 50px;
@@ -41,6 +42,13 @@ th {
   border: none;
   border-radius: 5px;
 }
+
+.print {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 mat-expansion-panel {
   width: 88%;
   margin: 30px auto;
