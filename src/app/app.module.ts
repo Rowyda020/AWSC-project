@@ -88,6 +88,11 @@ import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-
 
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-account-itemd-dialog.component';
+import { FIJournalComponent } from './fi-journal/fi-journal.component';
+import { FIJournalDialogComponent } from './fi-journal-dialog/fi-journal-dialog.component';
+import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
+import { STRAddDialogComponent } from './str-add-dialog/str-add-dialog.component';
+import { STRAddTableComponent } from './str-add-table/str-add-table.component';
 
 @NgModule({
   declarations: [
@@ -146,9 +151,18 @@ import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-acco
     FIEntrySourceDialogComponent,
 
     StrReportAddItemComponent,
-
+// selvana
     FiAccountItemComponent,
     FiAccountItemdDialogComponent,
+    FIJournalComponent,
+    FIJournalDialogComponent,
+    STRAddContainerComponent,
+    STRAddDialogComponent,
+    STRAddTableComponent
+
+
+
+
   ],
   imports: [
     BrowserModule,PipesModule,

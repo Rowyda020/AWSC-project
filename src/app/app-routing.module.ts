@@ -30,6 +30,8 @@ import { FIEntrySourceComponent } from './fi-entry-source/fi-entry-source.compon
 import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-item.component';
 
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
+import { FIJournalComponent } from './fi-journal/fi-journal.component';
+import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
 
 
 const routes: Routes = [
@@ -77,6 +79,9 @@ const routes: Routes = [
   { path: 'commodity', component: StrCommodityComponent },
 
   { path: 'FiAccountItem', component: FiAccountItemComponent },
+  { path: 'FIJournal', component: FIJournalComponent },
+  { path: 'STRAdd', component: STRAddContainerComponent },
+  
 
   {path:'withdraw',component:StrWithdrawContainerComponent },
 //  {path: 'products',
