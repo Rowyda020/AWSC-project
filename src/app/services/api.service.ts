@@ -497,7 +497,7 @@ export class ApiService {
   }
   deleteStrOpen(id: number) {
     return this.http.delete<any>(
-      'https://ims.aswan.gov.eg/api/STR_Opening_Stock/delete-Opening_Stock/' +
+      `${this.url}/STROpeningStock/delete/` +
         id
     );
   }
@@ -508,7 +508,7 @@ export class ApiService {
   putStrOpenDetails(data: any, id: number) {
     console.log('strOpenDetails id: ', id, 'strOpenDetails data: ', data);
     return this.http.put<any>(
-      'https://ims.aswan.gov.eg/api/STR_Opening_Stock/update-Opening_Stock_Details-by-id/' +
+      `${this.url}/STROpeningStockDetails/update/` +
         id,
       data
     );
@@ -516,7 +516,7 @@ export class ApiService {
   deleteStrOpenDetails(HeaderId: number) {
     // console.log("deleted row id: ", HeaderId)
     return this.http.delete<any>(
-      'https://ims.aswan.gov.eg/api/STR_Opening_Stock/delete-Opening_Stock_Details-by-id/' +
+      `${this.url}/STROpeningStockDetails/delete/` +
         HeaderId
     );
   }
