@@ -45,6 +45,11 @@ export class ApiService {
     );
   }
 
+  //str-report
+  getAddReportItem() {
+    return this.http.get<any>('http://ims.aswan.gov.eg/api/STRAdd/get/all');
+  }
+  
   // start crud grade
   //selvana
   postGrade(data: any) {
