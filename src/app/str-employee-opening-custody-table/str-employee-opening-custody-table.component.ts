@@ -70,89 +70,77 @@ export class STREmployeeOpeningCustodyTableComponent implements OnInit {
   }
 
   deleteBothForms(id: number) {
-    this.http
-      .get<any>(
-        'https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/get-all-Employee_Opening_Custody_Detail'
-      )
-      .subscribe(
-        (res) => {
-          this.matchedIds = res.filter((a: any) => {
-            console.log('matched Id &  custodyId : ', a.custodyId === id);
-            return a.custodyId === id;
-          });
-          var result = confirm('هل ترغب بتاكيد حذف التفاصيل و الرئيسي؟');
+    
+    this.http.get<any>("http://ims.aswan.gov.eg/api/STREmployeeOpeningCustodyDetails/get/all")
+      .subscribe(res => {
+        this.matchedIds = res.filter((a: any) => {
+          console.log("matched Id &  : ", a.custodyId === id)
+          return a.custodyId === id
+        })
+        var result = confirm("هل ترغب بتاكيد حذف التفاصيل و الرئيسي؟");
 
-          if (this.matchedIds.length) {
-            for (let i = 0; i < this.matchedIds.length; i++) {
-              console.log(
-                'matchedIds details in loop vvvv: ',
-                this.matchedIds[i].id
-              );
+        if (this.matchedIds.length) {
+          for (let i = 0; i < this.matchedIds.length; i++) {
 
-              // if (result) {
-              this.api
-                .deleteStrEmployeeOpenDetails(this.matchedIds[i].id)
+            console.log("matchedIds details in loop: ", this.matchedIds[i].id)
+
+            if (result) {
+              this.api. deleteStrEmployeeOpenDetails(this.matchedIds[i].id)
                 .subscribe({
                   next: (res) => {
                     // alert("تم الحذف التفاصيل بنجاح");
 
                     // var resultMaster = confirm("هل ترغب بتاكيد حذف الرئيسي؟");
                     // if (resultMaster) {
-                    console.log('master id to be deleted: ', id);
+                    console.log("master id to be deleted: ", id)
 
-                    this.api.deleteStrEmployeeOpen(id).subscribe({
-                      next: (res) => {
-                        // alert("تم حذف الرئيسي بنجاح");
-                        this.toastrDeleteSuccess();
-                        this.getAllMasterForms();
-                      },
-                      error: () => {
-                        alert('خطأ أثناء حذف الرئيسي !!');
-                      },
-                    });
+                    this.api.deleteStrEmployeeOpen(id)
+                      .subscribe({
+                        next: (res) => {
+                          // alert("تم حذف الرئيسي بنجاح");
+                          this.toastrDeleteSuccess();
+                          this.getAllMasterForms();
+                        },
+                        error: () => {
+                          alert("خطأ أثناء حذف الرئيسي !!");
+                        }
+                      })
                     // }
+
                   },
                   error: () => {
-                    alert('خطأ أثناء حذف التفاصيل !!');
-                  },
-                });
-              // }
+                    alert("خطأ أثناء حذف التفاصيل !!");
+                  }
+                })
             }
-          } else {
-            // if (result) {
-            console.log('master id to be deleted: ', id);
 
-            this.api.deleteStrEmployeeOpen(id).subscribe({
-              next: (res) => {
-                // alert("تم حذف الرئيسي بنجاح");
-                this.toastrDeleteSuccess();
-                this.getAllMasterForms();
-              },
-              error: () => {
-                alert('خطأ أثناء حذف الرئيسي !!');
-              },
-            });
-            // }
           }
-        },
-        (err) => {
-          alert('خطا اثناء تحديد المجموعة !!');
         }
-      );
+        else {
+          if (result) {
+            console.log("master id to be deleted: ", id)
+
+            this.api.deleteStrEmployeeOpen(id)
+              .subscribe({
+                next: (res) => {
+                  // alert("تم حذف الرئيسي بنجاح");
+                  this.toastrDeleteSuccess();
+                  this.getAllMasterForms();
+                },
+                error: () => {
+                  alert("خطأ أثناء حذف الرئيسي !!");
+                }
+              })
+          }
+        }
+
+      }, err => {
+        alert("خطا اثناء تحديد المجموعة !!")
+      })
+
   }
 
-  deleteFormDetails(id: number) {
-    this.api.deleteStrEmployeeOpen(id).subscribe({
-      next: (res) => {
-        alert('تم حذف الصنف بنجاح');
-        this.getAllMasterForms();
-      },
-      error: (err) => {
-        // console.log("delete details err: ", err)
-        alert('خطأ أثناء حذف الصنف !!');
-      },
-    });
-  }
+  
 
   getAllEmployees() {
     this.api.getAllEmployees().subscribe({

@@ -32,6 +32,7 @@ import { FIAccountParentComponent } from './fi-account-parent/fi-account-parent.
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FIJournalComponent } from './fi-journal/fi-journal.component';
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
+import { StrVendorComponent } from './str-vendor/str-vendor.component';
 
 
 const routes: Routes = [
@@ -122,6 +123,7 @@ const routes: Routes = [
   { path: 'str-home', component: STRHomeComponent },
 
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
+  { path: 'str-vendor', component: StrVendorComponent},
 
   { path: 'fi-entry', component: FiEntryContainerComponent },
   { path: 'withdraw', component: StrWithdrawContainerComponent },
