@@ -864,7 +864,7 @@ getAllAccountsParents(): Observable<any> {
   // open Empoyee
   postStrEmployeeOpen(data: any) {
     return this.http.post<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/Add-Employee_Opening_Custody',
+      'http://ims.aswan.gov.eg/api/STREmployeeOpeningCustody/Add',
       data
     );
   }
@@ -875,25 +875,25 @@ getAllAccountsParents(): Observable<any> {
   }
   putStrEmployeeOpen(data: any) {
     return this.http.put<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/update-Employee_Opening_Custody',
+      'http://ims.aswan.gov.eg/api/STREmployeeOpeningCustody/update',
       data
     );
   }
   deleteStrEmployeeOpen(id: number) {
     return this.http.delete<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/delete-Employee_Opening_Custody/' +
+      'http://ims.aswan.gov.eg/api/STREmployeeOpeningCustody/delete/' +
         id
     );
   }
   getAllEmployees() {
     return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/HR_Employee/get-all-employee'
+      'http://ims.aswan.gov.eg/api/HREmployee/get/all'
     );
   }
 
   postStrEmployeeOpenDetails(data: any) {
     return this.http.post<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/Add-Employee_Opening_Custody_Detail',
+      'http://ims.aswan.gov.eg/api/STREmployeeOpeningCustodyDetails/Add',
       data
     );
   }
@@ -903,7 +903,7 @@ getAllAccountsParents(): Observable<any> {
   putStrEmployeeOpenDetails(data: any) {
     console.log('putStrEmployeeOpenDetails data: ', data);
     return this.http.put<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/update-Employee_Opening_Custody_Detail/',
+      'http://ims.aswan.gov.eg/api/STREmployeeOpeningCustodyDetails/update/',
       data
     );
   }
@@ -911,7 +911,7 @@ getAllAccountsParents(): Observable<any> {
   deleteStrEmployeeOpenDetails(HeaderId: number) {
     console.log('deleted row id: ', HeaderId);
     return this.http.delete<any>(
-      'https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/delete-Employee_Opening_Custody_Detail/' +
+      'http://ims.aswan.gov.eg/api/STREmployeeOpeningCustodyDetails/delete/' +
         HeaderId
     );
   }
@@ -1391,6 +1391,30 @@ upload(file:any):Observable<any> {
     console.log("didn't enter any condition search");
     return this.http.get<any>(
       `http://ims.aswan.gov.eg/api/STRAdd/search?StoreId=${0}`
+    );
+  }
+
+
+  // vendor
+  postVendor(data: any) {
+    return this.http.post<any>(
+      'http://ims.aswan.gov.eg/api/STRVendor/Add',
+      data
+    );
+  }
+  // here
+  getVendor() {
+    return this.http.get<any>('http://ims.aswan.gov.eg/api/STRVendor/get/all'
+    );
+  }
+  putVendor(data: any) {
+    console.log("data")
+    return this.http.put<any>('http://ims.aswan.gov.eg/api/STRVendor/update',
+      data
+    );
+  }
+  daleteVendor(id: number) {
+    return this.http.delete<any>(`http://ims.aswan.gov.eg/api/STRVendor/delete/${id}`
     );
   }
 }
