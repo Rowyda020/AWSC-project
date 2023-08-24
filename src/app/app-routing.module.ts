@@ -28,10 +28,11 @@ import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-h
 import { FIEntrySourceComponent } from './fi-entry-source/fi-entry-source.component';
 import { FIEntrySourceTypeComponent } from './fi-entry-source-type/fi-entry-source-type.component';
 import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-item.component';
-
+import { FIAccountParentComponent } from './fi-account-parent/fi-account-parent.component';
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FIJournalComponent } from './fi-journal/fi-journal.component';
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
+import { StrVendorComponent } from './str-vendor/str-vendor.component';
 
 
 const routes: Routes = [
@@ -77,7 +78,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'commodity', component: StrCommodityComponent },
-
+  { path: 'AccountParent', component: FIAccountParentComponent },
   { path: 'FiAccountItem', component: FiAccountItemComponent },
   { path: 'FIJournal', component: FIJournalComponent },
   { path: 'STRAdd', component: STRAddContainerComponent },
@@ -122,6 +123,7 @@ const routes: Routes = [
   { path: 'str-home', component: STRHomeComponent },
 
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
+  { path: 'str-vendor', component: StrVendorComponent},
 
   { path: 'fi-entry', component: FiEntryContainerComponent },
   { path: 'withdraw', component: StrWithdrawContainerComponent },

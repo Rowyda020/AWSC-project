@@ -1,0 +1,53 @@
+@import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
+@import url('http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css');
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-img{
+  width: 60px;
+  height: 60px;
+  margin: 5px 0;
+}
+
+.toolbar-content p{
+  font-family: 'Droid Arabic Kufi', serif;
+  font-size: 16px;
+  margin: 0 !important;
+}
+.user-content p{
+  font-family: 'Droid Arabic naskh', serif;
+  font-size: 14px;
+  margin: 0 !important;
+}
+.mat-toolbar.mat-primary {
+  background: #158fbc;
+}
+
+.list-btn,
+.mat-expansion-panel-header{
+  font-family: 'Droid Arabic Kufi', serif;
+  color: #147a9f !important;
+  font-size: 16px;
+  letter-spacing: 0 !important;
+}
+
+.list-btn .mat-icon,
+.mat-expansion-panel .mat-icon{
+  font-size: 28px;
+  height: 28px;
+  width: 28px
+}
+
+.mat-expansion-panel .mat-icon{
+  margin-left: 8px;
+}
+
+.expand span{
+  font-family: 'Droid Arabic naskh', serif;
+  font-size: 14px;
+}
+
+.mdc-list-item.mdc-list-item--with-one-line {
+  height: 40px;
+}
