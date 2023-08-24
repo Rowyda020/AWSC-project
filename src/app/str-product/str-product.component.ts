@@ -1,4 +1,4 @@
-import { FileUploadComponent } from './../file-upload/file-upload.component';
+// import { FileUploadComponent } from './../file-upload/file-upload.component';
 // import { FileUploadDialogComponent } from 'module';
 import { FileUploadDialogComponent } from './../file-upload-dialog/file-upload-dialog.component';
 
@@ -23,7 +23,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 @Component({
   selector: 'app-str-product',
   templateUrl: './str-product.component.html',
-  providers: [ FileUploadComponent ,GlobalService],
+  providers: [GlobalService],
 
 
   styleUrls: ['./str-product.component.css']
@@ -34,20 +34,20 @@ export class StrProductComponent implements OnInit {
   loading: boolean = false; // Flag variable
   file:any
   File = null;
-  displayedColumns: string[] = ['name', 'itemId', 'vendorId', 'modelId','attachementId', 'action'];
+  displayedColumns: string[] = ['name', 'itemId', 'vendorId', 'modelId','attachment', 'action'];
 
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, public shortLink: FileUploadComponent, private api: ApiService, private toastr: ToastrService) {
+  constructor(private dialog: MatDialog, private api: ApiService, private toastr: ToastrService) {
     // this.mytrustedUrl=sanitizer.bypassSecurityTrustUrl(this.myUrl)
    }
 
   ngOnInit(): void {
     this.getAllProducts();
-    console.log("shortlink",this.shortLink)
+    // console.log("shortlink",this.shortLink)
   }
 
   applyFilter(event: Event) {

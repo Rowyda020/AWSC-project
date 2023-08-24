@@ -19,6 +19,7 @@ import {PipesModule  } from "../pipes/pipes.module";
 export class StrProductDialogComponent implements OnInit{
   shortLink: string = "";
   loading: boolean = false; // Flag variable
+  name:string='';
   file:any;
    File = null; // Variable to store file
   freshnessList = ["Brand new", "Second Hand", "Refurbished"];
@@ -51,7 +52,7 @@ export class StrProductDialogComponent implements OnInit{
       itemId: ['', Validators.required],
       vendorId: ['', Validators.required],
       modelId: ['', Validators.required],
-      attachment: [, Validators.required],
+      attachment: ['', Validators.required],
 
       // platoonName: [''],
       transactionUserId: [''],
@@ -113,15 +114,27 @@ export class StrProductDialogComponent implements OnInit{
 //     // );
 // }
 onChange(event:any) {
-  alert('filleeee')
-
     this.file = event.target.files[0];
+    console.log("file",this.file);
+    alert("on change function")
+
 }
 
 // OnClick of button Upload
 onUpload() {
+let formdata=new FormData;
+formdata.set("name",this.file.name)
+formdata.set("file",this.file)
+this.groupForm.controls['attachment'].setValue(formdata);
+console.log("form data",formdata)
 
-    this.loading = !this.loading;
+
+
+// this.http.post("http://192.168.100.213/files/str-uploads",formdata).subscribe((response)=>{
+
+// })
+
+    // this.loading = !this.loading;
     this.api.upload(this.file).subscribe(
         (event: any) => {
             if (typeof (event) === 'object') {

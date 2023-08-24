@@ -512,7 +512,7 @@ export class STRItem1Component implements OnInit {
     let reportFooter: any = document.getElementById('reportFooter');
     let date: any = document.getElementById('date');
     header.style.display = 'grid';
-    paginator.style.display = 'none';
+    // paginator.style.display = 'none';
     action1.style.display = 'none';
     // button1.style.display = 'none';
     // button2.style.display = 'none';
@@ -521,8 +521,8 @@ export class STRItem1Component implements OnInit {
 
       element.hidden = true;
     }
-    reportFooter.style.display = 'block';
-    date.style.display = 'block';
+    // reportFooter.style.display = 'block';
+    // date.style.display = 'block';
     let printContent: any = document.getElementById('content')?.innerHTML;
     let originalContent: any = document.body.innerHTML;
     document.body.innerHTML = printContent;
