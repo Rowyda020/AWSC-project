@@ -1,3 +1,4 @@
+// import { HrPositionComponent } from './hr-position/hr-position.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StrGroupHomeComponent } from './str-group-home/str-group-home.component';
@@ -33,6 +34,8 @@ import { FiAccountItemComponent } from './fi-account-item/fi-account-item.compon
 import { FIJournalComponent } from './fi-journal/fi-journal.component';
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
 import { StrVendorComponent } from './str-vendor/str-vendor.component';
+import {HrJobTitleComponent  } from "./hr-job-title/hr-job-title.component";
+import {HrPositionComponent  } from "./hr-position/hr-position.component";
 
 
 const routes: Routes = [
@@ -46,6 +49,10 @@ const routes: Routes = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'jobTitle', component: HrJobTitleComponent },
+  { path: 'position', component: HrPositionComponent },
+
+
   { path: 'commodity', component: StrCommodityComponent },
   { path: 'home', component: StrGroupHomeComponent },
   { path: 'groupOpening', component: StrOpeningStockContainerComponent },

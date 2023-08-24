@@ -1474,4 +1474,54 @@ upload(file:any):Observable<any> {
     return this.http.delete<any>(`http://ims.aswan.gov.eg/api/STRVendor/delete/${id}`
     );
   }
+  
+  ////////Hr JobTitle/////
+
+  
+  getHrJobTitle() {
+    // console.log("deleted row id: ", HeaderId)
+    return this.http.get<any>( `${this.url}/HrJobTitle/get/all` 
+    );
+  }
+  deleteHrJobTitle(id: number) {
+    return this.http.delete<any>(`${this.url}/HrJobTitle/delete-JobTitle/` + id);
+  }
+  postHrJobTitle(data: any) {
+    return this.http.post<any>(
+      `${this.url}/HrJobTitle/Add`,
+      data
+    );
+  }
+  putHrJobTitle(data: any) {
+    return this.http.put<any>(
+      `${this.url}/HrJobTitle/update`,
+      data
+    );
+  }
+
+
+
+   ////////Hr position/////
+
+  
+   getHrPosition() {
+    // console.log("deleted row id: ", HeaderId)
+    return this.http.get<any>( `${this.url}/HrPosition/get/all` 
+    );
+  }
+  deleteHrPosition(id: number) {
+    return this.http.delete<any>(`${this.url}/HrPosition/delete/` + id);
+  }
+  postHrPosition(data: any) {
+    return this.http.post<any>(
+      `${this.url}/HrPosition/Add`,
+      data
+    );
+  }
+  putHrPosition(data: any) {
+    return this.http.put<any>(
+      `${this.url}/HrPosition/update`,
+      data
+    );
+  }
 }
