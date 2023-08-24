@@ -13,6 +13,8 @@ export class ApiService {
   // attachmentURL='src\app\files\str-uploads';
   public reportData: [] = [];
 
+  public reportName: string = '';
+
   getSubGrads(selectedOption: any) {
     throw new Error('Method not implemented.');
   }
