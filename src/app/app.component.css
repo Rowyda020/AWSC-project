@@ -17,7 +17,8 @@ body {  font-family: 'Cairo', sans-serif;}
 .screenBackground {
   padding: 20px;
   background: linear-gradient(rgb(60, 202, 252), rgb(3, 21, 89));
-  height: 100vh;
+  height: auto;
+  overflow: scroll;
 }
 .role1{
   padding: 20px;
@@ -46,7 +47,7 @@ body {  font-family: 'Cairo', sans-serif;}
 }
 .baseContainer {
   background: var(--primary-color);
-  height: 100vh;
+  height: auto;
   justify-content: center;
   border-radius: 20px;
 }
@@ -236,4 +237,8 @@ align-items: center;
   border: none;
   
 
+}
+
+.mat-icon.mat-primary {
+  --mat-icon-color:rgb(60, 202, 252);
 }
