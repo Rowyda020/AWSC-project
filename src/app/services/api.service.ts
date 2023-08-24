@@ -194,7 +194,6 @@ export class ApiService {
     return this.http.get<any>('http://ims.aswan.gov.eg/api/STRGrade/get/all');
   }
 
- 
     //Group
 
   postGroups(data: any) {
@@ -355,6 +354,35 @@ export class ApiService {
       `http://ims.aswan.gov.eg/api/FiEntrySource/delete/${id}`
     );
   }
+
+//AccountParent
+postAccountParent(data: any) {
+  return this.http.post<any>(
+    'http://ims.aswan.gov.eg/api/FIAccountParent/Add',
+    data
+  );
+}
+getAccountParent() {
+  return this.http.get<any>(
+    'http://ims.aswan.gov.eg/api/FIAccountParent/get/all'
+  );
+}
+putAccountParent(data: any) {
+  return this.http.put<any>(
+    'http://ims.aswan.gov.eg/api/FIAccountParent/update',
+    data
+  );
+}
+deleteAccountParent(id: number) {
+  return this.http.delete<any>(
+    `http://ims.aswan.gov.eg/api/FIAccountParent/delete/${id}`
+  );
+}
+getAllAccountsParents(): Observable<any> {
+  return this.http.get<any>(
+    'http://ims.aswan.gov.eg/api/FIAccount/get/all'
+  );
+}
 
   /**crud group */
 
