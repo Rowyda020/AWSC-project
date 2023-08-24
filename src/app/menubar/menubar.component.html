@@ -1,0 +1,84 @@
+<mat-toolbar dir="rtl" color="primary" class="mat-elevation-z8">
+  <button (click)="drawer.toggle()" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img class="toolbar-img" src="assets\img\water-logo.png" alt="user photo">
+  <div class="toolbar-content">
+    <p>شركة مياة الشرب
+    <br />
+    و الصرف الصحى باسوان</p>
+  </div>
+  <span class="example-spacer"></span>
+
+  <button routerLink="" mat-icon-button>
+    <mat-icon matBadgeColor="accent" matBadge="." [matBadgeHidden]="badgevisible" matBadgeSize="small">notifications</mat-icon>
+  </button>
+  <button routerLink="" mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
+
+  <img class="toolbar-img" src="assets\img\profile.png" alt="user photo">
+  <div class="user-content">
+    <p>محمد عوض
+    <br/>مدير ادارة المخازن</p>
+  </div>
+  
+</mat-toolbar>
+<mat-drawer-container dir="rtl" autosize>
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+    <mat-nav-list>
+      <mat-list-item>
+        <button class="list-btn" routerLink="home" mat-button><mat-icon>home</mat-icon>الرئيسية</button>
+      </mat-list-item>
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-icon>store</mat-icon>المخازن
+        </mat-expansion-panel-header>
+        <mat-nav-list class="expand">
+          <a mat-list-item routerLink="">
+            <span>إذن الإضافة</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>إذن الصرف</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>الافتتاحى</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>إضافة صنف</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>إضافة سلعة</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>إضافة نوعية</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>إضافة فصيلة</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>إضافة مجموعة</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>إضافة وحدة</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>إضافة مخزن</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>إضافة مركز تكلفة</span>
+          </a>
+          <a mat-list-item routerLink="">
+            <span>إضافة مورد</span>
+          </a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div style="text-align: center;min-height: 600px;">
+
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
