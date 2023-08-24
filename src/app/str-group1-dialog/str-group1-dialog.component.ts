@@ -87,7 +87,7 @@ gradeName: any;
   ngOnInit(): void {
     this.groupForm = this.formBuilder.group({
       transactionUserId : ['',Validators.required],
-      code : ['',Validators.required],
+      code : ['',Validators.required,Validators.pattern("^[0-9]{2}$")],      
       name : ['',Validators.required],
       commodityId : ['',Validators.required],
       commodityName : [''],
@@ -126,6 +126,7 @@ gradeName: any;
      this.groupForm.controls['id'].setValue(this.editData.id);
     }
   }
+  
 
 
 displayCommodityName(commodity: any): string {
@@ -206,6 +207,7 @@ openAutoPlatoon() {
   // Open the autocomplete dropdown by triggering the value change event
   this.platoonCtrl.updateValueAndValidity();
 }
+
 
   addGroup(){
     if(!this.editData){

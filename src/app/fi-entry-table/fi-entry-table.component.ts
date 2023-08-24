@@ -16,13 +16,16 @@ import { FiEntryDialogComponent } from '../fi-entry-dialog/fi-entry-dialog.compo
   styleUrls: ['./fi-entry-table.component.css']
 })
 export class FiEntryTableComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'balance', 'creditTotal', 'debitTotal', 'journalName', 'type', 'date', 'Action'];
+  displayedColumns: string[] = ['no', 'balance', 'creditTotal', 'debitTotal', 'journalName', 'entrySourceTypeName', 'type', 'date', 'Action'];
   matchedIds: any;
   storeList: any;
   storeName: any;
   fiscalYearsList: any;
   employeesList: any;
   costCentersList: any;
+  journalsList: any;
+  accountsList: any;
+  sourcesList: any;
 
   dataSource2!: MatTableDataSource<any>;
 
@@ -39,6 +42,9 @@ export class FiEntryTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllMasterForms();
+    this.getJournals();
+    this.getFiAccounts();
+    this.getFiEntrySource();
     // this.getStores();
     // this.getFiscalYears();
     // this.getEmployees();
@@ -72,6 +78,48 @@ export class FiEntryTableComponent implements OnInit {
         error: (err) => {
           // console.log("fetch store data err: ", err);
           alert("خطا اثناء جلب المخازن !");
+        }
+      })
+  }
+
+  getJournals() {
+    this.api.getJournals()
+      .subscribe({
+        next: (res) => {
+          this.journalsList = res;
+          console.log("journals res: ", this.journalsList);
+        },
+        error: (err) => {
+          console.log("fetch journals data err: ", err);
+          alert("خطا اثناء جلب الدفاتر !");
+        }
+      })
+  }
+
+  getFiAccounts() {
+    this.api.getFiAccounts()
+      .subscribe({
+        next: (res) => {
+          this.accountsList = res;
+          console.log("accounts res: ", this.accountsList);
+        },
+        error: (err) => {
+          console.log("fetch accounts data err: ", err);
+          alert("خطا اثناء جلب الدفاتر !");
+        }
+      })
+  }
+
+  getFiEntrySource() {
+    this.api.getFiEntrySource()
+      .subscribe({
+        next: (res) => {
+          this.sourcesList = res;
+          console.log("sources res: ", this.sourcesList);
+        },
+        error: (err) => {
+          console.log("fetch sources data err: ", err);
+          alert("خطا اثناء جلب الدفاتر !");
         }
       })
   }
@@ -200,173 +248,24 @@ export class FiEntryTableComponent implements OnInit {
       })
   }
 
-  // getSearchStrOpen(no: any, costCenterId: any, employeeId: any, date: any, distEmployee: any) {
+  getSearchStrOpen(no: any, journalId: any, accountId: any, date: any, sourceId: any) {
 
-  //   console.log("no. : ", no, "costCenterId: ", costCenterId, "employeeId : ", employeeId, "date: ", date, "distEmployee: ", distEmployee);
-  //   this.api.getStrEmployeeExchangeSearach(no, costCenterId, employeeId, date, distEmployee)
-  //     .subscribe({
-  //       next: (res) => {
-  //         console.log("search employeeExchange res: ", res);
+    console.log("no. : ", no, "journalId: ", journalId, "accountId : ", accountId, "date: ", date, "sourceId: ", sourceId);
+    this.api.getFiEntrySearach(no, journalId, accountId, date, sourceId)
+      .subscribe({
+        next: (res) => {
+          console.log("search fiEntry res: ", res);
 
-  //         //enter no.
-  //         if (no != '' && !costCenterId && !employeeId && !date && !distEmployee) {
-  //           // console.log("enter no. ")
-  //           // console.log("no. : ", no, "store: ", store, "date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.no == no!)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
+          this.dataSource2 = res
+          this.dataSource2.paginator = this.paginator;
+          this.dataSource2.sort = this.sort;
 
-  //         //enter costCenterId.
-  //         if (!no && costCenterId != '' && !employeeId && !date && !distEmployee) {
-  //           // console.log("enter no. ")
-  //           // console.log("no. : ", no, "store: ", store, "date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter employeeId
-  //         else if (!no && !costCenterId && employeeId && !date && !distEmployee) {
-  //           // console.log("enter store. ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter date
-  //         else if (!no && !costCenterId && !employeeId && date && !distEmployee) {
-  //           // console.log("enter date. ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => formatDate(res.date, 'M/d/yyyy', this.locale) == date)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter distEmployee
-  //         else if (!no && !costCenterId && !employeeId && !date && distEmployee) {
-  //           // console.log("enter date. ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.destEmployeeId == distEmployee)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter no. & costCenter
-  //         else if (no && costCenterId && !employeeId && !date && !distEmployee) {
-  //           // console.log("enter no & store ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.no == no! && res.costCenterId == costCenterId)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter no. & employeeId
-  //         else if (no && !costCenterId && employeeId && !date && !distEmployee) {
-  //           // console.log("enter no & store ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.no == no! && res.employeeId == employeeId)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter no. & date
-  //         else if (no && !costCenterId && !employeeId && date && !distEmployee) {
-  //           // console.log("enter no & date ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.no == no! && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter no. & disEmployee
-  //         else if (no && !costCenterId && !employeeId && !date && distEmployee) {
-  //           // console.log("enter no & store ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.no == no! && res.destEmployeeId == distEmployee)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter costCenter & employee
-  //         else if (!no && costCenterId && employeeId && !date && !distEmployee) {
-  //           // console.log("enter no & store ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && res.employeeId == employeeId)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter costCenter & date
-  //         else if (!no && costCenterId && !employeeId && date && !distEmployee) {
-  //           // console.log("enter no & store ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter costCenter & distEmployee
-  //         else if (!no && costCenterId && !employeeId && !date && distEmployee) {
-  //           // console.log("enter no & store ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.costCenterId == costCenterId && res.destEmployeeId == distEmployee)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter employeeId & date
-  //         else if (!no && !costCenterId && employeeId && date && !distEmployee) {
-  //           // console.log("enter store & date ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter employeeId & distEmployee
-  //         else if (!no && !costCenterId && employeeId && !date && distEmployee) {
-  //           // console.log("enter store & date ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.employeeId == employeeId && res.destEmployeeId == distEmployee)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter distEmployee & date
-  //         else if (!no && !costCenterId && !employeeId && date && distEmployee) {
-  //           // console.log("enter store & date ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.destEmployeeId == distEmployee && formatDate(res.date, 'M/d/yyyy', this.locale) == date)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //enter all data
-  //         else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && distEmployee != '') {
-  //           // console.log("enter all data. ")
-  //           // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-  //           this.dataSource2 = res.filter((res: any) => res.no == no! && res.costCenterId == costCenterId && res.employeeId == employeeId && formatDate(res.date, 'M/d/yyyy', this.locale) == date && res.destEmployeeId == distEmployee)
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-  //         //didn't enter any data
-  //         else {
-  //           // console.log("enter no data ")
-  //           this.dataSource2 = res;
-  //           this.dataSource2.paginator = this.paginator;
-  //           this.dataSource2.sort = this.sort;
-  //         }
-
-
-  //       },
-  //       error: (err) => {
-  //         alert("Error")
-  //       }
-  //     })
-  // }
+        },
+        error: (err) => {
+          alert("Error")
+        }
+      })
+  }
 
   toastrDeleteSuccess(): void {
     this.toastr.success("تم الحذف بنجاح");

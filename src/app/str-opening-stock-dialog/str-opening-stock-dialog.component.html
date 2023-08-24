@@ -35,7 +35,7 @@
 
             <mat-form-field appearance="outline" class="groupInput">
                 <mat-label>الاجمالى</mat-label>
-                <input matInput placeholder="الرقم" type="number" [value]="sumOfTotals" readonly>
+                <input matInput placeholder="الرقم" type="number" [value]="groupMasterForm ? groupMasterForm.getRawValue().total : sumOfTotals" readonly>
             </mat-form-field>
         </div>
 
