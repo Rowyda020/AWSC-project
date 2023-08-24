@@ -38,9 +38,6 @@ dataSource!: MatTableDataSource<any>;
 @ViewChild(MatSort) sort!: MatSort;
 @ViewChild(MatAccordion)
 accordion!: MatAccordion;
-commoditylist:any;
-storeList: any;
-commodityName: any;
   constructor(private formBuilder : FormBuilder,
     private api : ApiService,
     private readonly route:ActivatedRoute,

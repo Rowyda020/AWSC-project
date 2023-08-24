@@ -15,24 +15,21 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./str-withdraw-table2.component.css'],
 })
 export class StrWithdrawTableComponent implements OnInit {
-  displayedColumns: string[] = [
-    'no',
-    'storeName',
-    'employeeName',
-    'costcenterName',
-    'date',
-    'Action',
-  ];
+  displayedColumns: string[] = ['no', 'storeName','employeeName','costCenterName','date', 'Action'];
   matchedIds: any;
   storeList: any;
   storeName: any;
   fiscalYearsList: any;
-  employeeList: any;
-  employeeName: any;
-  costcenterList: any;
-  costcenterName: any;
-  deststoreList: any;
-  deststoreName: any;
+  employeeList:any;
+  employeeName:any;
+  costcenterList:any;
+  costCenterName:any;
+  deststoreList:any;
+  deststoreName:any;
+  
+
+  
+
 
   dataSource2!: MatTableDataSource<any>;
 
@@ -122,16 +119,17 @@ export class StrWithdrawTableComponent implements OnInit {
   }
 
   deleteFormDetails(id: number) {
-    this.api.deleteStrWithdrawDetails(id).subscribe({
-      next: (res) => {
-        alert('تم حذف الصنف بنجاح');
-        this.getAllMasterForms();
-      },
-      error: (err) => {
-        // console.log("delete details err: ", err)
-        alert('خطأ أثناء حذف الصنف !!');
-      },
-    });
+    this.api.deleteStrWithdrawDetails(id)
+      .subscribe({
+        next: (res) => {
+          alert("تم الحذف  بنجاح");
+          this.getAllMasterForms()
+        },
+        error: (err) => {
+          // console.log("delete details err: ", err)
+          alert("خطأ أثناء حذف الصنف !!");
+        }
+      })
   }
 
   getStores() {
@@ -158,17 +156,20 @@ export class StrWithdrawTableComponent implements OnInit {
       },
     });
   }
+
+
   getCostCenters() {
-    this.api.getCostCenter().subscribe({
-      next: (res) => {
-        this.costcenterList = res;
-        // console.log("store res: ", this.storeList);
-      },
-      error: (err) => {
-        // console.log("fetch store data err: ", err);
-        alert('خطا اثناء جلب مركز التكلفة !');
-      },
-    });
+    this.api.getCostCenter()
+      .subscribe({
+        next: (res) => {
+          this.costcenterList = res;
+          console.log("costcenter res: ", this.costcenterList);
+        },
+        error: (err) => {
+          // console.log("fetch store data err: ", err);
+          alert("خطا اثناء جلب مركز التكلفة !");
+        }
+      })
   }
   getDestStores() {
     this.api.getStore().subscribe({

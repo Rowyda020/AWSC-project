@@ -51,6 +51,7 @@ export class AppComponent {
   )
  }
 
+
   handleLogOut(){
     localStorage.removeItem('token')
     this.global.isLogIn = false
