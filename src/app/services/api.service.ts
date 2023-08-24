@@ -12,6 +12,8 @@ export class ApiService {
   baseApiUrl = 'https://file.io';
   public reportData: [] = [];
 
+  public reportName: string = '';
+
   getSubGrads(selectedOption: any) {
     throw new Error('Method not implemented.');
   }
