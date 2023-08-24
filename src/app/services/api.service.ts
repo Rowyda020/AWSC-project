@@ -612,59 +612,120 @@ getAllAccountsParents(): Observable<any> {
     );
   }
 
-  getStrOpenSearach(no: any, storeId: any, date: any, fiscalYear: any) {
+  getStrOpenSearach(no: any, storeId: any, date: any, fiscalYear: any, itemId:any) {
     //enter no.
-    if (no != '' && !storeId && !date && !fiscalYear) {
+    if (no != '' && !storeId && !date && !fiscalYear && !itemId) {
       console.log('enter no. strOpen search');
       return this.http.get<any>(`${this.url}/STROpeningStock/search?No=${no}`);
     }
     //enter store
-    else if (!no && storeId && !date && !fiscalYear) {
+    else if (!no && storeId && !date && !fiscalYear && !itemId) {
       console.log('enter store strOpen search');
       return this.http.get<any>(
         `${this.url}/STROpeningStock/search?StoreId=${storeId}`
       );
     }
     //enter date
-    else if (!no && !storeId && date && !fiscalYear) {
+    else if (!no && !storeId && date && !fiscalYear && !itemId) {
       console.log('enter date strOpen search');
       return this.http.get<any>(
         `${this.url}/STROpeningStock/search?Date=${date}`
       );
     }
     //enter fiscalYear
-    else if (!no && !storeId && !date && fiscalYear) {
+    else if (!no && !storeId && !date && fiscalYear && !itemId) {
       console.log('enter fisalYear strOpen search');
       return this.http.get<any>(
         `${this.url}/STROpeningStock/search?fiscalyear=${fiscalYear}`
       );
     }
+    //enter itemId
+    else if (!no && !storeId && !date && !fiscalYear && itemId) {
+      console.log('enter itemId strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?ItemId=${itemId}`
+      );
+    }
+
     //enter no. & store
-    else if (no && storeId && !date) {
+    else if (no && storeId && !date && !fiscalYear && !itemId) {
       console.log('enter no. & store strOpen search');
       return this.http.get<any>(
         `${this.url}/STROpeningStock/search?StoreId=${storeId}&No=${no}`
       );
     }
     //enter no. & date
-    else if (no && !storeId && date) {
+    else if (no && !storeId && date && !fiscalYear && !itemId) {
       console.log('enter no. & date strOpen search');
       return this.http.get<any>(
         `${this.url}/STROpeningStock/search?Date=${date}&No=${no}`
       );
     }
+    //enter no. & fiscalYear
+    else if (no && !storeId && !date && fiscalYear && !itemId) {
+      console.log('enter no. & fiscalYear strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?No=${no}&fiscalyear=${fiscalYear}`
+      );
+    }
+    //enter no. & itemId
+    else if (no && !storeId && !date && !fiscalYear && itemId) {
+      console.log('enter no. & itemId strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?No=${no}&ItemId=${itemId}`
+      );
+    }
+
     //enter store & date
-    else if (!no && storeId && date) {
+    else if (!no && storeId && date && !fiscalYear && !itemId) {
       console.log('enter store & date strOpen search');
       return this.http.get<any>(
         `${this.url}/STROpeningStock/search?StoreId=${storeId}&Date=${date}`
       );
     }
+    //enter store & fiscalYear
+    else if (!no && storeId && !date && fiscalYear && !itemId) {
+      console.log('enter store & fiscalYear strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}&fiscalyear=${storeId}`
+      );
+    }
+    //enter store & itemId
+    else if (!no && storeId && !date && !fiscalYear && itemId) {
+      console.log('enter store & itemId strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}&ItemId=${itemId}`
+      );
+    }
+
+    //enter date & fiscalYear
+    else if (!no && !storeId && date && fiscalYear && !itemId) {
+      console.log('enter date & fiscalYear strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?Date=${date}&fiscalyear=${fiscalYear}`
+      );
+    }
+    //enter date & itemId
+    else if (!no && !storeId && date && !fiscalYear && itemId) {
+      console.log('enter date & itemId strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?Date=${date}&ItemId=${itemId}`
+      );
+    }
+
+    //enter fiscalYear & itemId
+    else if (!no && !storeId && !date && fiscalYear && itemId) {
+      console.log('enter fiscalYear & itemId strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?fiscalyear=${fiscalYear}&ItemId=${itemId}`
+      );
+    }
+
     //enter all data
-    else if (no != '' && storeId != '' && date != '' && fiscalYear != '') {
+    else if (no != '' && storeId != '' && date != '' && fiscalYear != '' && itemId != '') {
       console.log('enter all data strOpen search');
       return this.http.get<any>(
-        `${this.url}/STROpeningStock/search?StoreId=${storeId}&Date=${date}&No=${no}&fiscalyear=${fiscalYear}`
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}&Date=${date}&No=${no}&fiscalyear=${fiscalYear}&ItemId=${itemId}`
       );
     }
 
@@ -737,35 +798,35 @@ getAllAccountsParents(): Observable<any> {
     );
     //enter no.
     if (no != '' && !costCenterId && !employeeId && !date && !distEmployee) {
-      console.log('enter no. strOpen search');
+      console.log('enter no. employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?No=${no}`
       );
     }
     //enter costCenter
     else if (!no && costCenterId && !employeeId && !date && !distEmployee) {
-      console.log('enter costCenter strOpen search');
+      console.log('enter costCenter employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?CostCenterId=${costCenterId}`
       );
     }
     //enter employee
     else if (!no && !costCenterId && employeeId && !date && !distEmployee) {
-      console.log('enter employee strOpen search');
+      console.log('enter employee employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?EmployeeId=${employeeId}`
       );
     }
     //enter date
     else if (!no && !costCenterId && !employeeId && date && !distEmployee) {
-      console.log('enter date strOpen search');
+      console.log('enter date employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?Date=${date}`
       );
     }
     //enter distEmployee
     else if (!no && !costCenterId && !employeeId && !date && distEmployee) {
-      console.log('enter distEmployee strOpen search');
+      console.log('enter distEmployee employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?DestEmployeeId=${distEmployee}`
       );
@@ -773,28 +834,28 @@ getAllAccountsParents(): Observable<any> {
 
     //enter no. & costCenter
     else if (no && costCenterId && !employeeId && !date && !distEmployee) {
-      console.log('enter no. & costCenter strOpen search');
+      console.log('enter no. & costCenter employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?No=${no}&CostCenterId=${costCenterId}`
       );
     }
     //enter no. & employee
     else if (no && !costCenterId && employeeId && !date && !distEmployee) {
-      console.log('enter no. & employee strOpen search');
+      console.log('enter no. & employee employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?No=${no}&EmployeeId=${employeeId}`
       );
     }
     //enter no. & date
     else if (no && !costCenterId && !employeeId && date && !distEmployee) {
-      console.log('enter no. & date strOpen search');
+      console.log('enter no. & date employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?Date=${date}&No=${no}`
       );
     }
     //enter no & distEmployee
     else if (no && !costCenterId && !employeeId && !date && distEmployee) {
-      console.log('enter no. & distEmployee strOpen search');
+      console.log('enter no. & distEmployee employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?No=${no}&DestEmployeeId=${distEmployee}`
       );
@@ -802,21 +863,21 @@ getAllAccountsParents(): Observable<any> {
 
     //enter costCenter & employee
     else if (!no && costCenterId && employeeId && !date && !distEmployee) {
-      console.log('enter costCenter & employee strOpen search');
+      console.log('enter costCenter & employee employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?CostCenterId=${costCenterId}&EmployeeId=${employeeId}`
       );
     }
     //enter costCenter & date
     else if (!no && costCenterId && !employeeId && date && !distEmployee) {
-      console.log('enter costCenter & date strOpen search');
+      console.log('enter costCenter & date employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?Date=${date}&CostCenterId=${costCenterId}`
       );
     }
     //enter costCenter & distEmployee
     else if (!no && costCenterId && !employeeId && !date && distEmployee) {
-      console.log('enter costCenter & distEmployee strOpen search');
+      console.log('enter costCenter & distEmployee employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?DestEmployeeId=${distEmployee}&CostCenterId=${costCenterId}`
       );
@@ -824,14 +885,14 @@ getAllAccountsParents(): Observable<any> {
 
     //enter employee & date
     else if (!no && !costCenterId && employeeId && date && !distEmployee) {
-      console.log('enter employee & date strOpen search');
+      console.log('enter employee & date employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?Date=${date}&EmployeeId=${employeeId}`
       );
     }
     //enter employee & distEmployee
     else if (!no && !costCenterId && employeeId && !date && distEmployee) {
-      console.log('enter employee & distEmployee strOpen search');
+      console.log('enter employee & distEmployee employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?DestEmployeeId=${distEmployee}&EmployeeId=${employeeId}`
       );
@@ -839,21 +900,15 @@ getAllAccountsParents(): Observable<any> {
 
     //enter distEmployee & date
     else if (!no && !costCenterId && !employeeId && date && distEmployee) {
-      console.log('enter distEmployee & date strOpen search');
+      console.log('enter distEmployee & date employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?Date=${date}&DestEmployeeId=${distEmployee}`
       );
     }
 
     //enter all data
-    else if (
-      no != '' &&
-      costCenterId != '' &&
-      employeeId != '' &&
-      date != '' &&
-      distEmployee != ''
-    ) {
-      console.log('enter all data strOpen search');
+    else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && distEmployee != '') {
+      console.log('enter all data employeeExchange search');
       return this.http.get<any>(
         `${this.url}/STREmployeExchange/search?Date=${date}&No=${no}&DestEmployeeId=${distEmployee}&CostCenterId=${costCenterId}&EmployeeId=${employeeId}`
       );
@@ -1157,9 +1212,9 @@ upload(file:any):Observable<any> {
       console.log('enter date fiEntry search');
       return this.http.get<any>(`${this.url}/FIEntry/search?Date=${date}`);
     }
-    //enter distEmployee
+    //enter sourceId
     else if (!no && !journalId && !accountId && !date && sourceId) {
-      console.log('enter distEmployee fiEntry search');
+      console.log('enter sourceId fiEntry search');
       return this.http.get<any>(
         `${this.url}/FIEntry/search?FiEntrySourceTypeId=${sourceId}`
       );
@@ -1172,13 +1227,13 @@ upload(file:any):Observable<any> {
         `${this.url}/FIEntry/search?No=${no}&JournalId=${journalId}`
       );
     }
-    // //enter no. & employee
-    // else if (no && !costCenterId && employeeId && !date && !distEmployee) {
-    //   console.log('enter no. & employee strOpen search');
-    //   return this.http.get<any>(
-    //     `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?No=${no}&EmployeeId=${employeeId}`
-    //   );
-    // }
+    //enter no. & accountId
+    else if (no && !journalId && accountId && !date && !sourceId) {
+      console.log('enter no. & accountId fiEntry search');
+      return this.http.get<any>(
+        `${this.url}/FIEntry/search?No=${no}&AccountId=${accountId}`
+      );
+    }
     //enter no. & date
     else if (no && !journalId && !accountId && date && !sourceId) {
       console.log('enter no. & date fiEntry search');
@@ -1194,13 +1249,13 @@ upload(file:any):Observable<any> {
       );
     }
 
-    // //enter costCenter & employee
-    // else if (!no && costCenterId && employeeId && !date && !distEmployee) {
-    //   console.log('enter costCenter & employee strOpen search');
-    //   return this.http.get<any>(
-    //     `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?CostCenterId=${costCenterId}&EmployeeId=${employeeId}`
-    //   );
-    // }
+    //enter journalId & accountId
+    else if (!no && journalId && accountId && !date && !sourceId) {
+      console.log('enter journalId & accountId fiEntry search');
+      return this.http.get<any>(
+        `${this.url}/FIEntry/search?JournalId=${journalId}&AccountId=${accountId}`
+      );
+    }
     //enter journalId & date
     else if (!no && journalId && !accountId && date && !sourceId) {
       console.log('enter journalId & date fiEntry search');
@@ -1216,20 +1271,20 @@ upload(file:any):Observable<any> {
       );
     }
 
-    // //enter employee & date
-    // else if (!no && !costCenterId && employeeId && date && !distEmployee) {
-    //   console.log('enter employee & date strOpen search');
-    //   return this.http.get<any>(
-    //     `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?Date=${date}&EmployeeId=${employeeId}`
-    //   );
-    // }
-    // //enter employee & distEmployee
-    // else if (!no && !costCenterId && employeeId && !date && distEmployee) {
-    //   console.log('enter employee & distEmployee strOpen search');
-    //   return this.http.get<any>(
-    //     `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?DestEmployeeId=${distEmployee}&EmployeeId=${employeeId}`
-    //   );
-    // }
+    //enter accountId & date
+    else if (!no && !journalId && accountId && date && !sourceId) {
+      console.log('enter accountId & date fiEntry search');
+      return this.http.get<any>(
+        `${this.url}/FIEntry/search?Date=${date}&AccountId=${accountId}`
+      );
+    }
+    //enter accountId & sourceId
+    else if (!no && !journalId && accountId && !date && sourceId) {
+      console.log('enter accountId & sourceId fiEntry search');
+      return this.http.get<any>(
+        `${this.url}/FIEntry/search?FiEntrySourceTypeId=${sourceId}&AccountId=${accountId}`
+      );
+    }
 
     //enter sourceId & date
     else if (!no && !journalId && !accountId && date && sourceId) {
@@ -1239,13 +1294,13 @@ upload(file:any):Observable<any> {
       );
     }
 
-    // //enter all data
-    // else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && distEmployee != '') {
-    //   console.log('enter all data strOpen search');
-    //   return this.http.get<any>(
-    //     `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?Date=${date}&No=${no}&DestEmployeeId=${distEmployee}&CostCenterId=${costCenterId}&EmployeeId=${employeeId}`
-    //   );
-    // }
+    //enter all data
+    else if (no != '' && journalId != '' && accountId != '' && date != '' && sourceId != '') {
+      console.log('enter all data strOpen search');
+      return this.http.get<any>(
+        `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?Date=${date}&No=${no}&JournalId=${journalId}&FiEntrySourceTypeId=${sourceId}&AccountId=${accountId}`
+      );
+    }
 
     console.log("didn't enter any condition search");
     return this.http.get<any>(

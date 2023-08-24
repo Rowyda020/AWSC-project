@@ -94,6 +94,7 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
   }
 
   deleteBothForms(id: number) {
+
     this.http
       .get<any>(
         'http://ims.aswan.gov.eg/api/STREmployeeExchangeDetails/get/all'
@@ -128,12 +129,38 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
                       console.log('master id to be deleted: ', id);
 
                       this.api.deleteStrEmployeeExchange(id).subscribe({
+
+
+    this.http.get<any>("http://ims.aswan.gov.eg/api/STREmployeeExchangeDetails/get/all")
+      .subscribe(res => {
+        this.matchedIds = res.filter((a: any) => {
+          console.log("matched Id & employee_ExchangeId : ", a.employee_ExchangeId === id)
+          return a.employee_ExchangeId === id
+        })
+        var result = confirm("هل ترغب بتاكيد حذف التفاصيل و الرئيسي؟");
+
+        if (this.matchedIds.length) {
+          for (let i = 0; i < this.matchedIds.length; i++) {
+
+            console.log("matchedIds details in loop: ", this.matchedIds[i].id)
+
+            if (result) {
+              this.api.deleteStrEmployeeExchangeDetails(this.matchedIds[i].id)
+                .subscribe({
+                  next: (res) => {
+
+                    console.log("master id to be deleted: ", id)
+
+                    this.api.deleteStrEmployeeExchange(id)
+                      .subscribe({
+
                         next: (res) => {
                           // alert("تم حذف الرئيسي بنجاح");
                           this.toastrDeleteSuccess();
                           this.getAllMasterForms();
                         },
                         error: () => {
+
                           alert('خطأ أثناء حذف الرئيسي !!');
                         },
                       });
@@ -144,6 +171,17 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
                     },
                   });
               }
+
+                          alert("خطأ أثناء حذف الرئيسي !!");
+                        }
+                      })
+
+                  },
+                  error: () => {
+                    alert("خطأ أثناء حذف التفاصيل !!");
+                  }
+                })
+
             }
           } else {
             if (result) {
