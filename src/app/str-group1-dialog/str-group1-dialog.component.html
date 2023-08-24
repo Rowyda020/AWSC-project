@@ -4,16 +4,25 @@
     <form [formGroup]="groupForm">
       <mat-form-field appearance="outline">
         <mat-label>كود المجموعة</mat-label>
-        <input formControlName="code" matInput placeholder="كود المجموعة">
+        <input formControlName="code" id="code" matInput required placeholder="كود المجموعة">
+        <!-- <div *ngIf="groupForm.get('code').errors?.required">Name is required.</div>
+        <div *ngIf="groupForm.get('code').errors?.pattern">Name must contain only letters and spaces.</div> -->
+        <!-- <div *ngIf="groupForm.controls['code'].invalid && (groupForm.controls['code'].dirty || groupForm.controls['code'].touched)" class="alert">
+          <div *ngIf="groupForm.controls['code'].errors">
+          error in the code
+        </div>
+      </div> -->
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>اسم المجموعة</mat-label>
         <input formControlName="name" matInput placeholder="اسم المجموعة">
       </mat-form-field>
       <mat-label>السلعة</mat-label>
-      <mat-form-field appearance="outline">        
-        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl" placeholder="{{getGroupData ? getGroupData.commodityName : ''}}" (click)="openAutoCommodity()" required/>
-        <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName" (optionSelected)="commoditySelected($event)">
+      <mat-form-field appearance="outline">
+        <input matInput aria-label="commodity" [matAutocomplete]="autoCommodity" [formControl]="commodityCtrl"
+          placeholder="{{getGroupData ? getGroupData.commodityName : ''}}" (click)="openAutoCommodity()" required />
+        <mat-autocomplete #autoCommodity="matAutocomplete" [displayWith]="displayCommodityName"
+          (optionSelected)="commoditySelected($event)">
           <mat-option *ngFor="let commodity of filteredCommodities | async" [value]="commodity">
             {{ commodity.name }} | {{ commodity.code }}
           </mat-option>
@@ -21,8 +30,10 @@
       </mat-form-field>
       <mat-label>النوعية</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required placeholder="{{getGroupData ? getGroupData.gradeName : ''}}" (click)="openAutoGrade()" required/>
-        <mat-autocomplete #autoGrade="matAutocomplete" [displayWith]="displayGradeName" (optionSelected)="gradeSelected($event)">
+        <input matInput aria-label="grade" [matAutocomplete]="autoGrade" [formControl]="gradeCtrl" required
+          placeholder="{{getGroupData ? getGroupData.gradeName : ''}}" (click)="openAutoGrade()" required />
+        <mat-autocomplete #autoGrade="matAutocomplete" [displayWith]="displayGradeName"
+          (optionSelected)="gradeSelected($event)">
           <mat-option *ngFor="let grade of filteredGrades | async" [value]="grade">
             {{ grade.name }} | {{ grade.code }}
           </mat-option>
@@ -30,8 +41,10 @@
       </mat-form-field>
       <mat-label>الفصيلة</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput aria-label="platoon" [matAutocomplete]="autoPlatoon" [formControl]="platoonCtrl" required placeholder="{{getGroupData ? getGroupData.platoonName : ''}}" (click)="openAutoPlatoon()" required/>
-        <mat-autocomplete #autoPlatoon="matAutocomplete" [displayWith]="displayPlatoonName" (optionSelected)="platoonSelected($event)">
+        <input matInput aria-label="platoon" [matAutocomplete]="autoPlatoon" [formControl]="platoonCtrl" required
+          placeholder="{{getGroupData ? getGroupData.platoonName : ''}}" (click)="openAutoPlatoon()" required />
+        <mat-autocomplete #autoPlatoon="matAutocomplete" [displayWith]="displayPlatoonName"
+          (optionSelected)="platoonSelected($event)">
           <mat-option *ngFor="let platoon of filteredPlatoons | async" [value]="platoon">
             {{ platoon.name }} | {{ platoon.code }}
           </mat-option>
@@ -41,6 +54,6 @@
   </div>
   <div mat-dialog-actions>
     <button mat-raised-button color="warn" mat-dialog-close>اغلاق</button>
-  <button mat-raised-button color="primary" (click)="addGroup()" style="margin-left: 8px;">{{actionBtn}}</button> 
+    <button mat-raised-button color="primary" (click)="addGroup()" style="margin-left: 8px;">{{actionBtn}}</button>
   </div>
-  </form>
+</form>
