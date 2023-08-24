@@ -20,6 +20,7 @@ export class StrOpeningStockTableComponent implements OnInit {
   storeList: any;
   storeName: any;
   fiscalYearsList: any;
+  itemsList:any;
 
   dataSource2!: MatTableDataSource<any>;
 
@@ -38,6 +39,7 @@ export class StrOpeningStockTableComponent implements OnInit {
     this.getAllMasterForms();
     this.getStores();
     this.getFiscalYears();
+    this.getItems();
   }
 
   getAllMasterForms() {
@@ -146,10 +148,24 @@ export class StrOpeningStockTableComponent implements OnInit {
       })
   }
 
-  getSearchStrOpen(no: any, store: any, date: any, fiscalYear: any) {
+  getItems() {
+    this.api.getItems()
+      .subscribe({
+        next: (res) => {
+          this.itemsList = res;
+          // console.log("items res: ", this.itemsList);
+        },
+        error: (err) => {
+          // console.log("fetch items data err: ", err);
+          // alert("خطا اثناء جلب العناصر !");
+        }
+      })
+  }
 
-    console.log("no. : ", no, "store : ", store, "date: ", date, "fiscalYear: ", fiscalYear);
-    this.api.getStrOpenSearach(no, store, date, fiscalYear)
+  getSearchStrOpen(no: any, store: any, date: any, fiscalYear: any, itemId: any) {
+
+    console.log("no. : ", no, "store : ", store, "date: ", date, "fiscalYear: ", fiscalYear, "itemId: ", itemId);
+    this.api.getStrOpenSearach(no, store, date, fiscalYear, itemId)
       .subscribe({
         next: (res) => {
           console.log("search openingStock res: ", res);

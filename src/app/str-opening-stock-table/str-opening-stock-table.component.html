@@ -11,8 +11,6 @@
             <mat-form-field appearance="outline">
                 <mat-label>الرقم</mat-label>
                 <input #no matInput placeholder="ادخل الرقم" type="number">
-                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                <!-- <mat-hint>Hint</mat-hint> -->
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -29,6 +27,13 @@
                 </mat-select>
             </mat-form-field>
 
+            <mat-form-field appearance="outline">
+                <mat-label>الصنف </mat-label>
+                <mat-select #itemId plceholder="اختر الصنف ">
+                    <mat-option *ngFor="let item of itemsList" [value]="item.id">{{item.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>التاريخ</mat-label>
                 <input #date matInput [matDatepicker]="picker">
@@ -38,9 +43,7 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
-            <!-- <button (click)=" getSearchStrOpen(store.value,no.value)" >عرض</button>  -->
-
-            <button mat-icon-button color="primary" (click)="getSearchStrOpen(no.value, storeId.value, date.value, fiscalYear.value)">
+            <button mat-icon-button color="primary" (click)="getSearchStrOpen(no.value, storeId.value, date.value, fiscalYear.value, itemId.value)">
                 <mat-icon>search</mat-icon>
             </button>
         </div>

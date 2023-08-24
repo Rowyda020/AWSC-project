@@ -105,10 +105,7 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
               this.api.deleteStrEmployeeExchangeDetails(this.matchedIds[i].id)
                 .subscribe({
                   next: (res) => {
-                    // alert("تم الحذف التفاصيل بنجاح");
 
-                    // var resultMaster = confirm("هل ترغب بتاكيد حذف الرئيسي؟");
-                    // if (resultMaster) {
                     console.log("master id to be deleted: ", id)
 
                     this.api.deleteStrEmployeeExchange(id)
@@ -122,7 +119,6 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
                           alert("خطأ أثناء حذف الرئيسي !!");
                         }
                       })
-                    // }
 
                   },
                   error: () => {

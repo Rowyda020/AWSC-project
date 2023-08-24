@@ -1,4 +1,4 @@
-<p>fi-entry-dialog works!</p>
+<!-- <p>fi-entry-dialog works!</p> -->
 <h1 mat-dialog-title dir="rtl">اضافة </h1>
 <div mat-dialog-content dir="rtl" style="padding: 30px;">
     <form [formGroup]="groupMasterForm" (keydown.enter)="$event.preventDefault()">
@@ -8,18 +8,17 @@
                 <mat-label>الرقم</mat-label>
                 <input matInput placeholder="الرقم" formControlName="no" type="number">
             </mat-form-field>
-
             <mat-form-field appearance="outline" class="groupInput">
-                <mat-label> الدفتر </mat-label>
-                <mat-select placeholder=" الدفتر " formControlName="journalId" >
+                <mat-label> دفتر اليوميه </mat-label>
+                <mat-select placeholder=" دفتر اليوميه " formControlName="journalId" lazy-load-options>
                     <mat-option [value]="journal.id"
                         *ngFor="let journal of journalsList">{{journal.no}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="groupInput">
-                <mat-label> النوع </mat-label>
-                <mat-select placeholder=" النوع " formControlName="fiEntrySourceTypeId" >
+                <mat-label> نوع مصدر الإدخال </mat-label>
+                <mat-select placeholder=" نوع مصدر الإدخال " formControlName="fiEntrySourceTypeId" >
                     <mat-option [value]="source.id"
                         *ngFor="let source of sourcesList">{{source.name}}</mat-option>
                 </mat-select>
@@ -27,7 +26,7 @@
 
             <mat-form-field appearance="outline" class="groupInput">
                 <mat-label>الموازنة</mat-label>
-                <input matInput placeholder="الموازنة" formControlName="balance" type="number" >
+                <input matInput placeholder="الموازنة" type="number" [value]="groupMasterForm ? groupMasterForm.getRawValue().balance : resultOfBalance" readonly>
             </mat-form-field>
 
 
@@ -40,17 +39,9 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
-            <mat-radio-group aria-label="Select an option" formControlName="type"  [value]="getDetailedRowData ? getDetailedRowData.type : ''">
-                <mat-label>النوع</mat-label>
-                <div class="statusRadioBtns">
-                    <mat-radio-button value="جديد">جديد</mat-radio-button>
-                    <mat-radio-button value="مستعمل">مستعمل</mat-radio-button>
-                </div>
-            </mat-radio-group>
-
             <mat-form-field appearance="outline" class="groupInput">
-                <mat-label>مجموع الدائن</mat-label>
-                <input matInput placeholder="مجموع الدائن" type="number" [value]="groupMasterForm ? groupMasterForm.getRawValue().creditTotal : sumOfCreditTotals" readonly>
+                <mat-label>مجموع الائتمان</mat-label>
+                <input matInput placeholder="مجموع الائتمان" type="number" [value]="groupMasterForm ? groupMasterForm.getRawValue().creditTotal : sumOfCreditTotals" readonly>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="groupInput">
@@ -69,31 +60,26 @@
         <div [ngClass]="(MasterGroupInfoEntered || editDataDetails) ? 'restGroupInfo' : 'restGroupInfoDisable'">
 
             <div class="detailsForm">
-                <!-- 
-                <mat-form-field appearance="outline" class="groupInput">
-                    <mat-label>بحث بالكود </mat-label>
-                    <input matInput placeholder="الكود" (keydown)="getItemByCode($event)">
-                </mat-form-field> -->
                 
                 <mat-form-field appearance="outline" class="groupInput">
-                    <mat-label> الصنف</mat-label>
-                    <mat-select placeholder="الصنف" formControlName="accountId"
+                    <mat-label> الحساب </mat-label>
+                    <mat-select placeholder="الحساب " formControlName="accountId"
                         [value]="getDetailedRowData ? getDetailedRowData.accountId : ''">
                         <mat-option [value]="account.id" *ngFor="let account of accountsList">{{account.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="groupInput">
-                    <mat-label> الصنف</mat-label>
-                    <mat-select placeholder="الصنف" formControlName="fiAccountItemId"
+                    <mat-label> صنف الحساب </mat-label>
+                    <mat-select placeholder="صنف الحساب " formControlName="fiAccountItemId"
                         [value]="getDetailedRowData ? getDetailedRowData.fiAccountItemId : ''">
                         <mat-option [value]="accountItem.id" *ngFor="let accountItem of accountItemsList">{{accountItem.accounName}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="groupInput">
-                    <mat-label>الدائن</mat-label>
-                    <input type="number" matInput placeholder="الدائن" formControlName="credit"
+                    <mat-label>الائتمان</mat-label>
+                    <input type="number" matInput placeholder="الائتمان" formControlName="credit"
                         [value]="getDetailedRowData ? getDetailedRowData.credit : ''">
                 </mat-form-field>
 
@@ -102,32 +88,6 @@
                     <input type="number" matInput placeholder="المدين" formControlName="debit"
                         [value]="getDetailedRowData ? getDetailedRowData.debit : ''">
                 </mat-form-field>
-
-                <!-- <mat-form-field appearance="outline" class="groupInput">
-                    <mat-label>الكمية</mat-label>
-                    <input type="number" matInput placeholder="الكمية" formControlName="qty"
-                        [value]="getDetailedRowData ? getDetailedRowData.qty : ''">
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="groupInput">
-                    <mat-label>السعر</mat-label>
-                    <input type="number" matInput placeholder="السعر" formControlName="price"
-                        [value]="getDetailedRowData ? getDetailedRowData.price : ''">
-                </mat-form-field>
-
-
-                <mat-form-field appearance="outline" class="groupInput">
-                    <mat-label>النسبة</mat-label>
-                    <input type="number" matInput placeholder="النسبة" formControlName="percentage"
-                        [value]="getDetailedRowData ? getDetailedRowData.percentage : ''">
-                </mat-form-field>
-
-                <mat-radio-group aria-label="Select an option" formControlName="state"  [value]="getDetailedRowData ? getDetailedRowData.state : ''">
-                    <mat-label>الحالة</mat-label>
-                    <div class="statusRadioBtns">
-                        <mat-radio-button value="جديد">جديد</mat-radio-button>
-                        <mat-radio-button value="مستعمل">مستعمل</mat-radio-button>
-                    </div>
-                </mat-radio-group> -->
 
                 <div mat-dialog-action [align]="'end'">
                     <div class="groupAction">
@@ -144,7 +104,7 @@
 
                     <!-- credit Column -->
                     <ng-container matColumnDef="credit">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> الدائن</th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> الائتمان</th>
                         <td mat-cell *matCellDef="let row"> {{row.credit}} </td>
                     </ng-container>
 
@@ -156,13 +116,13 @@
 
                     <!-- accountId Column -->
                     <ng-container matColumnDef="accountId">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> الحالة</th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> الحساب </th>
                         <td mat-cell *matCellDef="let row"> {{row.accountId}} </td>
                     </ng-container>
 
                     <!-- fiAccountItemId Column -->
                     <ng-container matColumnDef="fiAccountItemId">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> السعر </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> صنف الحساب </th>
                         <td mat-cell *matCellDef="let row"> {{row.fiAccountItemId}} </td>
                     </ng-container>
 
