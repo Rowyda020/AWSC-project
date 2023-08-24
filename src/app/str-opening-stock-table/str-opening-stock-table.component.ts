@@ -26,6 +26,7 @@ export class StrOpeningStockTableComponent implements OnInit {
   storeList: any;
   storeName: any;
   fiscalYearsList: any;
+  itemsList:any;
 
   dataSource2!: MatTableDataSource<any>;
 
@@ -44,6 +45,7 @@ export class StrOpeningStockTableComponent implements OnInit {
     this.getAllMasterForms();
     this.getStores();
     this.getFiscalYears();
+    this.getItems();
   }
 
   getAllMasterForms() {
@@ -195,124 +197,32 @@ export class StrOpeningStockTableComponent implements OnInit {
     });
   }
 
-  getSearchStrOpen(no: any, store: any, date: any, fiscalYear: any) {
-    console.log(
-      'no. : ',
-      no,
-      'store : ',
-      store,
-      'date: ',
-      date,
-      'fiscalYear: ',
-      fiscalYear
-    );
-    this.api.getStrOpenSearach(no, store, date, fiscalYear).subscribe({
-      next: (res) => {
-        console.log('search openingStock res: ', res);
+  getItems() {
+    this.api.getItems()
+      .subscribe({
+        next: (res) => {
+          this.itemsList = res;
+          // console.log("items res: ", this.itemsList);
+        },
+        error: (err) => {
+          // console.log("fetch items data err: ", err);
+          // alert("خطا اثناء جلب العناصر !");
+        }
+      })
+  }
 
-        //enter no.
-        if (no != '' && !store && !date && !fiscalYear) {
-          // console.log("enter no. ")
-          // console.log("no. : ", no, "store: ", store, "date: ", date)
-          this.dataSource2 = res.filter((res: any) => res.no == no!);
+  getSearchStrOpen(no: any, store: any, date: any, fiscalYear: any, itemId: any) {
+
+    console.log("no. : ", no, "store : ", store, "date: ", date, "fiscalYear: ", fiscalYear, "itemId: ", itemId);
+    this.api.getStrOpenSearach(no, store, date, fiscalYear, itemId)
+      .subscribe({
+        next: (res) => {
+          console.log("search openingStock res: ", res);
+
+          this.dataSource2 = res
           this.dataSource2.paginator = this.paginator;
           this.dataSource2.sort = this.sort;
         }
-
-        //enter store
-        else if (!no && store && !date && !fiscalYear) {
-          // console.log("enter store. ")
-          // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-          this.dataSource2 = res.filter((res: any) => res.storeId == store);
-          this.dataSource2.paginator = this.paginator;
-          this.dataSource2.sort = this.sort;
-        }
-
-        //enter date
-        else if (!no && !store && date && !fiscalYear) {
-          // console.log("enter date. ")
-          // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-          this.dataSource2 = res.filter(
-            (res: any) => formatDate(res.date, 'M/d/yyyy', this.locale) == date
-          );
-          this.dataSource2.paginator = this.paginator;
-          this.dataSource2.sort = this.sort;
-        }
-
-        //enter fiscalYear
-        else if (!no && !store && !date && fiscalYear) {
-          // console.log("enter date. ")
-          // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-          this.dataSource2 = res.filter(
-            (res: any) => res.fiscalyear == fiscalYear
-          );
-          this.dataSource2.paginator = this.paginator;
-          this.dataSource2.sort = this.sort;
-        }
-
-        //enter no. & store
-        else if (no && store && !date && !fiscalYear) {
-          // console.log("enter no & store ")
-          // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-          this.dataSource2 = res.filter(
-            (res: any) => res.no == no! && res.storeId == store
-          );
-          this.dataSource2.paginator = this.paginator;
-          this.dataSource2.sort = this.sort;
-        }
-
-        //enter no. & date
-        else if (no && !store && date && !fiscalYear) {
-          // console.log("enter no & date ")
-          // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-          this.dataSource2 = res.filter(
-            (res: any) =>
-              res.no == no! &&
-              formatDate(res.date, 'M/d/yyyy', this.locale) == date
-          );
-          this.dataSource2.paginator = this.paginator;
-          this.dataSource2.sort = this.sort;
-        }
-
-        //enter store & date
-        else if (!no && store && date && !fiscalYear) {
-          // console.log("enter store & date ")
-          // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-          this.dataSource2 = res.filter(
-            (res: any) =>
-              res.storeId == store &&
-              formatDate(res.date, 'M/d/yyyy', this.locale) == date
-          );
-          this.dataSource2.paginator = this.paginator;
-          this.dataSource2.sort = this.sort;
-        }
-
-        //enter all data
-        else if (no != '' && store != '' && date != '' && fiscalYear != '') {
-          // console.log("enter all data. ")
-          // console.log("enter no. & store & date ", "res : ", res, "input no. : ", no, "input store: ", store, "input date: ", date)
-          this.dataSource2 = res.filter(
-            (res: any) =>
-              res.no == no! &&
-              res.storeId == store &&
-              formatDate(res.date, 'M/d/yyyy', this.locale) == date &&
-              res.fiscalyear == fiscalYear
-          );
-          this.dataSource2.paginator = this.paginator;
-          this.dataSource2.sort = this.sort;
-        }
-
-        //didn't enter any data
-        else {
-          // console.log("enter no data ")
-          this.dataSource2 = res;
-          this.dataSource2.paginator = this.paginator;
-          this.dataSource2.sort = this.sort;
-        }
-      },
-      error: (err) => {
-        alert('Error');
-      },
     });
   }
 

@@ -9,13 +9,6 @@
                 <input matInput placeholder="الرقم" formControlName="no" type="number">
             </mat-form-field>
 
-            <!-- <mat-form-field appearance="outline" class="groupInput">
-                <mat-label>المخازن</mat-label>
-                <mat-select placeholder="المخازن" formControlName="storeId">
-                    <mat-option [value]="store.id" *ngFor="let store of storeList">{{store.name}}</mat-option>
-                </mat-select>
-            </mat-form-field> -->
-
             <mat-form-field appearance="outline" class="groupInput">
                 <mat-label>السنة المالية</mat-label>
                 <mat-select placeholder="السنة المالية" formControlName="fiscalYearId">
@@ -72,11 +65,6 @@
         <div [ngClass]="(MasterGroupInfoEntered || editDataDetails) ? 'restGroupInfo' : 'restGroupInfoDisable'">
 
             <div class="detailsForm">
-                <!-- 
-                <mat-form-field appearance="outline" class="groupInput">
-                    <mat-label>بحث بالكود </mat-label>
-                    <input matInput placeholder="الكود" (keydown)="getItemByCode($event)">
-                </mat-form-field> -->
 
                 <mat-form-field appearance="outline" class="groupInput">
                     <mat-label> الصنف</mat-label>
