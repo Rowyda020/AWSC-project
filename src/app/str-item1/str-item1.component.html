@@ -1,18 +1,4 @@
 <mat-card dir="rtl">
-  <mat-card-header>
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event)" placeholder="بحث" #input />
-    </mat-form-field>
-    <button
-      style="margin-right: 60%"
-      mat-raised-button
-      class="add"
-      (click)="openDialog()"
-    >
-      اضافة
-    </button>
-  </mat-card-header>
-
   <mat-card-content>
     <mat-accordion class="example-headers-align" multi dir="rtl">
       <mat-expansion-panel>
@@ -156,7 +142,25 @@
         </div>
       </mat-expansion-panel>
     </mat-accordion>
+
+    <mat-card-header>
+      <div class="child1">
+        <button mat-raised-button class="add" (click)="openDialog()">
+         <mat-icon>add</mat-icon> اضافة
+        </button>
+      </div>
+
+      <mat-form-field>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="بحث"
+          #input
+        />
+      </mat-form-field>
+    </mat-card-header>
     <div id="content" class="content">
+      
       <header id="header" class="header">
         <div class="header-one">
           <p>الاصناف</p>

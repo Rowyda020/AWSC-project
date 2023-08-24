@@ -27,22 +27,14 @@
                 <mat-option [value]="model.id" *ngFor="let model of modelsList">{{model.name}}</mat-option>
             </mat-select>
         </mat-form-field>
-        <div class="text-center" formControlName="attachment" >
+        <div class="text-center"  >
             <input class="form-control" type="file"
-                    (change)="onChange($event)" >
+                    (change)="onChange($event)" (change)="onUpload()">
         
-            <button (click)="onUpload()"
-                class="btn btn-success"  >
-           save
-            </button>
+      
         </div>
-        <!-- <app-file-upload ></app-file-upload> -->
         
-        <!-- <div class="container text-center jumbotron"
-            *ngIf="shortLink">
-            <h2> Visit Here</h2>
-            <a href="{{shortLink}}">{{shortLink}}</a>
-        </div> -->
+        
         
         <div class="container" *ngIf="loading">
             <h3>Loading ...</h3>
