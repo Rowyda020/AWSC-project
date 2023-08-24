@@ -5,10 +5,21 @@ mat-card {
   margin: 2%;
 }
 
-button {
-  margin: 2px;
+
+mat-card-header{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
+mat-card-header .child1{
+  background-color: black;
+  width: 70%;
+}
+
+.mat-mdc-card-header{
+  padding: 0;
+}
 th {
   background-color:rgb(60, 202, 252) !important;
   color: white;
@@ -19,9 +30,9 @@ th {
 .add {
   background-color:rgb(60, 202, 252);
   color: white;
-  font-family: "Droid Arabic Kufi", serif;
-  font-size: 15px;
-  padding: 25px;
+  font-family: 'Cairo', sans-serif;
+  padding: 5px 30px;
+  border-radius: 10px;
 }
 .search mat-form-field {
   width: 250px;

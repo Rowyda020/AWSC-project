@@ -93,7 +93,8 @@ import { FIJournalDialogComponent } from './fi-journal-dialog/fi-journal-dialog.
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
 import { STRAddDialogComponent } from './str-add-dialog/str-add-dialog.component';
 import { STRAddTableComponent } from './str-add-table/str-add-table.component';
-
+import { MenubarComponent } from './menubar/menubar.component';
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     AppComponent,
@@ -158,7 +159,8 @@ import { STRAddTableComponent } from './str-add-table/str-add-table.component';
     FIJournalDialogComponent,
     STRAddContainerComponent,
     STRAddDialogComponent,
-    STRAddTableComponent
+    STRAddTableComponent,
+    MenubarComponent
 
 
 
@@ -196,6 +198,7 @@ import { STRAddTableComponent } from './str-add-table/str-add-table.component';
     MatAutocompleteModule,
     MatStepperModule,
     ToastrModule.forRoot(),
+    MatBadgeModule
   ],
   providers: [
     {
