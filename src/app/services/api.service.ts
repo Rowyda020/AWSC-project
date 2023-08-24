@@ -9,7 +9,8 @@ export class ApiService {
   constructor(private http: HttpClient) {}
   /******************************** crud Group **********************************/
   url = 'http://ims.aswan.gov.eg/api';
-  baseApiUrl = 'https://file.io';
+  // baseApiUrl = 'https://file.io';
+  // attachmentURL='src\app\files\str-uploads';
   public reportData: [] = [];
 
   getSubGrads(selectedOption: any) {
@@ -450,7 +451,7 @@ deleteEntrySource(id: number) {
   }
 
   getCostCenter() {
-    return this.http.get<any>(`http://ims.aswan.gov.eg/api/FICostCenter/get/all `);
+    return this.http.get<any>(`${this.url}/FICostCenter/get/all `);
   }
 
   putCostCenter(data: any) {
@@ -1044,7 +1045,7 @@ upload(file:any):Observable<any> {
   // Make http post request over api
   // with formData as req
   
-  return this.http.post(this.baseApiUrl, formData)
+  return this.http.post("http://192.168.100.213/files/str-uploads",formData)
   // alert(this.baseApiUrl)
 }
 //  showfile(file:any){ 
@@ -1156,129 +1157,5 @@ upload(file:any):Observable<any> {
       `${this.url}/FIEntryDetails/delete/` + HeaderId
     );
   }
-  // getFiEntrySearach(no: any, costCenterId: any, employeeId: any, date: any, distEmployee: any) {
-  //   console.log("values search passed: 'no: '", no, "' costCenterId: '", costCenterId, "' employeeId: '", employeeId, "' date: '", date, "' distEmployee: '", distEmployee);
-  //   //enter no.
-  //   if (no != '' && !costCenterId && !employeeId && !date && !distEmployee) {
-  //     console.log('enter no. strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?No=${no}`
-  //     );
-  //   }
-  //   //enter costCenter
-  //   else if (!no && costCenterId && !employeeId && !date && !distEmployee) {
-  //     console.log('enter costCenter strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?CostCenterId=${costCenterId}`
-  //     );
-  //   }
-  //   //enter employee
-  //   else if (!no && !costCenterId && employeeId && !date && !distEmployee) {
-  //     console.log('enter employee strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?EmployeeId=${employeeId}`
-  //     );
-  //   }
-  //   //enter date
-  //   else if (!no && !costCenterId && !employeeId && date && !distEmployee) {
-  //     console.log('enter date strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?Date=${date}`
-  //     );
-  //   }
-  //   //enter distEmployee
-  //   else if (!no && !costCenterId && !employeeId && !date && distEmployee) {
-  //     console.log('enter distEmployee strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?DestEmployeeId=${distEmployee}`
-  //     );
-  //   }
 
-  //   //enter no. & costCenter
-  //   else if (no && costCenterId && !employeeId && !date && !distEmployee) {
-  //     console.log('enter no. & costCenter strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?No=${no}&CostCenterId=${costCenterId}`
-  //     );
-  //   }
-  //   //enter no. & employee
-  //   else if (no && !costCenterId && employeeId && !date && !distEmployee) {
-  //     console.log('enter no. & employee strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?No=${no}&EmployeeId=${employeeId}`
-  //     );
-  //   }
-  //   //enter no. & date
-  //   else if (no && !costCenterId && !employeeId && date && !distEmployee) {
-  //     console.log('enter no. & date strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?Date=${date}&No=${no}`
-  //     );
-  //   }
-  //   //enter no & distEmployee
-  //   else if (no && !costCenterId && !employeeId && !date && distEmployee) {
-  //     console.log('enter no. & distEmployee strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?No=${no}&DestEmployeeId=${distEmployee}`
-  //     );
-  //   }
-
-  //   //enter costCenter & employee
-  //   else if (!no && costCenterId && employeeId && !date && !distEmployee) {
-  //     console.log('enter costCenter & employee strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?CostCenterId=${costCenterId}&EmployeeId=${employeeId}`
-  //     );
-  //   }
-  //   //enter costCenter & date
-  //   else if (!no && costCenterId && !employeeId && date && !distEmployee) {
-  //     console.log('enter costCenter & date strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?Date=${date}&CostCenterId=${costCenterId}`
-  //     );
-  //   }
-  //   //enter costCenter & distEmployee
-  //   else if (!no && costCenterId && !employeeId && !date && distEmployee) {
-  //     console.log('enter costCenter & distEmployee strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?DestEmployeeId=${distEmployee}&CostCenterId=${costCenterId}`
-  //     );
-  //   }
-
-  //   //enter employee & date
-  //   else if (!no && !costCenterId && employeeId && date && !distEmployee) {
-  //     console.log('enter employee & date strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?Date=${date}&EmployeeId=${employeeId}`
-  //     );
-  //   }
-  //   //enter employee & distEmployee
-  //   else if (!no && !costCenterId && employeeId && !date && distEmployee) {
-  //     console.log('enter employee & distEmployee strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?DestEmployeeId=${distEmployee}&EmployeeId=${employeeId}`
-  //     );
-  //   }
-
-  //   //enter distEmployee & date
-  //   else if (!no && !costCenterId && !employeeId && date && distEmployee) {
-  //     console.log('enter distEmployee & date strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?Date=${date}&DestEmployeeId=${distEmployee}`
-  //     );
-  //   }
-
-  //   //enter all data
-  //   else if (no != '' && costCenterId != '' && employeeId != '' && date != '' && distEmployee != '') {
-  //     console.log('enter all data strOpen search');
-  //     return this.http.get<any>(
-  //       `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?Date=${date}&No=${no}&DestEmployeeId=${distEmployee}&CostCenterId=${costCenterId}&EmployeeId=${employeeId}`
-  //     );
-  //   }
-
-  //   console.log("didn't enter any condition search");
-  //   return this.http.get<any>(
-  //     `https://ims.aswan.gov.eg/api/STR_Employe_Exchange/search?No=${0}`
-  //   );
-  // }
 }

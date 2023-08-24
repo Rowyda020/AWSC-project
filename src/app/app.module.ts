@@ -76,8 +76,8 @@ import { FIAccountDialogComponent } from './fi-account-dialog/fi-account-dialog.
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
 import { FiEntryTableComponent } from './fi-entry-table/fi-entry-table.component';
 import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.component';
-import {  FileUploadComponent} from "./file-upload/file-upload.component";
-import { FileUploadDialogComponent } from './file-upload-dialog/file-upload-dialog.component';
+// import {  FileUploadComponent} from "./file-upload/file-upload.component";
+// import { FileUploadDialogComponent } from './file-upload-dialog/file-upload-dialog.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog/fi-account-hierarchy-dialog.component';
 import {PipesModule  } from "../app/pipes/pipes.module";
@@ -92,7 +92,7 @@ import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-acco
 
 @NgModule({
   declarations: [
-    AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,FileUploadComponent,
+    AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
     StrCommodityComponent,
     StrCommodityDialogComponent,
     LoginComponent,
