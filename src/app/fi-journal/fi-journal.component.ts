@@ -134,11 +134,16 @@ export class FIJournalComponent {
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
               }
-              else{
-            console.log("enter name only: ", "res name: ", res, "input name: ", description)
-  
-                // this.dataSource = res.filter((res: any)=> res.level==level! && res.name==name!)
+              else if (no == '' && description != ''&& date == ''){
+                console.log("enter name & id: ", "res : ", res, "input name: ", description, "id: ", no)
+           
                 this.dataSource = res.filter((res: any)=> res.description.toLowerCase().includes(description.toLowerCase()))
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              }
+              else{
+           
+                this.dataSource = res
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               }

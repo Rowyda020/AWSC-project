@@ -3,14 +3,10 @@ import { FormGroup, FormBuilder, Validator, Validators, FormControl } from '@ang
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatOptionSelectionChange } from '@angular/material/core';
 
 @Component({
   selector: 'app-fi-entry-source-dialog',
@@ -29,9 +25,6 @@ dataSource!: MatTableDataSource<any>;
 @ViewChild(MatSort) sort!: MatSort;
 @ViewChild(MatAccordion)
 accordion!: MatAccordion;
-commoditylist:any;
-storeList: any;
-commodityName: any;
   constructor(private formBuilder : FormBuilder,
     private api : ApiService,
     private readonly route:ActivatedRoute,
@@ -43,7 +36,6 @@ commodityName: any;
       transactionUserId : ['',Validators.required],
       name : ['',Validators.required],
       id : ['',Validators.required],
-      // matautocompleteFieldName : [''],
       });
   
       if(this.editData){
@@ -56,12 +48,12 @@ commodityName: any;
     }
 
     addEntrySource(){
+      this.EntrySourceForm.controls['transactionUserId'].setValue(this.transactionUserId);
     if(!this.editData){
       
       this.EntrySourceForm.removeControl('id')
-      // this.EntrySourceForm.controls['commodityId'].setValue(this.selectedOption.id);
       console.log("add: ", this.EntrySourceForm.value);
-      this.EntrySourceForm.controls['transactionUserId'].setValue(this.transactionUserId);
+      
       if(this.EntrySourceForm.valid){
         this.api.postEntrySource(this.EntrySourceForm.value)
         .subscribe({

@@ -76,8 +76,8 @@ import { FIAccountDialogComponent } from './fi-account-dialog/fi-account-dialog.
 import { FiEntryContainerComponent } from './fi-entry-container/fi-entry-container.component';
 import { FiEntryTableComponent } from './fi-entry-table/fi-entry-table.component';
 import { FiEntryDialogComponent } from './fi-entry-dialog/fi-entry-dialog.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
-import { FileUploadDialogComponent } from './file-upload-dialog/file-upload-dialog.component';
+// import {  FileUploadComponent} from "./file-upload/file-upload.component";
+// import { FileUploadDialogComponent } from './file-upload-dialog/file-upload-dialog.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 import { FIAccountHierarchyDialogComponent } from './fi-account-hierarchy-dialog/fi-account-hierarchy-dialog.component';
 import {PipesModule  } from "../app/pipes/pipes.module";
@@ -88,6 +88,9 @@ import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-
 
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FiAccountItemdDialogComponent } from './fi-account-itemd-dialog/fi-account-itemd-dialog.component';
+import { FIEntrySourceTypeComponent } from './fi-entry-source-type/fi-entry-source-type.component';
+import { FIEntrySourceTypeDialogComponent } from './fi-entry-source-type-dialog/fi-entry-source-type-dialog.component';
+
 import { FIJournalComponent } from './fi-journal/fi-journal.component';
 import { FIJournalDialogComponent } from './fi-journal-dialog/fi-journal-dialog.component';
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
@@ -97,11 +100,7 @@ import { MenubarComponent } from './menubar/menubar.component';
 import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
-    AppComponent,
-    StrWithdrawContainerComponent,
-    StrWithdrawDialogComponent,
-    StrWithdrawTableComponent,
-    FileUploadComponent,
+    AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
     StrCommodityComponent,
     StrCommodityDialogComponent,
     LoginComponent,
@@ -155,6 +154,8 @@ import {MatBadgeModule} from '@angular/material/badge';
 // selvana
     FiAccountItemComponent,
     FiAccountItemdDialogComponent,
+    FIEntrySourceTypeComponent,
+    FIEntrySourceTypeDialogComponent,
     FIJournalComponent,
     FIJournalDialogComponent,
     STRAddContainerComponent,

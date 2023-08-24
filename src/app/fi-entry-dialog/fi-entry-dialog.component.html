@@ -18,6 +18,14 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="groupInput">
+                <mat-label> النوع </mat-label>
+                <mat-select placeholder=" النوع " formControlName="fiEntrySourceTypeId" >
+                    <mat-option [value]="source.id"
+                        *ngFor="let source of sourcesList">{{source.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="groupInput">
                 <mat-label>الموازنة</mat-label>
                 <input matInput placeholder="الموازنة" formControlName="balance" type="number" >
             </mat-form-field>

@@ -1,0 +1,67 @@
+.header {
+  display: none;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
+
+.header div {
+  height: 100px;
+  background-color: #04365f;
+  color: white;
+  /* color: #04365f; */
+}
+
+.header p,
+.date p {
+  font-size: large;
+  font-weight: bold;
+}
+
+.header .header-one p {
+  padding: 21px;
+}
+
+.header .header-two {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+.header .header-two p {
+  width: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.header .header-two img {
+  height: 80%;
+}
+.print-div {
+  display: flex;
+  justify-content: center;
+}
+
+.print-btn {
+  background-color: #147a9f;
+  color: white;
+  font-family: "Droid Arabic Kufi", serif;
+  font-size: 15px;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  float: left;
+  width: 10%;
+}
+
+.print-btn:hover {
+  background-color: #47afd5;
+  font-size: 17px;
+  color: white;
+  box-shadow: 0 0.5em 0.5em -0.4em #c7f0ff;
+  transform: translateY(-0.25em);
+  cursor: pointer;
+}
+#table-content {
+  margin-top: 20px;
+}

@@ -26,7 +26,7 @@ import { StrWithdrawContainerComponent } from './str-withdraw-container/str-with
 import { FIAccountComponent } from './fi-account/fi-account.component';
 import { FIAccountHierarchyComponent } from './fi-account-hierarchy/fi-account-hierarchy.component';
 import { FIEntrySourceComponent } from './fi-entry-source/fi-entry-source.component';
-
+import { FIEntrySourceTypeComponent } from './fi-entry-source-type/fi-entry-source-type.component';
 import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-item.component';
 
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
@@ -64,7 +64,7 @@ const routes: Routes = [
   { path: 'report', component: StrReportComponent },
   { path: 'AccountHierarchy', component: FIAccountHierarchyComponent },
   { path: 'EntrySource' , component: FIEntrySourceComponent},
-
+  { path: 'EntrySourceType' , component: FIEntrySourceTypeComponent},
   { path: 'withdraw', component: StrWithdrawContainerComponent },
   { path: 'add-item-report', component: StrReportAddItemComponent },
   //  {path: 'products',
