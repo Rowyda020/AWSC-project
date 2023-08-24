@@ -96,6 +96,11 @@ import { FIJournalDialogComponent } from './fi-journal-dialog/fi-journal-dialog.
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
 import { STRAddDialogComponent } from './str-add-dialog/str-add-dialog.component';
 import { STRAddTableComponent } from './str-add-table/str-add-table.component';
+import { FIAccountParentComponent } from './fi-account-parent/fi-account-parent.component';
+import { FIAccountParentDialogComponent } from './fi-account-parent-dialog/fi-account-parent-dialog.component';
+
+import { StrVendorComponent } from './str-vendor/str-vendor.component';
+import { StrVendorDialogComponent } from './str-vendor-dialog/str-vendor-dialog.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
@@ -161,7 +166,12 @@ import {MatBadgeModule} from '@angular/material/badge';
     STRAddContainerComponent,
     STRAddDialogComponent,
     STRAddTableComponent,
-    MenubarComponent
+    FIAccountParentComponent,
+    FIAccountParentDialogComponent,
+    MenubarComponent,
+    StrVendorComponent,
+    StrVendorDialogComponent
+  
 
 
 

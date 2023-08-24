@@ -14,18 +14,15 @@ import html2canvas from 'html2canvas';
   providers: [DatePipe],
 })
 export class StrReportComponent {
-  displayedColumns: string[] = [
-    'name',
-    'commodityName',
-    'gradeName',
-    'platoonName',
-    'groupName',
-    'unitName',
-    'isActive',
-    'type',
-  ];
+  displayedColumns: string[] = [];
 
   myDate: any = new Date();
+
+  reportName: string = '';
+
+  displayName: string = '';
+
+  show: boolean = true;
 
   reportLocal: any;
 
@@ -44,13 +41,19 @@ export class StrReportComponent {
 
   ngOnInit(): void {
     this.loadReportData();
+    this.reportData(this.reportName);
   }
 
   loadReportData() {
     // console.log(this.api.reportData);
     let reportFooter: any = document.getElementById('reportFooter');
-    reportFooter.style.display = 'none';
+    if (!this.show) {
+      reportFooter.style.display = 'none';
+    }
     let local: any = localStorage.getItem('reportData');
+    let reportNameStorage: any = localStorage.getItem('reportName');
+    this.reportName = reportNameStorage;
+    console.log(reportNameStorage);
     // console.log(local);
     this.reportLocal = JSON.parse(local);
     // // console.log(this.reportLocal);
@@ -73,6 +76,39 @@ export class StrReportComponent {
     this.dataSource.sort = this.sort;
   }
 
+  reportData(name: string) {
+    switch (name) {
+      case (name = 'str-item1'):
+        console.log(name);
+        this.displayedColumns = [
+          'name',
+          'commodityName',
+          'gradeName',
+          'platoonName',
+          'groupName',
+          'unitName',
+          'isActive',
+          'type',
+        ];
+        this.displayName = 'الاصناف';
+        this.show = false;
+        break;
+
+      default:
+        this.displayedColumns = [
+          'name',
+          'commodityName',
+          'gradeName',
+          'platoonName',
+          'groupName',
+          'unitName',
+          'isActive',
+          'type',
+        ];
+        break;
+    }
+  }
+
   // loadAllData() {
   //   let local: any = localStorage.getItem('reportData');
   //   this.reportLocal = JSON.parse(local);
@@ -87,17 +123,19 @@ export class StrReportComponent {
     // this.loadAllData();
     let reportFooter: any = document.getElementById('reportFooter');
     let date: any = document.getElementById('date');
-    reportFooter.style.display = 'block';
-    date.style.display = 'block';
-    // let printContent: any = document.getElementById('content')?.innerHTML;
-    // let originalContent: any = document.body.innerHTML;
-    // document.body.innerHTML = printContent;
-    // // console.log(document.body.children);
-    // document.body.style.cssText =
-    //   'direction:rtl;-webkit-print-color-adjust:exact;';
+    if (this.show) {
+      reportFooter.style.display = 'block';
+      date.style.display = 'block';
+    }
+    let printContent: any = document.getElementById('content')?.innerHTML;
+    let originalContent: any = document.body.innerHTML;
+    document.body.innerHTML = printContent;
+    // console.log(document.body.children);
+    document.body.style.cssText =
+      'direction:rtl;-webkit-print-color-adjust:exact;';
     window.print();
-    // document.body.innerHTML = originalContent;
-    // location.reload();
+    document.body.innerHTML = originalContent;
+    location.reload();
   }
 
   first() {

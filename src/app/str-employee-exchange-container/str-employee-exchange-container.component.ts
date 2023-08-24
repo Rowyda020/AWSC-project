@@ -12,8 +12,6 @@ import { StrEmployeeExchangeDialogComponent } from '../str-employee-exchange-dia
   styleUrls: ['./str-employee-exchange-container.component.css']
 })
 export class StrEmployeeExchangeContainerComponent implements OnInit{
-// displayedColumns: string[] = ['groupCode','groupName', 'groupCommdityCode', 'groupCommdity', 'action'];
-
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

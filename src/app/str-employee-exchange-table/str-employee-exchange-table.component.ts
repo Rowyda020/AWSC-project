@@ -12,10 +12,18 @@ import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-str-employee-exchange-table',
   templateUrl: './str-employee-exchange-table.component.html',
-  styleUrls: ['./str-employee-exchange-table.component.css']
+  styleUrls: ['./str-employee-exchange-table.component.css'],
 })
 export class StrEmployeeExchangeTableComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'fiscalyear', 'employeeName', 'destEmployeeName', 'costCenterName', 'date', 'Action'];
+  displayedColumns: string[] = [
+    'no',
+    'fiscalyear',
+    'employeeName',
+    'destEmployeeName',
+    'costCenterName',
+    'date',
+    'Action',
+  ];
   matchedIds: any;
   storeList: any;
   storeName: any;
@@ -28,13 +36,13 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private api: ApiService,
+  constructor(
+    private api: ApiService,
     private dialog: MatDialog,
     private http: HttpClient,
     @Inject(LOCALE_ID) private locale: string,
-    private toastr: ToastrService) {
-
-  }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.getAllMasterForms();
@@ -45,48 +53,83 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
   }
 
   getAllMasterForms() {
-    this.api.getStrEmployeeExchange()
-      .subscribe({
-        next: (res) => {
-          console.log("response of get all EmployeeExchange from api: ", res);
-          this.dataSource2 = new MatTableDataSource(res);
-          this.dataSource2.paginator = this.paginator;
-          this.dataSource2.sort = this.sort;
-        },
-        error: () => {
-          alert("خطأ أثناء جلب سجلات المجموعة !!");
-        }
-      })
-
-
+    this.api.getStrEmployeeExchange().subscribe({
+      next: (res) => {
+        console.log('response of get all EmployeeExchange from api: ', res);
+        this.dataSource2 = new MatTableDataSource(res);
+        this.dataSource2.paginator = this.paginator;
+        this.dataSource2.sort = this.sort;
+      },
+      error: () => {
+        alert('خطأ أثناء جلب سجلات المجموعة !!');
+      },
+    });
   }
 
   getStores() {
-    this.api.getStore()
-      .subscribe({
-        next: (res) => {
-          this.storeList = res;
-          // console.log("store res: ", this.storeList);
-        },
-        error: (err) => {
-          // console.log("fetch store data err: ", err);
-          alert("خطا اثناء جلب المخازن !");
-        }
-      })
+    this.api.getStore().subscribe({
+      next: (res) => {
+        this.storeList = res;
+        // console.log("store res: ", this.storeList);
+      },
+      error: (err) => {
+        // console.log("fetch store data err: ", err);
+        alert('خطا اثناء جلب المخازن !');
+      },
+    });
   }
 
   editMasterForm(row: any) {
-    this.dialog.open(StrEmployeeExchangeDialogComponent, {
-      width: '100%',
-      data: row
-    }).afterClosed().subscribe(val => {
-      if (val === 'update') {
-        this.getAllMasterForms();
-      }
-    })
+    this.dialog
+      .open(StrEmployeeExchangeDialogComponent, {
+        width: '100%',
+        data: row,
+      })
+      .afterClosed()
+      .subscribe((val) => {
+        if (val === 'update') {
+          this.getAllMasterForms();
+        }
+      });
   }
 
   deleteBothForms(id: number) {
+
+    this.http
+      .get<any>(
+        'http://ims.aswan.gov.eg/api/STREmployeeExchangeDetails/get/all'
+      )
+      .subscribe(
+        (res) => {
+          this.matchedIds = res.filter((a: any) => {
+            console.log(
+              'matched Id & employee_ExchangeId : ',
+              a.employee_ExchangeId === id
+            );
+            return a.employee_ExchangeId === id;
+          });
+          var result = confirm('هل ترغب بتاكيد حذف التفاصيل و الرئيسي؟');
+
+          if (this.matchedIds.length) {
+            for (let i = 0; i < this.matchedIds.length; i++) {
+              console.log(
+                'matchedIds details in loop: ',
+                this.matchedIds[i].id
+              );
+
+              if (result) {
+                this.api
+                  .deleteStrEmployeeExchangeDetails(this.matchedIds[i].id)
+                  .subscribe({
+                    next: (res) => {
+                      // alert("تم الحذف التفاصيل بنجاح");
+
+                      // var resultMaster = confirm("هل ترغب بتاكيد حذف الرئيسي؟");
+                      // if (resultMaster) {
+                      console.log('master id to be deleted: ', id);
+
+                      this.api.deleteStrEmployeeExchange(id).subscribe({
+
 
     this.http.get<any>("http://ims.aswan.gov.eg/api/STREmployeeExchangeDetails/get/all")
       .subscribe(res => {
@@ -105,109 +148,135 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
               this.api.deleteStrEmployeeExchangeDetails(this.matchedIds[i].id)
                 .subscribe({
                   next: (res) => {
-                    // alert("تم الحذف التفاصيل بنجاح");
 
-                    // var resultMaster = confirm("هل ترغب بتاكيد حذف الرئيسي؟");
-                    // if (resultMaster) {
                     console.log("master id to be deleted: ", id)
 
                     this.api.deleteStrEmployeeExchange(id)
                       .subscribe({
+
                         next: (res) => {
                           // alert("تم حذف الرئيسي بنجاح");
                           this.toastrDeleteSuccess();
                           this.getAllMasterForms();
                         },
                         error: () => {
+
+                          alert('خطأ أثناء حذف الرئيسي !!');
+                        },
+                      });
+                      // }
+                    },
+                    error: () => {
+                      alert('خطأ أثناء حذف التفاصيل !!');
+                    },
+                  });
+              }
+
                           alert("خطأ أثناء حذف الرئيسي !!");
                         }
                       })
-                    // }
 
                   },
                   error: () => {
                     alert("خطأ أثناء حذف التفاصيل !!");
                   }
                 })
+
             }
+          } else {
+            if (result) {
+              console.log('master id to be deleted: ', id);
 
-          }
-        }
-        else {
-          if (result) {
-            console.log("master id to be deleted: ", id)
-
-            this.api.deleteStrEmployeeExchange(id)
-              .subscribe({
+              this.api.deleteStrEmployeeExchange(id).subscribe({
                 next: (res) => {
                   // alert("تم حذف الرئيسي بنجاح");
                   this.toastrDeleteSuccess();
                   this.getAllMasterForms();
                 },
                 error: () => {
-                  alert("خطأ أثناء حذف الرئيسي !!");
-                }
-              })
+                  alert('خطأ أثناء حذف الرئيسي !!');
+                },
+              });
+            }
           }
+        },
+        (err) => {
+          alert('خطا اثناء تحديد المجموعة !!');
         }
-
-      }, err => {
-        alert("خطا اثناء تحديد المجموعة !!")
-      })
-
+      );
   }
 
   getFiscalYears() {
-    this.api.getFiscalYears()
-      .subscribe({
-        next: (res) => {
-          this.fiscalYearsList = res;
-          console.log("fiscalYears res in search: ", this.fiscalYearsList);
-        },
-        error: (err) => {
-          // console.log("fetch fiscalYears data err: ", err);
-          // alert("خطا اثناء جلب العناصر !");
-        }
-      })
+    this.api.getFiscalYears().subscribe({
+      next: (res) => {
+        this.fiscalYearsList = res;
+        console.log('fiscalYears res in search: ', this.fiscalYearsList);
+      },
+      error: (err) => {
+        // console.log("fetch fiscalYears data err: ", err);
+        // alert("خطا اثناء جلب العناصر !");
+      },
+    });
   }
 
   getEmployees() {
-    this.api.getHrEmployees()
-      .subscribe({
-        next: (res) => {
-          this.employeesList = res;
-          console.log("employees res: ", this.employeesList);
-        },
-        error: (err) => {
-          console.log("fetch employees data err: ", err);
-          alert("خطا اثناء جلب الموظفين !");
-        }
-      })
+    this.api.getHrEmployees().subscribe({
+      next: (res) => {
+        this.employeesList = res;
+        console.log('employees res: ', this.employeesList);
+      },
+      error: (err) => {
+        console.log('fetch employees data err: ', err);
+        alert('خطا اثناء جلب الموظفين !');
+      },
+    });
   }
 
   getCostCenters() {
-    this.api.getFiCostCenter()
-      .subscribe({
-        next: (res) => {
-          this.costCentersList = res;
-          console.log("costCenter res: ", this.costCentersList);
-        },
-        error: (err) => {
-          console.log("fetch costCenter data err: ", err);
-          alert("خطا اثناء جلب مراكز التكلفة !");
-        }
-      })
+    this.api.getFiCostCenter().subscribe({
+      next: (res) => {
+        this.costCentersList = res;
+        console.log('costCenter res: ', this.costCentersList);
+      },
+      error: (err) => {
+        console.log('fetch costCenter data err: ', err);
+        alert('خطا اثناء جلب مراكز التكلفة !');
+      },
+    });
   }
 
-  getSearchStrOpen(no: any, costCenterId: any, employeeId: any, date: any, distEmployee: any) {
-
-    console.log("no. : ", no, "costCenterId: ", costCenterId, "employeeId : ", employeeId, "date: ", date, "distEmployee: ", distEmployee);
-    this.api.getStrEmployeeExchangeSearach(no, costCenterId, employeeId, date, distEmployee)
+  getSearchStrOpen(
+    no: any,
+    costCenterId: any,
+    employeeId: any,
+    date: any,
+    distEmployee: any
+  ) {
+    console.log(
+      'no. : ',
+      no,
+      'costCenterId: ',
+      costCenterId,
+      'employeeId : ',
+      employeeId,
+      'date: ',
+      date,
+      'distEmployee: ',
+      distEmployee
+    );
+    this.api
+      .getStrEmployeeExchangeSearach(
+        no,
+        costCenterId,
+        employeeId,
+        date,
+        distEmployee
+      )
       .subscribe({
         next: (res) => {
-          console.log("search employeeExchange res: ", res);
+          console.log('search employeeExchange res: ', res);
 
-          this.dataSource2 = res
+          this.dataSource2 = res;
           this.dataSource2.paginator = this.paginator;
           this.dataSource2.sort = this.sort;
 
@@ -362,16 +431,51 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
           //   this.dataSource2.paginator = this.paginator;
           //   this.dataSource2.sort = this.sort;
           // }
-
-
         },
         error: (err) => {
-          alert("Error")
-        }
-      })
+          alert('Error');
+        },
+      });
   }
 
   toastrDeleteSuccess(): void {
-    this.toastr.success("تم الحذف بنجاح");
+    this.toastr.success('تم الحذف بنجاح');
+  }
+
+  printReport() {
+    // this.loadAllData();
+    let header: any = document.getElementById('header');
+    let paginator: any = document.getElementById('paginator');
+    let action1: any = document.getElementById('action1');
+    let action2: any = document.querySelectorAll('action2');
+    console.log(action2);
+    let button1: any = document.querySelectorAll('#button1');
+    console.log(button1);
+    let button2: any = document.getElementById('button2');
+    let button: any = document.getElementsByClassName('mdc-icon-button');
+    console.log(button);
+    let reportFooter: any = document.getElementById('reportFooter');
+    let date: any = document.getElementById('date');
+    header.style.display = 'grid';
+    // paginator.style.display = 'none';
+    action1.style.display = 'none';
+    // button1.style.display = 'none';
+    // button2.style.display = 'none';
+    for (let index = 0; index < button.length; index++) {
+      let element = button[index];
+
+      element.hidden = true;
+    }
+    // reportFooter.style.display = 'block';
+    // date.style.display = 'block';
+    let printContent: any = document.getElementById('content')?.innerHTML;
+    let originalContent: any = document.body.innerHTML;
+    document.body.innerHTML = printContent;
+    // console.log(document.body.children);
+    document.body.style.cssText =
+      'direction:rtl;-webkit-print-color-adjust:exact;';
+    window.print();
+    document.body.innerHTML = originalContent;
+    location.reload();
   }
 }

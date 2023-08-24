@@ -75,8 +75,6 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
 
     this.groupMasterForm = this.formBuilder.group({
       no: ['', Validators.required],
-      // storeId: ['', Validators.required],
-      // storeName: ['', Validators.required],
       employeeId: ['', Validators.required],
       destEmployeeId: ['', Validators.required],
       costCenterId: ['', Validators.required],
@@ -103,16 +101,13 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
       // console.log("master edit form: ", this.editData);
       this.actionBtnMaster = "Update";
       this.groupMasterForm.controls['no'].setValue(this.editData.no);
-      // this.groupMasterForm.controls['storeId'].setValue(this.editData.storeId);
 
       this.groupMasterForm.controls['employeeId'].setValue(this.editData.employeeId);
       this.groupMasterForm.controls['destEmployeeId'].setValue(this.editData.destEmployeeId);
       this.groupMasterForm.controls['costCenterId'].setValue(this.editData.costCenterId);
 
-      // alert("facialId before: "+ this.editData.fiscalYearId)
       this.groupMasterForm.controls['fiscalYearId'].setValue(this.editData.fiscalYearId);
-      // console.log("faciaaaaal year edit: ", this.groupMasterForm.getRawValue().fiscalYearId)
-      // alert("facialId after: "+ this.groupMasterForm.getRawValue().fiscalYearId)
+    
       this.groupMasterForm.controls['date'].setValue(this.editData.date);
 
       this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
@@ -121,11 +116,8 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
 
     this.getAllDetailsForms();
 
-    // localStorage.setItem('transactionUserId', JSON.stringify("mehrail"));
     this.userIdFromStorage = localStorage.getItem('transactionUserId');
-    // console.log("userIdFromStorage in localStorage: ", this.userIdFromStorage)
-    // console.log("userIdFromStorage after slice from string shape: ", this.userIdFromStorage?.slice(1, length - 1))
-    // this.groupMasterForm.controls['transactionUserId'].setValue(this.userIdFromStorage?.slice(1, length - 1));
+    
     this.groupMasterForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
 
   }
@@ -238,18 +230,9 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
   async nextToAddFormDetails() {
     this.groupMasterForm.removeControl('id')
 
-    // this.storeName = await this.getStoreByID(this.groupMasterForm.getRawValue().storeId);
-
-    // alert("store name in add: " + this.storeName)
-    // this.groupMasterForm.controls['storeName'].setValue(this.storeName);
-    // this.groupMasterForm.controls['fiscalYearId'].setValue(1)
-    // console.log("faciaaaaal year add: ", this.groupMasterForm.getRawValue().fiscalYearId)
     console.log("dataName: ", this.groupMasterForm.value)
 
     if (this.groupMasterForm.valid) {
-      // if (this.groupMasterForm.getRawValue().storeName && this.groupMasterForm.valid) {
-
-
       console.log("Master add form : ", this.groupMasterForm.value)
       this.api.postStrEmployeeExchange(this.groupMasterForm.value)
         .subscribe({
@@ -258,16 +241,13 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
             this.getMasterRowId = {
               "id": res
             };
-            // this.getMasterRowId = res;
             console.log("mastered res: ", this.getMasterRowId.id)
             this.MasterGroupInfoEntered = true;
 
             alert("تم الحفظ بنجاح");
             this.toastrSuccess();
             this.getAllDetailsForms();
-            // this.addDetailsInfo();
-            // this.getAllDetailsForms();
-            // this.updateDetailsForm();
+         
             this.addDetailsInfo();
           },
           error: (err) => {
@@ -276,25 +256,8 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
           }
         })
     }
-    // else {
-    //   alert("تاكد من ادخال البيانات صحيحة")
-    // }
+   
   }
-
-
-  // getStoreByID(id: any) {
-  //   // console.log("row store id: ", id);
-  //   return fetch(`https://ims.aswan.gov.eg/api/STR_Store/get-UniStoret-by-id/${id}`)
-  //     .then(response => response.json())
-  //     .then(json => {
-  //       // console.log("fetch name by id res: ", json.name);
-  //       return json.name;
-  //     })
-  //     .catch((err) => {
-  //       // console.log("error in fetch name by id: ", err);
-  //       // alert("خطا اثناء جلب رقم المخزن !");
-  //     });
-  // }
 
   async addDetailsInfo() {
     console.log("check id for insert: ", this.getDetailedRowData, "edit data form: ", this.editData, "main id: ", this.getMasterRowId.id);
@@ -303,22 +266,10 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
       if (this.getMasterRowId.id) {
         console.log("form  headerId: ", this.getMasterRowId, "details form: ", this.groupDetailsForm.value)
 
-        // if (this.groupDetailsForm.getRawValue().itemId) {
-        //   // this.itemName = await this.getItemByID(this.groupDetailsForm.getRawValue().itemId);
-        //   this.groupDetailsForm.controls['itemName'].setValue(this.itemName);
-        //   // this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage?.slice(1, length - 1));
-        //   this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
-        // }
-
-        // this.groupDetailsForm.controls['employee_ExchangeId'].setValue(this.getMasterRowId.id);
-        // this.groupDetailsForm.controls['total'].setValue((parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty)));
-
-        // console.log("form details after item: ", this.groupDetailsForm.value, "DetailedRowData: ", !this.getDetailedRowData)
         if (this.groupDetailsForm.getRawValue().itemId) {
           this.itemName = await this.getItemByID(this.groupDetailsForm.getRawValue().itemId);
           this.groupDetailsForm.controls['itemName'].setValue(this.itemName);
           alert("item name: " + this.itemName + " transactionUserId: " + this.userIdFromStorage)
-          // this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage?.slice(1, length - 1));
           this.groupDetailsForm.controls['transactionUserId'].setValue(this.userIdFromStorage);
           this.groupDetailsForm.controls['employee_ExchangeId'].setValue(this.getMasterRowId.id);
           this.groupDetailsForm.controls['total'].setValue((parseFloat(this.groupDetailsForm.getRawValue().price) * parseFloat(this.groupDetailsForm.getRawValue().qty)));
@@ -329,13 +280,9 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
 
         alert("item name controller: " + this.groupDetailsForm.getRawValue().itemName + " transactionUserId controller: " + this.groupDetailsForm.getRawValue().transactionUserId)
 
-        // this.groupDetailsForm.controls['percentage'].setValue(20);
-        // this.groupDetailsForm.controls['state'].setValue("string2");
-
         console.log("add details second time, details form: ", this.groupDetailsForm.value)
         console.log("add details second time, get detailed row data: ", !this.getDetailedRowData)
 
-        // if (this.groupDetailsForm.valid && !this.getDetailedRowData) {
         if (this.groupDetailsForm.valid && !this.getDetailedRowData) {
 
           this.api.postStrEmployeeExchangeDetails(this.groupDetailsForm.value)
@@ -344,7 +291,6 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
                 this.getDetailsRowId = {
                   "id": res
                 };
-                // this.getDetailsRowId = res;
                 console.log("Details res: ", this.getDetailsRowId.id)
 
                 alert("تمت إضافة التفاصيل بنجاح");
@@ -371,25 +317,6 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
   }
 
   async updateDetailsForm() {
-
-    // this.storeName = await this.getStoreByID(this.groupMasterForm.getRawValue().storeId);
-    // // alert("update Store name: " + this.storeName)
-    // this.groupMasterForm.controls['storeName'].setValue(this.storeName);
-    // // console.log("data storeName in edit: ", this.groupMasterForm.value)
-
-    // this.groupDetailsForm.controls['itemName'].setValue(this.itemName);
-
-    // this.storeName = await this.getStoreByID(this.groupMasterForm.getRawValue().storeId);
-    // alert("update Store name: " + this.storeName)
-    // this.groupMasterForm.controls['storeName'].setValue(this.storeName);
-    // console.log("data storeName in edit: ", this.groupMasterForm.value)
-
-    // this.groupDetailsForm.controls['itemName'].setValue(this.itemName);
-
-    // console.log("values master form: ", this.groupMasterForm.value)
-    // console.log("values getMasterRowId: ", this.getMasterRowId)
-    // console.log("values details form: ", this.groupDetailsForm.value)
-
     if (this.editData) {
       this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
       this.groupMasterForm.controls['id'].setValue(this.editData.id);
@@ -398,8 +325,6 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
 
     this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
     this.groupMasterForm.controls['id'].setValue(this.getMasterRowId.id);
-    // this.groupMasterForm.controls['employee_ExchangeId'].setValue(this.getMasterRowId.id);
-    // console.log("data item Name in edit without id: ", this.groupMasterForm.value)
 
     this.api.putStrEmployeeExchange(this.groupMasterForm.value)
       .subscribe({
@@ -449,9 +374,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
 
       this.updateDetailsForm();
     }
-    // else {
-    //   alert("تاكد من ادخال البيانات صحيحة")
-    // }
+   
 
   }
 
@@ -470,8 +393,6 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
       this.groupDetailsForm.controls['percentage'].setValue(this.getDetailedRowData.percentage);
       this.groupDetailsForm.controls['state'].setValue(this.getDetailedRowData.state);
 
-      // console.log("itemid focus: ", this.matchedIds);
-
       this.groupDetailsForm.controls['itemId'].setValue(this.getDetailedRowData.itemId);
       console.log("test edit form details: ", this.groupDetailsForm.value)
 
@@ -481,8 +402,7 @@ export class StrEmployeeExchangeDialogComponent implements OnInit {
   }
 
   deleteFormDetails(id: number) {
-    // this.groupDetailsForm.addControl('id', new FormControl('', Validators.required));
-    // this.groupDetailsForm.controls['id'].setValue(this.editData.id);
+ 
     console.log("details id: ", id)
 
     var result = confirm("هل ترغب بتاكيد الحذف ؟");
