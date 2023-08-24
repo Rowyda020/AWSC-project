@@ -9,7 +9,8 @@ export class ApiService {
   constructor(private http: HttpClient) {}
   /******************************** crud Group **********************************/
   url = 'http://ims.aswan.gov.eg/api';
-  baseApiUrl = 'https://file.io';
+  // baseApiUrl = 'https://file.io';
+  // attachmentURL='src\app\files\str-uploads';
   public reportData: [] = [];
 
   getSubGrads(selectedOption: any) {
@@ -525,9 +526,7 @@ export class ApiService {
   }
 
   getCostCenter() {
-    return this.http.get<any>(
-      `http://ims.aswan.gov.eg/api/FICostCenter/get/all `
-    );
+    return this.http.get<any>(`${this.url}/FICostCenter/get/all `);
   }
 
   putCostCenter(data: any) {
@@ -1102,30 +1101,31 @@ export class ApiService {
 
   ////////file upload/////////
 
-  ////////file upload/////////
-  upload(file: any): Observable<any> {
-    // Create form data
-    const formData = new FormData();
-
-    // Store form name as "file" with file data
-    formData.append('file', file);
-
-    // Make http post request over api
-    // with formData as req
-
-    return this.http.post(this.baseApiUrl, formData);
-    // alert(this.baseApiUrl)
-  }
-  //  showfile(file:any){
-  //   const formData = new FormData();
-
-  //   // Store form name as "file" with file data
-  //   formData.append("file", file);
-
-  //   // Make http post request over api
-  //   // with formData as req
-  //   return this.http.get(this.baseApiUrl)
-  // }
+////////file upload/////////
+upload(file:any):Observable<any> {
+  
+  // Create form data
+  const formData = new FormData(); 
+    
+  // Store form name as "file" with file data
+  formData.append("file", file);
+    
+  // Make http post request over api
+  // with formData as req
+  
+  return this.http.post("http://192.168.100.213/files/str-uploads",formData)
+  // alert(this.baseApiUrl)
+}
+//  showfile(file:any){ 
+//   const formData = new FormData(); 
+    
+//   // Store form name as "file" with file data
+//   formData.append("file", file);
+    
+//   // Make http post request over api
+//   // with formData as req
+//   return this.http.get(this.baseApiUrl)
+// }
   ///////////////////////////////// STR-Product/////////////////////////////
   postStrProduct(data: any) {
     console.log('form add product data to backend: ', data);
