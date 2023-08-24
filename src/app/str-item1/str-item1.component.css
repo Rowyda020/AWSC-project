@@ -10,10 +10,11 @@ mat-card-header{
   display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
 }
 
 mat-card-header .child1{
-  background-color: black;
+  
   width: 70%;
 }
 
@@ -23,15 +24,15 @@ mat-card-header .child1{
 th {
   background-color:rgb(60, 202, 252) !important;
   color: white;
-  font-family: "Droid Arabic Kufi", serif;
+  font-family: 'Cairo', sans-serif;
   font-size: 16px;
 }
 
 .add {
-  background-color:rgb(60, 202, 252);
+  background: linear-gradient(rgb(122, 205, 235),rgb(60, 202, 252));
   color: white;
   font-family: 'Cairo', sans-serif;
-  padding: 5px 30px;
+  padding: 5px 35px;
   border-radius: 10px;
 }
 .search mat-form-field {
@@ -47,7 +48,7 @@ th {
   width: 80px;
   height: 50px;
   font-size: 15px;
-  font-family: "Droid Arabic Kufi", serif;
+  font-family: 'Cairo', sans-serif;
   background-color:rgb(60, 202, 252);
   color: white;
   border: none;
@@ -150,4 +151,10 @@ footer h3 {
   left: 7px;
   margin-top: 14px;
   display: none;
+}
+
+table, th, td {
+  border: 1px  rgb(161, 160, 160) solid;
+  text-align: center;
+  font-family: 'Cairo', sans-serif;
 }
