@@ -46,6 +46,7 @@ h2 {
   box-shadow: none !important;
 }
 
+
 .form input{
   margin: auto;
   margin-top: 20px;
@@ -88,12 +89,43 @@ input:-internal-autofill-selected{
   position: relative;
   top:70px;
   left: 300px;
-
+  color:#85909a !important;
 }
 #lock{
   position: relative;
   top:70px;
   left: 300px;
+  color:#85909a !important;
   
 }
     
+
+@media (max-width: 576px) {
+ 
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+
+
+
+  
+
+ }
+
+ @media (min-width: 1200px) { 
+  #user {
+    position: relative;
+    top:70px;
+    left: 240px;
+    color:#85909a !important;
+    
+  }
+  #lock{
+    position: relative;
+    top:70px;
+    left: 240px;
+    color:#85909a !important;
+    
+  }
+ }
