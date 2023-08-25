@@ -1,19 +1,33 @@
 @import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
+@import url("http://fonts.googleapis.com/earlyaccess/droidarabickufi.css");
+@import url("http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css");
 
-.card-class{
-  margin: 2%;
-  width: 19%;
-  border-radius: 3px;
+mat-card {
+  margin: 2% 6%;
+  /* background-color: blue; */
+  box-shadow: none;
   
-  text-align: center;
-  float: right;
+}
+.card-parent{
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ justify-content: space-between;
+}
+.card-class{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 38%;
+  border-radius: 3px;
   cursor: pointer;
   color: rgb(60, 202, 252);
   /* box-shadow: 2px 2px 8px rgb(60, 202, 252); */
   border: 1px solid rgb(60, 202, 252);
   padding-left: 5px ;
   padding-right: 5px;
-  overflow: hidden;
+ height: 20%;
+ border-radius: 5px;
 }
 
 .card-class:hover,
@@ -23,11 +37,9 @@
 }
 
 .mat-mdc-card-title{
-  font-family: 'Droid Arabic Kufi', serif;
+  font-family: 'Cairo', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
 }
 
-.screenBackground {
-  padding: 20px;
-  background: linear-gradient(rgb(252, 60, 73), rgb(89, 3, 46));
-  height: 100vh;
-}
+
