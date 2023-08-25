@@ -2,10 +2,10 @@
   <mat-card-content>
     <mat-accordion class="example-headers-align" multi dir="rtl">
       <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header class="searchadvance">
           <mat-panel-description>
             بحث متقدم
-            <mat-icon>account_circle</mat-icon>
+            <mat-icon>search</mat-icon>
           </mat-panel-description>
         </mat-expansion-panel-header>
         <div class="search">
@@ -134,19 +134,49 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-
-          <button (click)="getSearchItems(item.value)">عرض</button>
+          
+          <mat-form-field appearance="outline">
+            <mat-label>التقرير المراد طباعته</mat-label>
+            <input
+              matInput
+              aria-label="group"
+              [matAutocomplete]="autoGroup"
+              [formControl]="groupCtrl"
+              (click)="openAutoGroup()"
+              required
+            />
+            <mat-autocomplete
+              #autoGroup="matAutocomplete"
+              [displayWith]="displayGroupName"
+              (optionSelected)="groupSelected($event)"
+            >
+              <mat-option
+                *ngFor="let group of filteredGroups | async"
+                [value]="group"
+              >
+                {{ group.name }} | {{ group.code }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <div class=" print display"> 
+            <button (click)="getSearchItems(item.value)"  >عرض</button>
+          </div>
+          <div class="print">
+            <button (click)="printReport()" class="">طباعة<mat-icon class="me-2 ">print</mat-icon></button>
+          </div>
+        
+         
+          
         </div>
-        <div class="print">
-          <button (click)="printReport()">طباعة</button>
-        </div>
+       
       </mat-expansion-panel>
     </mat-accordion>
 
     <mat-card-header>
-      <div class="child1" >
-        <button mat-raised-button class="add" (click)="openDialog()"  dir="rtl">
-          اضافة<mat-icon>add</mat-icon> 
+      <div class="child1 " >
+        <button mat-raised-button class="add" (click)="openDialog()"  dir="ltr" >
+        
+        <span class="ms-2">اضافة</span>   <mat-icon class="me-1">add</mat-icon> 
         </button>
       </div>
 
