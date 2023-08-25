@@ -36,6 +36,8 @@ import { STRAddContainerComponent } from './str-add-container/str-add-container.
 import { StrVendorComponent } from './str-vendor/str-vendor.component';
 import {HrJobTitleComponent  } from "./hr-job-title/hr-job-title.component";
 import {HrPositionComponent  } from "./hr-position/hr-position.component";
+import { StrAccountsComponent } from './str-accounts/str-accounts.component';
+
 
 
 const routes: Routes = [
@@ -140,7 +142,12 @@ const routes: Routes = [
   //   {path:''  , component:DashboardComponent  },
   //   {path:'profile'  , component:ProfileComponent},
   //   {path:'edit-profile'  , component:EditProfileComponent},
+
   // ]},
+
+  {path:'str-account',component:StrAccountsComponent},
+
+  
   { path: '**', component: ErrorComponent },
 ];
 
