@@ -106,6 +106,8 @@ import { StrVendorComponent } from './str-vendor/str-vendor.component';
 import { StrVendorDialogComponent } from './str-vendor-dialog/str-vendor-dialog.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { StrAccountsComponent } from './str-accounts/str-accounts.component';
+
 @NgModule({
   declarations: [
     AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
@@ -176,7 +178,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     FIAccountParentDialogComponent,
     MenubarComponent,
     StrVendorComponent,
-    StrVendorDialogComponent
+    StrVendorDialogComponent,
+    StrAccountsComponent
   
 
 
