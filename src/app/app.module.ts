@@ -108,6 +108,14 @@ import { MenubarComponent } from './menubar/menubar.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { StrAccountsComponent } from './str-accounts/str-accounts.component';
 import { StrEmployeesComponent } from './str-employees/str-employees.component';
+import { HrIncentiveAllowanceComponent } from './hr-incentive-allowance/hr-incentive-allowance.component';
+import { HrIncentiveAllowanceDialogComponent } from './hr-incentive-allowance-dialog/hr-incentive-allowance-dialog.component';
+import { HrHiringTypeComponent } from './hr-hiring-type/hr-hiring-type.component';
+import { HrHiringTypeDialogComponent } from './hr-hiring-type-dialog/hr-hiring-type-dialog.component';
+import { HrMillitryStateComponent } from './hr-millitry-state/hr-millitry-state.component';
+import { HrMillitryStateDialogComponent } from './hr-millitry-state-dialog/hr-millitry-state-dialog.component';
+import { HrVacationComponent } from './hr-vacation/hr-vacation.component';
+import { HrVacationDailogComponent } from './hr-vacation-dailog/hr-vacation-dailog.component';
 
 @NgModule({
   declarations: [
@@ -181,7 +189,15 @@ import { StrEmployeesComponent } from './str-employees/str-employees.component';
     StrVendorComponent,
     StrVendorDialogComponent,
     StrAccountsComponent,
-    StrEmployeesComponent
+    StrEmployeesComponent,
+    HrIncentiveAllowanceComponent,
+    HrIncentiveAllowanceDialogComponent,
+    HrHiringTypeComponent,
+    HrHiringTypeDialogComponent,
+    HrMillitryStateComponent,
+    HrMillitryStateDialogComponent,
+    HrVacationComponent,
+    HrVacationDailogComponent
   
 
 
