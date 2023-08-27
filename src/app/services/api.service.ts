@@ -1524,6 +1524,41 @@ upload(file:any):Observable<any> {
       data
     );
   }
+
+
+
+  ///////////////////////////////// HR-IncentiveAllowance /////////////////////////////
+  postHrIncentiveAllowance(data: any) {
+    // console.log('form add data to apiii: ', data);
+    return this.http.post<any>(`${this.url}/HrIncentiveAllowance/Add-IncentiveAllowance`, data);
+  }
+  getHrIncentiveAllowance() {
+    return this.http.get<any>(`${this.url}/HrIncentiveAllowance/get-all-IncentiveAllowance`);
+  }
+  putHrIncentiveAllowance(data: any) {
+    return this.http.put<any>(`${this.url}/HrIncentiveAllowance/update-IncentiveAllowance`, data);
+  }
+  deleteHrIncentiveAllowance(id: number) {
+    // console.log('form delete data from apiii, id: ', id);
+    return this.http.delete<any>(`${this.url}/HrIncentiveAllowance/delete-IncentiveAllowance/` + id);
+  }
+
+
+  ///////////////////////////////// HR-HrHiringType /////////////////////////////
+  postHrHiringType(data: any) {
+    // console.log('form add data to apiii: ', data);
+    return this.http.post<any>(`${this.url}/HrHiringType/Add`, data);
+  }
+  getHrHiringType() {
+    return this.http.get<any>(`${this.url}/HrHiringType/get/all`);
+  }
+  putHrHiringType(data: any) {
+    return this.http.put<any>(`${this.url}/HrHiringType/update`, data);
+  }
+  deleteHrHiringType(id: number) {
+    // console.log('form delete data from apiii, id: ', id);
+    return this.http.delete<any>(`${this.url}/HrHiringType/delete/` + id);
+  }
   // MillitryState
   postMillitryState(data: any) {
     return this.http.post<any>(

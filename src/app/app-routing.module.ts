@@ -40,6 +40,8 @@ import { StrAccountsComponent } from './str-accounts/str-accounts.component';
 import { StrEmployeesComponent } from './str-employees/str-employees.component';
 import { HrMillitryStateComponent } from './hr-millitry-state/hr-millitry-state.component';
 import { HrVacationComponent } from './hr-vacation/hr-vacation.component';
+import { HrIncentiveAllowanceComponent } from './hr-incentive-allowance/hr-incentive-allowance.component';
+import { HrHiringTypeComponent } from './hr-hiring-type/hr-hiring-type.component';
 
 const routes: Routes = [
   //  {path: 'products',
@@ -144,6 +146,9 @@ const routes: Routes = [
   {path:'hr-MillitryState',component:HrMillitryStateComponent},
   
   { path:'hr-vacation',component:HrVacationComponent},
+
+  { path:'hr-incentive',component:HrIncentiveAllowanceComponent},
+  { path:'hr-hiringType',component:HrHiringTypeComponent},
   { path: '**', component: ErrorComponent },
 ];
 
