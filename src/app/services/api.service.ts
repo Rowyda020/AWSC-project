@@ -26,25 +26,25 @@ export class ApiService {
 
   postunit(data: any) {
     return this.http.post<any>(
-      'https://ims.aswan.gov.eg/api/STR_Unit/Add-Unit',
+      'http://ims.aswan.gov.eg/api/STRUnit/Add',
       data
     );
   }
   // here
   getunit() {
     return this.http.get<any>(
-      'https://ims.aswan.gov.eg/api/STR_Unit/get-all-Unit'
+      'http://ims.aswan.gov.eg/api/STRUnit/get/all'
     );
   }
   putunit(data: any) {
     return this.http.put<any>(
-      'https://ims.aswan.gov.eg/api/STR_Unit/update-Unit/',
+      'http://ims.aswan.gov.eg/api/STRUnit/update',
       data
     );
   }
   deleteunit(id: number) {
     return this.http.delete<any>(
-      `http://ims.aswan.gov.eg/api/STR_Unit/delete-Unit-by-id/${id}`
+      `http://ims.aswan.gov.eg/api/STRUnit/delete/${id}`
     );
   }
 
@@ -1559,4 +1559,52 @@ upload(file:any):Observable<any> {
     // console.log('form delete data from apiii, id: ', id);
     return this.http.delete<any>(`${this.url}/HrHiringType/delete/` + id);
   }
+  // MillitryState
+  postMillitryState(data: any) {
+    return this.http.post<any>(
+      'http://ims.aswan.gov.eg/api/HrMillitryState/Add',
+      data
+    );
+  }
+  // here
+  
+  // here
+  getMillitryState() {
+    return this.http.get<any>('http://ims.aswan.gov.eg/api/HrMillitryState/get/all'
+    );
+  }
+  putMillitryState(data: any) {
+    console.log("data")
+    return this.http.put<any>('http://ims.aswan.gov.eg/api/HrMillitryState/update',
+      data
+    );
+  }
+  daleteMillitryState(id: number) {
+    return this.http.delete<any>(`http://ims.aswan.gov.eg/api/HrMillitryState/delete/${id}`
+    );
+  }
+  postVacation(data: any) {
+    return this.http.post<any>(
+      'http://ims.aswan.gov.eg/api/HrVacation/Add',
+      data
+    );
+  }
+  // here
+  getVacation() {
+    return this.http.get<any>('http://ims.aswan.gov.eg/api/HrVacation/get/all'
+    );
+  }
+  putVacation(data: any) {
+    console.log("data")
+    return this.http.put<any>('http://ims.aswan.gov.eg/api/HrVacation/update',
+      data
+    );
+  }
+  daleteVacation(id: number) {
+    return this.http.delete<any>(`http://ims.aswan.gov.eg/api/HrVacation/delete/${id}`
+    );
+  }
+  
 }
+
+
