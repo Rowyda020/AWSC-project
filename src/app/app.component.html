@@ -40,7 +40,9 @@
             </mat-menu>
           </div>
           <div id="pageTitle">
-            <p>الرئيسية <mat-icon>home</mat-icon></p>
+            <div class="d-flex align-items-center">
+              <span >الرئيسية </span><mat-icon>home</mat-icon>
+            </div>
           </div>
           <div
             [ngClass]="
@@ -73,7 +75,7 @@
               : 'example-container'
           "
           autosize
-          style="width: 550px"
+          style="width: 552px"
         >
           <mat-drawer #drawer class="example-sidenav" mode="side">
             <div
