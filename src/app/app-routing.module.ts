@@ -54,8 +54,6 @@ const routes: Routes = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'jobTitle', component: HrJobTitleComponent },
-  { path: 'position', component: HrPositionComponent },
   { path: 'commodity', component: StrCommodityComponent },
   { path: 'home', component: StrGroupHomeComponent },
   { path: 'groupOpening', component: StrOpeningStockContainerComponent },
@@ -126,10 +124,8 @@ const routes: Routes = [
   { path: 'str-platoon', component: STRPlatoonComponent },
   { path: 'str-platoon1', component: STRPlatoon1Component },
   { path: 'str-home', component: STRHomeComponent },
-
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
   { path: 'str-vendor', component: StrVendorComponent},
-
   { path: 'fi-entry', component: FiEntryContainerComponent },
   { path: 'withdraw', component: StrWithdrawContainerComponent },
   { path: 'account', component: FIAccountComponent },
@@ -143,10 +139,10 @@ const routes: Routes = [
 
   {path:'str-account',component:StrAccountsComponent},
   {path:'str-employees',component:StrEmployeesComponent},
+  { path: 'jobTitle', component: HrJobTitleComponent },
+  { path: 'position', component: HrPositionComponent },
   {path:'hr-MillitryState',component:HrMillitryStateComponent},
-  
   { path:'hr-vacation',component:HrVacationComponent},
-
   { path:'hr-incentive',component:HrIncentiveAllowanceComponent},
   { path:'hr-hiringType',component:HrHiringTypeComponent},
   { path: '**', component: ErrorComponent },
