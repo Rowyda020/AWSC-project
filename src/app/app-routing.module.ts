@@ -38,6 +38,8 @@ import {HrJobTitleComponent  } from "./hr-job-title/hr-job-title.component";
 import {HrPositionComponent  } from "./hr-position/hr-position.component";
 import { StrAccountsComponent } from './str-accounts/str-accounts.component';
 import { StrEmployeesComponent } from './str-employees/str-employees.component';
+import { HrIncentiveAllowanceComponent } from './hr-incentive-allowance/hr-incentive-allowance.component';
+import { HrHiringTypeComponent } from './hr-hiring-type/hr-hiring-type.component';
 
 
 
@@ -141,6 +143,9 @@ const routes: Routes = [
 
   {path:'str-account',component:StrAccountsComponent},
   {path:'str-employees',component:StrEmployeesComponent},
+
+  { path: 'hr-incentive', component: HrIncentiveAllowanceComponent },
+  { path: 'hr-hiringType', component: HrHiringTypeComponent },
   
   { path: '**', component: ErrorComponent },
 ];
