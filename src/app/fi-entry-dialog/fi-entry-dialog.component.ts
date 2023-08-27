@@ -75,7 +75,7 @@ export class FiEntryDialogComponent implements OnInit {
       creditTotal: ['', Validators.required],
       debitTotal: ['', Validators.required],
       balance: ['', Validators.required],
-      type: ['', Validators.required], //will rename to state
+      state: ['', Validators.required], //will rename to state
       transactionUserId: ['', Validators.required],
       date: ['', Validators.required],
     });
@@ -206,10 +206,10 @@ export class FiEntryDialogComponent implements OnInit {
               }
 
               if (this.resultOfBalance == 0) {
-                this.groupMasterForm.controls['type'].setValue('مغلق');
+                this.groupMasterForm.controls['state'].setValue('مغلق');
               }
               else {
-                this.groupMasterForm.controls['type'].setValue('مفتوح');
+                this.groupMasterForm.controls['state'].setValue('مفتوح');
               }
               this.updateBothForms()
 
@@ -232,7 +232,7 @@ export class FiEntryDialogComponent implements OnInit {
     this.groupMasterForm.controls['creditTotal'].setValue(0);
     this.groupMasterForm.controls['debitTotal'].setValue(0);
     this.groupMasterForm.controls['balance'].setValue(0);
-    this.groupMasterForm.controls['type'].setValue('مغلق');
+    this.groupMasterForm.controls['state'].setValue('مغلق');
 
     console.log("fiEntry master form: ", this.groupMasterForm.value)
 
@@ -291,10 +291,10 @@ export class FiEntryDialogComponent implements OnInit {
             }
 
             if (this.resultOfBalance == 0) {
-              this.groupMasterForm.controls['type'].setValue('مغلق');
+              this.groupMasterForm.controls['state'].setValue('مغلق');
             }
             else {
-              this.groupMasterForm.controls['type'].setValue('مفتوح');
+              this.groupMasterForm.controls['state'].setValue('مفتوح');
             }
           }
           else {
@@ -314,10 +314,10 @@ export class FiEntryDialogComponent implements OnInit {
             }
 
             if(this.resultOfBalance == 0){
-              this.groupMasterForm.controls['type'].setValue('مغلق');
+              this.groupMasterForm.controls['state'].setValue('مغلق');
             }
             else{
-              this.groupMasterForm.controls['type'].setValue('مفتوح');
+              this.groupMasterForm.controls['state'].setValue('مفتوح');
             }
           }
 
