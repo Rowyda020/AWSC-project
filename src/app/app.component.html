@@ -1,6 +1,6 @@
 <section>
   <div class="baseContainer">
-    <mat-toolbar color="primary" style="background-color: white; color: black">
+    <mat-toolbar  >
       <mat-toolbar-row>
         <div class="toolbarContainer" *ngIf="global.isLogIn || global.navFlag">
           <div class="toolBarUserInfo" dir="rtl">
@@ -19,7 +19,7 @@
                   alt="user photo"
                 />
                 <div>
-              <!-- <div class="my-2">{{ user.name }}</div> -->
+              <div class="my-2">{{ user?.name }}</div>
                   <div>مدير ادارة المخازن</div>
                 </div>
               </div>
