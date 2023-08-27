@@ -37,6 +37,7 @@ import { StrVendorComponent } from './str-vendor/str-vendor.component';
 import {HrJobTitleComponent  } from "./hr-job-title/hr-job-title.component";
 import {HrPositionComponent  } from "./hr-position/hr-position.component";
 import { StrAccountsComponent } from './str-accounts/str-accounts.component';
+import { StrEmployeesComponent } from './str-employees/str-employees.component';
 
 
 
@@ -53,8 +54,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'jobTitle', component: HrJobTitleComponent },
   { path: 'position', component: HrPositionComponent },
-
-
   { path: 'commodity', component: StrCommodityComponent },
   { path: 'home', component: StrGroupHomeComponent },
   { path: 'groupOpening', component: StrOpeningStockContainerComponent },
@@ -91,8 +90,6 @@ const routes: Routes = [
   { path: 'FiAccountItem', component: FiAccountItemComponent },
   { path: 'FIJournal', component: FIJournalComponent },
   { path: 'STRAdd', component: STRAddContainerComponent },
-  
-
   {path:'withdraw',component:StrWithdrawContainerComponent },
 //  {path: 'products',
 //  children: [
@@ -111,15 +108,12 @@ const routes: Routes = [
   { path: "groupBannel", component: StrGroupComponent },
   { path: "unit", component:STRUnitsComponent},
   { path: "grade", component:STRGradeComponent },
-
-
   { path: 'home', component: StrGroupHomeComponent },
   { path: 'groupOpening', component: StrOpeningStockContainerComponent },
   { path: 'employeeOpening', component: StrEmployeeExchangeContainerComponent },
   { path: 'groupBannel', component: StrGroupComponent },
   { path: 'unit', component: STRUnitsComponent },
   { path: 'grade', component: STRGradeComponent },
-
   { path: 'costCenter', component: StrCostcenterComponent },
   //  { path: "items", component:StrItemComponent},
   { path: 'items1', component: STRItem1Component },
@@ -146,7 +140,7 @@ const routes: Routes = [
   // ]},
 
   {path:'str-account',component:StrAccountsComponent},
-
+  {path:'str-employees',component:StrEmployeesComponent},
   
   { path: '**', component: ErrorComponent },
 ];

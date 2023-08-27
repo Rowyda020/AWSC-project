@@ -107,6 +107,7 @@ import { StrVendorDialogComponent } from './str-vendor-dialog/str-vendor-dialog.
 import { MenubarComponent } from './menubar/menubar.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { StrAccountsComponent } from './str-accounts/str-accounts.component';
+import { StrEmployeesComponent } from './str-employees/str-employees.component';
 
 @NgModule({
   declarations: [
@@ -179,7 +180,8 @@ import { StrAccountsComponent } from './str-accounts/str-accounts.component';
     MenubarComponent,
     StrVendorComponent,
     StrVendorDialogComponent,
-    StrAccountsComponent
+    StrAccountsComponent,
+    StrEmployeesComponent
   
 
 
