@@ -1,5 +1,5 @@
 // import { HrPositionComponent } from './hr-position/hr-position.component';
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StrGroupHomeComponent } from './str-group-home/str-group-home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -38,8 +38,8 @@ import {HrJobTitleComponent  } from "./hr-job-title/hr-job-title.component";
 import {HrPositionComponent  } from "./hr-position/hr-position.component";
 import { StrAccountsComponent } from './str-accounts/str-accounts.component';
 import { StrEmployeesComponent } from './str-employees/str-employees.component';
-
-
+import { HrMillitryStateComponent } from './hr-millitry-state/hr-millitry-state.component';
+import { HrVacationComponent } from './hr-vacation/hr-vacation.component';
 
 const routes: Routes = [
   //  {path: 'products',
@@ -141,7 +141,9 @@ const routes: Routes = [
 
   {path:'str-account',component:StrAccountsComponent},
   {path:'str-employees',component:StrEmployeesComponent},
+  {path:'hr-MillitryState',component:HrMillitryStateComponent},
   
+  { path:'hr-vacation',component:HrVacationComponent},
   { path: '**', component: ErrorComponent },
 ];
 
