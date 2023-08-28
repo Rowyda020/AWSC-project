@@ -48,6 +48,16 @@ export class StrOpeningStockTableComponent implements OnInit {
     this.getItems();
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource2.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource2.paginator) {
+      this.dataSource2.paginator.firstPage();
+    }
+  }
+
+
   getAllMasterForms() {
     this.api.getStrOpen().subscribe({
       next: (res) => {

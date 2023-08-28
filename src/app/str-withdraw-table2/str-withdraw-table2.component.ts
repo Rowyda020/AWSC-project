@@ -54,6 +54,14 @@ export class StrWithdrawTableComponent implements OnInit {
     this.getFiscalYears();
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource2.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource2.paginator) {
+      this.dataSource2.paginator.firstPage();
+    }
+  }
 
   openWithdrawDialog() {
     this.dialog.open(StrWithdrawDialogComponent, {
