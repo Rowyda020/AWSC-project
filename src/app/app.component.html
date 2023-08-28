@@ -1,6 +1,6 @@
 <section>
   <div class="baseContainer">
-    <mat-toolbar color="primary" style="background-color: white; color: black">
+    <mat-toolbar  >
       <mat-toolbar-row>
         <div class="toolbarContainer" *ngIf="global.isLogIn || global.navFlag">
           <div class="toolBarUserInfo" dir="rtl">
@@ -18,9 +18,9 @@
                   height="30"
                   alt="user photo"
                 />
-                <div>
-              <!-- <div class="my-2">{{ user.name }}</div> -->
-                  <div>مدير ادارة المخازن</div>
+              <div class="user-name">
+              <div class="my-2">{{ user?.name }}</div>
+                  <div class="">مدير ادارة المخازن</div>
                 </div>
               </div>
             </button>
@@ -117,6 +117,7 @@
                     box-shadow: none;
                     border-bottom: 1px rgb(244, 237, 237) solid;
                     margin-top: 10px;
+                  
                     
                   "
                 >
@@ -126,48 +127,48 @@
                   <mat-nav-list>
                     <a
                       mat-list-item
-                      class="sideNavSubItems"
+                      class="sideNavSubItems "
                       routerLink="/commodity"
-                      >السلعة</a
+                      ><p class="font">السلعة</p></a
                     >
                     <a mat-list-item class="sideNavSubItems" routerLink="/grade"
-                      >النوعية</a
+                      ><p class="font">النوعية</p></a
                     >
                     <a
                       mat-list-item
                       class="sideNavSubItems"
                       routerLink="/str-platoon"
-                      >الفصيلة</a
+                      ><p class="font">الفصيلة</p></a
                     >
                     <a
                       mat-list-item
                       routerLink="/groupBannel"
                       class="sideNavSubItems"
-                      >المجموعة</a
+                      ><p class="font">المجموعة</p></a
                     >
                     <a mat-list-item class="sideNavSubItems" routerLink="/unit"
-                      >الوحدة</a
+                      ><p class="font">الوحدة</p></a
                     >
                     <a
                       mat-list-item
                       class="sideNavSubItems"
                       routerLink="/items1"
-                      >الاصناف</a
+                      ><p class="font">الاصناف</p></a
                     >
                     <a
                       mat-list-item
                       class="sideNavSubItems"
                       routerLink="/products"
-                      >المنتجات</a
+                      > <p class="font">المنتجات</p></a
                     >
                     <a mat-list-item class="sideNavSubItems" routerLink="/store"
-                      >المخازن</a
+                      ><p class="font">المخازن</p></a
                     >
                     <a
                       mat-list-item
                       class="sideNavSubItems"
                       routerLink="/costCenter"
-                      >مركز التكلفة</a
+                      >  <p class="font">مركز التكلفة</p></a
                     >
                   </mat-nav-list>
                 </mat-expansion-panel>
@@ -178,7 +179,7 @@
                   (click)="
                     global.getPermissionUserRoles(1, 'stores', 'إذن صرف', '')
                   "
-                  >اذن صرف</a
+                  > <p class="font">اذن صرف</p></a
                 >
                 <a
                   mat-list-item
@@ -187,7 +188,7 @@
                   (click)="
                     global.getPermissionUserRoles(2, 'stores', 'إذن إضافة', '')
                   "
-                  >اذن اضافة</a
+                  >  <p class="font">اذن اضافة</p></a
                 >
                 <a
                   mat-list-item
@@ -196,35 +197,17 @@
                   (click)="
                     global.getPermissionUserRoles(3, 'stores', 'الإفتتاحي', '')
                   "
-                  >الافتتاحى</a
+                  > <p class="font">الافتتاحى</p></a
                 >
-                <a
-                  mat-list-item
-                  class="sideNavSubItems"
-                  routerLink="/items1"
-                  (click)="global.getPermissionUserRoles(4, 'stores', 'إضافة صنف', '')"
-                  >اضافة صنف</a
-                >
-                <a
-                  mat-list-item
-                  class="sideNavSubItems"
-                  routerLink="/store"
-                  (click)="global.getPermissionUserRoles(5, 'stores', '', '')"
-                  >اضافة مخزن</a
-                >
-                <a
-                  mat-list-item
-                  class="sideNavSubItems"
-                  routerLink="/groupBannel"
-                  (click)="global.getPermissionUserRoles(6, 'stores', '', '')"
-                  >اضافة مجموعة</a
-                >
+                
+              
+               
                 <a
                   mat-list-item
                   routerLink="/employeeOpening"
                   class="sideNavSubItems"
                   (click)="global.getPermissionUserRoles(7, 'stores', '', '')"
-                  >نقل عهدة</a
+                  >  <p class="font">نقل عهدة</p></a
                 >
               </mat-nav-list>
             </mat-expansion-panel>
@@ -262,7 +245,7 @@
                       (click)="
                         global.getPermissionUserRoles(1, 'acounts', '', '')
                       "
-                      >اضافة حساب</a
+                      > <p class="font"> اضافة حساب</p></a
                     >
                     <a
                       mat-list-item
@@ -271,7 +254,7 @@
                       (click)="
                         global.getPermissionUserRoles(1, 'acounts', '', '')
                       "
-                      >إضافة شجرة الحساب</a
+                      >  <p class="font">  شجرة الحساب</p></a
                     >
                     <a
                       mat-list-item
@@ -280,7 +263,7 @@
                       (click)="
                         global.getPermissionUserRoles(1, 'acounts', '', '')
                       "
-                      >إضافة صنف الحساب</a
+                      >  <p class="font">  صنف الحساب</p></a
                     >
                     <a
                     mat-list-item
@@ -311,7 +294,7 @@
                 <a
                   mat-list-item
                   class="sideNavSubItems"
-                  routerLink="/withdraw"
+                  routerLink="/fi-entry"
                   (click)="global.getPermissionUserRoles(1, 'stores', '', '')"
                   >القيود
                 </a>

@@ -16,7 +16,7 @@ import { FiEntryDialogComponent } from '../fi-entry-dialog/fi-entry-dialog.compo
   styleUrls: ['./fi-entry-table.component.css']
 })
 export class FiEntryTableComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'balance', 'creditTotal', 'debitTotal', 'journalName', 'entrySourceTypeName', 'type', 'date', 'Action'];
+  displayedColumns: string[] = ['no', 'balance', 'creditTotal', 'debitTotal', 'journalName', 'entrySourceTypeName', 'state', 'date', 'Action'];
   matchedIds: any;
   storeList: any;
   storeName: any;

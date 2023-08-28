@@ -162,6 +162,53 @@ export class ApiService {
       data
     );
   }
+   // HrCity
+   getHrCity() {
+    return this.http.get<any>(' http://ims.aswan.gov.eg/api/HrCity/get/all');
+  }
+  putHrCity(data: any) {
+    return this.http.put<any>(
+      'http://ims.aswan.gov.eg/api/HrCity/update',
+      data
+    );
+  }
+  deleteHrCity(id: number) {
+    return this.http.delete<any>(
+      `http://ims.aswan.gov.eg/api/HrCity/delete/${id}`
+    );
+  }
+  postHrCity(data: any) {
+    return this.http.post<any>(
+      'http://ims.aswan.gov.eg/api/HrCity/Add',
+      data
+    );
+  }
+    // HrCityState
+    getHrCityState() {
+      return this.http.get<any>(' http://ims.aswan.gov.eg/api/HrCityState/get/all');
+    }
+    putHrCityState(data: any) {
+      return this.http.put<any>(
+        'http://ims.aswan.gov.eg/api/HrCityState/update',
+        data
+      );
+    }
+    deleteHrCityState(id: number) {
+      return this.http.delete<any>(
+        `http://ims.aswan.gov.eg/api/HrCityState/delete/${id}`
+      );
+    }
+    postHrCityState(data: any) {
+      return this.http.post<any>(
+        'http://ims.aswan.gov.eg/api/HrCityState/Add',
+        data
+      );
+    }
+    getAllCitis(): Observable<any> {
+      return this.http.get<any>(
+        'http://ims.aswan.gov.eg/api/HrCity/get/all'
+      );
+    }
 
   //Fatma
 
@@ -1523,6 +1570,41 @@ upload(file:any):Observable<any> {
       `${this.url}/HrPosition/update`,
       data
     );
+  }
+
+
+
+  ///////////////////////////////// HR-IncentiveAllowance /////////////////////////////
+  postHrIncentiveAllowance(data: any) {
+    // console.log('form add data to apiii: ', data);
+    return this.http.post<any>(`${this.url}/HrIncentiveAllowance/Add-IncentiveAllowance`, data);
+  }
+  getHrIncentiveAllowance() {
+    return this.http.get<any>(`${this.url}/HrIncentiveAllowance/get-all-IncentiveAllowance`);
+  }
+  putHrIncentiveAllowance(data: any) {
+    return this.http.put<any>(`${this.url}/HrIncentiveAllowance/update-IncentiveAllowance`, data);
+  }
+  deleteHrIncentiveAllowance(id: number) {
+    // console.log('form delete data from apiii, id: ', id);
+    return this.http.delete<any>(`${this.url}/HrIncentiveAllowance/delete-IncentiveAllowance/` + id);
+  }
+
+
+  ///////////////////////////////// HR-HrHiringType /////////////////////////////
+  postHrHiringType(data: any) {
+    // console.log('form add data to apiii: ', data);
+    return this.http.post<any>(`${this.url}/HrHiringType/Add`, data);
+  }
+  getHrHiringType() {
+    return this.http.get<any>(`${this.url}/HrHiringType/get/all`);
+  }
+  putHrHiringType(data: any) {
+    return this.http.put<any>(`${this.url}/HrHiringType/update`, data);
+  }
+  deleteHrHiringType(id: number) {
+    // console.log('form delete data from apiii, id: ', id);
+    return this.http.delete<any>(`${this.url}/HrHiringType/delete/` + id);
   }
   // MillitryState
   postMillitryState(data: any) {

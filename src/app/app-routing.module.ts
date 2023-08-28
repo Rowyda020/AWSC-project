@@ -33,6 +33,9 @@ import { FIAccountParentComponent } from './fi-account-parent/fi-account-parent.
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FIJournalComponent } from './fi-journal/fi-journal.component';
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
+import { HrCityComponent } from './hr-city/hr-city.component';
+import { HrCityStateComponent } from './hr-city-state/hr-city-state.component';
+
 import { StrVendorComponent } from './str-vendor/str-vendor.component';
 import {HrJobTitleComponent  } from "./hr-job-title/hr-job-title.component";
 import {HrPositionComponent  } from "./hr-position/hr-position.component";
@@ -40,6 +43,8 @@ import { StrAccountsComponent } from './str-accounts/str-accounts.component';
 import { StrEmployeesComponent } from './str-employees/str-employees.component';
 import { HrMillitryStateComponent } from './hr-millitry-state/hr-millitry-state.component';
 import { HrVacationComponent } from './hr-vacation/hr-vacation.component';
+import { HrIncentiveAllowanceComponent } from './hr-incentive-allowance/hr-incentive-allowance.component';
+import { HrHiringTypeComponent } from './hr-hiring-type/hr-hiring-type.component';
 
 const routes: Routes = [
   //  {path: 'products',
@@ -52,8 +57,6 @@ const routes: Routes = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'jobTitle', component: HrJobTitleComponent },
-  { path: 'position', component: HrPositionComponent },
   { path: 'commodity', component: StrCommodityComponent },
   { path: 'home', component: StrGroupHomeComponent },
   { path: 'groupOpening', component: StrOpeningStockContainerComponent },
@@ -90,6 +93,9 @@ const routes: Routes = [
   { path: 'FiAccountItem', component: FiAccountItemComponent },
   { path: 'FIJournal', component: FIJournalComponent },
   { path: 'STRAdd', component: STRAddContainerComponent },
+  { path: 'city', component: HrCityComponent },
+  { path: 'cityState', component: HrCityStateComponent },
+
   {path:'withdraw',component:StrWithdrawContainerComponent },
 //  {path: 'products',
 //  children: [
@@ -124,10 +130,8 @@ const routes: Routes = [
   { path: 'str-platoon', component: STRPlatoonComponent },
   { path: 'str-platoon1', component: STRPlatoon1Component },
   { path: 'str-home', component: STRHomeComponent },
-
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
   { path: 'str-vendor', component: StrVendorComponent},
-
   { path: 'fi-entry', component: FiEntryContainerComponent },
   { path: 'withdraw', component: StrWithdrawContainerComponent },
   { path: 'account', component: FIAccountComponent },
@@ -141,9 +145,12 @@ const routes: Routes = [
 
   {path:'str-account',component:StrAccountsComponent},
   {path:'str-employees',component:StrEmployeesComponent},
+  { path: 'jobTitle', component: HrJobTitleComponent },
+  { path: 'position', component: HrPositionComponent },
   {path:'hr-MillitryState',component:HrMillitryStateComponent},
-  
   { path:'hr-vacation',component:HrVacationComponent},
+  { path:'hr-incentive',component:HrIncentiveAllowanceComponent},
+  { path:'hr-hiringType',component:HrHiringTypeComponent},
   { path: '**', component: ErrorComponent },
 ];
 
