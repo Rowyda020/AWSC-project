@@ -1,4 +1,3 @@
-<!-- <p>workkkk</p> -->
 
 <mat-card-header dir="rtl">
     <div class="child1 ">
@@ -16,7 +15,7 @@
 
 <div id="content" class="content">
 
-    <!-- <header id="header" class="header">
+    <header id="header" class="header">
         <div class="header-one">
             <p>الاصناف</p>
         </div>
@@ -24,7 +23,7 @@
             <img src="../assets/images/water logo.png" />
             <p>شركة مياه الشرب والصرف الصحى بأسوان</p>
         </div>
-    </header> -->
+    </header>
 
 
     <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8" dir="rtl">
@@ -34,15 +33,45 @@
             <td mat-cell *matCellDef="let row">{{ row.name }}</td>
         </ng-container>
 
+        <!-- nodDays Column -->
+        <ng-container matColumnDef="nodDays">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>الايام </th>
+            <td mat-cell *matCellDef="let row">{{ row.nodDays }}</td>
+        </ng-container>
+
+        <!-- emplpoyeeName Column -->
+        <ng-container matColumnDef="emplpoyeeName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>الموظف </th>
+            <td mat-cell *matCellDef="let row">{{ row.emplpoyeeName }}</td>
+        </ng-container>
+
+        <!-- vacationName Column -->
+        <ng-container matColumnDef="vacationName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>الاجازة </th>
+            <td mat-cell *matCellDef="let row">{{ row.vacationName }}</td>
+        </ng-container>
+
+        <!-- startDate Column -->
+        <ng-container matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>تاريخ البداية </th>
+            <td mat-cell *matCellDef="let row">{{ row.startDate | date : "shortDate" }}</td>
+        </ng-container>
+
+        <!-- endDate Column -->
+        <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>تاريخ الانتهاء </th>
+            <td mat-cell *matCellDef="let row">{{ row.endDate | date : "shortDate" }}</td>
+        </ng-container>
+
         <!-- action Column -->
         <ng-container matColumnDef="action">
             <th mat-header-cell id="action1" *matHeaderCellDef mat-sort-header> الاجراء </th>
             <td mat-cell *matCellDef="let row">
                 <div id="action2">
-                        <button mat-icon-button id="button1" (click)="editJobTitle(row)" color="primary">
+                        <button mat-icon-button id="button1" (click)="editEmployeeVacation(row)" color="primary">
                         <mat-icon>edit</mat-icon>
                     </button>
-                        <button mat-icon-button id="button2" color="warn" (click)="deleteJobTitle(row.id)">
+                        <button mat-icon-button id="button2" color="warn" (click)="deleteEmployeeVacation(row.id)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
@@ -72,5 +101,4 @@
 <br />
 <mat-card-footer>
     <mat-paginator id="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
 </mat-card-footer>

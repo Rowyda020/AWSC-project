@@ -1,4 +1,4 @@
-<!-- <p>workkkk</p> -->
+<p>hr-employee-vacation-balance works!</p>
 
 <mat-card-header dir="rtl">
     <div class="child1 ">
@@ -16,7 +16,7 @@
 
 <div id="content" class="content">
 
-    <!-- <header id="header" class="header">
+    <header id="header" class="header">
         <div class="header-one">
             <p>الاصناف</p>
         </div>
@@ -24,7 +24,7 @@
             <img src="../assets/images/water logo.png" />
             <p>شركة مياه الشرب والصرف الصحى بأسوان</p>
         </div>
-    </header> -->
+    </header>
 
 
     <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8" dir="rtl">
@@ -34,15 +34,39 @@
             <td mat-cell *matCellDef="let row">{{ row.name }}</td>
         </ng-container>
 
+        <!-- balance Column -->
+        <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>الرصيد </th>
+            <td mat-cell *matCellDef="let row">{{ row.balance }}</td>
+        </ng-container>
+
+        <!-- employeeName Column -->
+        <ng-container matColumnDef="employeeName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>الموظف </th>
+            <td mat-cell *matCellDef="let row">{{ row.employeeName }}</td>
+        </ng-container>
+
+        <!-- vactionName Column -->
+        <ng-container matColumnDef="vactionName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>الاجازة </th>
+            <td mat-cell *matCellDef="let row">{{ row.vactionName }}</td>
+        </ng-container>
+
+        <!-- year Column -->
+        <ng-container matColumnDef="year">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>السنة  </th>
+            <td mat-cell *matCellDef="let row">{{ row.year }}</td>
+        </ng-container>
+
         <!-- action Column -->
         <ng-container matColumnDef="action">
             <th mat-header-cell id="action1" *matHeaderCellDef mat-sort-header> الاجراء </th>
             <td mat-cell *matCellDef="let row">
                 <div id="action2">
-                        <button mat-icon-button id="button1" (click)="editJobTitle(row)" color="primary">
+                        <button mat-icon-button id="button1" (click)="editEmployeeVacationBalance(row)" color="primary">
                         <mat-icon>edit</mat-icon>
                     </button>
-                        <button mat-icon-button id="button2" color="warn" (click)="deleteJobTitle(row.id)">
+                        <button mat-icon-button id="button2" color="warn" (click)="deleteEmployeeVacationBalance(row.id)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
@@ -72,5 +96,4 @@
 <br />
 <mat-card-footer>
     <mat-paginator id="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
 </mat-card-footer>

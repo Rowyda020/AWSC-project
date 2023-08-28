@@ -72,9 +72,7 @@ th {
 
 }
 .display button{
-  background:linear-gradient(rgb(252, 248, 248),rgb(146, 141, 141));
-  color: #111010;
-  font-weight: bold;
+  background:linear-gradient(rgb(75, 74, 74),rgb(231, 229, 229));
 }
 
 
@@ -146,39 +144,17 @@ table {
   overflow-y: scroll;
   width: 80%;
 }
-.print-btn {
-  background-color: #147a9f;
-  color: white;
-  font-family: "Droid Arabic Kufi", serif;
-  font-size: 15px;
-  padding: 15px;
-  border: none;
-  border-radius: 10px;
-  float: left;
-  width: 10%;
-
+.mat-mdc-table {
+  --mat-table-row-item-outline-width: 1px;
+  table-layout:fixed;
+  white-space: normal;
+  background-color: var(--mat-table-background-color);
+  font-family: 'Cairo', sans-serif !important;
 }
-.show-btn {
-  background-color: #147a9f;
-  color: white;
-  font-family: "Droid Arabic Kufi", serif;
-  font-size: 15px;
-  padding: 15px;
-  border: none;
-  border-radius: 10px;
-  /* float: left; */
-  width: 10%;
-  
-
-}
-
-.print-btn:hover {
-  background-color: #47afd5;
-  font-size: 17px;
-  color: white;
-  box-shadow: 0 0.5em 0.5em -0.4em #c7f0ff;
-  transform: translateY(-0.25em);
-  cursor: pointer;
+table, th, td {
+  border: 1px  rgb(161, 160, 160) solid;
+  text-align: center;
+  font-family: 'Cairo', sans-serif;
 }
 
 footer {
