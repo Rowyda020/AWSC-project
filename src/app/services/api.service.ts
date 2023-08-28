@@ -1820,4 +1820,37 @@ export class ApiService {
       // console.log('form delete data from apiii, id: ', id);
       return this.http.delete<any>(`${this.url}/HrEmployeeDisciplinary/delete-EmployeeDisciplinary/` + id);
     }
+
+      ///////////////////////////////// HR-EmployeeVacation /////////////////////////////
+  postHrEmployeeVacation(data: any) {
+    // console.log('form add data to apiii: ', data);
+    return this.http.post<any>(`${this.url}/HrEmployeeVacation/Add`, data);
+  }
+  getHrEmployeeVacation() {
+    return this.http.get<any>(`${this.url}/HrEmployeeVacation/get/all`);
+  }
+  putHrEmployeeVacation(data: any) {
+    return this.http.put<any>(`${this.url}/HrEmployeeVacation/update`, data);
+  }
+  deleteHrEmployeeVacation(id: number) {
+    // console.log('form delete data from apiii, id: ', id);
+    return this.http.delete<any>(`${this.url}/HrEmployeeVacation/delete/` + id);
+  }
+
+
+  ///////////////////////////////// HR-EmployeeVacationBalance /////////////////////////////
+  postHrEmployeeVacationBalance(data: any) {
+    // console.log('form add data to apiii: ', data);
+    return this.http.post<any>(`${this.url}/HrEmployeeVacationBalance/Add`, data);
+  }
+  getHrEmployeeVacationBalance() {
+    return this.http.get<any>(`${this.url}/HrEmployeeVacationBalance/get/all`);
+  }
+  putHrEmployeeVacationBalance(data: any) {
+    return this.http.put<any>(`${this.url}/HrEmployeeVacationBalance/update`, data);
+  }
+  deleteHrEmployeeVacationBalance(id: number) {
+    // console.log('form delete data from apiii, id: ', id);
+    return this.http.delete<any>(`${this.url}/HrEmployeeVacationBalance/delete/` + id);
+  }
 }
