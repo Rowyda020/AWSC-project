@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validator, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validator, Validators, FormControl, EmailValidator } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -87,7 +87,7 @@ gradeName: any;
   ngOnInit(): void {
     this.groupForm = this.formBuilder.group({
       transactionUserId : ['',Validators.required],
-      code : ['',Validators.required,Validators.pattern("^[0-9]{2}$")],      
+      code : ['',Validators.required],      
       name : ['',Validators.required],
       commodityId : ['',Validators.required],
       commodityName : [''],

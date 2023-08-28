@@ -2,7 +2,7 @@
   <div class="content" id="content">
     <header class="header">
       <div class="header-one">
-        <p>الاصناف</p>
+        <p>{{ displayName }}</p>
       </div>
       <div class="header-two">
         <img src="../assets/login images/water logo.png" />
@@ -62,13 +62,15 @@
         aria-label="الصفحات"
       ></mat-paginator> -->
     </section>
-    <footer id="reportFooter">
-      <h3>الأمضاءات</h3>
-      <p>مدير إدارة الشركة :</p>
-      <p>مدير إدارة المخزن :</p>
-    </footer>
-    <div class="date" id="date">
-      <p>{{ myDate | date : "shortDate" }}</p>
+    <div *ngIf="show">
+      <footer id="reportFooter">
+        <h3>الأمضاءات</h3>
+        <p>مدير إدارة الشركة :</p>
+        <p>مدير إدارة المخزن :</p>
+      </footer>
+      <div class="date" id="date">
+        <p>{{ myDate | date : "shortDate" }}</p>
+      </div>
     </div>
   </div>
   <div class="operation">

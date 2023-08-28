@@ -285,7 +285,12 @@ export class STRItem1Component implements OnInit {
     this.api.getItem().subscribe({
       next: (res) => {
         console.log('res table: ', res);
-
+        this.api.reportData = res;
+        this.api.reportName = 'str-item1';
+        let data: any = this.api.reportData;
+        window.localStorage.setItem('reportData', JSON.stringify(data));
+        let reportName: string = this.api.reportName;
+        window.localStorage.setItem('reportName', reportName);
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

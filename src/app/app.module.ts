@@ -96,11 +96,25 @@ import { FIJournalDialogComponent } from './fi-journal-dialog/fi-journal-dialog.
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
 import { STRAddDialogComponent } from './str-add-dialog/str-add-dialog.component';
 import { STRAddTableComponent } from './str-add-table/str-add-table.component';
-
+import { FIAccountParentComponent } from './fi-account-parent/fi-account-parent.component';
+import { FIAccountParentDialogComponent } from './fi-account-parent-dialog/fi-account-parent-dialog.component';
+import {HrJobTitleComponent} from './hr-job-title/hr-job-title.component';
+import {HrJobTitleDialogComponent} from './hr-job-title-dialog/hr-job-title-dialog.component'
+import {HrPositionComponent} from './hr-position/hr-position.component';
+import {HrPositionDialogComponent} from './hr-position-dialog/hr-position-dialog.component'
+import { StrVendorComponent } from './str-vendor/str-vendor.component';
+import { StrVendorDialogComponent } from './str-vendor-dialog/str-vendor-dialog.component';
+import { MenubarComponent } from './menubar/menubar.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { HrDisciplinaryComponent } from './hr-disciplinary/hr-disciplinary.component';
+import { HrDisciplinaryDialogComponent } from './hr-disciplinary-dialog/hr-disciplinary-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
-    StrCommodityComponent,
+    StrCommodityComponent,HrJobTitleComponent,
+    HrJobTitleDialogComponent,
+    HrPositionDialogComponent,
+    HrPositionComponent,
     StrCommodityDialogComponent,
     LoginComponent,
     StrGroupHomeComponent,
@@ -159,7 +173,15 @@ import { STRAddTableComponent } from './str-add-table/str-add-table.component';
     FIJournalDialogComponent,
     STRAddContainerComponent,
     STRAddDialogComponent,
-    STRAddTableComponent
+    STRAddTableComponent,
+    FIAccountParentComponent,
+    FIAccountParentDialogComponent,
+    MenubarComponent,
+    StrVendorComponent,
+    StrVendorDialogComponent,
+    HrDisciplinaryComponent,
+    HrDisciplinaryDialogComponent
+  
 
 
 
@@ -197,6 +219,7 @@ import { STRAddTableComponent } from './str-add-table/str-add-table.component';
     MatAutocompleteModule,
     MatStepperModule,
     ToastrModule.forRoot(),
+    MatBadgeModule
   ],
   providers: [
     {

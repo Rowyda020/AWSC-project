@@ -152,7 +152,7 @@
                     <a
                       mat-list-item
                       class="sideNavSubItems"
-                      routerLink="/commodity"
+                      routerLink="/items1"
                       >الاصناف</a
                     >
                     <a
@@ -176,55 +176,61 @@
                   mat-list-item
                   class="sideNavSubItems"
                   routerLink="/withdraw"
-                  (click)="global.getPermissionUserRoles(1)"
+                  (click)="
+                    global.getPermissionUserRoles(1, 'stores', 'إذن صرف', '')
+                  "
                   >اذن صرف</a
                 >
                 <a
                   mat-list-item
                   class="sideNavSubItems"
-                  routerLink="/withdraw"
-                  (click)="global.getPermissionUserRoles(1)"
+                  routerLink="/STRAdd"
+                  (click)="
+                    global.getPermissionUserRoles(2, 'stores', 'إذن إضافة', '')
+                  "
                   >اذن اضافة</a
                 >
                 <a
                   mat-list-item
                   routerLink="/groupOpening"
                   class="sideNavSubItems"
-                  (click)="global.getPermissionUserRoles(1)"
+                  (click)="
+                    global.getPermissionUserRoles(3, 'stores', 'الإفتتاحي', '')
+                  "
                   >الافتتاحى</a
                 >
                 <a
                   mat-list-item
                   class="sideNavSubItems"
                   routerLink="/items1"
-                  (click)="global.getPermissionUserRoles(2)"
+                  (click)="global.getPermissionUserRoles(4, 'stores', 'إضافة صنف', '')"
                   >اضافة صنف</a
                 >
                 <a
                   mat-list-item
                   class="sideNavSubItems"
                   routerLink="/store"
-                  (click)="global.getPermissionUserRoles(3)"
+                  (click)="global.getPermissionUserRoles(5, 'stores', '', '')"
                   >اضافة مخزن</a
                 >
                 <a
                   mat-list-item
                   class="sideNavSubItems"
                   routerLink="/groupBannel"
-                  (click)="global.getPermissionUserRoles(4)"
+                  (click)="global.getPermissionUserRoles(6, 'stores', '', '')"
                   >اضافة مجموعة</a
                 >
                 <a
                   mat-list-item
                   routerLink="/employeeOpening"
                   class="sideNavSubItems"
-                  (click)="global.getPermissionUserRoles(5)"
+                  (click)="global.getPermissionUserRoles(7, 'stores', '', '')"
                   >نقل عهدة</a
                 >
               </mat-nav-list>
             </mat-expansion-panel>
 
-            <!-- accounts -->
+            <!--start accounts -->
 
             <mat-expansion-panel
               dir="rtl"
@@ -242,30 +248,140 @@
               </mat-expansion-panel-header>
 
               <mat-nav-list>
-                <a mat-list-item class="sideNavSubItems" routerLink="/account"
-                  >اضافة مورد</a
+                <mat-expansion-panel
+                  dir="rtl"
+                  style="
+                    box-shadow: none;
+                    border-bottom: 1px black solid;
+                    margin-top: 10px;
+                  "
                 >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title> التكويد </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <mat-nav-list>
+                    <a
+                      mat-list-item
+                      class="sideNavSubItems"
+                      routerLink="/account"
+                      (click)="
+                        global.getPermissionUserRoles(1, 'acounts', '', '')
+                      "
+                      >اضافة مورد</a
+                    >
+                    <a
+                      mat-list-item
+                      class="sideNavSubItems"
+                      routerLink="/AccountHierarchy"
+                      (click)="
+                        global.getPermissionUserRoles(1, 'acounts', '', '')
+                      "
+                      >إضافة شجرة الحساب</a
+                    >
+                    <a
+                      mat-list-item
+                      class="sideNavSubItems"
+                      routerLink="/FiAccountItem"
+                      (click)="
+                        global.getPermissionUserRoles(1, 'acounts', '', '')
+                      "
+                      >إضافة صنف الحساب</a
+                    >
+                  </mat-nav-list>
+                </mat-expansion-panel>
                 <a
                   mat-list-item
                   class="sideNavSubItems"
-                  routerLink="/AccountHierarchy"
-                  >إضافة شجرة الحساب</a
-                >
+                  routerLink="/withdraw"
+                  (click)="global.getPermissionUserRoles(1, 'stores', '', '')"
+                  >اليومية
+                </a>
                 <a
                   mat-list-item
                   class="sideNavSubItems"
-                  routerLink="/FiAccountItem"
-                  >إضافة صنف الحساب</a
-                >
+                  routerLink="/withdraw"
+                  (click)="global.getPermissionUserRoles(1, 'stores', '', '')"
+                  >القيود
+                </a>
               </mat-nav-list>
             </mat-expansion-panel>
-            <a
-              mat-list-item
-              class="sideNavSubItems"
-              routerLink="/withdraw"
-              (click)="global.getPermissionUserRoles(1)"
-              >اليومية
-            </a>
+            <!-- end accounts -->
+
+            <!-- start الموراد البشرية-->
+            <mat-expansion-panel
+            dir="rtl"
+            style="
+              box-shadow: none;
+              border-bottom: 1px black solid;
+              margin-top: 10px;
+            "
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon color="primary">local_atm</mat-icon> الموراد البشرية
+              </mat-panel-title>
+              <mat-nav-list></mat-nav-list>
+            </mat-expansion-panel-header>
+
+            <mat-nav-list>
+              <mat-expansion-panel
+                dir="rtl"
+                style="
+                  box-shadow: none;
+                  border-bottom: 1px black solid;
+                  margin-top: 10px;
+                "
+              >
+                <mat-expansion-panel-header>
+                  <mat-panel-title> التكويد </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-nav-list>
+                  <a
+                    mat-list-item
+                    class="sideNavSubItems"
+                    routerLink="/account"
+                    (click)="
+                      global.getPermissionUserRoles(1, 'acounts', '', '')
+                    "
+                    >اضافة مورد</a
+                  >
+                  <a
+                    mat-list-item
+                    class="sideNavSubItems"
+                    routerLink="/AccountHierarchy"
+                    (click)="
+                      global.getPermissionUserRoles(1, 'acounts', '', '')
+                    "
+                    >إضافة شجرة الحساب</a
+                  >
+                  <a
+                    mat-list-item
+                    class="sideNavSubItems"
+                    routerLink="/FiAccountItem"
+                    (click)="
+                      global.getPermissionUserRoles(1, 'acounts', '', '')
+                    "
+                    >إضافة صنف الحساب</a
+                  >
+                </mat-nav-list>
+              </mat-expansion-panel>
+              <a
+                mat-list-item
+                class="sideNavSubItems"
+                routerLink="/withdraw"
+                (click)="global.getPermissionUserRoles(1, 'stores', '', '')"
+                >اليومية
+              </a>
+              <a
+                mat-list-item
+                class="sideNavSubItems"
+                routerLink="/fi-entry"
+                (click)="global.getPermissionUserRoles(1, 'stores', '', '')"
+                >القيود
+              </a>
+            </mat-nav-list>
+          </mat-expansion-panel>
+            <!-- end Hr -->
           </mat-drawer>
         </mat-drawer-container>
       </mat-toolbar-row>

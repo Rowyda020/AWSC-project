@@ -1,19 +1,17 @@
 <!-- <p>str-opening-stock-table works!</p> -->
 <mat-accordion class="example-headers-align" multi dir="rtl">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-description>
-        بحث متقدم
-        <mat-icon>account_circle</mat-icon>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div class="search">
-      <mat-form-field appearance="outline">
-        <mat-label>الرقم</mat-label>
-        <input #no matInput placeholder="ادخل الرقم" />
-        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-        <!-- <mat-hint>Hint</mat-hint> -->
-      </mat-form-field>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-description>
+                بحث متقدم
+                <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="search">
+            <mat-form-field appearance="outline">
+                <mat-label>الرقم</mat-label>
+                <input #no matInput placeholder="ادخل الرقم" type="number">
+            </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>المخزن</mat-label>
@@ -35,36 +33,27 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="example-full-width">
-        <mat-label>التاريخ</mat-label>
-        <input #date matInput [matDatepicker]="picker" />
-        <mat-datepicker-toggle matIconSuffix [for]="picker">
-          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>الصنف </mat-label>
+                <mat-select #itemId plceholder="اختر الصنف ">
+                    <mat-option *ngFor="let item of itemsList" [value]="item.id">{{item.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-      <!-- <button (click)=" getSearchStrOpen(store.value,no.value)" >عرض</button>  -->
+            <mat-form-field appearance="outline" class="example-full-width">
+                <mat-label>التاريخ</mat-label>
+                <input #date matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
 
-      <button
-        mat-icon-button
-        color="primary"
-        (click)="
-          getSearchStrOpen(
-            no.value,
-            storeId.value,
-            date.value,
-            fiscalYear.value
-          )
-        "
-      >
-        <mat-icon>search</mat-icon>
-      </button>
-    </div>
-    <div class="print-div">
-      <button class="print-btn" (click)="printReport()">طباعة</button>
-    </div>
-  </mat-expansion-panel>
+            <button mat-icon-button color="primary" (click)="getSearchStrOpen(no.value, storeId.value, date.value, fiscalYear.value, itemId.value)">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </mat-expansion-panel>
 </mat-accordion>
 
 <!---print Header-->
