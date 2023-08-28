@@ -98,6 +98,10 @@ import { STRAddDialogComponent } from './str-add-dialog/str-add-dialog.component
 import { STRAddTableComponent } from './str-add-table/str-add-table.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { HrCityComponent } from './hr-city/hr-city.component';
+import { HrCityDialogComponent } from './hr-city-dialog/hr-city-dialog.component';
+import { HrCityStateComponent } from './hr-city-state/hr-city-state.component';
+import { HrCityStateDialogComponent } from './hr-city-state-dialog/hr-city-state-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
@@ -161,7 +165,11 @@ import {MatBadgeModule} from '@angular/material/badge';
     STRAddContainerComponent,
     STRAddDialogComponent,
     STRAddTableComponent,
-    MenubarComponent
+    MenubarComponent,
+    HrCityComponent,
+    HrCityDialogComponent,
+    HrCityStateComponent,
+    HrCityStateDialogComponent
 
 
 

@@ -160,6 +160,53 @@ export class ApiService {
       data
     );
   }
+   // HrCity
+   getHrCity() {
+    return this.http.get<any>(' http://ims.aswan.gov.eg/api/HrCity/get/all');
+  }
+  putHrCity(data: any) {
+    return this.http.put<any>(
+      'http://ims.aswan.gov.eg/api/HrCity/update',
+      data
+    );
+  }
+  deleteHrCity(id: number) {
+    return this.http.delete<any>(
+      `http://ims.aswan.gov.eg/api/HrCity/delete/${id}`
+    );
+  }
+  postHrCity(data: any) {
+    return this.http.post<any>(
+      'http://ims.aswan.gov.eg/api/HrCity/Add',
+      data
+    );
+  }
+    // HrCityState
+    getHrCityState() {
+      return this.http.get<any>(' http://ims.aswan.gov.eg/api/HrCityState/get/all');
+    }
+    putHrCityState(data: any) {
+      return this.http.put<any>(
+        'http://ims.aswan.gov.eg/api/HrCityState/update',
+        data
+      );
+    }
+    deleteHrCityState(id: number) {
+      return this.http.delete<any>(
+        `http://ims.aswan.gov.eg/api/HrCityState/delete/${id}`
+      );
+    }
+    postHrCityState(data: any) {
+      return this.http.post<any>(
+        'http://ims.aswan.gov.eg/api/HrCityState/Add',
+        data
+      );
+    }
+    getAllCitis(): Observable<any> {
+      return this.http.get<any>(
+        'http://ims.aswan.gov.eg/api/HrCity/get/all'
+      );
+    }
 
   //Fatma
 

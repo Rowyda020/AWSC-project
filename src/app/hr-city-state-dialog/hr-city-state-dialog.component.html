@@ -1,0 +1,26 @@
+<form [formGroup]="cityStateForm" dir="rtl">
+    <h1 mat-dialog-title>إضافة نوعية</h1>
+    <div mat-dialog-content>
+      <form [formGroup]="cityStateForm">
+        <mat-form-field appearance="outline">
+          <mat-label>القرية </mat-label>
+          <input formControlName="name" matInput placeholder="ادخل القرية">
+        </mat-form-field>
+        <mat-label>المدينة</mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput aria-label="city" [matAutocomplete]="autoCity" [formControl]="cityCtrl"
+            placeholder="{{getCityStateData ? getCityStateData.cityName : ''}}" (click)="openAutoCity()" required />
+          <mat-autocomplete #autoCity="matAutocomplete" [displayWith]="displaycityName"
+            (optionSelected)="citySelected($event)">
+            <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+              {{ city.name }} 
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="warn" mat-dialog-close>اغلاق</button>
+      <button mat-raised-button color="primary" (click)="addCityState()" style="margin-left: 8px;">{{actionBtn}}</button>
+    </div>
+  </form>

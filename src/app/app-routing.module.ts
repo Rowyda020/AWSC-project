@@ -32,6 +32,8 @@ import { StrReportAddItemComponent } from './str-report-add-item/str-report-add-
 import { FiAccountItemComponent } from './fi-account-item/fi-account-item.component';
 import { FIJournalComponent } from './fi-journal/fi-journal.component';
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
+import { HrCityComponent } from './hr-city/hr-city.component';
+import { HrCityStateComponent } from './hr-city-state/hr-city-state.component';
 
 
 const routes: Routes = [
@@ -81,7 +83,8 @@ const routes: Routes = [
   { path: 'FiAccountItem', component: FiAccountItemComponent },
   { path: 'FIJournal', component: FIJournalComponent },
   { path: 'STRAdd', component: STRAddContainerComponent },
-  
+  { path: 'HrCity', component: HrCityComponent },
+  { path: 'cityState', component: HrCityStateComponent },
 
   {path:'withdraw',component:StrWithdrawContainerComponent },
 //  {path: 'products',
