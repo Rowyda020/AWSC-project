@@ -44,6 +44,16 @@ export class StrEmployeeExchangeTableComponent implements OnInit {
     this.getCostCenters();
   }
 
+
+  openEmployeeExchangeDialog() {
+    this.dialog.open(StrEmployeeExchangeDialogComponent, {
+      width: '100%'
+    }).afterClosed().subscribe(val => {
+      if (val === 'save') {
+      }
+    })
+  }
+
   getAllMasterForms() {
     this.api.getStrEmployeeExchange()
       .subscribe({

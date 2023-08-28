@@ -40,16 +40,17 @@ export class STRAddTableComponent implements OnInit {
   TypeName: any;
 
   dataSource2!: MatTableDataSource<any>;
+  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  
+  dataSource!: MatTableDataSource<any>;
 
-  constructor(
-    private api: ApiService,
-    private dialog: MatDialog,
-    private http: HttpClient,
-    @Inject(LOCALE_ID) private locale: string
-  ) {}
+  
+  constructor(private api: ApiService, private dialog: MatDialog, private http: HttpClient, @Inject(LOCALE_ID) private locale: string) {
+
+  }
 
   ngOnInit(): void {
     this.getAllMasterForms();
@@ -71,6 +72,30 @@ export class STRAddTableComponent implements OnInit {
         alert('خطأ أثناء جلب سجلات المجموعة !!');
       },
     });
+  }
+
+  openAddDialog() {
+    this.dialog.open(STRAddDialogComponent, {
+      width: '90%'
+    }).afterClosed().subscribe(val => {
+      if (val === 'save') {
+        this.getAllGroups();
+      }
+    })
+  }
+
+  getAllGroups() {
+    this.api.getGroup()
+      .subscribe({
+        next: (res) => {
+          this.dataSource = new MatTableDataSource(res);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error: () => {
+          // alert("خطأ أثناء جلب سجلات المجموعة !!");
+        }
+      })
   }
 
   editMasterForm(row: any) {

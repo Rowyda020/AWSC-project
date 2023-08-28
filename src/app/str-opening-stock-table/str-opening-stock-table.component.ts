@@ -61,7 +61,15 @@ export class StrOpeningStockTableComponent implements OnInit {
       },
     });
   }
-
+  openOpeningStockDialog() {
+    this.dialog.open(StrOpeningStockDialogComponent, {
+      width: '90%'
+    }).afterClosed().subscribe(val => {
+      if (val === 'save') {
+        // this.getAllGroups();
+      }
+    })
+  }
   editMasterForm(row: any) {
     this.dialog
       .open(StrOpeningStockDialogComponent, {
