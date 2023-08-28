@@ -106,6 +106,10 @@ import { StrVendorComponent } from './str-vendor/str-vendor.component';
 import { StrVendorDialogComponent } from './str-vendor-dialog/str-vendor-dialog.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { HrCityComponent } from './hr-city/hr-city.component';
+import { HrCityDialogComponent } from './hr-city-dialog/hr-city-dialog.component';
+import { HrCityStateComponent } from './hr-city-state/hr-city-state.component';
+import { HrCityStateDialogComponent } from './hr-city-state-dialog/hr-city-state-dialog.component';
 import { StrAccountsComponent } from './str-accounts/str-accounts.component';
 import { StrEmployeesComponent } from './str-employees/str-employees.component';
 import { HrIncentiveAllowanceComponent } from './hr-incentive-allowance/hr-incentive-allowance.component';
@@ -116,6 +120,9 @@ import { HrMillitryStateComponent } from './hr-millitry-state/hr-millitry-state.
 import { HrMillitryStateDialogComponent } from './hr-millitry-state-dialog/hr-millitry-state-dialog.component';
 import { HrVacationComponent } from './hr-vacation/hr-vacation.component';
 import { HrVacationDailogComponent } from './hr-vacation-dailog/hr-vacation-dailog.component';
+import { HrQualificationLevelComponent } from './hr-qualification-level/hr-qualification-level.component';
+import { HrQualificationLevelDialogComponent } from './hr-qualification-level-dialog/hr-qualification-level-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -183,6 +190,11 @@ import { HrVacationDailogComponent } from './hr-vacation-dailog/hr-vacation-dail
     STRAddContainerComponent,
     STRAddDialogComponent,
     STRAddTableComponent,
+    MenubarComponent,
+    HrCityComponent,
+    HrCityDialogComponent,
+    HrCityStateComponent,
+    HrCityStateDialogComponent,
     FIAccountParentComponent,
     FIAccountParentDialogComponent,
     MenubarComponent,
@@ -197,7 +209,10 @@ import { HrVacationDailogComponent } from './hr-vacation-dailog/hr-vacation-dail
     HrMillitryStateComponent,
     HrMillitryStateDialogComponent,
     HrVacationComponent,
-    HrVacationDailogComponent
+    HrVacationDailogComponent,
+    HrQualificationLevelComponent,
+    HrQualificationLevelDialogComponent,
+   
   
 
 
