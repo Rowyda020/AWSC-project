@@ -86,10 +86,10 @@
             </mat-autocomplete>
           </mat-form-field>
           <div class=" print display">
-            <button (click)="getSearchItems(item.value)">عرض</button>
+            <button (click)="printReport()">طباعة <mat-icon class="me-2 ">print</mat-icon></button>
           </div>
           <div class="print">
-            <button (click)="printReport()" class="">طباعة<mat-icon class="me-2 ">print</mat-icon></button>
+            <button (click)="getSearchItems(item.value)" class="">عرض</button>
           </div>
 
 
