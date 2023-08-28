@@ -120,6 +120,9 @@ import { HrMillitryStateComponent } from './hr-millitry-state/hr-millitry-state.
 import { HrMillitryStateDialogComponent } from './hr-millitry-state-dialog/hr-millitry-state-dialog.component';
 import { HrVacationComponent } from './hr-vacation/hr-vacation.component';
 import { HrVacationDailogComponent } from './hr-vacation-dailog/hr-vacation-dailog.component';
+import { HrQualificationLevelComponent } from './hr-qualification-level/hr-qualification-level.component';
+import { HrQualificationLevelDialogComponent } from './hr-qualification-level-dialog/hr-qualification-level-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -206,7 +209,10 @@ import { HrVacationDailogComponent } from './hr-vacation-dailog/hr-vacation-dail
     HrMillitryStateComponent,
     HrMillitryStateDialogComponent,
     HrVacationComponent,
-    HrVacationDailogComponent
+    HrVacationDailogComponent,
+    HrQualificationLevelComponent,
+    HrQualificationLevelDialogComponent,
+   
   
 
 
