@@ -45,6 +45,8 @@ import { HrMillitryStateComponent } from './hr-millitry-state/hr-millitry-state.
 import { HrVacationComponent } from './hr-vacation/hr-vacation.component';
 import { HrIncentiveAllowanceComponent } from './hr-incentive-allowance/hr-incentive-allowance.component';
 import { HrHiringTypeComponent } from './hr-hiring-type/hr-hiring-type.component';
+import { HrEmployeeVacationComponent } from './hr-employee-vacation/hr-employee-vacation.component';
+import { HrEmployeeVacationBalanceComponent } from './hr-employee-vacation-balance/hr-employee-vacation-balance.component';
 
 import { HrDisciplinaryComponent } from './hr-disciplinary/hr-disciplinary.component';
 

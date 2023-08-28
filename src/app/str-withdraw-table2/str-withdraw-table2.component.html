@@ -3,7 +3,7 @@
     <mat-expansion-panel-header>
       <mat-panel-description>
         بحث متقدم
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon>search</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="search">
@@ -56,6 +56,8 @@
         عرض
       </button>
 
+      
+
       <!-- <button (click)=" getSearchStrOpen(store.value,no.value)" >عرض</button>  -->
     </div>
     <div id="prnt-btn">
@@ -74,7 +76,18 @@
       <p>شركة مياه الشرب والصرف الصحى بأسوان</p>
     </div>
   </header>
+  <mat-card-header dir="rtl">
+    <div class="child1 ">
+      <button mat-raised-button class="add" (click)="openWithdrawDialog()" dir="ltr">
 
+        <span class="ms-2">اضافة</span> <mat-icon class="me-1">add</mat-icon>
+      </button>
+    </div>
+
+    <mat-form-field>
+      <input matInput  placeholder="بحث" #input />
+    </mat-form-field>
+  </mat-card-header>
   <div class="mat-elevation-z8">
     <table
       mat-table

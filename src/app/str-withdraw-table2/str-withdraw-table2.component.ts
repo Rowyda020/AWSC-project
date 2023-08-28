@@ -54,6 +54,17 @@ export class StrWithdrawTableComponent implements OnInit {
     this.getFiscalYears();
   }
 
+
+  openWithdrawDialog() {
+    this.dialog.open(StrWithdrawDialogComponent, {
+      width: '90%'
+    }).afterClosed().subscribe(val => {
+      if (val === 'save') {
+        // this.getAllGroups();
+      }
+    })
+  }
+
   getAllMasterForms() {
     this.api.getStrWithdraw().subscribe({
       next: (res) => {
