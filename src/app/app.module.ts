@@ -106,6 +106,10 @@ import { StrVendorComponent } from './str-vendor/str-vendor.component';
 import { StrVendorDialogComponent } from './str-vendor-dialog/str-vendor-dialog.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { HrCityComponent } from './hr-city/hr-city.component';
+import { HrCityDialogComponent } from './hr-city-dialog/hr-city-dialog.component';
+import { HrCityStateComponent } from './hr-city-state/hr-city-state.component';
+import { HrCityStateDialogComponent } from './hr-city-state-dialog/hr-city-state-dialog.component';
 import { StrAccountsComponent } from './str-accounts/str-accounts.component';
 import { StrEmployeesComponent } from './str-employees/str-employees.component';
 import { HrIncentiveAllowanceComponent } from './hr-incentive-allowance/hr-incentive-allowance.component';
@@ -183,6 +187,11 @@ import { HrVacationDailogComponent } from './hr-vacation-dailog/hr-vacation-dail
     STRAddContainerComponent,
     STRAddDialogComponent,
     STRAddTableComponent,
+    MenubarComponent,
+    HrCityComponent,
+    HrCityDialogComponent,
+    HrCityStateComponent,
+    HrCityStateDialogComponent,
     FIAccountParentComponent,
     FIAccountParentDialogComponent,
     MenubarComponent,
