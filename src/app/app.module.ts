@@ -1,4 +1,9 @@
+import { HrEmployeeVacationBalanceDialogComponent } from './hr-employee-vacation-balance-dialog/hr-employee-vacation-balance-dialog.component';
+import { HrEmployeeVacationBalanceComponent } from './hr-employee-vacation-balance/hr-employee-vacation-balance.component';
+import {  HrEmployeeVacationComponent} from "./hr-employee-vacation/hr-employee-vacation.component";
+import {  HrEmployeeVacationDialogComponent} from "./hr-employee-vacation-dialog/hr-employee-vacation-dialog.component";
 import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -120,17 +125,16 @@ import { HrMillitryStateComponent } from './hr-millitry-state/hr-millitry-state.
 import { HrMillitryStateDialogComponent } from './hr-millitry-state-dialog/hr-millitry-state-dialog.component';
 import { HrVacationComponent } from './hr-vacation/hr-vacation.component';
 import { HrVacationDailogComponent } from './hr-vacation-dailog/hr-vacation-dailog.component';
-import { HrEmployeeVacationComponent } from './hr-employee-vacation/hr-employee-vacation.component';
-import { HrEmployeeVacationDialogComponent } from './hr-employee-vacation-dialog/hr-employee-vacation-dialog.component';
-import { HrEmployeeVacationBalanceComponent } from './hr-employee-vacation-balance/hr-employee-vacation-balance.component';
-import { HrEmployeeVacationBalanceDialogComponent } from './hr-employee-vacation-balance-dialog/hr-employee-vacation-balance-dialog.component';
-import { HrQualificationLevelComponent } from './hr-qualification-level/hr-qualification-level.component';
-import { HrQualificationLevelDialogComponent } from './hr-qualification-level-dialog/hr-qualification-level-dialog.component';
-
-
+import {HrDisciplinaryComponent} from './hr-disciplinary/hr-disciplinary.component'
+import {HrDisciplinaryDialogComponent} from './hr-disciplinary-dialog/hr-disciplinary-dialog.component';
+import { HrEmployeeDisciplinaryComponent } from './hr-employee-disciplinary/hr-employee-disciplinary.component';
+import { HrEmployeeDisciplinaryDialogComponent } from './hr-employee-disciplinary-dialog/hr-employee-disciplinary-dialog.component'
 @NgModule({
   declarations: [
-    AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
+    AppComponent,HrEmployeeVacationBalanceComponent,HrEmployeeVacationBalanceDialogComponent,
+    HrDisciplinaryDialogComponent,HrDisciplinaryComponent,
+    HrVacationDailogComponent,HrVacationComponent,HrMillitryStateDialogComponent,
+    HrMillitryStateComponent,HrHiringTypeDialogComponent,HrHiringTypeComponent,HrIncentiveAllowanceDialogComponent,HrIncentiveAllowanceComponent,StrEmployeesComponent,StrAccountsComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
     StrCommodityComponent,HrJobTitleComponent,
     HrJobTitleDialogComponent,
     HrPositionDialogComponent,
@@ -138,7 +142,7 @@ import { HrQualificationLevelDialogComponent } from './hr-qualification-level-di
     StrCommodityDialogComponent,
     LoginComponent,
     StrGroupHomeComponent,
-
+    HrEmployeeVacationComponent,HrEmployeeVacationDialogComponent,
     STRGradeComponent,
     STRGradeDialogComponent,
 
@@ -214,13 +218,8 @@ import { HrQualificationLevelDialogComponent } from './hr-qualification-level-di
     HrMillitryStateDialogComponent,
     HrVacationComponent,
     HrVacationDailogComponent,
-    HrEmployeeVacationComponent,
-    HrEmployeeVacationDialogComponent,
-    HrEmployeeVacationBalanceComponent,
-    HrEmployeeVacationBalanceDialogComponent,
-    HrQualificationLevelComponent,
-    HrQualificationLevelDialogComponent,
-   
+    HrEmployeeDisciplinaryComponent,
+    HrEmployeeDisciplinaryDialogComponent
   
 
 

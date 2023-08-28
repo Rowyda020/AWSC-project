@@ -48,6 +48,10 @@ import { HrHiringTypeComponent } from './hr-hiring-type/hr-hiring-type.component
 import { HrEmployeeVacationComponent } from './hr-employee-vacation/hr-employee-vacation.component';
 import { HrEmployeeVacationBalanceComponent } from './hr-employee-vacation-balance/hr-employee-vacation-balance.component';
 
+import { HrDisciplinaryComponent } from './hr-disciplinary/hr-disciplinary.component';
+
+import { HrEmployeeDisciplinaryComponent } from './hr-employee-disciplinary/hr-employee-disciplinary.component';
+
 const routes: Routes = [
   //  {path: 'products',
   //  children: [
@@ -61,6 +65,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'commodity', component: StrCommodityComponent },
   { path: 'home', component: StrGroupHomeComponent },
+
   { path: 'groupOpening', component: StrOpeningStockContainerComponent },
   { path: 'employeeOpening', component: StrEmployeeExchangeContainerComponent },
   { path: 'groupBannel', component: StrGroupComponent },
@@ -147,15 +152,19 @@ const routes: Routes = [
 
   {path:'str-account',component:StrAccountsComponent},
   {path:'str-employees',component:StrEmployeesComponent},
-  { path: 'jobTitle', component: HrJobTitleComponent },
-  { path: 'position', component: HrPositionComponent },
-  {path:'hr-MillitryState',component:HrMillitryStateComponent},
+  { path: 'hr-jobTitle', component: HrJobTitleComponent },
+  { path: 'hr-position', component: HrPositionComponent },
+  { path:'hr-MillitryState',component:HrMillitryStateComponent},
   { path:'hr-vacation',component:HrVacationComponent},
   { path:'hr-incentive',component:HrIncentiveAllowanceComponent},
   { path:'hr-hiringType',component:HrHiringTypeComponent},
-  { path:'hr-employeeVacation',component:HrEmployeeVacationComponent},
-  { path:'hr-employeeVacationBalance',component:HrEmployeeVacationBalanceComponent},
+  { path: 'hr-disciplinary', component:HrDisciplinaryComponent },
+  
+  { path: 'hr-EmployeeDisciplinary', component: HrEmployeeDisciplinaryComponent },
+
   { path: '**', component: ErrorComponent },
+
+
 ];
 
 @NgModule({
