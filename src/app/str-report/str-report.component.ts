@@ -79,7 +79,7 @@ export class StrReportComponent {
           'type',
         ];
         this.displayName = 'الاصناف';
-        this.show = false;
+        // this.show = false;
         break;
 
       default:
@@ -101,11 +101,13 @@ export class StrReportComponent {
   printReport() {
     // this.loadAllData();
     let reportFooter: any = document.getElementById('reportFooter');
+    let section: any = document.getElementById('my-table');
     let date: any = document.getElementById('date');
-    if (this.show) {
+    if (!this.show) {
       reportFooter.style.display = 'block';
       date.style.display = 'block';
     }
+    console.log(section);
     let printContent: any = document.getElementById('content')?.innerHTML;
     let originalContent: any = document.body.innerHTML;
     document.body.innerHTML = printContent;
