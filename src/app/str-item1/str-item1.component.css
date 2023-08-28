@@ -66,7 +66,9 @@ th {
   justify-content: center;
 }
 .display button {
-  background: linear-gradient(rgb(75, 74, 74), rgb(231, 229, 229));
+  background: linear-gradient(rgb(252, 248, 248), rgb(146, 141, 141));
+  color: #111010;
+  font-weight: bold;
 }
 
 .print {
