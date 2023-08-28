@@ -1077,6 +1077,128 @@ export class ApiService {
       'http://ims.aswan.gov.eg/api/STRWithdrawDetails/delete/' + HeaderId
     );
   }
+  getStrWithdrawSearch(no: any, storeId: any, date: any, fiscalYear: any) {
+    //enter no.
+    if (no != '' && !storeId && !date && !fiscalYear ) {
+      console.log('enter no. strOpen search');
+      return this.http.get<any>(`${this.url}/STROpeningStock/search?No=${no}`);
+    }
+    //enter store
+    else if (!no && storeId && !date && !fiscalYear ) {
+      console.log('enter store strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}`
+      );
+    }
+    //enter date
+    else if (!no && !storeId && date && !fiscalYear ) {
+      console.log('enter date strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?Date=${date}`
+      );
+    }
+    //enter fiscalYear
+    else if (!no && !storeId && !date && fiscalYear ) {
+      console.log('enter fisalYear strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?fiscalyear=${fiscalYear}`
+      );
+    }
+    //enter itemId
+    // else if (!no && !storeId && !date && !fiscalYear ) {
+    //   console.log('enter itemId strOpen search');
+    //   return this.http.get<any>(
+    //     `${this.url}/STROpeningStock/search?ItemId=${itemId}`
+    //   );
+    // }
+
+    //enter no. & store
+    else if (no && storeId && !date && !fiscalYear ) {
+      console.log('enter no. & store strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}&No=${no}`
+      );
+    }
+    //enter no. & date
+    else if (no && !storeId && date && !fiscalYear ) {
+      console.log('enter no. & date strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?Date=${date}&No=${no}`
+      );
+    }
+    //enter no. & fiscalYear
+    else if (no && !storeId && !date && fiscalYear ) {
+      console.log('enter no. & fiscalYear strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?No=${no}&fiscalyear=${fiscalYear}`
+      );
+    }
+    //enter no. & itemId
+    // else if (no && !storeId && !date && !fiscalYear && itemId) {
+    //   console.log('enter no. & itemId strOpen search');
+    //   return this.http.get<any>(
+    //     `${this.url}/STROpeningStock/search?No=${no}&ItemId=${itemId}`
+    //   );
+    // }
+
+    //enter store & date
+    else if (!no && storeId && date && !fiscalYear ) {
+      console.log('enter store & date strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}&Date=${date}`
+      );
+    }
+    //enter store & fiscalYear
+    else if (!no && storeId && !date && fiscalYear ) {
+      console.log('enter store & fiscalYear strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}&fiscalyear=${storeId}`
+      );
+    }
+    //enter store & itemId
+    // else if (!no && storeId && !date && !fiscalYear && itemI) {
+    //   console.log('enter store & itemId strOpen search');
+    //   return this.http.get<any>(
+    //     `${this.url}/STROpeningStock/search?StoreId=${storeId}&ItemId=${itemId}`
+    //   );
+    // }
+
+    //enter date & fiscalYear
+    else if (!no && !storeId && date && fiscalYear ) {
+      console.log('enter date & fiscalYear strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?Date=${date}&fiscalyear=${fiscalYear}`
+      );
+    }
+    //enter date & itemId
+    // else if (!no && !storeId && date && !fiscalYear ) {
+    //   console.log('enter date & itemId strOpen search');
+    //   return this.http.get<any>(
+    //     `${this.url}/STROpeningStock/search?Date=${date}&ItemId=${itemId}`
+    //   );
+    // }
+
+    //enter fiscalYear & itemId
+    // else if (!no && !storeId && !date && fiscalYear ) {
+    //   console.log('enter fiscalYear & itemId strOpen search');
+    //   return this.http.get<any>(
+    //     `${this.url}/STROpeningStock/search?fiscalyear=${fiscalYear}&ItemId=${itemId}`
+    //   );
+    // }
+
+    //enter all data
+    else if (no != '' && storeId != '' && date != '' && fiscalYear != '' ) {
+      console.log('enter all data strOpen search');
+      return this.http.get<any>(
+        `${this.url}/STROpeningStock/search?StoreId=${storeId}&Date=${date}&No=${no}&fiscalyear=${fiscalYear}`
+      );
+    }
+
+    console.log("didn't enter any condition search");
+    return this.http.get<any>(
+      `${this.url}/STROpeningStock/search?StoreId=${0}`
+    );
+  }
   // getGroup() {
   //   return this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Group/get-all-Groups");
   //   // return this.http.get<any>("http://localhost:3000/GroupList/");
@@ -1657,7 +1779,49 @@ export class ApiService {
   }
 
 
-  ///////////////////////////////// HR-EmployeeVacation /////////////////////////////
+
+
+
+
+
+  /////////////HR Disciplinary////////////
+  postHrDisciplinary(data: any) {
+    // console.log('form add data to apiii: ', data);
+    return this.http.post<any>(`${this.url}/HrDisciplinary/Add-Disciplinary`, data);
+  }
+  getHrDisciplinary() {
+    return this.http.get<any>(`${this.url}/HrDisciplinary/get-all-Disciplinary`);
+  }
+  putHrDisciplinary(data: any) {
+    return this.http.put<any>(`${this.url}/HrDisciplinary/update-Disciplinary`, data);
+  }
+  deleteHrDisciplinary(id: number) {
+    // console.log('form delete data from apiii, id: ', id);
+    return this.http.delete<any>(`${this.url}/HrDisciplinary/delete-Disciplinary/` + id);
+  }
+
+
+
+
+    /////////////HR employeeDisciplinary////////////
+    postHrEmployeeDisciplinary(data: any) {
+      console.log('post in employeedisciplinary: ', data);
+      return this.http.post<any>(`${this.url}/HrEmployeeDisciplinary/Add-EmployeeDisciplinary`, data);
+    }
+    getHrEmployeeDisciplinary() {
+      return this.http.get<any>(`${this.url}/HrEmployeeDisciplinary/get-all-EmployeeDisciplinary`);
+    }
+    putHrEmployeeDisciplinary(data: any) {
+      console.log('put in employeedisciplinary: ', data);
+
+      return this.http.put<any>(`${this.url}/HrEmployeeDisciplinary/update-EmployeeDisciplinary`, data);
+    }
+    deleteHrEmployeeDisciplinary(id: number) {
+      // console.log('form delete data from apiii, id: ', id);
+      return this.http.delete<any>(`${this.url}/HrEmployeeDisciplinary/delete-EmployeeDisciplinary/` + id);
+    }
+
+      ///////////////////////////////// HR-EmployeeVacation /////////////////////////////
   postHrEmployeeVacation(data: any) {
     // console.log('form add data to apiii: ', data);
     return this.http.post<any>(`${this.url}/HrEmployeeVacation/Add`, data);
@@ -1689,5 +1853,4 @@ export class ApiService {
     // console.log('form delete data from apiii, id: ', id);
     return this.http.delete<any>(`${this.url}/HrEmployeeVacationBalance/delete/` + id);
   }
-  
 }
