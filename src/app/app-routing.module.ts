@@ -93,7 +93,7 @@ const routes: Routes = [
   { path: 'FiAccountItem', component: FiAccountItemComponent },
   { path: 'FIJournal', component: FIJournalComponent },
   { path: 'STRAdd', component: STRAddContainerComponent },
-  { path: 'HrCity', component: HrCityComponent },
+  { path: 'city', component: HrCityComponent },
   { path: 'cityState', component: HrCityStateComponent },
 
   {path:'withdraw',component:StrWithdrawContainerComponent },
