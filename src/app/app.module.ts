@@ -124,6 +124,9 @@ import { HrEmployeeVacationComponent } from './hr-employee-vacation/hr-employee-
 import { HrEmployeeVacationDialogComponent } from './hr-employee-vacation-dialog/hr-employee-vacation-dialog.component';
 import { HrEmployeeVacationBalanceComponent } from './hr-employee-vacation-balance/hr-employee-vacation-balance.component';
 import { HrEmployeeVacationBalanceDialogComponent } from './hr-employee-vacation-balance-dialog/hr-employee-vacation-balance-dialog.component';
+import { HrQualificationLevelComponent } from './hr-qualification-level/hr-qualification-level.component';
+import { HrQualificationLevelDialogComponent } from './hr-qualification-level-dialog/hr-qualification-level-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -214,7 +217,10 @@ import { HrEmployeeVacationBalanceDialogComponent } from './hr-employee-vacation
     HrEmployeeVacationComponent,
     HrEmployeeVacationDialogComponent,
     HrEmployeeVacationBalanceComponent,
-    HrEmployeeVacationBalanceDialogComponent
+    HrEmployeeVacationBalanceDialogComponent,
+    HrQualificationLevelComponent,
+    HrQualificationLevelDialogComponent,
+   
   
 
 

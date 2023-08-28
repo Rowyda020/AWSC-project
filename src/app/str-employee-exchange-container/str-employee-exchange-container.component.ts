@@ -22,13 +22,6 @@ export class StrEmployeeExchangeContainerComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  openEmployeeExchangeDialog() {
-    this.dialog.open(StrEmployeeExchangeDialogComponent, {
-      width: '100%'
-    }).afterClosed().subscribe(val => {
-      if (val === 'save') {
-      }
-    })
-  }
+ 
 
 }

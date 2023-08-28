@@ -206,7 +206,7 @@
                   mat-list-item
                   routerLink="/employeeOpening"
                   class="sideNavSubItems"
-                  (click)="global.getPermissionUserRoles(7, 'stores', '', '')"
+                  (click)="global.getPermissionUserRoles(1, 'stores', '', '')"
                   >  <p class="font">نقل عهدة</p></a
                 >
               </mat-nav-list>
@@ -272,7 +272,7 @@
                     (click)="
                       global.getPermissionUserRoles(1, 'acounts', '', '')
                     "
-                    >إضافة حساب اب</a>
+                    >   <p class="font">إضافة حساب اب</p></a>
                     <a
                     mat-list-item
                     class="sideNavSubItems"
@@ -280,8 +280,26 @@
                     (click)="
                       global.getPermissionUserRoles(1, 'acounts', '', '')
                     "
-                    >إضافة  صحيفة</a>
-                  
+                    >   <p class="font">إضافة صحيفة </p></a>
+
+                    <a
+                    mat-list-item
+                    class="sideNavSubItems"
+                    routerLink="/EntrySource"
+                    (click)="
+                      global.getPermissionUserRoles(1, 'acounts', '', '')
+                    "
+                    >   <p class="font">مصدر الدخل  </p></a>
+
+                    <a
+                    mat-list-item
+                    class="sideNavSubItems"
+                    routerLink="/EntrySourceType"
+                    (click)="
+                      global.getPermissionUserRoles(1, 'acounts', '', '')
+                    "
+                    >   <p class="font"> نوع مصدر الدخل  </p></a>
+                
                   </mat-nav-list>
                 </mat-expansion-panel>
                 <a
