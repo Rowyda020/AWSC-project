@@ -79,72 +79,21 @@ const routes: Routes = [
   { path: 'AccountHierarchy', component: FIAccountHierarchyComponent },
   { path: 'EntrySource' , component: FIEntrySourceComponent},
   { path: 'EntrySourceType' , component: FIEntrySourceTypeComponent},
-  { path: 'withdraw', component: StrWithdrawContainerComponent },
+  { path: 'withdraw', component: StrWithdrawContainerComponent }, //table filter done
   { path: 'add-item-report', component: StrReportAddItemComponent },
-  //  {path: 'products',
-  //  children: [
-  //    {
-  //      path: ':productID',
-  //      component: ProductComponent,
-  //    },
-  //  ],} ,
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'commodity', component: StrCommodityComponent },
   { path: 'AccountParent', component: FIAccountParentComponent },
   { path: 'FiAccountItem', component: FiAccountItemComponent },
   { path: 'FIJournal', component: FIJournalComponent },
-  { path: 'STRAdd', component: STRAddContainerComponent },
+  { path: 'STRAdd', component: STRAddContainerComponent }, //table filter done
   { path: 'city', component: HrCityComponent },
   { path: 'cityState', component: HrCityStateComponent },
-
-  {path:'withdraw',component:StrWithdrawContainerComponent },
-//  {path: 'products',
-//  children: [
-//    {
-//      path: ':productID',
-//      component: ProductComponent,
-//    },
-//  ],} ,
-  { path: "", redirectTo: "login", pathMatch: "full" },
-   {path:'login' , component:LoginComponent},
-   {path:'commodity' , component:StrCommodityComponent},
-  
-  { path: "home", component: StrGroupHomeComponent},
-  { path: "groupOpening", component: StrOpeningStockContainerComponent },
-  { path: "employeeOpening", component: StrEmployeeExchangeContainerComponent },
-  { path: "groupBannel", component: StrGroupComponent },
-  { path: "unit", component:STRUnitsComponent},
-  { path: "grade", component:STRGradeComponent },
-  { path: 'home', component: StrGroupHomeComponent },
-  { path: 'groupOpening', component: StrOpeningStockContainerComponent },
-  { path: 'employeeOpening', component: StrEmployeeExchangeContainerComponent },
-  { path: 'groupBannel', component: StrGroupComponent },
-  { path: 'unit', component: STRUnitsComponent },
-  { path: 'grade', component: STRGradeComponent },
-  { path: 'costCenter', component: StrCostcenterComponent },
-  //  { path: "items", component:StrItemComponent},
+  // { path: "", redirectTo: "login", pathMatch: "full" },
   { path: 'items1', component: STRItem1Component },
-  { path: 'group', component: StrGroupComponent },
   { path: 'group1', component: STRGroup1Component },
-  { path: 'store', component: StrStoreComponent },
-  { path: 'str-grade', component: STRGradeComponent },
-  { path: 'str-platoon', component: STRPlatoonComponent },
-  { path: 'str-platoon1', component: STRPlatoon1Component },
-  { path: 'str-home', component: STRHomeComponent },
   { path: 'str-employee', component: STREmployeeOpeningCustodyComponent },
   { path: 'str-vendor', component: StrVendorComponent},
-  { path: 'fi-entry', component: FiEntryContainerComponent },
-  { path: 'withdraw', component: StrWithdrawContainerComponent },
+  { path: 'fi-entry', component: FiEntryContainerComponent }, //table filter waiting to design
   { path: 'account', component: FIAccountComponent },
-
-  // {path:'dashboard' , canActivateChild:[CanActivateChildGuard],children:[
-  //   {path:''  , component:DashboardComponent  },
-  //   {path:'profile'  , component:ProfileComponent},
-  //   {path:'edit-profile'  , component:EditProfileComponent},
-
-  // ]},
-
   {path:'str-account',component:StrAccountsComponent},
   {path:'str-employees',component:StrEmployeesComponent},
   { path: 'jobTitle', component: HrJobTitleComponent },
@@ -153,7 +102,7 @@ const routes: Routes = [
   { path:'hr-vacation',component:HrVacationComponent},
   { path:'hr-incentive',component:HrIncentiveAllowanceComponent},
   { path:'hr-hiringType',component:HrHiringTypeComponent},
-  { path:'hr-employeeVacation',component:HrEmployeeVacationComponent},
+  { path:'hr-employeeVacation',component:HrEmployeeVacationComponent}, //waiting back to update
   { path:'hr-employeeVacationBalance',component:HrEmployeeVacationBalanceComponent},
   { path: '**', component: ErrorComponent },
 ];

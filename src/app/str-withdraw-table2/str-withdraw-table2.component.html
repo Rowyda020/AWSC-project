@@ -87,8 +87,8 @@
     </div>
 
     <mat-form-field>
-      <input matInput  placeholder="بحث" #input />
-    </mat-form-field>
+      <input matInput (keyup)="applyFilter($event)" placeholder="بحث" #input />
+  </mat-form-field>
   </mat-card-header>
   <div class="mat-elevation-z8">
     <table

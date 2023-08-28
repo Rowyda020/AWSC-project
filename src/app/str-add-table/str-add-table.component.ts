@@ -60,6 +60,16 @@ export class STRAddTableComponent implements OnInit {
     this.getReciepts();
     this.getEmployees();
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource2.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource2.paginator) {
+      this.dataSource2.paginator.firstPage();
+    }
+  }
+
   getAllMasterForms() {
     this.api.getStrAdd().subscribe({
       next: (res) => {
