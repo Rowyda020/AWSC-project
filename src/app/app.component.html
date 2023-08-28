@@ -1,6 +1,6 @@
 <section>
   <div class="baseContainer">
-    <mat-toolbar color="primary" style="background-color: white; color: black">
+    <mat-toolbar  >
       <mat-toolbar-row>
         <div class="toolbarContainer" *ngIf="global.isLogIn || global.navFlag">
           <div class="toolBarUserInfo" dir="rtl">
@@ -14,13 +14,13 @@
               <div class="toolbarUserContent d-flex">
                 <img
                   src="../assets/images/profile.png"
-                  width="50"
-                  height="50"
+                  width="30"
+                  height="30"
                   alt="user photo"
                 />
-                <div>
-                  <div class="my-2">{{ user.name }}</div>
-                  <div>مدير ادارة المخازن</div>
+              <div class="user-name">
+              <div class="my-2">{{ user?.name }}</div>
+                  <div class="">مدير ادارة المخازن</div>
                 </div>
               </div>
             </button>
@@ -40,7 +40,9 @@
             </mat-menu>
           </div>
           <div id="pageTitle">
-            <p>{{ global.pageTitle }} <mat-icon>home</mat-icon></p>
+            <div class="d-flex align-items-center">
+              <span >الرئيسية </span><mat-icon>home</mat-icon>
+            </div>
           </div>
           <div
             [ngClass]="
@@ -73,7 +75,7 @@
               : 'example-container'
           "
           autosize
-          style="width: 550px"
+          style="width: 552px"
         >
           <mat-drawer #drawer class="example-sidenav" mode="side">
             <div
@@ -90,26 +92,22 @@
                 (click)="drawer.toggle()"
                 (click)="plus()"
               >
-                <mat-icon>menu</mat-icon>
+                <mat-icon >menu</mat-icon>
               </button>
               <img src="../assets/images/water logo.png" alt="user photo" />
               <div class="toolbarUserContent">
                 <p>شركة مياة الشرب</p>
-                <p>و الصرف الصحى باسوان</p>
+                <p>والصرف الصحى باسوان</p>
               </div>
             </div>
 
             <mat-expansion-panel
               dir="rtl"
-              style="
-                box-shadow: none;
-                border-bottom: 1px black solid;
-                margin-top: 10px;
-              "
+             
             >
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  <mat-icon color="primary">store</mat-icon> المخازن
+                  <mat-icon color="primary"  class="ms-2">store</mat-icon> المخازن
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <mat-nav-list>
@@ -117,8 +115,10 @@
                   dir="rtl"
                   style="
                     box-shadow: none;
-                    border-bottom: 1px black solid;
+                    border-bottom: 1px rgb(244, 237, 237) solid;
                     margin-top: 10px;
+                  
+                    
                   "
                 >
                   <mat-expansion-panel-header>
@@ -127,48 +127,48 @@
                   <mat-nav-list>
                     <a
                       mat-list-item
-                      class="sideNavSubItems"
+                      class="sideNavSubItems "
                       routerLink="/commodity"
-                      >السلعة</a
+                      ><p class="font">السلعة</p></a
                     >
                     <a mat-list-item class="sideNavSubItems" routerLink="/grade"
-                      >النوعية</a
+                      ><p class="font">النوعية</p></a
                     >
                     <a
                       mat-list-item
                       class="sideNavSubItems"
                       routerLink="/str-platoon"
-                      >الفصيلة</a
+                      ><p class="font">الفصيلة</p></a
                     >
                     <a
                       mat-list-item
                       routerLink="/groupBannel"
                       class="sideNavSubItems"
-                      >المجموعة</a
+                      ><p class="font">المجموعة</p></a
                     >
                     <a mat-list-item class="sideNavSubItems" routerLink="/unit"
-                      >الوحدة</a
+                      ><p class="font">الوحدة</p></a
                     >
                     <a
                       mat-list-item
                       class="sideNavSubItems"
-                      routerLink="/commodity"
-                      >الاصناف</a
+                      routerLink="/items1"
+                      ><p class="font">الاصناف</p></a
                     >
                     <a
                       mat-list-item
                       class="sideNavSubItems"
                       routerLink="/products"
-                      >المنتجات</a
+                      > <p class="font">المنتجات</p></a
                     >
                     <a mat-list-item class="sideNavSubItems" routerLink="/store"
-                      >المخازن</a
+                      ><p class="font">المخازن</p></a
                     >
                     <a
                       mat-list-item
                       class="sideNavSubItems"
                       routerLink="/costCenter"
-                      >مركز التكلفة</a
+                      >  <p class="font">مركز التكلفة</p></a
                     >
                   </mat-nav-list>
                 </mat-expansion-panel>
@@ -179,7 +179,7 @@
                   (click)="
                     global.getPermissionUserRoles(1, 'stores', 'إذن صرف', '')
                   "
-                  >اذن صرف</a
+                  > <p class="font">اذن صرف</p></a
                 >
                 <a
                   mat-list-item
@@ -188,7 +188,7 @@
                   (click)="
                     global.getPermissionUserRoles(2, 'stores', 'إذن إضافة', '')
                   "
-                  >اذن اضافة</a
+                  >  <p class="font">اذن اضافة</p></a
                 >
                 <a
                   mat-list-item
@@ -197,35 +197,17 @@
                   (click)="
                     global.getPermissionUserRoles(3, 'stores', 'الإفتتاحي', '')
                   "
-                  >الافتتاحى</a
+                  > <p class="font">الافتتاحى</p></a
                 >
-                <a
-                  mat-list-item
-                  class="sideNavSubItems"
-                  routerLink="/items1"
-                  (click)="global.getPermissionUserRoles(4, 'stores', 'إضافة صنف', '')"
-                  >اضافة صنف</a
-                >
-                <a
-                  mat-list-item
-                  class="sideNavSubItems"
-                  routerLink="/store"
-                  (click)="global.getPermissionUserRoles(5, 'stores', '', '')"
-                  >اضافة مخزن</a
-                >
-                <a
-                  mat-list-item
-                  class="sideNavSubItems"
-                  routerLink="/groupBannel"
-                  (click)="global.getPermissionUserRoles(6, 'stores', '', '')"
-                  >اضافة مجموعة</a
-                >
+                
+              
+               
                 <a
                   mat-list-item
                   routerLink="/employeeOpening"
                   class="sideNavSubItems"
                   (click)="global.getPermissionUserRoles(7, 'stores', '', '')"
-                  >نقل عهدة</a
+                  >  <p class="font">نقل عهدة</p></a
                 >
               </mat-nav-list>
             </mat-expansion-panel>
@@ -234,15 +216,11 @@
 
             <mat-expansion-panel
               dir="rtl"
-              style="
-                box-shadow: none;
-                border-bottom: 1px black solid;
-                margin-top: 10px;
-              "
+             
             >
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  <mat-icon color="primary">local_atm</mat-icon> الحسابات
+                  <img src="../assets/images/calculator.png" width="20"  class="ms-2"/> الحسابات
                 </mat-panel-title>
                 <mat-nav-list></mat-nav-list>
               </mat-expansion-panel-header>
@@ -252,7 +230,7 @@
                   dir="rtl"
                   style="
                     box-shadow: none;
-                    border-bottom: 1px black solid;
+                    border-bottom: 1px rgb(244, 237, 237) solid;
                     margin-top: 10px;
                   "
                 >
@@ -267,7 +245,7 @@
                       (click)="
                         global.getPermissionUserRoles(1, 'acounts', '', '')
                       "
-                      >اضافة مورد</a
+                      > <p class="font"> اضافة حساب</p></a
                     >
                     <a
                       mat-list-item
@@ -276,7 +254,7 @@
                       (click)="
                         global.getPermissionUserRoles(1, 'acounts', '', '')
                       "
-                      >إضافة شجرة الحساب</a
+                      >  <p class="font">  شجرة الحساب</p></a
                     >
                     <a
                       mat-list-item
@@ -285,8 +263,25 @@
                       (click)="
                         global.getPermissionUserRoles(1, 'acounts', '', '')
                       "
-                      >إضافة صنف الحساب</a
+                      >  <p class="font">  صنف الحساب</p></a
                     >
+                    <a
+                    mat-list-item
+                    class="sideNavSubItems"
+                    routerLink="/AccountParent"
+                    (click)="
+                      global.getPermissionUserRoles(1, 'acounts', '', '')
+                    "
+                    >إضافة حساب اب</a>
+                    <a
+                    mat-list-item
+                    class="sideNavSubItems"
+                    routerLink="/FIJournal"
+                    (click)="
+                      global.getPermissionUserRoles(1, 'acounts', '', '')
+                    "
+                    >إضافة  صحيفة</a>
+                  
                   </mat-nav-list>
                 </mat-expansion-panel>
                 <a
@@ -299,7 +294,7 @@
                 <a
                   mat-list-item
                   class="sideNavSubItems"
-                  routerLink="/withdraw"
+                  routerLink="/fi-entry"
                   (click)="global.getPermissionUserRoles(1, 'stores', '', '')"
                   >القيود
                 </a>
@@ -310,15 +305,11 @@
             <!-- start الموراد البشرية-->
             <mat-expansion-panel
             dir="rtl"
-            style="
-              box-shadow: none;
-              border-bottom: 1px black solid;
-              margin-top: 10px;
-            "
+            
           >
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <mat-icon color="primary">local_atm</mat-icon> الموراد البشرية
+                <mat-icon color="primary" class="ms-2">people</mat-icon> الموراد البشرية
               </mat-panel-title>
               <mat-nav-list></mat-nav-list>
             </mat-expansion-panel-header>
@@ -328,7 +319,7 @@
                 dir="rtl"
                 style="
                   box-shadow: none;
-                  border-bottom: 1px black solid;
+                  border-bottom: 1px rgb(244, 237, 237) solid;
                   margin-top: 10px;
                 "
               >
@@ -375,7 +366,7 @@
               <a
                 mat-list-item
                 class="sideNavSubItems"
-                routerLink="/withdraw"
+                routerLink="/fi-entry"
                 (click)="global.getPermissionUserRoles(1, 'stores', '', '')"
                 >القيود
               </a>

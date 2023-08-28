@@ -2,13 +2,12 @@
   /* max-width: 400px; */
   width: 27%;
   padding:5px 10px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  height: 100px;
   
  
 }
-.example-card:hover{
-  color: aliceblue !important;
-}
+
 
 .example-card mat-card-title-group{     
     align-items: center;
@@ -34,24 +33,41 @@
 }
 
 .example-card:hover{
-    background-color: #fafaf8;
-    color: #000000;
+    background-color: #d8e4eb;
+  
+   
 
 }
 
-
-.groupCardsMainContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 90%;
-}
 
 .routeContainer{
   margin-top: -5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
 }
-.screenBackground {
-  padding: 20px;
-  background: linear-gradient(rgb(60, 252, 118), rgb(3, 89, 27))!important;
-  height: 100vh;
-}
+
+@media (max-width: 992px) {
+  .example-card {
+
+    width: 40%;
+    
+   
+  }}
+
+@media (max-width: 576px) {
+  .example-card {
+
+    width: 100%;
+    
+   
+  }
+
+  
+
+   }
+
+
+

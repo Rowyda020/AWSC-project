@@ -1,5 +1,6 @@
 
 
+
 h2 {
   font-family: 'Cairo', sans-serif;
   font-weight: bold;
@@ -11,7 +12,7 @@ h2 {
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
-    bottom: 50px;
+   top: -80px;
     
     
 
@@ -20,18 +21,18 @@ h2 {
 .form{
   font-family: 'Cairo', sans-serif;
   width:33%;
-  height:800px;
+  height:auto;
   background-color: FFFFFF;
   padding: 10px;
   /* border: 1px solid; */
   margin: auto;
-  box-shadow: 0px 1px 1px 4px #f8f3f3;
+  box-shadow: 0px 1px 1px 4px #eeebeb;
   /* padding-top: 20px; */
   height: 500px;
   border-radius: 15px;
   
   position: relative;
-  top: -10px;
+  top: -7px;
   z-index: 5;
   
   
@@ -44,6 +45,7 @@ h2 {
   background-color: #ffff !important; 
   box-shadow: none !important;
 }
+
 
 .form input{
   margin: auto;
@@ -87,12 +89,43 @@ input:-internal-autofill-selected{
   position: relative;
   top:70px;
   left: 300px;
-
+  color:#85909a !important;
 }
 #lock{
   position: relative;
   top:70px;
   left: 300px;
+  color:#85909a !important;
   
 }
     
+
+@media (max-width: 576px) {
+ 
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+
+
+
+  
+
+ }
+
+ @media (min-width: 1200px) { 
+  #user {
+    position: relative;
+    top:70px;
+    left: 240px;
+    color:#85909a !important;
+    
+  }
+  #lock{
+    position: relative;
+    top:70px;
+    left: 240px;
+    color:#85909a !important;
+    
+  }
+ }

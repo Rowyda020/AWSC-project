@@ -1,0 +1,36 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* a{
+    text-decoration: none;
+} */
+
+.upload{
+    font-size: 30px;
+margin-right: 20px;}
+.files{
+    margin-left: 40px;
+}
+mat-icon{
+    margin-left: 20px;
+    /* width: 0px !important; */
+    /* overflow: auto  !important; */
+}
+th{
+    font-size: 25px;
+}

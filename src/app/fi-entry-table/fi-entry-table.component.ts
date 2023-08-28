@@ -16,7 +16,7 @@ import { FiEntryDialogComponent } from '../fi-entry-dialog/fi-entry-dialog.compo
   styleUrls: ['./fi-entry-table.component.css']
 })
 export class FiEntryTableComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'balance', 'creditTotal', 'debitTotal', 'journalName', 'entrySourceTypeName', 'type', 'date', 'Action'];
+  displayedColumns: string[] = ['no', 'balance', 'creditTotal', 'debitTotal', 'journalName', 'entrySourceTypeName', 'state', 'date', 'Action'];
   matchedIds: any;
   storeList: any;
   storeName: any;
@@ -45,10 +45,6 @@ export class FiEntryTableComponent implements OnInit {
     this.getJournals();
     this.getFiAccounts();
     this.getFiEntrySource();
-    // this.getStores();
-    // this.getFiscalYears();
-    // this.getEmployees();
-    // this.getCostCenters();
   }
 
   getAllMasterForms() {
@@ -66,20 +62,6 @@ export class FiEntryTableComponent implements OnInit {
       })
 
 
-  }
-
-  getStores() {
-    this.api.getStore()
-      .subscribe({
-        next: (res) => {
-          this.storeList = res;
-          // console.log("store res: ", this.storeList);
-        },
-        error: (err) => {
-          // console.log("fetch store data err: ", err);
-          alert("خطا اثناء جلب المخازن !");
-        }
-      })
   }
 
   getJournals() {
@@ -154,10 +136,6 @@ export class FiEntryTableComponent implements OnInit {
               this.api.deleteFiEntryDetails(this.matchedIds[i].id)
                 .subscribe({
                   next: (res) => {
-                    // alert("تم الحذف التفاصيل بنجاح");
-
-                    // var resultMaster = confirm("هل ترغب بتاكيد حذف الرئيسي؟");
-                    // if (resultMaster) {
                     console.log("master id to be deleted: ", id)
 
                     this.api.deleteFiEntry(id)
@@ -171,7 +149,6 @@ export class FiEntryTableComponent implements OnInit {
                           alert("خطأ أثناء حذف الرئيسي !!");
                         }
                       })
-                    // }
 
                   },
                   error: () => {
@@ -204,48 +181,6 @@ export class FiEntryTableComponent implements OnInit {
         alert("خطا اثناء تحديد المجموعة !!")
       })
 
-  }
-
-  getFiscalYears() {
-    this.api.getFiscalYears()
-      .subscribe({
-        next: (res) => {
-          this.fiscalYearsList = res;
-          console.log("fiscalYears res in search: ", this.fiscalYearsList);
-        },
-        error: (err) => {
-          // console.log("fetch fiscalYears data err: ", err);
-          // alert("خطا اثناء جلب العناصر !");
-        }
-      })
-  }
-
-  getEmployees() {
-    this.api.getHrEmployees()
-      .subscribe({
-        next: (res) => {
-          this.employeesList = res;
-          console.log("employees res: ", this.employeesList);
-        },
-        error: (err) => {
-          console.log("fetch employees data err: ", err);
-          alert("خطا اثناء جلب الموظفين !");
-        }
-      })
-  }
-
-  getCostCenters() {
-    this.api.getFiCostCenter()
-      .subscribe({
-        next: (res) => {
-          this.costCentersList = res;
-          console.log("costCenter res: ", this.costCentersList);
-        },
-        error: (err) => {
-          console.log("fetch costCenter data err: ", err);
-          alert("خطا اثناء جلب مراكز التكلفة !");
-        }
-      })
   }
 
   getSearchStrOpen(no: any, journalId: any, accountId: any, date: any, sourceId: any) {

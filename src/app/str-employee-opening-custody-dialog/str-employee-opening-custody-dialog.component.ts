@@ -84,6 +84,7 @@ export class STREmployeeOpeningCustodyDialogComponent implements OnInit{
       costCenterId: ['', Validators.required],
       transactionUserId: ['', Validators.required],
       date: ['', Validators.required],
+      total: ['', Validators.required],
       fiscalYearId: ['', Validators.required],
     });
 
@@ -116,6 +117,7 @@ export class STREmployeeOpeningCustodyDialogComponent implements OnInit{
       // console.log("faciaaaaal year edit: ", this.groupMasterForm.getRawValue().fiscalYearId)
       // alert("facialId after: "+ this.groupMasterForm.getRawValue().fiscalYearId)
       this.groupMasterForm.controls['date'].setValue(this.editData.date);
+      this.groupMasterForm.controls['total'].setValue(this.editData.total);
 
       this.groupMasterForm.addControl('id', new FormControl('', Validators.required));
       this.groupMasterForm.controls['id'].setValue(this.editData.id);
@@ -206,7 +208,7 @@ export class STREmployeeOpeningCustodyDialogComponent implements OnInit{
 
     console.log("mastered row get all data: ", this.getMasterRowId)
     if (this.getMasterRowId) {
-      this.http.get<any>("https://ims.aswan.gov.eg/api/STR_Employee_Opening_Custody/get-all-Employee_Opening_Custody_Detail")
+      this.http.get<any>("http://ims.aswan.gov.eg/api/STREmployeeOpeningCustodyDetails/get/all")
         .subscribe(res => {
           console.log("res to get all details form: ", res, "masterRowId: ", this.getMasterRowId.id);
 
@@ -224,6 +226,8 @@ export class STREmployeeOpeningCustodyDialogComponent implements OnInit{
             this.sumOfTotals = 0;
             for (let i = 0; i < this.matchedIds.length; i++) {
               this.sumOfTotals = this.sumOfTotals + parseFloat(this.matchedIds[i].total);
+              this.groupMasterForm.controls['total'].setValue(this.sumOfTotals);
+              this.updateBothForms();
             }
 
           }
@@ -506,7 +510,7 @@ export class STREmployeeOpeningCustodyDialogComponent implements OnInit{
 
   getItemByID(id: any) {
     // console.log("row item id: ", id);
-    return fetch(`https://ims.aswan.gov.eg/api/STR_Item/get-Item-by-id/${id}`)
+    return fetch(`http://ims.aswan.gov.eg/api/STRItem/get/${id}`)
       .then(response => response.json())
       .then(json => {
         console.log("fetch item name by id res: ", json.name);

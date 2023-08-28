@@ -96,16 +96,38 @@ import { FIJournalDialogComponent } from './fi-journal-dialog/fi-journal-dialog.
 import { STRAddContainerComponent } from './str-add-container/str-add-container.component';
 import { STRAddDialogComponent } from './str-add-dialog/str-add-dialog.component';
 import { STRAddTableComponent } from './str-add-table/str-add-table.component';
+import { FIAccountParentComponent } from './fi-account-parent/fi-account-parent.component';
+import { FIAccountParentDialogComponent } from './fi-account-parent-dialog/fi-account-parent-dialog.component';
+import {HrJobTitleComponent} from './hr-job-title/hr-job-title.component';
+import {HrJobTitleDialogComponent} from './hr-job-title-dialog/hr-job-title-dialog.component'
+import {HrPositionComponent} from './hr-position/hr-position.component';
+import {HrPositionDialogComponent} from './hr-position-dialog/hr-position-dialog.component'
+import { StrVendorComponent } from './str-vendor/str-vendor.component';
+import { StrVendorDialogComponent } from './str-vendor-dialog/str-vendor-dialog.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HrCityComponent } from './hr-city/hr-city.component';
 import { HrCityDialogComponent } from './hr-city-dialog/hr-city-dialog.component';
 import { HrCityStateComponent } from './hr-city-state/hr-city-state.component';
 import { HrCityStateDialogComponent } from './hr-city-state-dialog/hr-city-state-dialog.component';
+import { StrAccountsComponent } from './str-accounts/str-accounts.component';
+import { StrEmployeesComponent } from './str-employees/str-employees.component';
+import { HrIncentiveAllowanceComponent } from './hr-incentive-allowance/hr-incentive-allowance.component';
+import { HrIncentiveAllowanceDialogComponent } from './hr-incentive-allowance-dialog/hr-incentive-allowance-dialog.component';
+import { HrHiringTypeComponent } from './hr-hiring-type/hr-hiring-type.component';
+import { HrHiringTypeDialogComponent } from './hr-hiring-type-dialog/hr-hiring-type-dialog.component';
+import { HrMillitryStateComponent } from './hr-millitry-state/hr-millitry-state.component';
+import { HrMillitryStateDialogComponent } from './hr-millitry-state-dialog/hr-millitry-state-dialog.component';
+import { HrVacationComponent } from './hr-vacation/hr-vacation.component';
+import { HrVacationDailogComponent } from './hr-vacation-dailog/hr-vacation-dailog.component';
+
 @NgModule({
   declarations: [
     AppComponent,StrWithdrawContainerComponent,StrWithdrawDialogComponent,StrWithdrawTableComponent,
-    StrCommodityComponent,
+    StrCommodityComponent,HrJobTitleComponent,
+    HrJobTitleDialogComponent,
+    HrPositionDialogComponent,
+    HrPositionComponent,
     StrCommodityDialogComponent,
     LoginComponent,
     StrGroupHomeComponent,
@@ -169,7 +191,23 @@ import { HrCityStateDialogComponent } from './hr-city-state-dialog/hr-city-state
     HrCityComponent,
     HrCityDialogComponent,
     HrCityStateComponent,
-    HrCityStateDialogComponent
+    HrCityStateDialogComponent,
+    FIAccountParentComponent,
+    FIAccountParentDialogComponent,
+    MenubarComponent,
+    StrVendorComponent,
+    StrVendorDialogComponent,
+    StrAccountsComponent,
+    StrEmployeesComponent,
+    HrIncentiveAllowanceComponent,
+    HrIncentiveAllowanceDialogComponent,
+    HrHiringTypeComponent,
+    HrHiringTypeDialogComponent,
+    HrMillitryStateComponent,
+    HrMillitryStateDialogComponent,
+    HrVacationComponent,
+    HrVacationDailogComponent
+  
 
 
 
