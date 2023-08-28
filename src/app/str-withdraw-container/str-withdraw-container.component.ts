@@ -25,15 +25,7 @@ export class StrWithdrawContainerComponent implements OnInit{
     // this.getAllGroups();
   }
 
-  openWithdrawDialog() {
-    this.dialog.open(StrWithdrawDialogComponent, {
-      width: '90%'
-    }).afterClosed().subscribe(val => {
-      if (val === 'save') {
-        // this.getAllGroups();
-      }
-    })
-  }
+  
 
   // getAllGroups() {
   //   this.api.getGroup()
